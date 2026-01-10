@@ -1,0 +1,21 @@
+<a routerLink="/" class="text-decoration-none">&larr; Voltar</a>
+
+@if (m) {
+  <h1 class="h4 mt-3">{{ m.titulo }}</h1>
+  <div class="text-muted mb-3">{{ m.versoChave }}</div>
+
+  @for (p of m.corpo; track $index) {
+    <p>{{ p }}</p>
+  }
+
+  <hr />
+
+  <h2 class="h6">Fontes</h2>
+  <ul class="mb-0">
+    @for (f of m.fontes; track f.url) {
+      <li><a [href]="f.url" target="_blank" rel="noreferrer">{{ f.titulo }}</a></li>
+    }
+  </ul>
+} @else {
+  <div class="alert alert-warning mt-3">Meditação não encontrada.</div>
+}
