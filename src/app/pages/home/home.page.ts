@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { MEDITACOES } from '../../data/meditations';
+
+@Component({
+  standalone: true,
+  imports: [RouterLink],
+  templateUrl: './home.page.html'
+})
+export default class HomePage {
+  meditacoes = MEDITACOES;
+}

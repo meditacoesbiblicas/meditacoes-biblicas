@@ -1,0 +1,18 @@
+<h1 class="h4 mb-3">Meditações</h1>
+
+<div class="row g-3">
+  @for (m of meditacoes; track m.id) {
+    <div class="col-12 col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-muted small">{{ m.versoChave }}</div>
+          <h2 class="h5 mt-2">{{ m.titulo }}</h2>
+          <p class="mb-3">{{ m.resumo }}</p>
+          <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
+            Ler
+          </a>
+        </div>
+      </div>
+    </div>
+  }
+</div>
