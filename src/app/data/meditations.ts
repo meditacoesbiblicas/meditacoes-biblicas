@@ -6,11 +6,13 @@ export type Meditacao = {
   arquivoMd: string;
   referencias: string[];
   tema: string;
+  data: string;
 };
 
 export const MEDITACOES: Meditacao[] = [
   {
     id: 'olhar-de-jesus',
+    data: '2026-01-10',
     tema: 'Comunicação',
     titulo: '🕊️ O olhar de Jesus',
     versoChave: 'Lucas 22:61',
@@ -20,6 +22,7 @@ export const MEDITACOES: Meditacao[] = [
   },
   {
     id: 'poder-da-lingua',
+    data: '2026-01-03',
     tema: 'Comunicação',
     titulo: '🗣️ O poder da língua: vida ou morte',
     versoChave: 'Provérbios 18:21',
@@ -29,6 +32,7 @@ export const MEDITACOES: Meditacao[] = [
   },
   {
     id: 'da-escuridao-a-luz',
+    data: '2025-12-27',
     tema: 'Crescimento Espiritual',
     titulo: '🌅 Da Escuridão à Luz — um caminho que se aprende a ver',
     versoChave: 'Provérbios 4:18',

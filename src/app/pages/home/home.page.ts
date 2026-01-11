@@ -9,7 +9,7 @@ import { MEDITACOES } from '../../data/meditations';
   templateUrl: './home.page.html'
 })
 export default class HomePage {
-  meditacoes = MEDITACOES;
+  meditacoes = [...MEDITACOES].sort((a, b) => b.data.localeCompare(a.data));
 
   temaSelecionado = 'Todos';
 
