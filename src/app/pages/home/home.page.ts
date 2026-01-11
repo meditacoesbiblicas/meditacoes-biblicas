@@ -22,4 +22,9 @@ export default class HomePage {
     if (this.temaSelecionado === 'Todos') return this.meditacoes;
     return this.meditacoes.filter(m => m.tema === this.temaSelecionado);
   }
+
+  formatarData(iso: string) {
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
 }
