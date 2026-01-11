@@ -4,6 +4,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
 
 import { MEDITACOES, Meditacao } from '../../data/meditations';
+import { HttpClient } from '@angular/common/http';
+
+import { firstValueFrom } from 'rxjs';
+
 
 @Component({
   standalone: true,
@@ -15,20 +19,29 @@ export default class MeditacaoPage {
   m: Meditacao | null = null;
   html: SafeHtml = '';
 
-  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) {
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {
     this.route.paramMap.subscribe(pm => {
       this.id = pm.get('id') ?? '';
       this.m = MEDITACOES.find(x => x.id === this.id) ?? null;
-      void this.renderMarkdown(); // chama async sem travar
+      void this.loadMarkdown(); 
     });
   }
 
-  private async renderMarkdown(): Promise<void> {
-    const md = this.m?.conteudoMd ?? '';
+  private async loadMarkdown(): Promise<void> {
+    const file = this.m?.arquivoMd ?? '';
+    if (!file) { this.html = ''; return; }
 
-    // marked.parse pode retornar string OU Promise<string>
-    const parsed = await marked.parse(md);
 
+    const md = await firstValueFrom(
+      this.http.get(`content/${file}`, { responseType: 'text' })
+    );
+
+    const parsed = await marked.parse(md ?? '');
     this.html = this.sanitizer.bypassSecurityTrustHtml(parsed);
   }
+
 }
