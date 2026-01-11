@@ -1,13 +1,33 @@
 <p class="text-muted mb-3">Reflexões curtas para leitura e compartilhamento.</p>
 
+<div class="row align-items-end g-3 mb-3">
+  <div class="col-12 col-md-6">
+    <label class="form-label mb-1">Tema</label>
+    <select class="form-select" [(ngModel)]="temaSelecionado">
+      @for (t of temas; track t) {
+        <option [value]="t">{{ t }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="col-12 col-md-6 text-md-end">
+    <div class="text-muted">
+      Mostrando {{ meditacoesFiltradas.length }} de {{ meditacoes.length }}
+    </div>
+  </div>
+</div>
+
 <div class="row g-3">
-  @for (m of meditacoes; track m.id) {
+  @for (m of meditacoesFiltradas; track m.id) {
     <div class="col-12 col-md-6">
       <div class="card h-100">
         <div class="card-body">
           <div class="text-muted small">{{ m.versoChave }}</div>
+          <div class="text-muted small mt-1">Tema: {{ m.tema }}</div>
+
           <h2 class="h5 mt-2">{{ m.titulo }}</h2>
           <p class="mb-3">{{ m.resumo }}</p>
+
           <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
             Ler
           </a>
