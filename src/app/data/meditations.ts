@@ -14,11 +14,11 @@ export const MEDITACOES: Meditacao[] = [
     id: 'olhar-de-jesus',
     data: '2026-01-10',
     tema: 'Comunicação',
-    titulo: '🕊️ O olhar de Jesus',
-    versoChave: 'Lucas 22:61',
-    resumo: 'Jesus comunicava sem palavras — e o olhar dEle curava, não feriu.',
+    titulo: '👁️  O olhar de Jesus',
+    versoChave: 'Marcos 10:21',
+    resumo: 'Jesus corrige com amor — e até o silêncio e o olhar podem restaurar.',
     arquivoMd: 'olhar-de-jesus.md',
-    referencias: ['Lc 22:61']
+    referencias: ['Mc 10:21', 'Lc 22:61']
   },
   {
     id: 'poder-da-lingua',

@@ -5,14 +5,14 @@
 
 A Palavra de Deus nos mostra que a língua tem poder de morte e de vida.  
 Não é exagero — é uma verdade espiritual profunda.  
-Com a mesma boca que louvamos a Deus, podemos ferir um irmão.
+Com a mesma boca que louvamos a Deus, podemos ferir alguém.
 
 Cada palavra é uma escolha: **curar ou ferir**, **levantar ou derrubar**.
 
-## 📌 Ellen G. White
-
-> “Palavras impensadas deixam uma impressão que pode durar pela eternidade.”
-> — **O Lar Adventista, p. 437**
+> “Palavras são como sementes que se plantam.”
+> — **O Lar Adventista, p. 439.2**
+>
+> 🔗 https://m.egwwritings.org/pt/book/1955.2633
 
 Cada palavra é uma semente:  
 🌱 pode nascer amor, fé, reconciliação.  
@@ -29,8 +29,10 @@ Por isso, não basta mudar o jeito de falar — é preciso deixar Deus transform
 
 ## 📖 Orientação
 
-> “Se os homens quisessem abrir mão de suas conversas frívolas e mundanas, e se suas palavras fossem puras, animadoras e edificantes, teriam força para resistir ao mal.”
-> — **Conselhos Sobre Mordomia, p. 103**
+> “Vigiem bem as palavras; pois elas exercem influência poderosa para o bem ou para o mal.”
+> — **Testemunhos para a Igreja, vol. 7, p. 47.2**
+>
+> 🔗 https://m.egwwritings.org/pt/book/1960.257
 
 ---
 
