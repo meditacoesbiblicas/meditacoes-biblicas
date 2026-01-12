@@ -13,7 +13,6 @@ Cada palavra é uma escolha: **curar ou ferir**, **levantar ou derrubar**.
 
 > “Palavras impensadas deixam uma impressão que pode durar pela eternidade.”
 > — **O Lar Adventista, p. 437**
-> 🔗 (coloque aqui o link oficial)
 
 Cada palavra é uma semente:  
 🌱 pode nascer amor, fé, reconciliação.  
@@ -32,7 +31,6 @@ Por isso, não basta mudar o jeito de falar — é preciso deixar Deus transform
 
 > “Se os homens quisessem abrir mão de suas conversas frívolas e mundanas, e se suas palavras fossem puras, animadoras e edificantes, teriam força para resistir ao mal.”
 > — **Conselhos Sobre Mordomia, p. 103**
-> 🔗 (coloque aqui o link oficial)
 
 ---
 

@@ -1,4 +1,4 @@
-Jesus comunicava sem palavras — e a comunicação dEle sempre curava, nunca feriu.
+Jesus comunicava sem palavras também — e a comunicação dEle sempre curava, nunca feria.
 
 ---
 
@@ -18,7 +18,7 @@ Ellen White descreve esse momento com perfeição:
 > “No momento o Salvador voltou-Se da multidão hostil e deixou Seu olhar pousar sobre o pobre discípulo. No mesmo instante os olhos de Pedro encontraram-se com os do seu Senhor.  
 > No olhar de Cristo lia-se piedade e dor; mas não havia ali um vestígio de ira.”  
 > 📖 *Ellen White – O Desejado de Todas as Nações, cap. 75*  
-> 🔗 https://egwwritings.org/pt/book/147.596
+
 
 ---
 
@@ -52,7 +52,7 @@ Ellen White escreve:
 
 > “Cristo tratava toda pessoa com ternura e respeito. Nunca suprimiu uma palavra de verdade, mas sempre a pronunciou com amor...”  
 > 📖 *Ellen White – Caminho a Cristo*  
-> 🔗 https://egwwritings.org/pt/book/143.1104
+
 
 ---
 
