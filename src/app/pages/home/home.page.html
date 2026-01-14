@@ -1,49 +1,96 @@
-<p class="text-muted mb-3">Reflexões curtas para leitura e compartilhamento.</p>
+<div class="page-narrow">
+  <header class="mb-3">
+    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3">
+      <div>
+        <h1 class="h4 mb-1">Meditações</h1>
+        <p class="text-muted mb-0">Reflexões curtas para leitura e compartilhamento.</p>
+      </div>
 
-<!-- Toolbar: filtro + contador (sempre alinhados e escaláveis) -->
-<div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-3">
-  <div class="w-100" style="max-width: 520px;">
-    <label class="form-label mb-1">Tema</label>
-    <select class="form-select" [(ngModel)]="temaSelecionado">
-      @for (t of temas; track t) {
-        <option [value]="t">{{ t }}</option>
-      }
-    </select>
+      <div class="text-muted">
+        Mostrando {{ meditacoesFiltradas.length }} de {{ meditacoes.length }}
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra de ferramentas -->
+  <div class="card border-0 shadow-sm mb-3">
+    <div class="card-body">
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-lg-6">
+          <label class="form-label mb-1">Buscar</label>
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Digite um tema, título ou referência..."
+            [(ngModel)]="termoBusca"
+          />
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label mb-1">Tema</label>
+          <select class="form-select" [(ngModel)]="temaSelecionado">
+            @for (t of temas; track t) {
+              <option [value]="t">{{ t }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label mb-1">Ordenar</label>
+          <select class="form-select" [(ngModel)]="ordem">
+            <option value="recentes">Mais recentes</option>
+            <option value="antigas">Mais antigas</option>
+            <option value="tema">Tema (A–Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Chips de tema -->
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        @for (t of temas; track t) {
+          <button
+            type="button"
+            class="btn btn-sm"
+            [class.btn-primary]="temaSelecionado === t"
+            [class.btn-outline-secondary]="temaSelecionado !== t"
+            (click)="temaSelecionado = t"
+          >
+            {{ t }}
+            <span class="badge text-bg-light ms-2">{{ contagemPorTema[t] ?? 0 }}</span>
+          </button>
+        }
+      </div>
+    </div>
   </div>
 
-  <div class="text-muted text-md-end">
-    Mostrando {{ meditacoesFiltradas.length }} de {{ meditacoes.length }}
-  </div>
-</div>
+  <!-- Lista moderna (escala bem com 1, 2, 10, 1000 itens) -->
+  <div class="home-list">
+    @for (m of meditacoesFiltradas; track m.id) {
+      <article class="home-item">
+        <div class="home-dot"></div>
 
-<!-- Grid adaptativo: 1/2/3 colunas conforme a quantidade -->
-<div
-  class="row g-3 row-cols-1"
-  [class.row-cols-md-2]="meditacoesFiltradas.length >= 2"
-  [class.row-cols-lg-3]="meditacoesFiltradas.length >= 3"
->
-  @for (m of meditacoesFiltradas; track m.id) {
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body d-flex flex-column">
-          <div class="text-muted small">{{ m.versoChave }}</div>
-          <div class="text-muted small">{{ formatarData(m.data) }}</div>
-          <div class="text-muted small mt-1">Tema: {{ m.tema }}</div>
+        <div class="home-content">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+            <span class="badge text-bg-secondary">{{ m.tema }}</span>
+            <span class="text-muted small">{{ m.versoChave }}</span>
+            <span class="text-muted small">•</span>
+            <span class="text-muted small">{{ formatarData(m.data) }}</span>
+          </div>
 
-          <h2 class="h5 mt-2">{{ m.titulo }}</h2>
-          <p class="mb-3 flex-grow-1">{{ m.resumo }}</p>
+          <h2 class="h6 mb-1">{{ m.titulo }}</h2>
+          <p class="text-muted mb-2">{{ m.resumo }}</p>
 
-          <a class="btn btn-outline-primary btn-sm align-self-start" [routerLink]="['/meditacao', m.id]">
+          <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
             Ler
           </a>
         </div>
-      </div>
+      </article>
+    }
+  </div>
+
+  @if (meditacoesFiltradas.length === 0) {
+    <div class="alert alert-secondary mb-0">
+      Nenhuma meditação encontrada com esses filtros.
     </div>
   }
 </div>
-
-@if (meditacoesFiltradas.length === 0) {
-  <div class="alert alert-secondary mt-3 mb-0">
-    Nenhuma meditação encontrada para este tema.
-  </div>
-}

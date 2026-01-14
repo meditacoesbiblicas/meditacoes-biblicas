@@ -63,3 +63,47 @@
 
 .markdown a { text-decoration: underline; }
 .markdown hr { margin: 1.5rem 0; }
+
+
+/* Home V2: lista moderna */
+.home-list {
+  position: relative;
+  padding-left: 18px;
+}
+
+.home-list::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0,0,0,.08);
+}
+
+.home-item {
+  position: relative;
+  padding: 14px 0;
+}
+
+.home-dot {
+  position: absolute;
+  left: 0;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,.25);
+}
+
+.home-content {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  padding: 14px 14px;
+}
+
+@media (min-width: 992px) {
+  .home-content { padding: 16px 18px; }
+}
