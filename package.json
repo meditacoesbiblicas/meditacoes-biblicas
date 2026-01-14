@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "predeploy": "ng build --configuration production --base-href /meditacoes-biblicas/",
+    "deploy": "npx angular-cli-ghpages --dir=dist/meditacoes-biblicas/browser"
   },
   "private": true,
   "dependencies": {
