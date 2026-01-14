@@ -1,33 +1,33 @@
 <!-- src/app/pages/meditacao/meditacao.page.html -->
 
-@if (m) {
-  <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
-    <a routerLink="/" class="text-decoration-none d-inline-block">
+<div class="page-narrow py-4">
+  @if (m) {
+    <a routerLink="/" class="text-decoration-none d-inline-block mb-2">
       &larr; Voltar
     </a>
 
-    <button
-      type="button"
-      class="btn btn-outline-secondary btn-sm"
-      (click)="compartilhar()"
-    >
-      📤 Compartilhar
-    </button>
-  </div>
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <h1 class="page-title m-0">{{ m.titulo }}</h1>
 
-  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
-    <h1 class="page-title m-0">{{ m.titulo }}</h1>
-  </div>
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        (click)="compartilhar()"
+      >
+        📤 Compartilhar
+      </button>
+    </div>
 
-  @if (copiado) {
-    <div class="text-success small mt-2">Link copiado ✅</div>
+    @if (copiado) {
+      <div class="text-success small mt-2">Link copiado ✅</div>
+    } @else {
+      <div class="mt-2"></div>
+    }
+
+    <div class="markdown mt-3" [innerHTML]="html"></div>
+
+    <hr />
   } @else {
-    <div class="mt-2"></div>
+    <div class="alert alert-warning mt-3">Meditação não encontrada.</div>
   }
-
-  <div class="markdown mt-3" [innerHTML]="html"></div>
-
-  <hr />
-} @else {
-  <div class="alert alert-warning mt-3">Meditação não encontrada.</div>
-}
+</div>

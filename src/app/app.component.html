@@ -1,13 +1,14 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
-  <div class="container">
-    <a class="navbar-brand fs-6 fw-semibold" routerLink="/">Meditações</a>
+<nav class="navbar bg-body-tertiary border-bottom">
+  <div class="page-narrow navbar-inner">
+    <a class="navbar-brand m-0" routerLink="/">Meditações</a>
 
-    <div class="ms-auto">
-      <a class="nav-link d-inline-block fs-6 fw-semibold" routerLink="/sobre">Sobre</a>
+    <div class="d-flex align-items-center gap-3">
+      <a class="nav-link p-0" routerLink="/quem-sou-eu">Quem sou eu</a>
+      <a class="nav-link p-0" routerLink="/sobre">Sobre</a>
     </div>
   </div>
 </nav>
 
-<main class="container py-4">
+<main class="page-narrow py-4">
   <router-outlet />
 </main>
