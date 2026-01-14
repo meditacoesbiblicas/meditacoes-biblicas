@@ -14,40 +14,16 @@
 .markdown { line-height: 1.7; font-size: 1.05rem; }
 .markdown p { margin: 0 0 1rem; }
 
-/* Headings do markdown (menores que o título da página) */
-.markdown h1 { margin: 1.4rem 0 .8rem; font-size: 1.45rem; font-weight: 700; }
-.markdown h2 { margin: 1.2rem 0 .7rem; font-size: 1.25rem; font-weight: 700; }
-.markdown h3 { margin: 1.0rem 0 .6rem; font-size: 1.1rem;  font-weight: 700; }
-
 .markdown ul, .markdown ol { margin: 0 0 1rem 1.25rem; }
 .markdown li { margin: .35rem 0; }
 
-
-.markdown blockquote {
-  margin: 1rem 0;
-  padding: .9rem 1.1rem;
-  border-left: 4px solid rgba(0,0,0,.15);
-  background: rgba(0,0,0,.03);
-  border-radius: .75rem;
-  font-style: italic;
+/* Headings do markdown (sem “card”, estilo capítulo) */
+.markdown h1 {
+  margin: 1.6rem 0 .9rem;
+  font-size: 1.45rem;
+  font-weight: 700;
 }
 
-.markdown blockquote p { margin: 0; }
-.markdown blockquote p + p { margin-top: .6rem; }
-
-/* destaque real do 1º verso (primeiro blockquote) */
-.markdown blockquote:first-of-type {
-  background: rgba(0,0,0,.05);
-  border-left-color: rgba(0,0,0,.30);
-  border-left-width: 5px;
-}
-
-
-.markdown a { text-decoration: underline; }
-.markdown hr { margin: 1.5rem 0; }
-
-
-/* “Capítulos” no markdown (h2/h3) */
 .markdown h2 {
   font-size: 1.55rem;
   font-weight: 700;
@@ -62,4 +38,28 @@
   margin: 1.6rem 0 .8rem;
 }
 
+/* Se o markdown começar direto com h2, não cria “buraco” no topo */
 .markdown h2:first-child { margin-top: 0; }
+
+/* Citações/versos */
+.markdown blockquote {
+  margin: 1rem 0;
+  padding: .9rem 1.1rem;
+  border-left: 4px solid rgba(0,0,0,.15);
+  background: rgba(0,0,0,.03);
+  border-radius: .75rem;
+  font-style: italic;
+}
+
+.markdown blockquote p { margin: 0; }
+.markdown blockquote p + p { margin-top: .6rem; }
+
+/* Destaque real do 1º verso (primeiro blockquote) */
+.markdown blockquote:first-of-type {
+  background: rgba(0,0,0,.05);
+  border-left-color: rgba(0,0,0,.30);
+  border-left-width: 5px;
+}
+
+.markdown a { text-decoration: underline; }
+.markdown hr { margin: 1.5rem 0; }
