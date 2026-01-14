@@ -34,7 +34,7 @@ Por isso, não basta mudar o jeito de falar — é preciso deixar Deus transform
 >
 > 🔗 https://m.egwwritings.org/pt/book/1960.257
 
----
+
 
 ## 🛠️ Aplicações práticas
 
@@ -42,7 +42,7 @@ Por isso, não basta mudar o jeito de falar — é preciso deixar Deus transform
 - ⏳ Espere antes de responder com raiva. O silêncio pode ser mais sábio que o impulso.
 - 💬 Fale para edificar. Mesmo uma repreensão pode ser cheia de amor.
 
----
+
 
 ## 🙏 Oração final
 

@@ -38,13 +38,13 @@ Uma rotina com propósito não é prisão — é proteção. Propósito não é 
 > “Onde o seu tempo tem escorrido sem perceber?”
 > — **Pergunta de exame pessoal**
 
----
+
 ## 🛠️ Aplicações práticas
 - Faça um “inventário” do seu tempo e corte uma fonte de ruído/distração desnecessário.
 - Assuma uma responsabilidade diária fixa e cumpra com excelência.
 - Transforme uma área da sua rotina em serviço prático a alguém.
 
----
+
 ## 🙏 Oração final
 Senhor, livra-me da ociosidade que me dispersa e enfraquece meu testemunho.  
 Dá-me um coração focado, humilde e disposto a servir com fidelidade.  

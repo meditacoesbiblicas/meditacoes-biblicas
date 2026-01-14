@@ -45,3 +45,21 @@
 
 .markdown a { text-decoration: underline; }
 .markdown hr { margin: 1.5rem 0; }
+
+
+/* “Capítulos” no markdown (h2/h3) */
+.markdown h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 2.2rem 0 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.markdown h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 1.6rem 0 .8rem;
+}
+
+.markdown h2:first-child { margin-top: 0; }

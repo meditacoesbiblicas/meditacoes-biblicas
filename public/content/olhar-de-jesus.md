@@ -59,7 +59,7 @@ Ellen White resume o espírito de Jesus assim:
 
 > “Nunca suprimiu uma palavra de verdade, mas sempre a pronunciou com amor.”
 
----
+
 
 ## 🛠️ Aplicações práticas
 
@@ -67,7 +67,7 @@ Ellen White resume o espírito de Jesus assim:
 - 🤝 Se alguém caiu, **aproxime** em vez de se afastar: uma mensagem simples já cura muito.
 - 💬 Se precisar corrigir, fale com clareza — mas sem frieza: **verdade com coração aberto**.
 
----
+
 
 ## 🙏 Oração final
 
