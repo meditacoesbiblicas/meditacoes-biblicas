@@ -2,7 +2,9 @@
 
 @if (m) {
   <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
-    <a routerLink="/" class="text-decoration-none">&larr; Voltar</a>
+    <a routerLink="/" class="text-decoration-none d-inline-block">
+      &larr; Voltar
+    </a>
 
     <button
       type="button"
@@ -13,15 +15,17 @@
     </button>
   </div>
 
-  <h1 class="h4 mt-3 mb-1">{{ m.titulo }}</h1>
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
+    <h1 class="page-title m-0">{{ m.titulo }}</h1>
+  </div>
 
   @if (copiado) {
-    <div class="text-success small mb-3">Link copiado ✅</div>
+    <div class="text-success small mt-2">Link copiado ✅</div>
   } @else {
-    <div class="mb-3"></div>
+    <div class="mt-2"></div>
   }
 
-  <div class="markdown" [innerHTML]="html"></div>
+  <div class="markdown mt-3" [innerHTML]="html"></div>
 
   <hr />
 } @else {
