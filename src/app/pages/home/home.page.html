@@ -1,7 +1,8 @@
 <p class="text-muted mb-3">Reflexões curtas para leitura e compartilhamento.</p>
 
-<div class="row align-items-end g-3 mb-3">
-  <div class="col-12 col-md-6">
+<!-- Toolbar: filtro + contador (sempre alinhados e escaláveis) -->
+<div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-3">
+  <div class="w-100" style="max-width: 520px;">
     <label class="form-label mb-1">Tema</label>
     <select class="form-select" [(ngModel)]="temaSelecionado">
       @for (t of temas; track t) {
@@ -10,26 +11,29 @@
     </select>
   </div>
 
-  <div class="col-12 col-md-6 text-md-end">
-    <div class="text-muted">
-      Mostrando {{ meditacoesFiltradas.length }} de {{ meditacoes.length }}
-    </div>
+  <div class="text-muted text-md-end">
+    Mostrando {{ meditacoesFiltradas.length }} de {{ meditacoes.length }}
   </div>
 </div>
 
-<div class="row g-3">
+<!-- Grid adaptativo: 1/2/3 colunas conforme a quantidade -->
+<div
+  class="row g-3 row-cols-1"
+  [class.row-cols-md-2]="meditacoesFiltradas.length >= 2"
+  [class.row-cols-lg-3]="meditacoesFiltradas.length >= 3"
+>
   @for (m of meditacoesFiltradas; track m.id) {
-    <div class="col-12 col-md-6">
+    <div class="col">
       <div class="card h-100">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column">
           <div class="text-muted small">{{ m.versoChave }}</div>
           <div class="text-muted small">{{ formatarData(m.data) }}</div>
           <div class="text-muted small mt-1">Tema: {{ m.tema }}</div>
 
           <h2 class="h5 mt-2">{{ m.titulo }}</h2>
-          <p class="mb-3">{{ m.resumo }}</p>
+          <p class="mb-3 flex-grow-1">{{ m.resumo }}</p>
 
-          <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
+          <a class="btn btn-outline-primary btn-sm align-self-start" [routerLink]="['/meditacao', m.id]">
             Ler
           </a>
         </div>
@@ -37,3 +41,9 @@
     </div>
   }
 </div>
+
+@if (meditacoesFiltradas.length === 0) {
+  <div class="alert alert-secondary mt-3 mb-0">
+    Nenhuma meditação encontrada para este tema.
+  </div>
+}
