@@ -26,7 +26,7 @@ export default class HomePage {
   }
 
   // NOVO: contagem por tema (para chips)
-  get contagemPorTema(): Record<string, number> {
+  get contagemPorTema(): Partial<Record<string, number>> {
     const map: Record<string, number> = { Todos: this.meditacoes.length };
     for (const m of this.meditacoes) {
       map[m.tema] = (map[m.tema] ?? 0) + 1;
