@@ -31,13 +31,23 @@ export const MEDITACOES: Meditacao[] = [
     referencias: ['Pv 18:21']
   },
   {
-  id: 'proposito-contra-ociosidade',
-  data: '2026-01-13',
-  tema: 'Prioridades',
-  titulo: '🎯 Propósito contra a ociosidade',
-  versoChave: '1 Timóteo 5:13–14',
-  resumo: 'O propósito organiza a vida e protege o testemunho contra a ociosidade e a dispersão.',
-  arquivoMd: 'proposito-contra-ociosidade.md',
-  referencias: ['1Tm 5:13–14', 'Pv 10:4', 'Ef 5:16', 'Cl 2:8']
+    id: 'proposito-contra-ociosidade',
+    data: '2026-01-13',
+    tema: 'Prioridades',
+    titulo: '🎯 Propósito contra a ociosidade',
+    versoChave: '1 Timóteo 5:13–14',
+    resumo: 'O propósito organiza a vida e protege o testemunho contra a ociosidade e a dispersão.',
+    arquivoMd: 'proposito-contra-ociosidade.md',
+    referencias: ['1Tm 5:13–14', 'Pv 10:4', 'Ef 5:16', 'Cl 2:8']
+  },
+  {
+    id: 'ruins-suspeitas-devem-morrer',
+    data: '2026-01-14',
+    tema: 'Unidade',
+    titulo: '🤝 Ruins suspeitas devem morrer',
+    versoChave: '1 Timóteo 6:4',
+    resumo: 'Discussões vazias alimentam suspeitas; Deus chama Seu povo à unidade e ao amor fraternal.',
+    arquivoMd: 'ruins-suspeitas-devem-morrer.md',
+    referencias: ['1Tm 6:3-6', '1Tm 6:9-10', '1Tm 6:20', 'Jo 15:8', 'Tg 5:16']
   }
 ];
