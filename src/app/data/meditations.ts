@@ -49,5 +49,23 @@ export const MEDITACOES: Meditacao[] = [
     resumo: 'Discussões vazias alimentam suspeitas; Deus chama Seu povo à unidade e ao amor fraternal.',
     arquivoMd: 'ruins-suspeitas-devem-morrer.md',
     referencias: ['1Tm 6:3-6', '1Tm 6:9-10', '1Tm 6:20', 'Jo 15:8', 'Tg 5:16']
+  },
+  {
+    id: "silencio-discernimento-jesus",
+    data: "2026-01-17",
+    tema: "Relacionamentos",
+    titulo: "🛑 O silêncio que guarda o coração",
+    versoChave: "Mateus 26:63",
+    resumo: "Jesus ensina que o silêncio, em certos momentos, é um ato de fé e discernimento espiritual.",
+    arquivoMd: "silencio-discernimento-jesus.md",
+    referencias: [
+      "Mt 26:63",
+      "Mt 27:14",
+      "Lc 23:9",
+      "Pv 26:4-5",
+      "Mc 4:34",
+      "Jo 16:12",
+      "Jo 2:24"
+    ]
   }
 ];
