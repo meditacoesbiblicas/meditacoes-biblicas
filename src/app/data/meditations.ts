@@ -13,7 +13,7 @@ export const MEDITACOES: Meditacao[] = [
   {
     id: 'olhar-de-jesus',
     data: '2026-01-10',
-    tema: 'Comunicação',
+    tema: 'Relacionamentos',
     titulo: '👁️  O olhar de Jesus',
     versoChave: 'Marcos 10:21',
     resumo: 'Jesus corrige com amor — e até o silêncio e o olhar podem restaurar.',
@@ -23,7 +23,7 @@ export const MEDITACOES: Meditacao[] = [
   {
     id: 'poder-da-lingua',
     data: '2026-01-03',
-    tema: 'Comunicação',
+    tema: 'Relacionamentos',
     titulo: '🗣️ O poder da língua: vida ou morte',
     versoChave: 'Provérbios 18:21',
     resumo: '“A morte e a vida estão no poder da língua; e aquele que a ama comerá do seu fruto.”',
@@ -33,7 +33,7 @@ export const MEDITACOES: Meditacao[] = [
   {
     id: 'proposito-contra-ociosidade',
     data: '2026-01-13',
-    tema: 'Prioridades',
+    tema: 'Disciplina',
     titulo: '🎯 Propósito contra a ociosidade',
     versoChave: '1 Timóteo 5:13–14',
     resumo: 'O propósito organiza a vida e protege o testemunho contra a ociosidade e a dispersão.',
@@ -58,14 +58,16 @@ export const MEDITACOES: Meditacao[] = [
     versoChave: "Mateus 26:63",
     resumo: "Jesus ensina que o silêncio, em certos momentos, é um ato de fé e discernimento espiritual.",
     arquivoMd: "silencio-discernimento-jesus.md",
-    referencias: [
-      "Mt 26:63",
-      "Mt 27:14",
-      "Lc 23:9",
-      "Pv 26:4-5",
-      "Mc 4:34",
-      "Jo 16:12",
-      "Jo 2:24"
-    ]
+    referencias: ["Mt 26:63", "Mt 27:14", "Lc 23:9", "Pv 26:4-5", "Mc 4:34", "Jo 16:12", "Jo 2:24"]
+  },
+  {
+    id: "disciplina-com-amor",
+    data: "2026-01-23",
+    tema: "Disciplina",
+    titulo: "💪 Disciplina que sustenta a fé",
+    versoChave: "1 Coríntios 9:27",
+    resumo: "Disciplina é constância guiada por propósito e dependência de Deus, que fortalece a fé e organiza a vida.",
+    arquivoMd: "disciplina-com-amor.md",
+    referencias: ["1Co 9:27", "1Co 9:25", "Gl 6:9", "Pv 4:23"]
   }
 ];
