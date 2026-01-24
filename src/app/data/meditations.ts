@@ -69,5 +69,15 @@ export const MEDITACOES: Meditacao[] = [
     resumo: "Disciplina é constância guiada por propósito e dependência de Deus, que fortalece a fé e organiza a vida.",
     arquivoMd: "disciplina-com-amor.md",
     referencias: ["1Co 9:27", "1Co 9:25", "Gl 6:9", "Pv 4:23"]
+  },
+  {
+    id: "limites-e-paz-nos-relacionamentos",
+    data: "2026-01-24",
+    tema: "Relacionamentos",
+    titulo: "🤝 Limites e paz nos relacionamentos",
+    versoChave: "Romanos 12:18",
+    resumo: "Buscar a paz inclui discernir limites quando a convivência contínua vira desgaste e contenda.",
+    arquivoMd: "limites-e-paz-nos-relacionamentos.md",
+    referencias: ["Rm 12:18", "Am 3:3", "Pv 22:3"]
   }
 ];
