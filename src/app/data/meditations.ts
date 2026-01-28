@@ -79,5 +79,15 @@ export const MEDITACOES: Meditacao[] = [
     resumo: "Buscar a paz inclui discernir limites quando a convivência contínua vira desgaste e contenda.",
     arquivoMd: "limites-e-paz-nos-relacionamentos.md",
     referencias: ["Rm 12:18", "Am 3:3", "Pv 22:3"]
+  },
+  {
+    id: "a-morte-que-supreendeu-pilatos",
+    data: "2026-01-26",
+    tema: "Sacrifício e Redenção",
+    titulo: "✝️ A morte que surpreendeu Pilatos",
+    versoChave: "Marcos 15:44",
+    resumo: "O espanto de Pilatos revela que a morte de Jesus na cruz não seguiu o padrão comum.",
+    arquivoMd: "a-morte-que-supreendeu-pilatos.md",
+    referencias: ["Mc 15:44", "Mc 15:37", "Jo 19:34"]
   }
 ];
