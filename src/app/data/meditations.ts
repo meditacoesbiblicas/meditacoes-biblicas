@@ -82,7 +82,7 @@ export const MEDITACOES: Meditacao[] = [
   },
   {
     id: "a-morte-que-supreendeu-pilatos",
-    data: "2026-01-26",
+    data: "2026-01-28",
     tema: "Sacrifício e Redenção",
     titulo: "✝️ A morte que surpreendeu Pilatos",
     versoChave: "Marcos 15:44",
