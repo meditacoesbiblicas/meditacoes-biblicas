@@ -177,3 +177,21 @@
   box-shadow: 0 .25rem .75rem rgba(0,0,0,.10);
   border-color: rgba(0,0,0,.14);
 }
+
+/* Chips: scroll horizontal no mobile */
+.chips-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chips-row {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: nowrap;
+  padding-bottom: .25rem;
+}
+
+.chips-row .btn {
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
