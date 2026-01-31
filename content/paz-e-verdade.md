@@ -21,10 +21,7 @@ A verdade de Cristo provoca divisão quando encontra resistência. O conflito, n
 
 Conhecimento gera responsabilidade. A omissão consciente não é virtude espiritual.
 
-> “A maior necessidade do mundo é a de homens — homens que não se comprem nem se vendam; homens que, no íntimo da alma, sejam verdadeiros e honestos; homens que não temam chamar o pecado pelo seu nome exato; homens cuja consciência seja tão fiel ao dever como a bússola o é ao polo; homens que permaneçam firmes pelo que é reto, ainda que caiam os céus.”
-> — Ellen G. White, Educação, p. 57
->
-> 🔗 https://m.egwwritings.org/pt/book/1732.1495
+> “A maior necessidade do mundo é a de homens — homens que não se comprem nem se vendam; homens que, no íntimo da alma, sejam verdadeiros e honestos; homens que não temam chamar o pecado pelo seu nome exato; homens cuja consciência seja tão fiel ao dever como a bússola o é ao polo; homens que permaneçam firmes pelo que é reto, ainda que caiam os céus.” [— Ellen G. White, Educação, p. 57](https://m.egwwritings.org/pt/book/1732.1495#1499:~:text=A%20maior%20necessidade,caiam%20os%20c%C3%A9us)
 
 
 ## 🛠️ Aplicações práticas
