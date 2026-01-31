@@ -160,3 +160,20 @@
 #menuMobile.offcanvas {
   width: min(200px, 85vw) !important; 
 }
+
+/* Home: card inteiro clicável */
+.home-card{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-card .home-content{
+  transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.home-card:active .home-content{
+  transform: translateY(1px);
+  box-shadow: 0 .25rem .75rem rgba(0,0,0,.10);
+  border-color: rgba(0,0,0,.14);
+}

@@ -63,8 +63,11 @@
 <div class="home-list">
   @for (m of meditacoesFiltradas; track m.id) {
     <article class="home-item">
-
-      <div class="home-content">
+      <a
+        class="home-card"
+        [routerLink]="['/meditacao', m.id]"
+        aria-label="Abrir meditação"
+      >
         <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
           <span class="badge text-bg-secondary">{{ m.tema }}</span>
           <span class="text-muted small">{{ m.versoChave }}</span>
@@ -75,10 +78,8 @@
         <h2 class="h6 mb-1">{{ m.titulo }}</h2>
         <p class="text-muted mb-2">{{ m.resumo }}</p>
 
-        <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
-          Ler
-        </a>
-      </div>
+        <span class="btn btn-outline-primary btn-sm">Ler</span>
+      </a>
     </article>
   }
 </div>
