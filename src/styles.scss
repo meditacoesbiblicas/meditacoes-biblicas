@@ -195,3 +195,12 @@
   white-space: nowrap;
   flex: 0 0 auto;
 }
+
+.home-resumo{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  line-clamp: 2; /* padrão (nem sempre aplicado, mas satisfaz o linter) */
+  overflow: hidden;
+}
