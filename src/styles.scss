@@ -278,3 +278,32 @@ body{
 .navbar.border-bottom{
   border-bottom-color: rgba(0,0,0,.08) !important;
 }
+
+/* ===== Navbar: logo central no mobile (sem quebrar o layout) ===== */
+.navbar .navbar-inner{
+  position: relative; /* permite centralizar o logo absoluto */
+}
+
+.nav-mobile-logo{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  line-height: 0;
+}
+
+.brand-mark{
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+/* ===== Navbar: botão MENU não parecer link (sem azul) ===== */
+.navbar .btn.btn-link {
+  color: inherit;
+}
+
+/* melhora toque no botão do menu */
+.navbar .btn.btn-link:focus {
+  box-shadow: none;
+}

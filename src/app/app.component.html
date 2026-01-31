@@ -1,6 +1,59 @@
 <nav class="navbar bg-body-tertiary border-bottom">
   <div class="page-narrow navbar-inner">
-    <a class="navbar-brand m-0" routerLink="/">Meditações</a>
+    <!-- Brand (DESKTOP) -->
+    <a class="navbar-brand m-0 d-none d-lg-inline" routerLink="/">Meditações</a>
+
+    <!-- Logo central (MOBILE) -->
+    <a
+      routerLink="/"
+      class="d-lg-none nav-mobile-logo"
+      aria-label="Ir para Meditações"
+    >
+      <!-- SVG inline (evita problema de img/svg em Safari/Chrome) -->
+      <svg
+        class="brand-mark"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        role="img"
+        aria-label="Meditações Bíblicas"
+      >
+        <circle cx="32" cy="32" r="30" fill="#0d6efd" opacity="0.12"></circle>
+        <circle
+          cx="32"
+          cy="32"
+          r="26"
+          fill="none"
+          stroke="#0d6efd"
+          stroke-width="3"
+        ></circle>
+
+        <path
+          d="M18 24c7 0 10 2 14 4v24c-4-2-7-4-14-4-2 0-4 .3-6 1V25c2-.7 4-1 6-1Z"
+          fill="#0d6efd"
+          opacity="0.18"
+        ></path>
+        <path
+          d="M46 24c-7 0-10 2-14 4v24c4-2 7-4 14-4 2 0 4 .3 6 1V25c-2-.7-4-1-6-1Z"
+          fill="#0d6efd"
+          opacity="0.18"
+        ></path>
+
+        <path
+          d="M18 24c7 0 10 2 14 4m14-4c-7 0-10 2-14 4"
+          fill="none"
+          stroke="#0d6efd"
+          stroke-width="3"
+          stroke-linecap="round"
+        ></path>
+
+        <path
+          d="M32 18v10m-5-5h10"
+          stroke="#0d6efd"
+          stroke-width="3"
+          stroke-linecap="round"
+        ></path>
+      </svg>
+    </a>
 
     <!-- Links (DESKTOP) -->
     <div class="d-none d-lg-flex align-items-center gap-3">
@@ -8,16 +61,17 @@
       <a class="nav-link p-0" routerLink="/sobre">Sobre</a>
     </div>
 
-    <!-- Botão (MOBILE) -->
+    <!-- Botão (MOBILE): MENU ☰ (sem azul de link) -->
     <button
-      class="btn btn-outline-secondary d-lg-none"
+      class="btn btn-link text-body text-decoration-none d-inline-flex align-items-center gap-2 d-lg-none"
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#menuMobile"
       aria-controls="menuMobile"
       aria-label="Abrir menu"
     >
-      ☰
+      <span class="fw-semibold">MENU</span>
+      <span aria-hidden="true">☰</span>
     </button>
   </div>
 </nav>
@@ -29,8 +83,8 @@
   id="menuMobile"
   aria-labelledby="menuMobileLabel"
 >
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="menuMobileLabel">Menu</h5>
+  <!-- sem “Menu” duplicado -->
+  <div class="offcanvas-header justify-content-end">
     <button
       type="button"
       class="btn-close"
@@ -42,8 +96,10 @@
   <div class="offcanvas-body">
     <div class="d-grid gap-2">
       <a
-        class="btn btn-outline-primary"
+        class="btn btn-outline-secondary"
         routerLink="/"
+        routerLinkActive="btn-primary text-white border-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
         data-bs-dismiss="offcanvas"
       >
         Meditações
@@ -52,6 +108,7 @@
       <a
         class="btn btn-outline-secondary"
         routerLink="/quem-sou-eu"
+        routerLinkActive="btn-primary text-white border-primary"
         data-bs-dismiss="offcanvas"
       >
         Quem sou eu
@@ -60,6 +117,7 @@
       <a
         class="btn btn-outline-secondary"
         routerLink="/sobre"
+        routerLinkActive="btn-primary text-white border-primary"
         data-bs-dismiss="offcanvas"
       >
         Sobre
