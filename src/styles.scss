@@ -1,3 +1,4 @@
+
 /* Largura de leitura + espaçamento lateral (iPhone/Safari friendly) */
 .page-narrow {
   max-width: 760px;
@@ -154,3 +155,8 @@
 /* Tira o espaço reservado à esquerda (caso exista) */
 .home-list { padding-left: 0 !important; }
 .home-item { padding-left: 0 !important; }
+
+/* Offcanvas (menu mobile) — largura tipo R7 */
+#menuMobile.offcanvas {
+  width: min(200px, 85vw) !important; 
+}

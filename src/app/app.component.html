@@ -2,12 +2,71 @@
   <div class="page-narrow navbar-inner">
     <a class="navbar-brand m-0" routerLink="/">Meditações</a>
 
-    <div class="d-flex align-items-center gap-3">
+    <!-- Links (DESKTOP) -->
+    <div class="d-none d-lg-flex align-items-center gap-3">
       <a class="nav-link p-0" routerLink="/quem-sou-eu">Quem sou eu</a>
       <a class="nav-link p-0" routerLink="/sobre">Sobre</a>
     </div>
+
+    <!-- Botão (MOBILE) -->
+    <button
+      class="btn btn-outline-secondary d-lg-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#menuMobile"
+      aria-controls="menuMobile"
+      aria-label="Abrir menu"
+    >
+      ☰
+    </button>
   </div>
 </nav>
+
+<!-- Offcanvas (MOBILE) -->
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="menuMobile"
+  aria-labelledby="menuMobileLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="menuMobileLabel">Menu</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Fechar"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div class="d-grid gap-2">
+      <a
+        class="btn btn-outline-primary"
+        routerLink="/"
+        data-bs-dismiss="offcanvas"
+      >
+        Meditações
+      </a>
+
+      <a
+        class="btn btn-outline-secondary"
+        routerLink="/quem-sou-eu"
+        data-bs-dismiss="offcanvas"
+      >
+        Quem sou eu
+      </a>
+
+      <a
+        class="btn btn-outline-secondary"
+        routerLink="/sobre"
+        data-bs-dismiss="offcanvas"
+      >
+        Sobre
+      </a>
+    </div>
+  </div>
+</div>
 
 <main class="page-narrow py-4">
   <router-outlet />
