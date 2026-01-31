@@ -28,8 +28,8 @@ Ele olhou — e naquele olhar havia compaixão, dor, chamado ao arrependimento e
 
 E Ellen White descreve esse momento com precisão:
 
-> “No olhar de Cristo lia-se piedade e dor; mas não havia um vestígio de ira.”
-> — *O Desejado de Todas as Nações*, cap. 75
+> “Quando os degradantes juramentos acabavam de sair dos lábios de Pedro e o penetrante canto do galo lhe ressoava ainda no ouvido, o Salvador voltou-Se dos severos juízes, olhando em cheio ao pobre discípulo. Ao mesmo tempo os olhos de Pedro eram atraídos para o Mestre. Naquele suave semblante leu ele profunda piedade e tristeza; nenhuma irritação, porém, se via ali. ”
+> [— *O Desejado de Todas as Nações*, cap. 75](https://m.egwwritings.org/pt/book/1813.3085#3146:~:text=Quando%20os%20degradantes,se%20via%20ali..)
 
 É por isso que a comunicação não verbal pode ser tão poderosa: ela pode **restaurar** — ou pode **ferir profundamente**.
 
@@ -57,8 +57,8 @@ Muitas vezes, começa pelo **olhar**, pela postura e pelo modo como tratamos a p
 
 Ellen White resume o espírito de Jesus assim:
 
-> “Nunca suprimiu uma palavra de verdade, mas sempre a pronunciou com amor.”
-
+> “Jesus não suprimia sequer uma palavra da verdade, mas falava sempre com amor.”
+> [ —  Caminho a Cristo, cap. 1](https://m.egwwritings.org/pt/book/1807.79?hl=%22falava+sempre+com+amor%E2%80%9D&ss=eyJ0b3RhbCI6MSwicGFyYW1zIjp7InF1ZXJ5IjoiXCJmYWxhdmEgc2VtcHJlIGNvbSBhbW9y4oCdIiwidHlwZSI6ImJhc2ljIiwibGFuZyI6InB0IiwibGltaXQiOjIwfSwiaW5kZXgiOjB9#89:~:text=Jesus%20n%C3%A3o%20suprimia%20sequer%20uma%20palavra%20da%20verdade%2C%20mas%20falava%20sempre%20com%20amor)
 
 
 ## 🛠️ Aplicações práticas
