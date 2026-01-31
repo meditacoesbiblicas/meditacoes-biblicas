@@ -89,5 +89,15 @@ export const MEDITACOES: Meditacao[] = [
     resumo: "O espanto de Pilatos revela que a morte de Jesus na cruz não seguiu o padrão comum.",
     arquivoMd: "a-morte-que-supreendeu-pilatos.md",
     referencias: ["Mc 15:44", "Mc 15:37", "Jo 19:34"]
+  },
+  {
+    id: "paz-e-verdade",
+    data: "2026-01-30",
+    tema: "Relacionamentos",
+    titulo: "⚖️ Paz, verdade e responsabilidade cristã",
+    versoChave: "Romanos 12:18",
+    resumo: "Nem toda paz é virtude; às vezes, o amor à verdade exige posicionamento.",
+    arquivoMd: "paz-e-verdade.md",
+    referencias: ["Rm 12:18", "Mt 10:34", "Tg 4:17"]
   }
 ];
