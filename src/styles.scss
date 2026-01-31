@@ -1,5 +1,23 @@
-/* Largura de leitura (agora usada no Navbar e no Main também) */
-.page-narrow { max-width: 760px; margin: 0 auto; }
+/* Largura de leitura + espaçamento lateral (iPhone/Safari friendly) */
+.page-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+
+  /* evita ficar colado nas bordas no mobile */
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* telas um pouco maiores */
+@media (min-width: 576px) {
+  .page-narrow {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 992px)  { .page-narrow { max-width: 900px; padding-left: 0; padding-right: 0; } }   /* desktop */
+@media (min-width: 1200px) { .page-narrow { max-width: 980px; } }  /* tela grande */
 
 /* Navbar alinhado ao conteúdo */
 .navbar .navbar-inner{

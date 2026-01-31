@@ -1,92 +1,90 @@
-<div class="page-narrow">
-  <header class="mb-3">
-    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3">
-      <div>
-        <h1 class="h3 mb-1">Reflexões</h1>
-        <p class="text-muted mb-0">Meditações bíblicas curtas para leitura e compartilhamento.</p>
-      </div>
-
+<header class="mb-3">
+  <div class="d-flex flex-wrap align-items-end justify-content-between gap-3">
+    <div>
+      <h1 class="h3 mb-1">Reflexões</h1>
+      <p class="text-muted mb-0">Meditações bíblicas curtas para leitura e compartilhamento.</p>
     </div>
-  </header>
 
-  <!-- Barra de ferramentas -->
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <div class="row g-2 align-items-end">
-        <div class="col-12 col-lg-6">
-          <label class="form-label mb-1">Buscar</label>
-          <input
-            class="form-control"
-            type="search"
-            placeholder="Digite um tema, título ou referência..."
-            [(ngModel)]="termoBusca"
-          />
-        </div>
+  </div>
+</header>
 
-        <div class="col-12 col-md-6 col-lg-3">
-          <label class="form-label mb-1">Tema</label>
-          <select class="form-select" [(ngModel)]="temaSelecionado">
-            @for (t of temas; track t) {
-              <option [value]="t">{{ t }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3">
-          <label class="form-label mb-1">Ordenar</label>
-          <select class="form-select" [(ngModel)]="ordem">
-            <option value="recentes">Mais recentes</option>
-            <option value="antigas">Mais antigas</option>
-            <option value="tema">Tema (A–Z)</option>
-          </select>
-        </div>
+<!-- Barra de ferramentas -->
+<div class="card border-0 shadow-sm mb-3">
+  <div class="card-body">
+    <div class="row g-2 align-items-end">
+      <div class="col-12 col-lg-6">
+        <label class="form-label mb-1">Buscar</label>
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Digite um tema, título ou referência..."
+          [(ngModel)]="termoBusca"
+        />
       </div>
 
-      <!-- Chips de tema -->
-      <div class="d-flex flex-wrap gap-2 mt-3">
-        @for (t of temas; track t) {
-          <button
-            type="button"
-            class="btn btn-sm"
-            [class.btn-primary]="temaSelecionado === t"
-            [class.btn-outline-secondary]="temaSelecionado !== t"
-            (click)="temaSelecionado = t"
-          >
-            {{ t }}
-            <span class="badge text-bg-light ms-2">{{ contagemPorTema[t] }}</span>
-          </button>
-        }
+      <div class="col-12 col-md-6 col-lg-3">
+        <label class="form-label mb-1">Tema</label>
+        <select class="form-select" [(ngModel)]="temaSelecionado">
+          @for (t of temas; track t) {
+            <option [value]="t">{{ t }}</option>
+          }
+        </select>
       </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <label class="form-label mb-1">Ordenar</label>
+        <select class="form-select" [(ngModel)]="ordem">
+          <option value="recentes">Mais recentes</option>
+          <option value="antigas">Mais antigas</option>
+          <option value="tema">Tema (A–Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Chips de tema -->
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      @for (t of temas; track t) {
+        <button
+          type="button"
+          class="btn btn-sm"
+          [class.btn-primary]="temaSelecionado === t"
+          [class.btn-outline-secondary]="temaSelecionado !== t"
+          (click)="temaSelecionado = t"
+        >
+          {{ t }}
+          <span class="badge text-bg-light ms-2">{{ contagemPorTema[t] }}</span>
+        </button>
+      }
     </div>
   </div>
+</div>
 
-  <!-- Lista moderna (escala bem com 1, 2, 10, 1000 itens) -->
-  <div class="home-list">
-    @for (m of meditacoesFiltradas; track m.id) {
-      <article class="home-item">
+<!-- Lista moderna (escala bem com 1, 2, 10, 1000 itens) -->
+<div class="home-list">
+  @for (m of meditacoesFiltradas; track m.id) {
+    <article class="home-item">
 
-        <div class="home-content">
-          <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-            <span class="badge text-bg-secondary">{{ m.tema }}</span>
-            <span class="text-muted small">{{ m.versoChave }}</span>
-            <span class="text-muted small">•</span>
-            <span class="text-muted small">{{ formatarData(m.data) }}</span>
-          </div>
-
-          <h2 class="h6 mb-1">{{ m.titulo }}</h2>
-          <p class="text-muted mb-2">{{ m.resumo }}</p>
-
-          <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
-            Ler
-          </a>
+      <div class="home-content">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+          <span class="badge text-bg-secondary">{{ m.tema }}</span>
+          <span class="text-muted small">{{ m.versoChave }}</span>
+          <span class="text-muted small">•</span>
+          <span class="text-muted small">{{ formatarData(m.data) }}</span>
         </div>
-      </article>
-    }
-  </div>
 
-  @if (meditacoesFiltradas.length === 0) {
-    <div class="alert alert-secondary mb-0">
-      Nenhuma meditação encontrada com esses filtros.
-    </div>
+        <h2 class="h6 mb-1">{{ m.titulo }}</h2>
+        <p class="text-muted mb-2">{{ m.resumo }}</p>
+
+        <a class="btn btn-outline-primary btn-sm" [routerLink]="['/meditacao', m.id]">
+          Ler
+        </a>
+      </div>
+    </article>
   }
 </div>
+
+@if (meditacoesFiltradas.length === 0) {
+  <div class="alert alert-secondary mb-0">
+    Nenhuma meditação encontrada com esses filtros.
+  </div>
+}
