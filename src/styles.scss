@@ -204,3 +204,37 @@
   line-clamp: 2; /* padrão (nem sempre aplicado, mas satisfaz o linter) */
   overflow: hidden;
 }
+
+
+/* Card clicável — feedback visual (hover/active/focus) */
+.home-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  background: #fff;
+
+  transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+  -webkit-tap-highlight-color: transparent; /* tira highlight azul do iOS */
+}
+
+/* Desktop (mouse) */
+.home-card:hover {
+  border-color: rgba(0,0,0,.14);
+  box-shadow: 0 .35rem 1rem rgba(0,0,0,.08);
+}
+
+/* Mobile (toque) + clique */
+.home-card:active {
+  transform: scale(.99);
+  border-color: rgba(0,0,0,.18);
+  box-shadow: 0 .2rem .7rem rgba(0,0,0,.10);
+}
+
+/* Acessibilidade (teclado) */
+.home-card:focus-visible {
+  outline: 3px solid rgba(13,110,253,.35); /* azul Bootstrap */
+  outline-offset: 3px;
+}
