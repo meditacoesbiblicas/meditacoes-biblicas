@@ -84,9 +84,11 @@
       >
         <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
           <span class="badge text-bg-secondary">{{ m.tema }}</span>
-          <span class="text-muted small">{{ m.versoChave }}</span>
-          <span class="text-muted small">•</span>
-          <span class="text-muted small">{{ formatarData(m.data) }}</span>
+        </div>
+        <div class="text-muted small mb-1">
+          <span>{{ m.versoChave }}</span>
+          <span class="mx-1">•</span>
+          <span>{{ formatarData(m.data) }}</span>
         </div>
 
         <h2 class="h6 mb-1">{{ m.titulo }}</h2>
