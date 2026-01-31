@@ -28,7 +28,7 @@ Ele olhou — e naquele olhar havia compaixão, dor, chamado ao arrependimento e
 
 E Ellen White descreve esse momento com precisão:
 
-> “Quando os degradantes juramentos acabavam de sair dos lábios de Pedro e o penetrante canto do galo lhe ressoava ainda no ouvido, o Salvador voltou-Se dos severos juízes, olhando em cheio ao pobre discípulo. Ao mesmo tempo os olhos de Pedro eram atraídos para o Mestre. Naquele suave semblante leu ele profunda piedade e tristeza; nenhuma irritação, porém, se via ali. ”
+> “Quando os degradantes juramentos acabavam de sair dos lábios de Pedro e o penetrante canto do galo lhe ressoava ainda no ouvido, o Salvador voltou-Se dos severos juízes, olhando em cheio ao pobre discípulo. Ao mesmo tempo os olhos de Pedro eram atraídos para o Mestre. Naquele suave semblante leu ele profunda piedade e tristeza; nenhuma irritação, porém, se via ali.”
 > [— *O Desejado de Todas as Nações*, cap. 75](https://m.egwwritings.org/pt/book/1813.3085#3146:~:text=Quando%20os%20degradantes,se%20via%20ali..)
 
 É por isso que a comunicação não verbal pode ser tão poderosa: ela pode **restaurar** — ou pode **ferir profundamente**.
