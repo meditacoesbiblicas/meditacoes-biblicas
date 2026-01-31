@@ -4,64 +4,76 @@
       <h1 class="h3 mb-1">Meditações</h1>
       <p class="text-muted mb-0">Reflexões bíblicas curtas para leitura e compartilhamento.</p>
     </div>
-
   </div>
 </header>
 
-<!-- Barra de ferramentas -->
-<div class="card border-0 shadow-sm mb-3">
-  <div class="card-body">
-    <div class="row g-2 align-items-end">
-      <div class="col-12 col-lg-6">
-        <label class="form-label mb-1">Buscar</label>
-        <input
-          class="form-control"
-          type="search"
-          placeholder="Digite um tema, título ou referência..."
-          [(ngModel)]="termoBusca"
-        />
+<div class="d-flex justify-content-end mb-2">
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="toggleFiltros()"
+    [attr.aria-expanded]="filtrosAbertos"
+  >
+    Filtros
+    @if (filtrosAbertos) { ▲ } @else { ▼ }
+  </button>
+</div>
+
+@if (filtrosAbertos) {
+  <div class="card border-0 shadow-sm mb-3">
+    <div class="card-body">
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-lg-6">
+          <label class="form-label mb-1">Buscar</label>
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Digite um tema, título ou referência..."
+            [(ngModel)]="termoBusca"
+          />
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label mb-1">Tema</label>
+          <select class="form-select" [(ngModel)]="temaSelecionado">
+            @for (t of temas; track t) {
+              <option [value]="t">{{ t }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label mb-1">Ordenar</label>
+          <select class="form-select" [(ngModel)]="ordem">
+            <option value="recentes">Mais recentes</option>
+            <option value="antigas">Mais antigas</option>
+            <option value="tema">Tema (A–Z)</option>
+          </select>
+        </div>
       </div>
 
-      <div class="col-12 col-md-6 col-lg-3">
-        <label class="form-label mb-1">Tema</label>
-        <select class="form-select" [(ngModel)]="temaSelecionado">
+      <!-- Chips de tema (NÃO mexi no seu scroll horizontal) -->
+      <div class="chips-scroll mt-3">
+        <div class="chips-row">
           @for (t of temas; track t) {
-            <option [value]="t">{{ t }}</option>
+            <button
+              type="button"
+              class="btn btn-sm"
+              [class.btn-primary]="temaSelecionado === t"
+              [class.btn-outline-secondary]="temaSelecionado !== t"
+              (click)="temaSelecionado = t"
+            >
+              {{ t }}
+              <span class="badge text-bg-light ms-2">{{ contagemPorTema[t] }}</span>
+            </button>
           }
-        </select>
-      </div>
-
-      <div class="col-12 col-md-6 col-lg-3">
-        <label class="form-label mb-1">Ordenar</label>
-        <select class="form-select" [(ngModel)]="ordem">
-          <option value="recentes">Mais recentes</option>
-          <option value="antigas">Mais antigas</option>
-          <option value="tema">Tema (A–Z)</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Chips de tema -->
-    <div class="chips-scroll mt-3">
-      <div class="chips-row">
-      @for (t of temas; track t) {
-        <button
-          type="button"
-          class="btn btn-sm"
-          [class.btn-primary]="temaSelecionado === t"
-          [class.btn-outline-secondary]="temaSelecionado !== t"
-          (click)="temaSelecionado = t"
-        >
-          {{ t }}
-          <span class="badge text-bg-light ms-2">{{ contagemPorTema[t] }}</span>
-        </button>
-      }
+        </div>
       </div>
     </div>
   </div>
-</div>
+}
 
-<!-- Lista moderna (escala bem com 1, 2, 10, 1000 itens) -->
+<!-- Lista -->
 <div class="home-list">
   @for (m of meditacoesFiltradas; track m.id) {
     <article class="home-item">

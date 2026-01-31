@@ -89,4 +89,10 @@ export default class HomePage {
       .replace(/[\u0300-\u036f]/g, '')
       .trim();
   }
+
+  filtrosAbertos = false;
+
+  toggleFiltros() {
+    this.filtrosAbertos = !this.filtrosAbertos;
+  }
 }
