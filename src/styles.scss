@@ -16,8 +16,21 @@
   }
 }
 
-@media (min-width: 992px)  { .page-narrow { max-width: 900px; padding-left: 0; padding-right: 0; } }   /* desktop */
-@media (min-width: 1200px) { .page-narrow { max-width: 980px; } }  /* tela grande */
+   /* desktop */
+@media (min-width: 992px)  {
+  .page-narrow {
+    max-width: 900px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+  /* tela grande */
+@media (min-width: 1200px) {
+  .page-narrow {
+    max-width: 980px;
+  }
+}
 
 /* Navbar alinhado ao conteúdo */
 .navbar .navbar-inner{
@@ -25,11 +38,9 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: .75rem 0;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
 }
-
-@media (min-width: 992px)  { .page-narrow { max-width: 900px; } }   /* desktop */
-@media (min-width: 1200px) { .page-narrow { max-width: 980px; } }  /* tela grande */
 
 /* Título principal da meditação (maior que os headings do markdown) */
 .page-title {
