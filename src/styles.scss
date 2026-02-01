@@ -307,3 +307,14 @@ body{
 .navbar .btn.btn-link:focus {
   box-shadow: none;
 }
+
+/* Ícone do logo no mobile */
+.nav-mobile-logo {
+  color: rgba(0, 0, 0, 0.78); /* preto suave */
+}
+
+.brand-mark {
+  width: 44px;
+  height: 26px; /* wide */
+  display: block;
+}
