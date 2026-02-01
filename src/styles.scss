@@ -356,3 +356,56 @@ body {
 #menuMobile.offcanvas {
   width: min(200px, 85vw) !important;
 }
+
+/* ===== Forçar header "mobile" em todas as telas ===== */
+
+/* 1) Mostra sempre o logo central (mesmo em lg+) */
+.navbar .nav-mobile-logo.d-lg-none {
+  display: inline-flex !important;
+}
+
+/* 2) Mostra sempre o botão MENU (mesmo em lg+) */
+.navbar .menu-btn.d-lg-none {
+  display: inline-flex !important;
+}
+
+/* 3) Esconde os elementos “desktop” (brand texto e links) */
+.navbar .navbar-brand.d-none.d-lg-inline {
+  display: none !important;
+}
+
+.navbar .d-none.d-lg-flex {
+  display: none !important;
+}
+
+/* ================================
+   OFFCANVAS alinhado ao conteúdo (desktop)
+   - mobile: continua SLIDE normal
+   - desktop: “nasce” na margem (EXPANDE)
+   ================================ */
+
+:root{ --page-max: 760px; }
+@media (min-width: 992px){  :root{ --page-max: 900px; } }
+@media (min-width: 1200px){ :root{ --page-max: 980px; } }
+
+:root{
+  --page-gutter: max(0px, calc((100vw - var(--page-max)) / 2));
+}
+
+@media (min-width: 992px){
+
+  /* ancora na mesma linha do conteúdo */
+  .offcanvas.offcanvas-start{
+    left: var(--page-gutter) !important;
+
+    /* em vez de “vir do canto”, ele abre daqui */
+    transform: scaleX(0) !important;
+    transform-origin: left center;
+  }
+
+  /* quando está abrindo ou aberto */
+  .offcanvas.offcanvas-start.showing,
+  .offcanvas.offcanvas-start.show{
+    transform: scaleX(1) !important;
+  }
+}
