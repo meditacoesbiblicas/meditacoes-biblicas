@@ -1,10 +1,7 @@
-
 /* Largura de leitura + espaçamento lateral (iPhone/Safari friendly) */
 .page-narrow {
   max-width: 760px;
   margin: 0 auto;
-
-  /* evita ficar colado nas bordas no mobile */
   padding-left: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
 }
@@ -17,7 +14,7 @@
   }
 }
 
-   /* desktop */
+/* desktop */
 @media (min-width: 992px)  {
   .page-narrow {
     max-width: 900px;
@@ -26,38 +23,136 @@
   }
 }
 
-  /* tela grande */
+/* tela grande */
 @media (min-width: 1200px) {
   .page-narrow {
     max-width: 980px;
   }
 }
 
-/* Navbar alinhado ao conteúdo */
+/* ===== base visual (fundo + cards) ===== */
+
+body{
+  background: #f6f7f9; /* cinza bem leve */
+}
+
+.card{
+  border-color: rgba(0,0,0,.08);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  border-radius: 14px;
+}
+
+.home-content{
+  background: #fff;
+}
+
+.markdown{
+  background: transparent;
+}
+
+/* Navbar levemente destacada do fundo */
+.navbar{
+  background: rgba(255,255,255,.85) !important;
+  backdrop-filter: saturate(120%) blur(10px);
+}
+
+.navbar.border-bottom{
+  border-bottom-color: rgba(0,0,0,.08) !important;
+}
+
+/* ===== NAVBAR (o que você quer ajustar) ===== */
+
+/* Navbar alinhado ao conteúdo + HEADER MAIS BAIXO */
 .navbar .navbar-inner{
+  position: relative; /* para centralizar o logo absoluto no mobile */
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+
+  /* aqui é o que mais influencia na "altura" */
+  padding-top: .15rem;
+  padding-bottom: .15rem;
 }
 
-/* Título principal da meditação (maior que os headings do markdown) */
+/* Logo central (mobile): centraliza certinho e não “empurra” a navbar */
+.nav-mobile-logo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+  line-height: 0;
+}
+
+/* Seu SVG “wide” */
+.brand-mark{
+  width: 44px;
+  height: 26px;
+  display: block;
+}
+
+/* Botão MENU no mobile: não parecer link e ficar tipo R7 */
+.menu-btn{
+  display: inline-flex;
+  align-items: center;       /* <-- isso centraliza verticalmente */
+  gap: .45rem;              /* aproxima ícone e texto */
+
+  padding: .2rem .35rem;   /* mantém o seu tamanho atual */
+  line-height: 1;
+
+  /* importante: evita “baseline” influenciar */
+  vertical-align: middle;
+}
+
+.menu-btn:focus{
+  box-shadow: none;
+}
+
+/* Ícone Hamburger ( três traços horizontais ) */
+.menu-icon{
+  font-size: 2.05rem;
+  line-height: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* garante uma “caixa” previsível pro caractere */
+  height: 1em;
+}
+
+/* Texto MENU */
+.menu-label{
+  font-size: 0.95rem;        /* ↑ maior (teste 1.0rem, 1.05rem, 1.1rem) */
+  font-weight: 250;         /* ↓ mais fino (300 ou 400) */
+  letter-spacing: .02em;   /* opcional: dá “ar” e fica mais elegante */
+  line-height: 1;
+
+  /* muda aqui: vira flex pra alinhar no centro do ícone */
+  display: inline-flex;
+  align-items: center;
+
+  height: 1em;
+
+  position: relative;
+  top: 3px; /* ajusta um pouco pra ficar visualmente central */
+}
+
+/* ===== Tipografia do markdown ===== */
+
 .page-title {
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
-/* Tipografia do markdown */
 .markdown { line-height: 1.7; font-size: 1.05rem; }
 .markdown p { margin: 0 0 1rem; }
 
 .markdown ul, .markdown ol { margin: 0 0 1rem 1.25rem; }
 .markdown li { margin: .35rem 0; }
 
-/* Headings do markdown (sem “card”, estilo capítulo) */
 .markdown h1 {
   margin: 1.6rem 0 .9rem;
   font-size: 1.45rem;
@@ -78,10 +173,8 @@
   margin: 1.6rem 0 .8rem;
 }
 
-/* Se o markdown começar direto com h2, não cria “buraco” no topo */
 .markdown h2:first-child { margin-top: 0; }
 
-/* Citações/versos */
 .markdown blockquote {
   margin: 1rem 0;
   padding: .9rem 1.1rem;
@@ -94,7 +187,6 @@
 .markdown blockquote p { margin: 0; }
 .markdown blockquote p + p { margin-top: .6rem; }
 
-/* Destaque real do 1º verso (primeiro blockquote) */
 .markdown blockquote:first-of-type {
   background: rgba(0,0,0,.05);
   border-left-color: rgba(0,0,0,.30);
@@ -104,78 +196,49 @@
 .markdown a { text-decoration: underline; }
 .markdown hr { margin: 1.5rem 0; }
 
+/* ===== Home / cards ===== */
 
-/* Home V2: lista moderna */
-.home-list {
-  position: relative;
-  padding-left: 18px;
-}
-
-.home-list::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(0,0,0,.08);
-}
-
-.home-item {
-  position: relative;
-  padding: 14px 0;
-}
-
-.home-dot {
-  position: absolute;
-  left: 0;
-  top: 22px;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: #fff;
-  border: 2px solid rgba(0,0,0,.25);
-}
-
-.home-content {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 12px;
-  padding: 14px 14px;
-}
-
-@media (min-width: 992px) {
-  .home-content { padding: 16px 18px; }
-}
-
-/* Home: remover timeline (linha + bolinha) */
+.home-list { padding-left: 0 !important; }
+.home-item { padding-left: 0 !important; }
 .home-list::before { content: none !important; }
 .home-dot { display: none !important; }
 
-/* Tira o espaço reservado à esquerda (caso exista) */
-.home-list { padding-left: 0 !important; }
-.home-item { padding-left: 0 !important; }
-
-/* Offcanvas (menu mobile) — largura tipo R7 */
-#menuMobile.offcanvas {
-  width: min(200px, 85vw) !important; 
+.home-resumo{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
-/* Home: card inteiro clicável */
-.home-card{
+/* Card clicável — feedback visual (hover/active/focus) */
+.home-card {
   display: block;
   text-decoration: none;
   color: inherit;
-}
 
-.home-card .home-content{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  background: #fff;
+
   transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.home-card:active .home-content{
-  transform: translateY(1px);
-  box-shadow: 0 .25rem .75rem rgba(0,0,0,.10);
+.home-card:hover {
   border-color: rgba(0,0,0,.14);
+  box-shadow: 0 .35rem 1rem rgba(0,0,0,.08);
+}
+
+.home-card:active {
+  transform: scale(.99);
+  border-color: rgba(0,0,0,.18);
+  box-shadow: 0 .2rem .7rem rgba(0,0,0,.10);
+}
+
+.home-card:focus-visible {
+  outline: 3px solid rgba(13,110,253,.35);
+  outline-offset: 3px;
 }
 
 /* Chips: scroll horizontal no mobile */
@@ -196,125 +259,12 @@
   flex: 0 0 auto;
 }
 
-.home-resumo{
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-
-  line-clamp: 2; /* padrão (nem sempre aplicado, mas satisfaz o linter) */
-  overflow: hidden;
-}
-
-
-/* Card clicável — feedback visual (hover/active/focus) */
-.home-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 12px;
-  background: #fff;
-
-  transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
-  -webkit-tap-highlight-color: transparent; /* tira highlight azul do iOS */
-}
-
-/* Desktop (mouse) */
-.home-card:hover {
-  border-color: rgba(0,0,0,.14);
-  box-shadow: 0 .35rem 1rem rgba(0,0,0,.08);
-}
-
-/* Mobile (toque) + clique */
-.home-card:active {
-  transform: scale(.99);
-  border-color: rgba(0,0,0,.18);
-  box-shadow: 0 .2rem .7rem rgba(0,0,0,.10);
-}
-
-/* Acessibilidade (teclado) */
-.home-card:focus-visible {
-  outline: 3px solid rgba(13,110,253,.35); /* azul Bootstrap */
-  outline-offset: 3px;
-}
-
 /* Botão Compartilhar mais confortável no mobile */
 .share-btn {
   padding: .7rem 1rem;
 }
 
-/* ===== base visual (fundo + cards) ===== */
-
-/* Fundo geral bem sutil (menos branco “estourado”) */
-body{
-  background: #f6f7f9; /* cinza bem leve */
-}
-
-/* Cards mais “definidos” sem exagero */
-.card{
-  border-color: rgba(0,0,0,.08);
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
-  border-radius: 14px;
-}
-
-/* Conteúdo branco sobre o fundo */
-.home-content{
-  background: #fff;
-}
-
-/* Markdown em branco também (se algum container herdar o fundo) */
-.markdown{
-  background: transparent;
-}
-
-/* Navbar levemente destacada do fundo */
-.navbar{
-  background: rgba(255,255,255,.85) !important;
-  backdrop-filter: saturate(120%) blur(10px);
-}
-
-/* Opcional: separador inferior mais suave */
-.navbar.border-bottom{
-  border-bottom-color: rgba(0,0,0,.08) !important;
-}
-
-/* ===== Navbar: logo central no mobile (sem quebrar o layout) ===== */
-.navbar .navbar-inner{
-  position: relative; /* permite centralizar o logo absoluto */
-}
-
-.nav-mobile-logo{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-decoration: none;
-  line-height: 0;
-}
-
-.brand-mark{
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-
-/* ===== Navbar: botão MENU não parecer link (sem azul) ===== */
-.navbar .btn.btn-link {
-  color: inherit;
-}
-
-/* melhora toque no botão do menu */
-.navbar .btn.btn-link:focus {
-  box-shadow: none;
-}
-
-/* Ícone do logo no mobile */
-.nav-mobile-logo {
-  color: rgba(0, 0, 0, 0.78); /* preto suave */
-}
-
-.brand-mark {
-  width: 44px;
-  height: 26px; /* wide */
-  display: block;
+/* Offcanvas (menu mobile) — largura tipo R7 */
+#menuMobile.offcanvas {
+  width: min(200px, 85vw) !important;
 }

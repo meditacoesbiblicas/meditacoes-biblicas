@@ -9,134 +9,100 @@
       class="d-lg-none nav-mobile-logo"
       aria-label="Ir para Meditações"
     >
-      <!-- SVG inline (evita problema de img/svg em Safari/Chrome) -->
+      <!-- SVG inline (usa currentColor para a cor vir do CSS) -->
       <svg
         class="brand-mark"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 240 120"
         role="img"
-        aria-label="Bíblia aberta (ícone)"
+        aria-label="Bíblia aberta"
       >
-        <!-- CONTORNO (capa/páginas) -->
+        <!-- contorno principal -->
         <path
-          d="M18 95
-            L40 22
-            Q88 8 118 26
-            Q120 34 120 46
-            Q120 34 122 26
-            Q152 8 200 22
-            L222 95"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="5.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-
-        <!-- LINHA CENTRAL (miolo) -->
-        <path
-          d="M120 46 L120 102"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="4.5"
-          stroke-linecap="round"
-          opacity="0.9"
-        />
-
-        <!-- BASE (livro apoiado) -->
-        <path
-          d="M16 98
-            Q120 116 224 98"
+          d="M18 92 L38 28 Q86 10 118 26
+             Q120 36 120 42
+             Q120 36 122 26
+             Q154 10 202 28 L222 92"
           fill="none"
           stroke="currentColor"
           stroke-width="6"
           stroke-linecap="round"
           stroke-linejoin="round"
-        />
+        ></path>
 
-        <!-- PÁGINAS INTERNAS (lado esquerdo) -->
+        <!-- páginas internas -->
         <path
-          d="M34 95
-            L52 32
-            Q92 18 114 34"
+          d="M30 92 L48 34 Q88 20 116 33"
           fill="none"
           stroke="currentColor"
-          stroke-width="3.8"
+          stroke-width="4"
           stroke-linecap="round"
           stroke-linejoin="round"
-          opacity="0.85"
-        />
+          opacity="0.95"
+        ></path>
         <path
-          d="M44 96
-            Q74 78 112 88"
+          d="M210 92 L192 34 Q152 20 124 33"
           fill="none"
           stroke="currentColor"
-          stroke-width="3.2"
-          stroke-linecap="round"
-          opacity="0.78"
-        />
-        <path
-          d="M56 98
-            Q84 86 110 94"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.6"
-          stroke-linecap="round"
-          opacity="0.68"
-        />
-
-        <!-- PÁGINAS INTERNAS (lado direito) -->
-        <path
-          d="M206 95
-            L188 32
-            Q148 18 126 34"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3.8"
+          stroke-width="4"
           stroke-linecap="round"
           stroke-linejoin="round"
-          opacity="0.85"
-        />
-        <path
-          d="M196 96
-            Q166 78 128 88"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3.2"
-          stroke-linecap="round"
-          opacity="0.78"
-        />
-        <path
-          d="M184 98
-            Q156 86 130 94"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.6"
-          stroke-linecap="round"
-          opacity="0.68"
-        />
+          opacity="0.95"
+        ></path>
 
-        <!-- “V” DO TOPO (curvatura no centro, tipo a sua imagem) -->
+        <!-- miolo -->
         <path
-          d="M106 18
-            Q120 34 134 18"
+          d="M120 42 L120 98"
           fill="none"
           stroke="currentColor"
-          stroke-width="4.2"
+          stroke-width="5"
+          stroke-linecap="round"
+          opacity="0.95"
+        ></path>
+
+        <!-- base -->
+        <path
+          d="M16 96 Q120 116 224 96"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+
+        <!-- folhas (efeito embaixo) -->
+        <path
+          d="M62 94 Q86 86 106 92"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3.5"
           stroke-linecap="round"
           opacity="0.9"
-        />
-
-        <!-- LOMBO/SOMBRA CENTRAL EMBAIXO -->
+        ></path>
         <path
-          d="M104 104
-            Q120 116 136 104"
+          d="M70 98 Q90 92 104 96"
           fill="none"
           stroke="currentColor"
-          stroke-width="7"
+          stroke-width="3"
           stroke-linecap="round"
-          opacity="0.88"
-        />
+          opacity="0.85"
+        ></path>
+        <path
+          d="M178 94 Q154 86 134 92"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3.5"
+          stroke-linecap="round"
+          opacity="0.9"
+        ></path>
+        <path
+          d="M170 98 Q150 92 136 96"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          opacity="0.85"
+        ></path>
       </svg>
     </a>
 
@@ -146,17 +112,17 @@
       <a class="nav-link p-0" routerLink="/sobre">Sobre</a>
     </div>
 
-    <!-- Botão (MOBILE): MENU ☰ (sem azul de link) -->
+    <!-- Botão (MOBILE): ícone à esquerda do MENU (estilo R7) -->
     <button
-      class="btn btn-link text-body text-decoration-none d-inline-flex align-items-center gap-2 d-lg-none"
+      class="menu-btn btn btn-link text-decoration-none d-inline-flex align-items-center d-lg-none"
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#menuMobile"
       aria-controls="menuMobile"
       aria-label="Abrir menu"
     >
-      <span class="fw-semibold">MENU</span>
-      <span aria-hidden="true">☰</span>
+      <span class="menu-icon" aria-hidden="true">≡</span>
+      <span class="menu-label">MENU</span>
     </button>
   </div>
 </nav>
@@ -168,7 +134,6 @@
   id="menuMobile"
   aria-labelledby="menuMobileLabel"
 >
-  <!-- sem “Menu” duplicado -->
   <div class="offcanvas-header justify-content-end">
     <button
       type="button"
@@ -213,4 +178,4 @@
 
 <main class="page-narrow py-4">
   <router-outlet />
-</main>
+</main>//
