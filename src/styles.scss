@@ -1,12 +1,16 @@
-/* Largura de leitura + espaçamento lateral (iPhone/Safari friendly) */
+/* ================================
+   LAYOUT (largura de leitura)
+   ================================ */
+
 .page-narrow {
   max-width: 760px;
   margin: 0 auto;
+
+  /* evita ficar colado nas bordas no mobile */
   padding-left: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
 }
 
-/* telas um pouco maiores */
 @media (min-width: 576px) {
   .page-narrow {
     padding-left: 24px;
@@ -14,8 +18,7 @@
   }
 }
 
-/* desktop */
-@media (min-width: 992px)  {
+@media (min-width: 992px) {
   .page-narrow {
     max-width: 900px;
     padding-left: 0;
@@ -23,123 +26,165 @@
   }
 }
 
-/* tela grande */
 @media (min-width: 1200px) {
   .page-narrow {
     max-width: 980px;
   }
 }
 
-/* ===== base visual (fundo + cards) ===== */
+/* ================================
+   BASE VISUAL (fundo + cards)
+   ================================ */
 
-body{
+body {
   background: #f6f7f9; /* cinza bem leve */
 }
 
-.card{
-  border-color: rgba(0,0,0,.08);
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+.card {
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   border-radius: 14px;
 }
 
-.home-content{
+.home-content {
   background: #fff;
 }
 
-.markdown{
+.markdown {
   background: transparent;
 }
 
+/* ================================
+   NAVBAR / HEADER (AJUSTE MANUAL)
+   ================================ */
+
+/*
+  Ajuste SÓ aqui:
+  - altura do header: --hdr-inner-pad-y
+  - margem interna esquerda/direita: --hdr-inner-pad-x
+  - padding do botão MENU: --hdr-btn-pad-y / --hdr-btn-pad-x
+  - tamanho do ícone ≡: --menu-icon-size
+  - tamanho do texto MENU: --menu-label-size
+  - alinhamento fino do MENU: --menu-label-top
+  - tamanho do logo SVG: --logo-w / --logo-h
+  - cor do logo SVG (currentColor): --logo-color
+*/
+:root {
+  --hdr-nav-pad-y: 0rem;       /* padding do .navbar (bootstrap). Deixe 0 pra “destravar” altura */
+  --hdr-inner-pad-y: 0.10rem;  /* ALTURA do header (top/bottom) */
+  --hdr-inner-pad-x: 6px;      /* margens internas (left/right) só do header */
+
+  --hdr-btn-pad-y: 0.10rem;    /* padding do botão MENU */
+  --hdr-btn-pad-x: 0.10rem;
+
+  --menu-icon-size: 2.15rem;   /* tamanho do ≡ */
+  --menu-label-size: 1.00rem;  /* tamanho do MENU */
+  --menu-label-weight: 300;    /* 200/300/400 */
+  --menu-label-top: 3px;       /* ajuste fino: 2px / 3px / 4px */
+
+  --logo-w: 44px;
+  --logo-h: 26px;
+  --logo-color: rgba(0, 0, 0, 0.75); /* preto suave */
+}
+
 /* Navbar levemente destacada do fundo */
-.navbar{
-  background: rgba(255,255,255,.85) !important;
+.navbar {
+  background: rgba(255, 255, 255, 0.85) !important;
   backdrop-filter: saturate(120%) blur(10px);
+
+  /* zera padding do bootstrap pra altura realmente responder ao tuning */
+  padding-top: var(--hdr-nav-pad-y) !important;
+  padding-bottom: var(--hdr-nav-pad-y) !important;
 }
 
-.navbar.border-bottom{
-  border-bottom-color: rgba(0,0,0,.08) !important;
+.navbar.border-bottom {
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
 }
 
-/* ===== NAVBAR (o que você quer ajustar) ===== */
-
-/* Navbar alinhado ao conteúdo + HEADER MAIS BAIXO */
-.navbar .navbar-inner{
+/* Conteúdo da navbar (altura controlada aqui) */
+.navbar .navbar-inner {
   position: relative; /* para centralizar o logo absoluto no mobile */
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 
-  /* aqui é o que mais influencia na "altura" */
-  padding-top: .15rem;
-  padding-bottom: .15rem;
+  padding-top: var(--hdr-inner-pad-y) !important;
+  padding-bottom: var(--hdr-inner-pad-y) !important;
 }
 
-/* Logo central (mobile): centraliza certinho e não “empurra” a navbar */
-.nav-mobile-logo{
+/* Ajusta LEFT/RIGHT do header sem mexer no MAIN */
+.navbar .page-narrow {
+  padding-left: max(var(--hdr-inner-pad-x), env(safe-area-inset-left)) !important;
+  padding-right: max(var(--hdr-inner-pad-x), env(safe-area-inset-right)) !important;
+}
+
+/* Logo central (mobile) */
+.nav-mobile-logo {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   text-decoration: none;
   line-height: 0;
+
+  /* cor do SVG via currentColor */
+  color: var(--logo-color);
 }
 
-/* Seu SVG “wide” */
-.brand-mark{
-  width: 44px;
-  height: 26px;
+/* SVG do logo */
+.brand-mark {
+  width: var(--logo-w);
+  height: var(--logo-h);
   display: block;
 }
 
-/* Botão MENU no mobile: não parecer link e ficar tipo R7 */
-.menu-btn{
+/* Botão MENU (mobile) */
+.menu-btn {
   display: inline-flex;
-  align-items: center;       /* <-- isso centraliza verticalmente */
-  gap: .45rem;              /* aproxima ícone e texto */
+  align-items: center;
+  gap: 0.45rem;
 
-  padding: .2rem .35rem;   /* mantém o seu tamanho atual */
+  padding: var(--hdr-btn-pad-y) var(--hdr-btn-pad-x) !important;
   line-height: 1;
-
-  /* importante: evita “baseline” influenciar */
   vertical-align: middle;
+
+  /* não parecer link */
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
-.menu-btn:focus{
+.menu-btn:focus {
   box-shadow: none;
 }
 
-/* Ícone Hamburger ( três traços horizontais ) */
-.menu-icon{
-  font-size: 2.05rem;
+/* Ícone do MENU (≡) */
+.menu-icon {
+  font-size: var(--menu-icon-size);
   line-height: 1;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  /* garante uma “caixa” previsível pro caractere */
-  height: 1em;
 }
 
 /* Texto MENU */
-.menu-label{
-  font-size: 0.95rem;        /* ↑ maior (teste 1.0rem, 1.05rem, 1.1rem) */
-  font-weight: 250;         /* ↓ mais fino (300 ou 400) */
-  letter-spacing: .02em;   /* opcional: dá “ar” e fica mais elegante */
+.menu-label {
+  font-size: var(--menu-label-size);
+  font-weight: var(--menu-label-weight);
+  letter-spacing: 0.02em;
   line-height: 1;
 
-  /* muda aqui: vira flex pra alinhar no centro do ícone */
   display: inline-flex;
   align-items: center;
 
-  height: 1em;
-
   position: relative;
-  top: 3px; /* ajusta um pouco pra ficar visualmente central */
+  top: var(--menu-label-top);
 }
 
-/* ===== Tipografia do markdown ===== */
+/* ================================
+   MARKDOWN / TIPOGRAFIA
+   ================================ */
 
 .page-title {
   font-size: 1.6rem;
@@ -147,14 +192,26 @@ body{
   line-height: 1.2;
 }
 
-.markdown { line-height: 1.7; font-size: 1.05rem; }
-.markdown p { margin: 0 0 1rem; }
+.markdown {
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
 
-.markdown ul, .markdown ol { margin: 0 0 1rem 1.25rem; }
-.markdown li { margin: .35rem 0; }
+.markdown p {
+  margin: 0 0 1rem;
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 0 0 1rem 1.25rem;
+}
+
+.markdown li {
+  margin: 0.35rem 0;
+}
 
 .markdown h1 {
-  margin: 1.6rem 0 .9rem;
+  margin: 1.6rem 0 0.9rem;
   font-size: 1.45rem;
   font-weight: 700;
 }
@@ -163,81 +220,109 @@ body{
   font-size: 1.55rem;
   font-weight: 700;
   margin: 2.2rem 0 1rem;
-  padding-bottom: .5rem;
-  border-bottom: 1px solid rgba(0,0,0,.12);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .markdown h3 {
   font-size: 1.2rem;
   font-weight: 700;
-  margin: 1.6rem 0 .8rem;
+  margin: 1.6rem 0 0.8rem;
 }
 
-.markdown h2:first-child { margin-top: 0; }
+/* Se o markdown começar direto com h2, não cria “buraco” no topo */
+.markdown h2:first-child {
+  margin-top: 0;
+}
 
+/* Citações/versos */
 .markdown blockquote {
   margin: 1rem 0;
-  padding: .9rem 1.1rem;
-  border-left: 4px solid rgba(0,0,0,.15);
-  background: rgba(0,0,0,.03);
-  border-radius: .75rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 4px solid rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 0.75rem;
   font-style: italic;
 }
 
-.markdown blockquote p { margin: 0; }
-.markdown blockquote p + p { margin-top: .6rem; }
+.markdown blockquote p {
+  margin: 0;
+}
 
+.markdown blockquote p + p {
+  margin-top: 0.6rem;
+}
+
+/* Destaque real do 1º verso */
 .markdown blockquote:first-of-type {
-  background: rgba(0,0,0,.05);
-  border-left-color: rgba(0,0,0,.30);
+  background: rgba(0, 0, 0, 0.05);
+  border-left-color: rgba(0, 0, 0, 0.3);
   border-left-width: 5px;
 }
 
-.markdown a { text-decoration: underline; }
-.markdown hr { margin: 1.5rem 0; }
+.markdown a {
+  text-decoration: underline;
+}
 
-/* ===== Home / cards ===== */
+.markdown hr {
+  margin: 1.5rem 0;
+}
 
-.home-list { padding-left: 0 !important; }
-.home-item { padding-left: 0 !important; }
-.home-list::before { content: none !important; }
-.home-dot { display: none !important; }
+/* ================================
+   HOME / CARDS
+   ================================ */
 
-.home-resumo{
+/* Remove timeline (linha + bolinha) */
+.home-list {
+  padding-left: 0 !important;
+}
+.home-item {
+  padding-left: 0 !important;
+}
+.home-list::before {
+  content: none !important;
+}
+.home-dot {
+  display: none !important;
+}
+
+/* Resumo com 2 linhas */
+.home-resumo {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+
   line-clamp: 2;
   overflow: hidden;
 }
 
-/* Card clicável — feedback visual (hover/active/focus) */
+/* Card clicável */
 .home-card {
   display: block;
   text-decoration: none;
   color: inherit;
 
-  border: 1px solid rgba(0,0,0,.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   background: #fff;
 
-  transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+  transition: transform 0.08s ease, box-shadow 0.12s ease, border-color 0.12s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
 .home-card:hover {
-  border-color: rgba(0,0,0,.14);
-  box-shadow: 0 .35rem 1rem rgba(0,0,0,.08);
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.08);
 }
 
 .home-card:active {
-  transform: scale(.99);
-  border-color: rgba(0,0,0,.18);
-  box-shadow: 0 .2rem .7rem rgba(0,0,0,.10);
+  transform: scale(0.99);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.10);
 }
 
 .home-card:focus-visible {
-  outline: 3px solid rgba(13,110,253,.35);
+  outline: 3px solid rgba(13, 110, 253, 0.35);
   outline-offset: 3px;
 }
 
@@ -249,9 +334,9 @@ body{
 
 .chips-row {
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
   flex-wrap: nowrap;
-  padding-bottom: .25rem;
+  padding-bottom: 0.25rem;
 }
 
 .chips-row .btn {
@@ -259,12 +344,15 @@ body{
   flex: 0 0 auto;
 }
 
-/* Botão Compartilhar mais confortável no mobile */
+/* Botão Compartilhar mais confortável */
 .share-btn {
-  padding: .7rem 1rem;
+  padding: 0.7rem 1rem;
 }
 
-/* Offcanvas (menu mobile) — largura tipo R7 */
+/* ================================
+   OFFCANVAS (MENU MOBILE)
+   ================================ */
+
 #menuMobile.offcanvas {
   width: min(200px, 85vw) !important;
 }
