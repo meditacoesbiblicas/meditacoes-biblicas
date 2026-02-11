@@ -106,7 +106,7 @@ export const MEDITACOES: Meditacao[] = [
     tema: "Relacionamentos",
     titulo: "🤍 Submissão que Testemunha",
     versoChave: "1 Pedro 3:1",
-    resumo: "A fidelidade a Deus não depende da condição espiritual do cônjuge.",
+    resumo: "Quando o diálogo não convence, o testemunho pode transformar.",
     arquivoMd: "submissao-e-testemunho-silencioso.md",
     referencias: ["1Pe 3:1-4", "Ef 5:25", "Rm 14:12"]
   }
