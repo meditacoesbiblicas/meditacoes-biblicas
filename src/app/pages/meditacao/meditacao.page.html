@@ -1,26 +1,27 @@
 <div class="py-4">
   @if (m) {
-    <a
-      routerLink="/"
-      class="btn btn-outline-secondary btn-sm mb-2"
-      aria-label="Voltar para a lista"
-    >
-      ← Voltar
-    </a>
+    <!-- Top bar: Voltar (esq) + Compartilhar (dir) -->
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+      <a
+        routerLink="/"
+        class="btn btn-outline-secondary btn-sm"
+        aria-label="Voltar para a lista"
+      >
+        ← Voltar
+      </a>
 
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-      <h1 class="page-title m-0">{{ m.titulo }}</h1>
-    </div>
-
-    <div class="share-actions d-grid gap-2 d-sm-flex mt-2">
       <button
         type="button"
-        class="btn btn-outline-secondary share-btn"
+        class="btn btn-outline-secondary btn-sm flex-shrink-0"
         (click)="compartilhar()"
+        aria-label="Compartilhar"
       >
         📤 Compartilhar
       </button>
     </div>
+
+    <!-- Título -->
+    <h1 class="page-title m-0">{{ m.titulo }}</h1>
 
     @if (copiado) {
       <div class="text-success small mt-2">Link copiado ✅</div>
