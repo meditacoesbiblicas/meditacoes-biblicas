@@ -21,9 +21,7 @@ Paulo manda guardar o “depósito” confiado por Deus e rejeitar o que é vazi
 
 E Ellen White aponta o mesmo caminho: suspeitas precisam morrer, para que o povo de Deus seja unificado na verdade e no caráter de Cristo.
 
-> “Os filhos de Deus precisam afastar todo pensamento de suspeita com referência a seus irmãos. Os corações devem bater em uníssono. A beneficência cristã e o amor fraternal devem ser manifestados muito mais abundantemente. Soam aos meus ouvidos as palavras: “União, união!” A solene e sagrada verdade para este tempo deve unificar o povo de Deus. Importa que morra o desejo de supremacia. Todos os outros objetos de interesse devem ser absorvidos por um único: quem se assemelhará mais a Cristo no caráter? Quem esconderá mais completamente em Cristo o próprio eu?”
-> — **Ellen G. White, Testemunhos para a Igreja, v. 6, p. 42 (T6, p. 42)**  
-🔗 https://media4.egwwritings.org/pdf/pt_T6%286T%29.pdf
+> “Os filhos de Deus precisam afastar todo pensamento de suspeita com referência a seus irmãos. Os corações devem bater em uníssono. A beneficência cristã e o amor fraternal devem ser manifestados muito mais abundantemente. Soam aos meus ouvidos as palavras: “União, união!” A solene e sagrada verdade para este tempo deve unificar o povo de Deus. Importa que morra o desejo de supremacia. Todos os outros objetos de interesse devem ser absorvidos por um único: quem se assemelhará mais a Cristo no caráter? Quem esconderá mais completamente em Cristo o próprio eu?” [— **Ellen G. White, Testemunhos para a Igreja, v. 6, p. 42 (T6, p. 42)**](https://media4.egwwritings.org/pdf/pt_T6%286T%29.pdf)
 
 ## 🛠️ Aplicações práticas
 - Antes de concluir algo sobre alguém, ore e escolha interpretar com caridade.

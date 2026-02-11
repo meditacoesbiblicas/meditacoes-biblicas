@@ -1,5 +1,4 @@
-> “A morte e a vida estão no poder da língua; e aquele que a ama comerá do seu fruto.”
-> — **Provérbios 18:21 (ARC)**
+> “A morte e a vida estão no poder da língua; e aquele que a ama comerá do seu fruto.” **— Provérbios 18:21 (ARC)**
 
 ## ✨ Meditação
 
@@ -9,10 +8,7 @@ Com a mesma boca que louvamos a Deus, podemos ferir alguém.
 
 Cada palavra é uma escolha: **curar ou ferir**, **levantar ou derrubar**.
 
-> “Palavras são como sementes que se plantam.”
-> — **O Lar Adventista, p. 439.2**
->
-> 🔗 https://m.egwwritings.org/pt/book/1955.2633
+> “Palavras são como sementes que se plantam.” [— **O Lar Adventista, p. 439.2**](https://m.egwwritings.org/pt/book/1955.2633)
 
 Cada palavra é uma semente:  
 🌱 pode nascer amor, fé, reconciliação.  
@@ -29,10 +25,7 @@ Por isso, não basta mudar o jeito de falar — é preciso deixar Deus transform
 
 ## 📖 Orientação
 
-> “Vigiem bem as palavras; pois elas exercem influência poderosa para o bem ou para o mal.”
-> — **Testemunhos para a Igreja, vol. 7, p. 47.2**
->
-> 🔗 https://m.egwwritings.org/pt/book/1960.257
+> “Vigiem bem as palavras; pois elas exercem influência poderosa para o bem ou para o mal.” [— **Testemunhos para a Igreja, vol. 7, p. 47.2**](https://m.egwwritings.org/pt/book/1960.257)
 
 
 
