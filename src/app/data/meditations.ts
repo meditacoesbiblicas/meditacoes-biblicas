@@ -99,5 +99,15 @@ export const MEDITACOES: Meditacao[] = [
     resumo: "Nem toda paz é virtude; às vezes, o amor à verdade exige posicionamento.",
     arquivoMd: "paz-e-verdade.md",
     referencias: ["Rm 12:18", "Mt 10:34", "Tg 4:17"]
+  },
+  {
+    id: "submissao-e-testemunho-silencioso",
+    data: "2026-02-11",
+    tema: "Relacionamentos",
+    titulo: "🤍 Submissão que Testemunha",
+    versoChave: "1 Pedro 3:1",
+    resumo: "A fidelidade a Deus não depende da condição espiritual do cônjuge.",
+    arquivoMd: "submissao-e-testemunho-silencioso.md",
+    referencias: ["1Pe 3:1-4", "Ef 5:25", "Rm 14:12"]
   }
 ];
