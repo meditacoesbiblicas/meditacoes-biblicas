@@ -1,5 +1,4 @@
-> “Se possível, quanto depender de vós, tende paz com todos os homens.”
-> — Romanos 12:18 (ARA)
+> “Se possível, quanto depender de vós, tende paz com todos os homens.” **— Romanos 12:18 (ARA)**
 
 ## ✨ Meditação
 
@@ -12,16 +11,16 @@ Ser pacificador não é ser conivente. O cristão é chamado a amar a verdade me
 ## 📖 Orientação
 
 > “Não cuideis que vim trazer a paz à terra; não vim trazer paz, mas espada.”
-> — Mateus 10:34 (ARA)
+> **— Mateus 10:34 (ARA)**
 
 A verdade de Cristo provoca divisão quando encontra resistência. O conflito, nesse caso, não nasce da falta de amor, mas da fidelidade ao que é correto.
 
 > “Quem sabe que deve fazer o bem e não o faz comete pecado.”
-> — Tiago 4:17 (ARA)
+> **— Tiago 4:17 (ARA)**
 
 Conhecimento gera responsabilidade. A omissão consciente não é virtude espiritual.
 
-> “A maior necessidade do mundo é a de homens — homens que não se comprem nem se vendam; homens que, no íntimo da alma, sejam verdadeiros e honestos; homens que não temam chamar o pecado pelo seu nome exato; homens cuja consciência seja tão fiel ao dever como a bússola o é ao polo; homens que permaneçam firmes pelo que é reto, ainda que caiam os céus.” [— Ellen G. White, Educação, p. 57](https://m.egwwritings.org/pt/book/1732.1495#1499:~:text=A%20maior%20necessidade,caiam%20os%20c%C3%A9us)
+> “A maior necessidade do mundo é a de homens — homens que não se comprem nem se vendam; homens que, no íntimo da alma, sejam verdadeiros e honestos; homens que não temam chamar o pecado pelo seu nome exato; homens cuja consciência seja tão fiel ao dever como a bússola o é ao polo; homens que permaneçam firmes pelo que é reto, ainda que caiam os céus.” [**— Ellen G. White, Educação, p. 57**](https://m.egwwritings.org/pt/book/1732.1495#1499:~:text=A%20maior%20necessidade,caiam%20os%20c%C3%A9us)
 
 
 ## 🛠️ Aplicações práticas

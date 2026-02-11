@@ -1,5 +1,4 @@
-> “Mas esmurro o meu corpo e o reduzo à escravidão, para que, tendo pregado a outros, não venha eu mesmo a ser desqualificado.”
-> — **1 Coríntios 9:27 (ARA)**
+> “Mas esmurro o meu corpo e o reduzo à escravidão, para que, tendo pregado a outros, não venha eu mesmo a ser desqualificado.” **— 1 Coríntios 9:27 (ARA)**
 
 ## ✨ Meditação
 
@@ -14,20 +13,20 @@ A disciplina cristã não é uma corrente que prende; é uma trilha que conduz. 
 ## 📖 Orientação
 
 > “E todo atleta em tudo se domina; aqueles, para alcançar uma coroa corruptível; nós, porém, a incorruptível.”
-> — **1 Coríntios 9:25 (ARA)**
+> 
+>**— 1 Coríntios 9:25 (ARA)**
 
 > “E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não desfalecermos.”
-> — **Gálatas 6:9 (ARA)**
+>
+>**— Gálatas 6:9 (ARA)**
 
 > “Sobre tudo o que se deve guardar, guarda o coração, porque dele procedem as fontes da vida.”
-> — **Provérbios 4:23 (ARA)**
+>
+>**— Provérbios 4:23 (ARA)**
 
 E Ellen G. White descreve a autodisciplina de forma bem concreta:
 
-> “Dominar o espírito é manter debaixo de disciplina o próprio eu; é resistir ao mal; é ajustar cada palavra e ação pela grande norma de justiça de Deus.”
-> — **Ellen G. White, Mensagens aos Jovens, cap. 35 (MJ 134.3)**
->
-> 🔗 https://m.egwwritings.org/pt/book/1951.680
+> “Dominar o espírito é manter debaixo de disciplina o próprio eu; é resistir ao mal; é ajustar cada palavra e ação pela grande norma de justiça de Deus.” [— **Ellen G. White, Mensagens aos Jovens, cap. 35 (MJ 134.3)**](https://m.egwwritings.org/pt/book/1951.680)
 
 
 ## 🛠️ Aplicações práticas

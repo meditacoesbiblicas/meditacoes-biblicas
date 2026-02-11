@@ -35,8 +35,9 @@ No fundo, é um chamado simples e poderoso: não viva à deriva.
 
 Uma rotina com propósito não é prisão — é proteção. Propósito não é peso — é direção. E uma vida dirigida por Deus não fica vazia; ela fica cheia de sentido.
 
+**Pergunta de exame pessoal**
+>
 > “Onde o seu tempo tem escorrido sem perceber?”
-> — **Pergunta de exame pessoal**
 
 
 ## 🛠️ Aplicações práticas

@@ -1,4 +1,4 @@
-> “Se possível, quanto depender de vós, tende paz com todos os homens.” **Romanos 12:18 (ARA)**
+> “Se possível, quanto depender de vós, tende paz com todos os homens.” **— Romanos 12:18 (ARA)**
 
 ## ✨ Meditação
 
@@ -16,11 +16,9 @@ Há situações em que a decisão mais sábia não é “virar igual” para sup
 
 > “O prudente vê o mal e esconde-se; mas os simples passam adiante e sofrem a pena.” — **Provérbios 22:3 (ARA)**
 
-> “Todas as relações sociais exigem o exercício do domínio próprio, paciência e simpatia. Diferimos tanto uns dos outros em disposições, hábitos e educação, que variam entre si nossas maneiras de ver as coisas.” — **Ellen G. White, *A Ciência do Bom Viver*, cap. 41**
->
-> 🔗 https://m.egwwritings.org/pt/book/11255.2636
+> “Todas as relações sociais exigem o exercício do domínio próprio, paciência e simpatia. Diferimos tanto uns dos outros em disposições, hábitos e educação, que variam entre si nossas maneiras de ver as coisas.”
+[— **Ellen G. White, *A Ciência do Bom Viver*, cap. 41**](https://m.egwwritings.org/pt/book/11255.2636)
 
----
 
 ## 🛠️ Aplicações práticas
 
@@ -28,7 +26,6 @@ Há situações em que a decisão mais sábia não é “virar igual” para sup
 - Se não há abertura do outro lado, reduza a exposição: convivências curtas, limites claros e respeito firme.
 - Antes de qualquer conversa difícil, ore e escolha palavras que busquem harmonia — sem ceder princípios e sem alimentar contenda.
 
----
 
 ## 🙏 Oração final
 
