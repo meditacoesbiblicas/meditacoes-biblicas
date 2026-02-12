@@ -230,6 +230,18 @@ body {
   margin: 1.6rem 0 0.8rem;
 }
 
+.markdown h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.25rem 0 0.65rem;
+}
+
+.markdown h5 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0.9rem 0 0.55rem;
+}
+
 /* Se o markdown começar direto com h2, não cria “buraco” no topo */
 .markdown h2:first-child {
   margin-top: 0;

@@ -109,5 +109,30 @@ export const MEDITACOES: Meditacao[] = [
     resumo: "Quando o diálogo não convence, o testemunho pode transformar.",
     arquivoMd: "submissao-e-testemunho-silencioso.md",
     referencias: ["1Pe 3:1-4", "Ef 5:25", "Rm 14:12"]
+  },
+  {
+    id: "as-curas-o-monte-e-o-caminho-do-reino",
+    data: "2026-02-12",
+    tema: "Caminhada Cristã",
+    titulo: "⛰️ As Curas, o Monte e o Caminho do Reino",
+    versoChave: "Mateus 5:20",
+    resumo: "Jesus cura a dor imediata e depois revela o caminho profundo do caráter do Reino.",
+    arquivoMd: "as-curas-o-monte-o-caminho-do-reino.md",
+    referencias: [
+      "Mt 4:23-25",
+      "Mt 5:3-12",
+      "Mt 5:13-20",
+      "Mt 5:21-28",
+      "Mt 23:27",
+      "Ap 3:17",
+      "2Co 7:10",
+      "Ez 9:4",
+      "Sl 25:9",
+      "Sl 149:4",
+      "Jr 23:6",
+      "1Co 1:30",
+      "Jo 6:35",
+      "1Tm 4:5"
+    ]
   }
 ];
