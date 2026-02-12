@@ -51,7 +51,9 @@ O primeiro passo é reconhecer a pobreza espiritual. Sem isso, nada acontece.
 
 Esse choro não é sentimentalismo. É dor pelo pecado.
 
->“A tristeza segundo Deus produz arrependimento para a salvação.” **— 2 Coríntios 7:10**
+>“A tristeza segundo Deus produz arrependimento para a salvação.”
+>
+>**— 2 Coríntios 7:10**
 
 É o coração que começa a sentir o que antes ignorava.
 
@@ -89,7 +91,9 @@ E a justiça aqui tem um nome.
 
 >“Este será o seu nome: SENHOR, Justiça Nossa.” **— Jeremias 23:6**
 
->“Cristo se tornou para nós… justiça.” **— 1 Coríntios 1:30**
+>“Cristo se tornou para nós… justiça.”
+>
+>**— 1 Coríntios 1:30**
 
 Ter fome e sede de justiça é ter fome e sede de Cristo.
 
@@ -101,7 +105,7 @@ Ele é a resposta para a pobreza espiritual.
 
 #### 5. A quinta bem-aventurança revela o efeito da graça recebida
 
-#### Misericordiosos -  quem recebeu graça passa a viver graça
+#### Misericordiosos — quem experimentou o perdão é chamado a refletir esse perdão
 
 >“Bem-aventurados os misericordiosos…” **— Mateus 5:7**
 
