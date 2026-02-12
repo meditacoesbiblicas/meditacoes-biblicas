@@ -153,20 +153,44 @@ Aqui Jesus mostra que, no mundo real, a fidelidade traz oposição.
 O mundo aceita aparência.<br>
 Mas rejeita santidade.
 
-### Sal e Luz: consequência natural da transformação
+### Sal e Luz: a transformação que se torna visível
 
 >“Vós sois o sal da terra…” **— Mateus 5:13**
 
 >“Vós sois a luz do mundo…” **— Mateus 5:14**
 
-Não é marketing religioso.<br>
-É vida transformada.
+Depois de descrever o caráter do Reino, Jesus não diz: “Façam-se sal” ou “Tornem-se luz”.
 
-E Jesus alerta:
+Ele afirma: **“Vós sois.”**
+
+O sal preserva da corrupção, impede a deterioração e dá sabor.  
+A luz revela, orienta e dissipa as trevas.
+
+Aquele que reconheceu sua pobreza espiritual, chorou pelo pecado, tornou-se manso, buscou a justiça de Cristo, aprendeu misericórdia e foi purificado de coração não consegue permanecer neutro no mundo.
+
+A transformação interior inevitavelmente produz influência exterior.
+
+Não é ativismo religioso.  
+Não é performance espiritual.  
+Não é marketing de fé.
+
+É caráter transformado que passa a impactar o ambiente ao redor.
+
+Por isso Jesus alerta:
 
 >“...mas se o sal perder seu sabor, com que se há de salgar? Para nada mais é bom ... **— Mateus 5:13 BKJ**
 
-É possível começar bem e depois viver só de aparência.
+É possível começar no caminho e, com o tempo, permitir que a influência do mundo dilua a identidade do Reino.
+
+É possível manter a aparência, mas perder a essência.
+
+O sal pode continuar branco — mas sem sabor.  
+A luz pode estar acesa — mas escondida.
+
+O chamado de Cristo não é apenas para experimentar transformação,  
+mas para **permanecer nela**,  
+até que as pessoas:
+>“... vejam as vossas boas obras e glorifiquem a vosso Pai, que está nos céu.” **- Mateus 5:16 BKJ**
 
 ### Exceder a justiça dos fariseus: Jesus expõe a raiz do problema
 
@@ -178,7 +202,7 @@ E Jesus deixa claro qual era a falha deles:
 
 >“Ai de vós, escribas e fariseus, hipócritas, porque sois semelhantes aos sepulcros caiados,que, por fora, se mostram belos, mas interiormente estão cheios de ossos de mortos e de toda imundícia." **— Mateus 23:27**
 
-A falha era interior.
+A raiz do problema era interior.
 
 Por isso, logo após Mateus 5:20, Jesus começa a aplicar o Reino no interior do ser humano — em emoções e pensamentos.
 
@@ -225,7 +249,8 @@ Até que ele veja a Deus.
 
 ## 📖 Orientação
 
-Cristo não veio apenas aliviar dores físicas. Veio restaurar o caráter para a eternidade.
+O Evangelho não veio apenas para aliviar dores ou resolver problemas imediatos.
+Ele veio transformar o caráter para a eternidade.
 
 A transformação começa na pobreza espiritual reconhecida, passa pelo arrependimento, mansidão e busca intensa por Cristo como justiça.
 
@@ -239,7 +264,7 @@ Essa transformação também é buscada em oração:
 
 > “Sonda-me, ó Deus, e conhece o meu coração; prova-me e conhece os meus pensamento; vê se há em mim algum caminho mau e guia-me pelo caminho eterno.” **— Salmos 139:23–24**
 
-Palavra de Deus e oração são o caminho para a transformação, pois assim poderemos ter intimidade com Deus, se formos sinceros em querer em seguir a vontade dEle.
+Palavra de Deus e oração são o caminho para a transformação, pois assim poderemos ter intimidade com Deus, se formos sinceros em querer em seguir a Sua vontade.
 
 ## 🛠️ Aplicações práticas
 
