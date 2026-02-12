@@ -67,7 +67,7 @@ Deus reconhece quem sofre por causa do pecado — inclusive o próprio.
 
 Depois de reconhecer a pobreza espiritual e chorar pelo pecado, a pessoa não consegue continuar do mesmo jeito: ela se torna mais humilde, mais cuidadosa, mais ensinável, menos “dura”.
 
-A mansidão aqui é a calma e a humildade que nascem de um coração que reconheceu seu erro e se rendeu a Deus: a pessoa passa a pensar mais antes de reagir, passa a ouvir mais, passa a aceitar correção, passa a permitir que Deus a conduza — inclusive quando Deus usa pessoas, circunstâncias e a própria Palavra para mostrar o que precisa mudar.
+A mansidão aqui é a calma e a humildade que nascem de um coração que reconheceu sua condição pecaminosa e se voltou a Deus: a pessoa passa a pensar mais antes de reagir, passa a ouvir mais, passa a aceitar correção, passa a permitir que Deus a conduza — inclusive quando Deus usa pessoas, circunstâncias e a própria Palavra para mostrar o que precisa mudar.
 
 Por isso a Bíblia liga mansidão com direção e aprendizado:
 
