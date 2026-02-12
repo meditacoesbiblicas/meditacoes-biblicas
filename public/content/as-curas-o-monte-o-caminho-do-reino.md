@@ -264,7 +264,7 @@ Essa transformação também é buscada em oração:
 
 > “Sonda-me, ó Deus, e conhece o meu coração; prova-me e conhece os meus pensamento; vê se há em mim algum caminho mau e guia-me pelo caminho eterno.” **— Salmos 139:23–24**
 
-Palavra de Deus e oração são o caminho para a transformação, pois assim poderemos ter intimidade com Deus, se formos sinceros em querer em seguir a Sua vontade.
+Palavra de Deus e oração são o caminho para a transformação, pois assim poderemos ter intimidade com Deus, se formos sinceros em querer seguir a Sua vontade.
 
 ## 🛠️ Aplicações práticas
 
