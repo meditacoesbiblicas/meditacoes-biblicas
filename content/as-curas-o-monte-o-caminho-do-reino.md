@@ -128,11 +128,13 @@ O pecado rompeu a proximidade com Deus; o homem se escondeu da Sua presença. De
 
 O caminho do Reino aponta para a restauração dessa comunhão — até que possamos novamente ver a Deus.
 
-#### 7. A sétima bem-aventurança mostra o fruto visível dessa transformação
+#### 7. A sétima bem-aventurança mostra como a transformação alcança os relacionamentos
 
 #### Pacificadores -  o coração tratado produz reconciliação
 
->“Bem-aventurados os pacificadores…” **— Mateus 5:9**
+>“Bem-aventurados os pacificadores…” 
+>
+>**— Mateus 5:9**
 
 Quem foi transformado começa a promover paz ao redor.
 
