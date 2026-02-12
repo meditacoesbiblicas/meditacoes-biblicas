@@ -29,7 +29,7 @@ Depois Ele começa a formar o caráter.
 Jesus não está distribuindo frases bonitas.<br>
 Ele está descrevendo uma progressão espiritual.
 
-#### 1. A primeira bem-aventurança mostra onde tudo começa:
+#### 1. A primeira bem-aventurança mostra onde tudo começa
 
 #### Pobres de espírito - o começo é reconhecer a pobreza espiritual
 
@@ -162,7 +162,7 @@ E Jesus alerta:
 
 É possível começar bem e depois viver só de aparência.
 
-### Exceder a justiça dos fariseus: aqui Jesus vai mais fundo
+### Exceder a justiça dos fariseus: Jesus expõe a raiz do problema
 
 >“Se a vossa justiça não exceder a dos escribas e fariseus, de modo nenhum entrareis no reino dos céus.” **— Mateus 5:20**
 
