@@ -1,4 +1,4 @@
-<div class="py-4">
+<div class="py-4" id="topo">
   @if (m) {
     <!-- Top bar: Voltar (esq) + Compartilhar (dir) -->
     <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
@@ -22,6 +22,7 @@
 
     <!-- Título -->
     <h1 class="page-title m-0">{{ m.titulo }}</h1>
+    <p class="text-muted small mb-0 mt-1">{{ tempoLeitura }} min de leitura</p>
 
     @if (copiado) {
       <div class="text-success small mt-2">Link copiado ✅</div>
@@ -29,9 +30,48 @@
       <div class="mt-2"></div>
     }
 
-    <div class="markdown mt-3" [innerHTML]="html"></div>
+    @if (carregando) {
+      <div class="markdown-skeleton mt-3" aria-hidden="true">
+        <div class="skeleton-line w-75"></div>
+        <div class="skeleton-line w-100"></div>
+        <div class="skeleton-line w-100"></div>
+        <div class="skeleton-line w-50"></div>
+        <div class="skeleton-line w-100 mt-4"></div>
+        <div class="skeleton-line w-100"></div>
+        <div class="skeleton-line w-75"></div>
+      </div>
+    } @else {
+      <div class="markdown mt-3" [innerHTML]="html"></div>
+    }
 
     <hr />
+
+    <!-- Navegação para outras meditações -->
+    @if (anterior || proxima) {
+      <div class="row g-2 mb-3">
+        @if (proxima) {
+          <div class="col-12 col-sm-6">
+            <a class="post-nav-link" [routerLink]="['/meditacao', proxima.id]">
+              <span class="post-nav-label">← Próxima</span>
+              <span class="post-nav-title">{{ proxima.titulo }}</span>
+            </a>
+          </div>
+        }
+        @if (anterior) {
+          <div class="col-12 col-sm-6 offset-sm-0" [class.offset-sm-6]="!proxima">
+            <a class="post-nav-link text-sm-end" [routerLink]="['/meditacao', anterior.id]">
+              <span class="post-nav-label">Anterior →</span>
+              <span class="post-nav-title">{{ anterior.titulo }}</span>
+            </a>
+          </div>
+        }
+      </div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center">
+      <a routerLink="/" class="btn btn-outline-secondary btn-sm">← Voltar à lista</a>
+      <a href="#topo" class="btn btn-outline-secondary btn-sm">↑ Voltar ao topo</a>
+    </div>
   } @else {
     <div class="alert alert-warning mt-3">Meditação não encontrada.</div>
   }

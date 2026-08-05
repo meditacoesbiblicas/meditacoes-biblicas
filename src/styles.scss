@@ -281,6 +281,90 @@ body {
 }
 
 /* ================================
+   NAVEGAÇÃO ANTERIOR/PRÓXIMA
+   ================================ */
+
+.post-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  height: 100%;
+  padding: 0.75rem 1rem;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background: #fff;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-nav-link:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+.post-nav-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bs-secondary-color);
+}
+
+.post-nav-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+[data-bs-theme='dark'] .post-nav-link {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: #212529;
+}
+
+[data-bs-theme='dark'] .post-nav-link:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ================================
+   SKELETON (carregando meditação)
+   ================================ */
+
+.markdown-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skeleton-line {
+  height: 1rem;
+  border-radius: 0.4rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.11) 37%,
+    rgba(0, 0, 0, 0.06) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-pulse 1.4s ease infinite;
+}
+
+@keyframes skeleton-pulse {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-line {
+    animation: none;
+  }
+}
+
+/* ================================
    HOME / CARDS
    ================================ */
 
@@ -369,55 +453,132 @@ body {
   width: min(200px, 85vw) !important;
 }
 
-/* ===== Forçar header "mobile" em todas as telas ===== */
+/* ================================
+   NAV LINKS (DESKTOP)
+   ================================ */
 
-/* 1) Mostra sempre o logo central (mesmo em lg+) */
-.navbar .nav-mobile-logo.d-lg-none {
-  display: inline-flex !important;
+.navbar .nav-link {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.75);
 }
 
-/* 2) Mostra sempre o botão MENU (mesmo em lg+) */
-.navbar .menu-btn.d-lg-none {
-  display: inline-flex !important;
+.navbar .nav-link:hover {
+  color: #000;
 }
 
-/* 3) Esconde os elementos “desktop” (brand texto e links) */
-.navbar .navbar-brand.d-none.d-lg-inline {
-  display: none !important;
-}
-
-.navbar .d-none.d-lg-flex {
-  display: none !important;
+.navbar .nav-link.active-link {
+  color: #000;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* ================================
-   OFFCANVAS alinhado ao conteúdo (desktop)
-   - mobile: continua SLIDE normal
-   - desktop: “nasce” na margem (EXPANDE)
+   COOKIE CONSENT
    ================================ */
 
-:root{ --page-max: 760px; }
-@media (min-width: 992px){  :root{ --page-max: 900px; } }
-@media (min-width: 1200px){ :root{ --page-max: 980px; } }
+.cookie-consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
 
-:root{
-  --page-gutter: max(0px, calc((100vw - var(--page-max)) / 2));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  padding: 0.9rem 1rem;
+  padding-bottom: max(0.9rem, env(safe-area-inset-bottom));
+
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: saturate(120%) blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -0.25rem 1rem rgba(0, 0, 0, 0.08);
 }
 
-@media (min-width: 992px){
+.cookie-consent p {
+  margin: 0;
+  font-size: 0.9rem;
+}
 
-  /* ancora na mesma linha do conteúdo */
-  .offcanvas.offcanvas-start{
-    left: var(--page-gutter) !important;
+[data-bs-theme='dark'] .cookie-consent {
+  background: rgba(33, 37, 41, 0.97);
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
 
-    /* em vez de “vir do canto”, ele abre daqui */
-    transform: scaleX(0) !important;
-    transform-origin: left center;
+/* ================================
+   DARK MODE
+   (Bootstrap 5.3 cuida dos componentes padrão via [data-bs-theme="dark"];
+   aqui só ajustamos as cores que definimos manualmente acima)
+   ================================ */
+
+[data-bs-theme='dark'] {
+  body {
+    background: #16181b;
   }
 
-  /* quando está abrindo ou aberto */
-  .offcanvas.offcanvas-start.showing,
-  .offcanvas.offcanvas-start.show{
-    transform: scaleX(1) !important;
+  .card {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  --logo-color: rgba(255, 255, 255, 0.85);
+
+  .navbar {
+    background: rgba(33, 37, 41, 0.85) !important;
+  }
+
+  .navbar.border-bottom {
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .navbar .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active-link {
+    color: #fff;
+  }
+
+  .markdown h2 {
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .markdown blockquote {
+    border-left-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .markdown blockquote:first-of-type {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .skeleton-line {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.08) 25%,
+      rgba(255, 255, 255, 0.15) 37%,
+      rgba(255, 255, 255, 0.08) 63%
+    );
+    background-size: 400% 100%;
+  }
+
+  .home-card {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: #212529;
+  }
+
+  .home-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.35);
+  }
+
+  .home-card:active {
+    border-color: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.4);
   }
 }

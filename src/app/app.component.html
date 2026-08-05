@@ -108,17 +108,25 @@
 
     <!-- Links (DESKTOP) -->
     <div class="d-none d-lg-flex align-items-center gap-3">
-      <a class="nav-link p-0" routerLink="/quem-sou-eu">Quem sou eu</a>
-      <a class="nav-link p-0" routerLink="/sobre">Sobre</a>
+      <a
+        class="nav-link p-0"
+        routerLink="/quem-sou-eu"
+        routerLinkActive="active-link"
+      >Quem sou eu</a>
+      <a
+        class="nav-link p-0"
+        routerLink="/sobre"
+        routerLinkActive="active-link"
+      >Sobre</a>
     </div>
 
     <!-- Botão (MOBILE): ícone à esquerda do MENU (estilo R7) -->
     <button
       class="menu-btn btn btn-link text-decoration-none d-inline-flex align-items-center d-lg-none"
       type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#menuMobile"
+      (click)="abrirMenu()"
       aria-controls="menuMobile"
+      [attr.aria-expanded]="menuAberto"
       aria-label="Abrir menu"
     >
       <span class="menu-icon" aria-hidden="true">≡</span>
@@ -127,18 +135,28 @@
   </div>
 </nav>
 
+<!-- Backdrop (MOBILE) -->
+@if (menuAberto) {
+  <div class="offcanvas-backdrop fade show" (click)="fecharMenu()"></div>
+}
+
 <!-- Offcanvas (MOBILE) -->
 <div
   class="offcanvas offcanvas-start"
+  [class.show]="menuAberto"
   tabindex="-1"
   id="menuMobile"
+  role="dialog"
+  [attr.aria-modal]="menuAberto ? 'true' : null"
+  [attr.aria-hidden]="menuAberto ? null : 'true'"
   aria-labelledby="menuMobileLabel"
+  (keydown.escape)="fecharMenu()"
 >
   <div class="offcanvas-header justify-content-end">
     <button
       type="button"
       class="btn-close"
-      data-bs-dismiss="offcanvas"
+      (click)="fecharMenu()"
       aria-label="Fechar"
     ></button>
   </div>
@@ -150,7 +168,7 @@
         routerLink="/"
         routerLinkActive="btn-primary text-white border-primary"
         [routerLinkActiveOptions]="{ exact: true }"
-        data-bs-dismiss="offcanvas"
+        (click)="fecharMenu()"
       >
         Meditações
       </a>
@@ -159,7 +177,7 @@
         class="btn btn-outline-secondary"
         routerLink="/quem-sou-eu"
         routerLinkActive="btn-primary text-white border-primary"
-        data-bs-dismiss="offcanvas"
+        (click)="fecharMenu()"
       >
         Quem sou eu
       </a>
@@ -168,7 +186,7 @@
         class="btn btn-outline-secondary"
         routerLink="/sobre"
         routerLinkActive="btn-primary text-white border-primary"
-        data-bs-dismiss="offcanvas"
+        (click)="fecharMenu()"
       >
         Sobre
       </a>
@@ -179,3 +197,5 @@
 <main class="page-narrow py-4">
   <router-outlet />
 </main>
+
+<app-cookie-consent />

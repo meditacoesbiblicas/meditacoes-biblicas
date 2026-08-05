@@ -1,0 +1,25 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1200" fill="#f6f7f9"/>
+  <rect x="40" y="40" width="1120" height="1120" rx="28" fill="#ffffff" stroke="rgba(0,0,0,0.08)" stroke-width="3"/>
+
+  <g transform="translate(390, 430) scale(1.7)" color="#262626">
+    <path d="M18 92 L38 28 Q86 10 118 26 Q120 36 120 42 Q120 36 122 26 Q154 10 202 28 L222 92"
+          fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30 92 L48 34 Q88 20 116 33" fill="none" stroke="currentColor" stroke-width="4"
+          stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M210 92 L192 34 Q152 20 124 33" fill="none" stroke="currentColor" stroke-width="4"
+          stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M120 42 L120 98" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+    <path d="M16 96 Q120 116 224 96" fill="none" stroke="currentColor" stroke-width="6"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M62 94 Q86 86 106 92" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M70 98 Q90 92 104 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+    <path d="M178 94 Q154 86 134 92" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M170 98 Q150 92 136 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+  </g>
+
+  <text x="600" y="720" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#1a1a1a">Meditações</text>
+  <text x="600" y="805" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#1a1a1a">Bíblicas</text>
+  <text x="600" y="875" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#6c757d">Reflexões bíblicas curtas para leitura</text>
+  <text x="600" y="915" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#6c757d">e compartilhamento</text>
+</svg>

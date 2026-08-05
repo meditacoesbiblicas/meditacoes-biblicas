@@ -1,22 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <title>Meditações Bíblicas</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XSVCPQ5976"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <meta name="description" content="Reflexões bíblicas curtas para leitura e compartilhamento.">
 
-    gtag('config', 'G-XSVCPQ5976');
-  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Meditações Bíblicas">
+  <meta property="og:title" content="Meditações Bíblicas">
+  <meta property="og:description" content="Reflexões bíblicas curtas para leitura e compartilhamento.">
+  <meta property="og:image" content="https://meditacoesbiblicas.github.io/meditacoes-biblicas/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meditações Bíblicas">
+  <meta name="twitter:description" content="Reflexões bíblicas curtas para leitura e compartilhamento.">
+  <meta name="twitter:image" content="https://meditacoesbiblicas.github.io/meditacoes-biblicas/assets/og-image.png">
 
+  <!-- Google Analytics só é carregado após consentimento (ver CookieConsentComponent) -->
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Aplica o tema (claro/escuro) o quanto antes, pra evitar flash -->
+  <script>
+    (function () {
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      function aplicarTema(escuro) {
+        document.documentElement.setAttribute('data-bs-theme', escuro ? 'dark' : 'light');
+      }
+      aplicarTema(mq.matches);
+      mq.addEventListener('change', function (e) { aplicarTema(e.matches); });
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

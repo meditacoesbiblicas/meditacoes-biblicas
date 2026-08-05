@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+
+import { Component, OnDestroy, inject, DOCUMENT } from '@angular/core';
 import {
   NavigationStart,
   Router,
@@ -7,37 +8,30 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
+import { CookieConsentComponent } from './core/cookie-consent.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CookieConsentComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
-  private baseHref = document.querySelector('base')?.getAttribute('href') ?? '/';
-  private routerSub?: Subscription;
+export class AppComponent implements OnDestroy {
+  private doc = inject(DOCUMENT);
+  private baseHref = this.doc.querySelector('base')?.getAttribute('href') ?? '/';
+  private routerSub: Subscription;
 
-  constructor(private router: Router) {}
+  menuAberto = false;
 
-  ngAfterViewInit() {
-    // 1) Se navegar por routerLink, fecha o menu e limpa backdrop
+  constructor(private router: Router) {
+    // Se navegar por routerLink (ou back/forward), fecha o menu mobile.
     this.routerSub = this.router.events
       .pipe(filter(e => e instanceof NavigationStart))
-      .subscribe(() => this.fecharMenuMobile());
-
-    // 2) Defesa extra: quando o offcanvas fechar, garante que o backdrop some
-    const menu = document.getElementById('menuMobile');
-    menu?.addEventListener('hidden.bs.offcanvas', () => this.limparBackdropResidual());
-
-    // Em alguns browsers o fade pode “prender” — esse timeout ajuda a garantir a remoção
-    menu?.addEventListener('hide.bs.offcanvas', () => {
-      setTimeout(() => this.limparBackdropResidual(), 0);
-    });
+      .subscribe(() => this.fecharMenu());
   }
 
   ngOnDestroy() {
-    this.routerSub?.unsubscribe();
+    this.routerSub.unsubscribe();
   }
 
   asset(path: string) {
@@ -45,22 +39,13 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     return base + path.replace(/^\//, '');
   }
 
-  private fecharMenuMobile() {
-    const menu = document.getElementById('menuMobile');
-    if (menu?.classList.contains('show')) {
-      // fecha visualmente (Bootstrap também deve fechar, isso aqui é “cinto e suspensório”)
-      menu.classList.remove('show');
-      menu.setAttribute('aria-hidden', 'true');
-    }
-    this.limparBackdropResidual();
+  abrirMenu() {
+    this.menuAberto = true;
+    this.doc.body.style.overflow = 'hidden';
   }
 
-  private limparBackdropResidual() {
-    // remove apenas o backdrop do offcanvas (não mexe em modal)
-    document.querySelectorAll('.offcanvas-backdrop').forEach(el => el.remove());
-
-    // remove travas de scroll/padding que às vezes ficam presas
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
+  fecharMenu() {
+    this.menuAberto = false;
+    this.doc.body.style.overflow = '';
   }
 }

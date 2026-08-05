@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,12 @@ import { marked } from 'marked';
 import { firstValueFrom } from 'rxjs';
 
 import { MEDITACOES, Meditacao } from '../../data/meditations';
+import { TEMPOS_LEITURA } from '../../data/reading-times';
+import { SeoService } from '../../core/seo.service';
+import { SITE_URL } from '../../core/site.config';
+
+// mesma ordenação usada por padrão na home (mais recentes primeiro)
+const MEDITACOES_POR_DATA = [...MEDITACOES].sort((a, b) => b.data.localeCompare(a.data));
 
 @Component({
   standalone: true,
@@ -14,9 +20,16 @@ import { MEDITACOES, Meditacao } from '../../data/meditations';
   templateUrl: './meditacao.page.html'
 })
 export default class MeditacaoPage {
+  private seo = inject(SeoService);
+
   id = '';
   m: Meditacao | null = null;
   html: SafeHtml = '';
+  carregando = true;
+  tempoLeitura = 1;
+
+  anterior: Meditacao | null = null;
+  proxima: Meditacao | null = null;
 
   copiado = false;
   urlAtual = '';
@@ -29,24 +42,55 @@ export default class MeditacaoPage {
     this.route.paramMap.subscribe(pm => {
       this.id = pm.get('id') ?? '';
       this.m = MEDITACOES.find(x => x.id === this.id) ?? null;
-      this.urlAtual = window.location.href;
+      this.tempoLeitura = TEMPOS_LEITURA[this.id] ?? 1;
+      this.urlAtual = `${SITE_URL}/meditacao/${this.id}`;
+
+      const indice = MEDITACOES_POR_DATA.findIndex(x => x.id === this.id);
+      // "anterior" = publicada mais recentemente; "próxima" = mais antiga
+      this.anterior = indice > 0 ? MEDITACOES_POR_DATA[indice - 1] : null;
+      this.proxima =
+        indice >= 0 && indice < MEDITACOES_POR_DATA.length - 1
+          ? MEDITACOES_POR_DATA[indice + 1]
+          : null;
+
+      if (this.m) {
+        this.seo.set({
+          title: this.m.titulo,
+          description: this.m.resumo,
+          path: `/meditacao/${this.m.id}`
+        });
+      } else {
+        this.seo.set({
+          title: 'Meditação não encontrada',
+          description: 'Esta meditação não existe ou foi removida.',
+          path: `/meditacao/${this.id}`
+        });
+      }
+
       void this.loadMarkdown();
     });
   }
 
   private async loadMarkdown(): Promise<void> {
+    this.carregando = true;
+    this.html = '';
+
     const file = this.m?.arquivoMd ?? '';
     if (!file) {
-      this.html = '';
+      this.carregando = false;
       return;
     }
 
-    const md = await firstValueFrom(
-      this.http.get(`content/${file}`, { responseType: 'text' })
-    );
+    try {
+      const md = await firstValueFrom(
+        this.http.get(`content/${file}`, { responseType: 'text' })
+      );
 
-    const parsed = await marked.parse(md ?? '');
-    this.html = this.sanitizer.bypassSecurityTrustHtml(parsed);
+      const parsed = await marked.parse(md ?? '');
+      this.html = this.sanitizer.bypassSecurityTrustHtml(parsed);
+    } finally {
+      this.carregando = false;
+    }
   }
 
   async compartilhar(): Promise<void> {

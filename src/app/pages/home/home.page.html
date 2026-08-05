@@ -7,10 +7,18 @@
   </div>
 </header>
 
-<div class="d-flex justify-content-end mb-2">
+<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+  <input
+    class="form-control"
+    type="search"
+    placeholder="Digite um tema, título ou referência..."
+    aria-label="Buscar meditações"
+    [(ngModel)]="termoBusca"
+  />
+
   <button
     type="button"
-    class="btn btn-outline-secondary btn-sm"
+    class="btn btn-outline-secondary btn-sm flex-shrink-0"
     (click)="toggleFiltros()"
     [attr.aria-expanded]="filtrosAbertos"
   >
@@ -22,35 +30,12 @@
 @if (filtrosAbertos) {
   <div class="card border-0 shadow-sm mb-3">
     <div class="card-body">
-      <div class="row g-2 align-items-end">
-        <div class="col-12 col-lg-6">
-          <label class="form-label mb-1">Buscar</label>
-          <input
-            class="form-control"
-            type="search"
-            placeholder="Digite um tema, título ou referência..."
-            [(ngModel)]="termoBusca"
-          />
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3">
-          <label class="form-label mb-1">Tema</label>
-          <select class="form-select" [(ngModel)]="temaSelecionado">
-            @for (t of temas; track t) {
-              <option [value]="t">{{ t }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3">
-          <label class="form-label mb-1">Ordenar</label>
-          <select class="form-select" [(ngModel)]="ordem">
-            <option value="recentes">Mais recentes</option>
-            <option value="antigas">Mais antigas</option>
-            <option value="tema">Tema (A–Z)</option>
-          </select>
-        </div>
-      </div>
+      <label class="form-label mb-1">Ordenar</label>
+      <select class="form-select" [(ngModel)]="ordem">
+        <option value="recentes">Mais recentes</option>
+        <option value="antigas">Mais antigas</option>
+        <option value="tema">Tema (A–Z)</option>
+      </select>
 
       <!-- Chips de tema (NÃO mexi no seu scroll horizontal) -->
       <div class="chips-scroll mt-3">
@@ -80,7 +65,7 @@
       <a
         class="home-card"
         [routerLink]="['/meditacao', m.id]"
-        aria-label="Abrir meditação"
+        [attr.aria-label]="'Abrir meditação: ' + m.titulo"
       >
         <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
           <span class="badge text-bg-secondary">{{ m.tema }}</span>
@@ -89,6 +74,8 @@
           <span>{{ m.versoChave }}</span>
           <span class="mx-1">•</span>
           <span>{{ formatarData(m.data) }}</span>
+          <span class="mx-1">•</span>
+          <span>{{ tempoLeitura(m.id) }} min de leitura</span>
         </div>
 
         <h2 class="h6 mb-1">{{ m.titulo }}</h2>
@@ -101,7 +88,10 @@
 </div>
 
 @if (meditacoesFiltradas.length === 0) {
-  <div class="alert alert-secondary mb-0">
-    Nenhuma meditação encontrada com esses filtros.
+  <div class="alert alert-secondary d-flex flex-wrap align-items-center justify-content-between gap-2 mb-0">
+    <span>Nenhuma meditação encontrada com esses filtros.</span>
+    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="limparFiltros()">
+      Limpar filtros
+    </button>
   </div>
 }

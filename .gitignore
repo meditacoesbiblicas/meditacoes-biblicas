@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 /bazel-out
+/prerender-routes.txt
+/public/sitemap.xml
+/src/app/data/reading-times.ts
 
 # Node
 /node_modules

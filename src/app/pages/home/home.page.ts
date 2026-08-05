@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MEDITACOES } from '../../data/meditations';
+import { TEMPOS_LEITURA } from '../../data/reading-times';
+import { SeoService } from '../../core/seo.service';
+import { SITE_NAME } from '../../core/site.config';
 
 type Ordem = 'recentes' | 'antigas' | 'tema';
 
@@ -11,6 +14,16 @@ type Ordem = 'recentes' | 'antigas' | 'tema';
   templateUrl: './home.page.html'
 })
 export default class HomePage {
+  private seo = inject(SeoService);
+
+  constructor() {
+    this.seo.set({
+      title: SITE_NAME,
+      description: 'Reflexões bíblicas curtas para leitura e compartilhamento.',
+      path: '/'
+    });
+  }
+
   // base (sempre ordenada por data desc)
   meditacoes = [...MEDITACOES].sort((a, b) => b.data.localeCompare(a.data));
 
@@ -82,6 +95,10 @@ export default class HomePage {
     return `${d}/${m}/${y}`;
   }
 
+  tempoLeitura(id: string): number {
+    return TEMPOS_LEITURA[id] ?? 1;
+  }
+
   private normalizar(s: string): string {
     return (s ?? '')
       .toLowerCase()
@@ -94,5 +111,11 @@ export default class HomePage {
 
   toggleFiltros() {
     this.filtrosAbertos = !this.filtrosAbertos;
+  }
+
+  limparFiltros() {
+    this.termoBusca = '';
+    this.temaSelecionado = 'Todos';
+    this.ordem = 'recentes';
   }
 }
