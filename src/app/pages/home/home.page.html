@@ -1,10 +1,7 @@
-<header class="mb-3">
-  <div class="d-flex flex-wrap align-items-end justify-content-between gap-3">
-    <div>
-      <h1 class="h3 mb-1">Meditações</h1>
-      <p class="text-muted mb-0">Reflexões bíblicas curtas para leitura e compartilhamento.</p>
-    </div>
-  </div>
+<header class="mb-4">
+  <div class="home-eyebrow">Meditações Bíblicas</div>
+  <h1 class="page-title mb-2">Meditações</h1>
+  <p class="text-muted mb-0">Reflexões bíblicas curtas para leitura e compartilhamento.</p>
 </header>
 
 <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
@@ -30,12 +27,40 @@
 @if (filtrosAbertos) {
   <div class="card border-0 shadow-sm mb-3">
     <div class="card-body">
-      <label class="form-label mb-1">Ordenar</label>
-      <select class="form-select" [(ngModel)]="ordem">
-        <option value="recentes">Mais recentes</option>
-        <option value="antigas">Mais antigas</option>
-        <option value="tema">Tema (A–Z)</option>
-      </select>
+      <label class="form-label mb-1" id="ordemLabel">Ordenar</label>
+      <div class="sort-dropdown" #ordemWrapper>
+        <button
+          type="button"
+          class="sort-dropdown-btn"
+          (click)="toggleOrdemMenu()"
+          [attr.aria-expanded]="ordemMenuAberto"
+          aria-haspopup="listbox"
+          aria-labelledby="ordemLabel"
+        >
+          <span>{{ rotuloOrdemAtual }}</span>
+          <span class="sort-dropdown-chevron" aria-hidden="true">{{ ordemMenuAberto ? '▲' : '▼' }}</span>
+        </button>
+
+        @if (ordemMenuAberto) {
+          <ul class="sort-dropdown-menu" role="listbox" aria-labelledby="ordemLabel">
+            @for (opcao of opcoesOrdem; track opcao.valor) {
+              <li role="option" [attr.aria-selected]="ordem === opcao.valor">
+                <button
+                  type="button"
+                  class="sort-dropdown-option"
+                  [class.active]="ordem === opcao.valor"
+                  (click)="selecionarOrdem(opcao.valor)"
+                >
+                  @if (ordem === opcao.valor) {
+                    <span class="sort-check" aria-hidden="true">✓</span>
+                  }
+                  {{ opcao.rotulo }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
 
       <!-- Chips de tema (NÃO mexi no seu scroll horizontal) -->
       <div class="chips-scroll mt-3">
@@ -44,7 +69,7 @@
             <button
               type="button"
               class="btn btn-sm"
-              [class.btn-primary]="temaSelecionado === t"
+              [class.chip-active]="temaSelecionado === t"
               [class.btn-outline-secondary]="temaSelecionado !== t"
               (click)="temaSelecionado = t"
             >
@@ -61,29 +86,25 @@
 <!-- Lista -->
 <div class="home-list">
   @for (m of meditacoesFiltradas; track m.id) {
-    <article class="home-item">
-      <a
-        class="home-card"
-        [routerLink]="['/meditacao', m.id]"
-        [attr.aria-label]="'Abrir meditação: ' + m.titulo"
-      >
-        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-          <span class="badge text-bg-secondary">{{ m.tema }}</span>
-        </div>
-        <div class="text-muted small mb-1">
-          <span>{{ m.versoChave }}</span>
-          <span class="mx-1">•</span>
-          <span>{{ formatarData(m.data) }}</span>
-          <span class="mx-1">•</span>
-          <span>{{ tempoLeitura(m.id) }} min de leitura</span>
-        </div>
+    <a
+      class="home-row"
+      [routerLink]="['/meditacao', m.id]"
+      [attr.aria-label]="'Abrir meditação: ' + m.titulo"
+    >
+      <div class="reading-eyebrow">
+        <span>{{ m.tema }}</span>
+        <span class="reading-eyebrow-dot">·</span>
+        <span class="reading-eyebrow-dot">{{ formatarData(m.data) }}</span>
+        <span class="reading-eyebrow-dot">·</span>
+        <span class="reading-eyebrow-dot">{{ tempoLeitura(m.id) }} min de leitura</span>
+      </div>
 
-        <h2 class="h6 mb-1">{{ m.titulo }}</h2>
-        <p class="home-resumo mb-2">{{ m.resumo }}</p>
+      <h2 class="home-row-title">{{ m.titulo }}</h2>
+      <p class="home-row-verse">{{ m.versoChave }}</p>
+      <p class="home-resumo mb-2">{{ m.resumo }}</p>
 
-        <span class="btn btn-outline-primary btn-sm">Ler</span>
-      </a>
-    </article>
+      <span class="home-row-cta">Ler</span>
+    </a>
   }
 </div>
 

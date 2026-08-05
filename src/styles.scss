@@ -183,78 +183,210 @@ body {
 }
 
 /* ================================
+   TOKENS DE LEITURA (serifada + dourado)
+   ================================ */
+
+:root {
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --accent-gold: #a1751e;
+  --accent-gold-line: rgba(161, 117, 30, 0.38);
+  --accent-gold-soft: rgba(161, 117, 30, 0.07);
+
+  /* Substitui o azul "primário" padrão do Bootstrap pelo dourado em TUDO
+     que o Bootstrap deriva dele (anel de foco, .btn-primary, links, etc.) */
+  --bs-primary: #a1751e;
+  --bs-primary-rgb: 161, 117, 30;
+  --bs-link-color: #a1751e;
+  --bs-link-color-rgb: 161, 117, 30;
+  --bs-link-hover-color: #7d5c17;
+  --bs-link-hover-color-rgb: 125, 92, 23;
+}
+
+/* .btn-primary define suas próprias variáveis internas (--bs-btn-bg etc.)
+   com valores fixos, então sobrescrever --bs-primary não é suficiente. */
+.btn-primary {
+  --bs-btn-bg: var(--accent-gold) !important;
+  --bs-btn-border-color: var(--accent-gold) !important;
+  --bs-btn-hover-bg: var(--accent-gold) !important;
+  --bs-btn-hover-border-color: var(--accent-gold) !important;
+  --bs-btn-active-bg: var(--accent-gold) !important;
+  --bs-btn-active-border-color: var(--accent-gold) !important;
+  --bs-btn-disabled-bg: var(--accent-gold) !important;
+  --bs-btn-disabled-border-color: var(--accent-gold) !important;
+  --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb) !important;
+}
+
+[data-bs-theme='dark'] {
+  --accent-gold: #d7a94f;
+  --accent-gold-line: rgba(215, 169, 79, 0.35);
+  --accent-gold-soft: rgba(215, 169, 79, 0.08);
+
+  --bs-primary: #d7a94f;
+  --bs-primary-rgb: 215, 169, 79;
+  --bs-link-color: #d7a94f;
+  --bs-link-color-rgb: 215, 169, 79;
+  --bs-link-hover-color: #e3bd72;
+  --bs-link-hover-color-rgb: 227, 189, 114;
+}
+
+/* ================================
    MARKDOWN / TIPOGRAFIA
    ================================ */
 
 .page-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.22;
+  text-wrap: balance;
+}
+
+.reading-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.reading-eyebrow-dot {
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--bs-secondary-color);
 }
 
 .markdown {
-  line-height: 1.7;
-  font-size: 1.05rem;
+  font-family: var(--serif);
+  line-height: 1.78;
+  font-size: 1.12rem;
 }
 
 .markdown p {
-  margin: 0 0 1rem;
+  margin: 0 0 1.35rem;
 }
 
 .markdown ul,
 .markdown ol {
-  margin: 0 0 1rem 1.25rem;
+  list-style: none;
+  margin: 0 0 1.35rem;
+  padding: 0;
 }
 
 .markdown li {
-  margin: 0.35rem 0;
+  position: relative;
+  padding-left: 1.4rem;
+  margin: 0.5rem 0;
+}
+
+.markdown li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+}
+
+.markdown ol {
+  counter-reset: md-ol;
+}
+
+.markdown ol li {
+  counter-increment: md-ol;
+}
+
+.markdown ol li::before {
+  content: counter(md-ol) ".";
 }
 
 .markdown h1 {
-  margin: 1.6rem 0 0.9rem;
-  font-size: 1.45rem;
-  font-weight: 700;
+  font-family: var(--serif);
+  margin: 1.8rem 0 0.9rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
+/* Rótulos de seção (Meditação, Orientação, Aplicações práticas, Oração final) */
 .markdown h2 {
-  font-size: 1.55rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+
+  margin: 3rem 0 1.4rem;
+  padding: 0;
+  border: none;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.78rem;
   font-weight: 700;
-  margin: 2.2rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+}
+
+.markdown h2::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--accent-gold-line);
+}
+
+.markdown h2:first-of-type {
+  margin-top: 2.2rem;
+}
+
+/* Letra capitular na abertura da 1ª seção */
+.markdown h2:first-of-type + p::first-letter {
+  font-family: var(--serif);
+  font-size: 3.1em;
+  font-weight: 600;
+  color: var(--accent-gold);
+  float: left;
+  line-height: 0.82;
+  padding-right: 0.09em;
+  padding-top: 0.05em;
 }
 
 .markdown h3 {
+  font-family: var(--serif);
   font-size: 1.2rem;
   font-weight: 700;
   margin: 1.6rem 0 0.8rem;
 }
 
 .markdown h4 {
+  font-family: var(--serif);
   font-size: 1.05rem;
   font-weight: 700;
   margin: 1.25rem 0 0.65rem;
 }
 
 .markdown h5 {
+  font-family: var(--serif);
   font-size: 1.02rem;
   font-weight: 700;
   margin: 0.9rem 0 0.55rem;
 }
 
-/* Se o markdown começar direto com h2, não cria “buraco” no topo */
-.markdown h2:first-child {
-  margin-top: 0;
-}
-
-/* Citações/versos */
+/* Citações de apoio, no meio do texto */
 .markdown blockquote {
-  margin: 1rem 0;
-  padding: 0.9rem 1.1rem;
-  border-left: 4px solid rgba(0, 0, 0, 0.15);
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 0.75rem;
+  margin: 1.6rem 0;
+  padding: 0.1rem 0 0.1rem 1.25rem;
+
+  border-left: 2px solid var(--accent-gold-line);
+  background: none;
+  border-radius: 0;
+
   font-style: italic;
+  font-size: 1.03rem;
+  line-height: 1.6;
+  color: var(--bs-secondary-color);
 }
 
 .markdown blockquote p {
@@ -265,19 +397,64 @@ body {
   margin-top: 0.6rem;
 }
 
-/* Destaque real do 1º verso */
+.markdown blockquote strong {
+  font-weight: 600;
+  color: var(--bs-body-color);
+}
+
+/* Citação de abertura (verso-chave): destaque real, sem caixa */
 .markdown blockquote:first-of-type {
-  background: rgba(0, 0, 0, 0.05);
-  border-left-color: rgba(0, 0, 0, 0.3);
-  border-left-width: 5px;
+  position: relative;
+  margin: 0 0 2.2rem;
+  padding: 0.2rem 0 0.2rem 0.3rem;
+
+  background: none;
+  border: none;
+  border-radius: 0;
+
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+}
+
+.markdown blockquote:first-of-type::before {
+  content: "\201C";
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 3.2rem;
+  line-height: 0.5;
+  color: var(--accent-gold);
+  opacity: 0.6;
+  margin-bottom: 0.6rem;
+}
+
+.markdown blockquote:first-of-type::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 2px;
+  margin-top: 1.1rem;
+  background: var(--accent-gold);
+}
+
+/* Oração final: destaque de fechamento */
+.markdown h2:last-of-type ~ p {
+  background: var(--accent-gold-soft);
+  border-top: 1px solid var(--accent-gold-line);
+  border-bottom: 1px solid var(--accent-gold-line);
+  padding: 1.6rem 1.4rem;
+  margin: 0 0 1.35rem;
+  text-align: center;
 }
 
 .markdown a {
   text-decoration: underline;
+  text-decoration-color: var(--accent-gold-line);
 }
 
 .markdown hr {
   margin: 1.5rem 0;
+  border-color: var(--accent-gold-line);
 }
 
 /* ================================
@@ -305,13 +482,16 @@ body {
 }
 
 .post-nav-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--bs-secondary-color);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
 }
 
 .post-nav-title {
-  font-size: 0.95rem;
+  font-family: var(--serif);
+  font-size: 0.98rem;
   font-weight: 600;
 
   display: -webkit-box;
@@ -365,25 +545,76 @@ body {
 }
 
 /* ================================
-   HOME / CARDS
+   HOME / ÍNDICE EDITORIAL
    ================================ */
 
-/* Remove timeline (linha + bolinha) */
+.home-eyebrow {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+}
+
 .home-list {
-  padding-left: 0 !important;
+  margin-top: 0.25rem;
 }
-.home-item {
-  padding-left: 0 !important;
+
+/* Linha clicável (sem caixa/sombra — divisórias finas entre itens) */
+.home-row {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  padding: 1.6rem 0.15rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
-.home-list::before {
-  content: none !important;
+
+.home-list .home-row:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
-.home-dot {
-  display: none !important;
+
+.home-row:hover {
+  background: var(--accent-gold-soft);
+}
+
+.home-row:hover .home-row-title {
+  color: var(--accent-gold);
+}
+
+.home-row:focus-visible {
+  outline: 3px solid var(--accent-gold-line);
+  outline-offset: 3px;
+}
+
+.home-row-title {
+  font-family: var(--serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  line-height: 1.32;
+  margin: 0 0 0.35rem;
+  transition: color 0.15s ease;
+}
+
+.home-row-verse {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--bs-secondary-color);
+  margin: 0 0 0.6rem;
 }
 
 /* Resumo com 2 linhas */
 .home-resumo {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--bs-secondary-color);
+
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -392,34 +623,23 @@ body {
   overflow: hidden;
 }
 
-/* Card clicável */
-.home-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  background: #fff;
-
-  transition: transform 0.08s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-  -webkit-tap-highlight-color: transparent;
+.home-row-cta {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--bs-body-color);
 }
 
-.home-card:hover {
-  border-color: rgba(0, 0, 0, 0.14);
-  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.08);
+.home-row-cta::after {
+  content: " →";
 }
 
-.home-card:active {
-  transform: scale(0.99);
-  border-color: rgba(0, 0, 0, 0.18);
-  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.10);
+[data-bs-theme='dark'] .home-row {
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
-.home-card:focus-visible {
-  outline: 3px solid rgba(13, 110, 253, 0.35);
-  outline-offset: 3px;
+[data-bs-theme='dark'] .home-list .home-row:last-child {
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Chips: scroll horizontal no mobile */
@@ -438,6 +658,120 @@ body {
 .chips-row .btn {
   white-space: nowrap;
   flex: 0 0 auto;
+}
+
+/* Chip ativo (tema selecionado): dourado, em vez do azul padrão do Bootstrap */
+.chip-active {
+  background: var(--accent-gold) !important;
+  border-color: var(--accent-gold) !important;
+  color: #fff !important;
+}
+
+.chip-active:hover,
+.chip-active:focus {
+  opacity: 0.92;
+}
+
+/* Anel de foco dos campos: dourado, em vez do azul padrão do Bootstrap */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent-gold-line) !important;
+  box-shadow: 0 0 0 0.25rem var(--accent-gold-soft) !important;
+}
+
+/* Dropdown customizado de "Ordenar" — o <select> nativo não deixa estilizar
+   a lista de opções em todos os navegadores, então esse aqui é feito à mão. */
+.sort-dropdown {
+  position: relative;
+}
+
+.sort-dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--bs-body-color);
+  background: var(--bs-body-bg);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+}
+
+.sort-dropdown-btn:focus-visible {
+  outline: none;
+  border-color: var(--accent-gold-line);
+  box-shadow: 0 0 0 0.25rem var(--accent-gold-soft);
+}
+
+.sort-dropdown-chevron {
+  font-size: 0.7rem;
+  color: var(--bs-secondary-color);
+}
+
+.sort-dropdown-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+
+  background: var(--bs-body-bg);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.sort-dropdown-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  color: var(--bs-body-color);
+  background: none;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+}
+
+.sort-dropdown-option.active {
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+/* Realce ao passar o mouse/focar — depois do .active pra sempre vencer no empate */
+.sort-dropdown-option:hover,
+.sort-dropdown-option:focus-visible {
+  outline: none;
+  background: var(--accent-gold);
+  color: #fff;
+}
+
+.sort-check {
+  color: currentColor;
+  font-size: 0.85rem;
+}
+
+[data-bs-theme='dark'] .sort-dropdown-btn {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-bs-theme='dark'] .sort-dropdown-menu {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
 /* Botão Compartilhar mais confortável */
@@ -543,20 +877,6 @@ body {
     color: #fff;
   }
 
-  .markdown h2 {
-    border-bottom-color: rgba(255, 255, 255, 0.15);
-  }
-
-  .markdown blockquote {
-    border-left-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .markdown blockquote:first-of-type {
-    background: rgba(255, 255, 255, 0.08);
-    border-left-color: rgba(255, 255, 255, 0.35);
-  }
-
   .skeleton-line {
     background: linear-gradient(
       90deg,
@@ -567,18 +887,4 @@ body {
     background-size: 400% 100%;
   }
 
-  .home-card {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: #212529;
-  }
-
-  .home-card:hover {
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.35);
-  }
-
-  .home-card:active {
-    border-color: rgba(255, 255, 255, 0.24);
-    box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.4);
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MEDITACOES } from '../../data/meditations';
@@ -7,6 +7,12 @@ import { SeoService } from '../../core/seo.service';
 import { SITE_NAME } from '../../core/site.config';
 
 type Ordem = 'recentes' | 'antigas' | 'tema';
+
+const OPCOES_ORDEM: { valor: Ordem; rotulo: string }[] = [
+  { valor: 'recentes', rotulo: 'Mais recentes' },
+  { valor: 'antigas', rotulo: 'Mais antigas' },
+  { valor: 'tema', rotulo: 'Tema (A–Z)' }
+];
 
 @Component({
   standalone: true,
@@ -103,7 +109,7 @@ export default class HomePage {
     return (s ?? '')
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[̀-ͯ]/g, '')
       .trim();
   }
 
@@ -117,5 +123,39 @@ export default class HomePage {
     this.termoBusca = '';
     this.temaSelecionado = 'Todos';
     this.ordem = 'recentes';
+  }
+
+  // Dropdown customizado de "Ordenar" (o <select> nativo não permite estilizar
+  // a lista de opções em todos os navegadores)
+  readonly opcoesOrdem = OPCOES_ORDEM;
+  ordemMenuAberto = false;
+
+  @ViewChild('ordemWrapper') private ordemWrapperRef?: ElementRef<HTMLElement>;
+
+  get rotuloOrdemAtual(): string {
+    return this.opcoesOrdem.find(o => o.valor === this.ordem)?.rotulo ?? '';
+  }
+
+  toggleOrdemMenu(): void {
+    this.ordemMenuAberto = !this.ordemMenuAberto;
+  }
+
+  selecionarOrdem(valor: Ordem): void {
+    this.ordem = valor;
+    this.ordemMenuAberto = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  fecharOrdemAoClicarFora(event: MouseEvent): void {
+    if (!this.ordemMenuAberto) return;
+    const wrapper = this.ordemWrapperRef?.nativeElement;
+    if (wrapper && !wrapper.contains(event.target as Node)) {
+      this.ordemMenuAberto = false;
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  fecharOrdemComEsc(): void {
+    this.ordemMenuAberto = false;
   }
 }

@@ -93,6 +93,11 @@ export default class MeditacaoPage {
     }
   }
 
+  formatarData(iso: string) {
+    const [y, m, d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+
   async compartilhar(): Promise<void> {
     const url = this.urlAtual || window.location.href;
     const title = this.m?.titulo ?? 'Meditação';
