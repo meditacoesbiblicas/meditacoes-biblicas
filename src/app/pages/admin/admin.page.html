@@ -1,0 +1,195 @@
+<header class="mb-4">
+  <div class="eyebrow">Meditações Bíblicas</div>
+  <h1 class="page-title mb-2">Publicar meditação</h1>
+</header>
+
+@if (estado === 'portao') {
+  <form class="d-flex flex-column gap-3" style="max-width: 24rem" (ngSubmit)="entrar()">
+    <label class="form-label">
+      Senha
+      <input
+        class="form-control"
+        type="password"
+        name="senha"
+        [(ngModel)]="senhaInput"
+        autocomplete="off"
+      />
+    </label>
+    @if (senhaErro) {
+      <div class="text-danger small">{{ senhaErro }}</div>
+    }
+    <button class="btn btn-primary" type="submit">Entrar</button>
+  </form>
+}
+
+@if (estado === 'token') {
+  <form class="d-flex flex-column gap-3" style="max-width: 32rem" (ngSubmit)="salvarToken()">
+    <p class="text-muted small mb-0">
+      Cole aqui um GitHub Personal Access Token <strong>fine-grained</strong>, escopado só a
+      este repositório, com permissão <strong>Contents: Read and write</strong>. Ele fica
+      guardado só no <code>localStorage</code> deste navegador — nunca é enviado a nenhum
+      outro lugar além da API do GitHub.
+    </p>
+    <label class="form-label">
+      Personal Access Token
+      <input
+        class="form-control"
+        type="password"
+        name="pat"
+        [(ngModel)]="patInput"
+        autocomplete="off"
+      />
+    </label>
+    <button class="btn btn-primary" type="submit">Salvar token</button>
+  </form>
+}
+
+@if (estado === 'form') {
+  <form class="d-flex flex-column gap-3" (ngSubmit)="publicar()">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarToken()">
+        Trocar token
+      </button>
+    </div>
+
+    <label class="form-label">
+      Título
+      <input
+        class="form-control"
+        type="text"
+        name="titulo"
+        [(ngModel)]="titulo"
+        (ngModelChange)="onTituloChange()"
+      />
+    </label>
+
+    <label class="form-label">
+      Slug (identificador único / nome do arquivo)
+      <div class="d-flex gap-2">
+        <input
+          class="form-control"
+          type="text"
+          name="slug"
+          [(ngModel)]="slug"
+          (ngModelChange)="onSlugChange()"
+        />
+        <button class="btn btn-outline-secondary" type="button" (click)="regenerarSlug()">
+          ↺ do título
+        </button>
+      </div>
+    </label>
+
+    <label class="form-label">
+      Verso-chave
+      <input class="form-control" type="text" name="versoChave" [(ngModel)]="versoChave" />
+    </label>
+
+    <label class="form-label">
+      Tema
+      <input
+        class="form-control"
+        type="text"
+        name="tema"
+        list="temas-existentes"
+        [(ngModel)]="tema"
+      />
+      <datalist id="temas-existentes">
+        @for (t of temasExistentes; track t) {
+          <option [value]="t"></option>
+        }
+      </datalist>
+    </label>
+
+    <label class="form-label">
+      Data
+      <input class="form-control" type="date" name="data" [(ngModel)]="data" />
+    </label>
+
+    <label class="form-label">
+      Referências (separadas por vírgula)
+      <input
+        class="form-control"
+        type="text"
+        name="referencias"
+        placeholder="Ex.: Jo 3:16, Rm 5:8"
+        [(ngModel)]="referenciasTexto"
+      />
+    </label>
+
+    <label class="form-label">
+      Resumo
+      <textarea class="form-control" rows="2" name="resumo" [(ngModel)]="resumo"></textarea>
+    </label>
+
+    <label class="form-label">
+      Corpo em markdown (cole o texto já formatado)
+      <textarea
+        class="form-control"
+        rows="16"
+        name="corpoMarkdown"
+        [(ngModel)]="corpoMarkdown"
+      ></textarea>
+    </label>
+
+    <div>
+      <button class="btn btn-outline-secondary btn-sm" type="button" (click)="atualizarPreview()">
+        Pré-visualizar
+      </button>
+    </div>
+
+    @if (mostrarPreview) {
+      <div class="border rounded p-3">
+        @if (avisoSecoes.length) {
+          <div class="text-warning small mb-2">
+            Seções não encontradas no texto: {{ avisoSecoes.join(', ') }}
+          </div>
+        }
+        <div class="markdown" [innerHTML]="previewHtml"></div>
+      </div>
+    }
+
+    @if (errosValidacao.length) {
+      <div class="text-danger small">
+        <ul class="mb-0">
+          @for (erro of errosValidacao; track erro) {
+            <li>{{ erro }}</li>
+          }
+        </ul>
+      </div>
+    }
+
+    <button class="btn btn-primary" type="submit">Publicar</button>
+  </form>
+}
+
+@if (estado === 'publicando') {
+  <p>Publicando…</p>
+}
+
+@if (estado === 'sucesso') {
+  <div class="d-flex flex-column gap-2">
+    <p class="mb-0">Publicado. Os commits já foram enviados para o repositório.</p>
+    <p class="text-muted small mb-0">
+      O deploy automático leva alguns minutos. Depois disso, a meditação aparece em
+      <a [routerLink]="['/meditacao', slugPublicado]">/meditacao/{{ slugPublicado }}</a>.
+      Acompanhe o build em
+      <a [href]="githubActionsUrl" target="_blank" rel="noopener">GitHub Actions</a>.
+    </p>
+    <div>
+      <button class="btn btn-primary btn-sm" type="button" (click)="publicarOutra()">
+        Publicar outra
+      </button>
+    </div>
+  </div>
+}
+
+@if (estado === 'erro') {
+  <div class="d-flex flex-column gap-2">
+    <p class="text-danger mb-0">{{ erroPublicacao }}</p>
+    <div>
+      <button class="btn btn-primary btn-sm" type="button" (click)="voltarParaForm()">
+        Voltar e tentar de novo
+      </button>
+    </div>
+  </div>
+}

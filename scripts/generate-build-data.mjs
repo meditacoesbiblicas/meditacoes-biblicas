@@ -1,13 +1,15 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const meditationsFile = join(__dirname, '../src/app/data/meditations.ts');
 const siteConfigFile = join(__dirname, '../src/app/core/site.config.ts');
+const adminConfigFile = join(__dirname, '../src/app/core/admin.config.ts');
 const contentDir = join(__dirname, '../public/content');
 const routesOutFile = join(__dirname, '../prerender-routes.txt');
 const sitemapOutFile = join(__dirname, '../public/sitemap.xml');
+const robotsOutFile = join(__dirname, '../public/robots.txt');
 const readingTimesOutFile = join(__dirname, '../src/app/data/reading-times.ts');
 
 const meditationsSrc = readFileSync(meditationsFile, 'utf-8');
@@ -42,6 +44,32 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
 
 writeFileSync(sitemapOutFile, sitemap);
 console.log(`sitemap.xml gerado com ${routes.length} URLs.`);
+
+// --- robots.txt (o caminho da rota de admin nunca deve ir pro git, só pro build) ---
+
+if (!existsSync(adminConfigFile)) {
+  throw new Error(
+    'admin.config.ts não encontrado em src/app/core/. Copie admin.config.example.ts para ' +
+    'admin.config.ts (é ignorado pelo git) e preencha os valores antes de buildar.'
+  );
+}
+
+const adminConfigSrc = readFileSync(adminConfigFile, 'utf-8');
+const adminRouteMatch = adminConfigSrc.match(/ADMIN_ROUTE_PATH\s*=\s*["']([^"']+)["']/);
+if (!adminRouteMatch) {
+  throw new Error('ADMIN_ROUTE_PATH não encontrado em admin.config.ts — verifique o regex.');
+}
+const adminRoutePath = adminRouteMatch[1];
+
+const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /${adminRoutePath}
+
+Sitemap: ${siteUrl}/sitemap.xml
+`;
+
+writeFileSync(robotsOutFile, robotsTxt);
+console.log('robots.txt gerado.');
 
 // --- tempo de leitura (calculado a partir do markdown real) ---
 

@@ -7,7 +7,15 @@
 /bazel-out
 /prerender-routes.txt
 /public/sitemap.xml
+/public/robots.txt
 /src/app/data/reading-times.ts
+
+# Admin: rota escondida + senha do portão nunca vão pro histórico público do repo.
+# Veja admin.config.example.ts para instruções (copie para admin.config.ts e preencha).
+/src/app/core/admin.config.ts
+
+# Contém a rota escondida real em texto puro — nunca deve ir pro repo público.
+/docs/manual-admin.pdf
 
 # Node
 /node_modules

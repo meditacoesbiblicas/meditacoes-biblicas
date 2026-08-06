@@ -1,13 +1,18 @@
 <nav class="navbar bg-body-tertiary border-bottom">
   <div class="page-narrow navbar-inner">
     <!-- Brand (DESKTOP) -->
-    <a class="navbar-brand m-0 d-none d-lg-inline" routerLink="/">Meditações</a>
+    <a
+      class="navbar-brand m-0 d-none d-lg-inline"
+      routerLink="/"
+      (click)="registrarCliqueSegredo($event)"
+    >Meditações</a>
 
     <!-- Logo central (MOBILE) -->
     <a
       routerLink="/"
       class="d-lg-none nav-mobile-logo"
       aria-label="Ir para Meditações"
+      (click)="registrarCliqueSegredo($event)"
     >
       <!-- SVG inline (usa currentColor para a cor vir do CSS) -->
       <svg

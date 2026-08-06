@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Gerar admin.config.ts a partir dos secrets
+        env:
+          ADMIN_ROUTE_PATH: ${{ secrets.ADMIN_ROUTE_PATH }}
+          ADMIN_GATE_PASSWORD: ${{ secrets.ADMIN_GATE_PASSWORD }}
+        run: node scripts/write-admin-config.mjs
+
+      - name: Build de produção
+        # roda prebuild (generate:data) -> ng build prod com base-href certo -> postbuild (copia 404.html)
+        run: npm run predeploy
+
+      - name: Publicar em gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/meditacoes-biblicas/browser
+          publish_branch: gh-pages
