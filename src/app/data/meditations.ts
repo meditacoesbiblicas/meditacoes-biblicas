@@ -21,16 +21,6 @@ export const MEDITACOES: Meditacao[] = [
     referencias: ['Mc 10:21', 'Lc 22:61']
   },
   {
-    id: 'poder-da-lingua',
-    data: '2026-01-03',
-    tema: 'Relacionamentos',
-    titulo: '🗣️ O poder da língua: vida ou morte',
-    versoChave: 'Provérbios 18:21',
-    resumo: '“A morte e a vida estão no poder da língua; e aquele que a ama comerá do seu fruto.”',
-    arquivoMd: 'poder-da-lingua.md',
-    referencias: ['Pv 18:21']
-  },
-  {
     id: 'proposito-contra-ociosidade',
     data: '2026-01-13',
     tema: 'Disciplina',
