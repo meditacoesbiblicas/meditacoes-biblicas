@@ -1,0 +1,1 @@
+var e={"o-poder-da-lingua-vida-ou-morte":1,"olhar-de-jesus":3,"proposito-contra-ociosidade":3,"ruins-suspeitas-devem-morrer":3,"silencio-discernimento-jesus":2,"disciplina-com-amor":3,"limites-e-paz-nos-relacionamentos":2,"a-morte-que-supreendeu-pilatos":4,"paz-e-verdade":2,"submissao-e-testemunho-silencioso":2,"as-curas-o-monte-e-o-caminho-do-reino":9};export{e as a};
