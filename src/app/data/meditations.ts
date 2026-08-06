@@ -11,6 +11,17 @@ export type Meditacao = {
 
 export const MEDITACOES: Meditacao[] = [
   {
+    id: "o-poder-da-lingua-vida-ou-morte",
+    data: "2026-01-03",
+    tema: "Relacionamentos",
+    titulo: "🗣️ O poder da língua: vida ou morte",
+    versoChave: "Provérbios 18:21",
+    resumo: "\"A morte e a vida estão no poder da língua; e aquele que a ama comerá do seu fruto.\"",
+    arquivoMd: "o-poder-da-lingua-vida-ou-morte.md",
+    referencias: ["Pv 18:21"]
+  },
+
+  {
     id: 'olhar-de-jesus',
     data: '2026-01-10',
     tema: 'Relacionamentos',
