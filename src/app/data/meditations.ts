@@ -11,6 +11,17 @@ export type Meditacao = {
 
 export const MEDITACOES: Meditacao[] = [
   {
+    id: "quando-obedecer-a-deus-custa-a-aprovacao-de-alguem-que-amamos",
+    data: "2026-08-07",
+    tema: "Obediência a Deus",
+    titulo: "⚔️ Quando Obedecer a Deus Custa a Aprovação de Alguém que Amamos",
+    versoChave: "Atos 5:29",
+    resumo: "Gideão nos ensina que honrar pai e mãe nunca significa participar do pecado deles.",
+    arquivoMd: "quando-obedecer-a-deus-custa-a-aprovacao-de-alguem-que-amamos.md",
+    referencias: ["At 5:29", "Êx 20:3", "Êx 20:12", "Jz 6:25", "Jz 6:31"]
+  },
+
+  {
     id: "o-poder-da-lingua-vida-ou-morte",
     data: "2026-01-05",
     tema: "Relacionamentos",
