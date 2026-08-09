@@ -25,4 +25,5 @@ export const MEDITATIONS_TS_PATH = 'src/app/data/meditations.ts';
 export const CONTENT_DIR = 'public/content';
 
 export const LS_KEY_PAT = 'admin_gh_pat';
+export const LS_KEY_GOATCOUNTER_TOKEN = 'admin_goatcounter_token';
 export const SS_KEY_GATE_OK = 'admin_gate_ok';

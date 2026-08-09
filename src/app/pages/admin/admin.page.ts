@@ -10,11 +10,18 @@ import {
   CONTENT_DIR,
   GITHUB_OWNER,
   GITHUB_REPO,
+  LS_KEY_GOATCOUNTER_TOKEN,
   LS_KEY_PAT,
   MEDITATIONS_TS_PATH,
   SS_KEY_GATE_OK
 } from '../../core/admin.config';
 import { GithubApiError, GithubContentApiService } from '../../core/github-content-api.service';
+import {
+  GoatCounterApiError,
+  GoatCounterApiService,
+  LocationStat,
+  TotalStats
+} from '../../core/goatcounter-api.service';
 import {
   buildMeditacaoLiteral,
   extractExistingIds,
@@ -25,6 +32,8 @@ import {
 import { MEDITACOES } from '../../data/meditations';
 
 type Estado = 'portao' | 'token' | 'form' | 'publicando' | 'sucesso' | 'erro';
+type Secao = 'publicar' | 'estatisticas';
+type EstadoEstatisticas = 'token' | 'carregando' | 'dados' | 'erro';
 
 @Component({
   standalone: true,
@@ -34,6 +43,7 @@ type Estado = 'portao' | 'token' | 'form' | 'publicando' | 'sucesso' | 'erro';
 export default class AdminPage {
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private github = inject(GithubContentApiService);
+  private goatcounter = inject(GoatCounterApiService);
   private sanitizer = inject(DomSanitizer);
   private meta = inject(Meta);
 
@@ -41,6 +51,14 @@ export default class AdminPage {
   readonly temasExistentes = Array.from(new Set(MEDITACOES.map(m => m.tema))).sort();
 
   estado: Estado = 'portao';
+  secaoAtiva: Secao = 'publicar';
+
+  gcEstado: EstadoEstatisticas = 'token';
+  gcTokenInput = '';
+  gcTotal: TotalStats | null = null;
+  gcLocations: LocationStat[] = [];
+  gcErro = '';
+  readonly gcPeriodoDias = 30;
 
   senhaInput = '';
   senhaErro = '';
@@ -239,5 +257,54 @@ export default class AdminPage {
     this.erroPublicacao = '';
     this.slugPublicado = '';
     this.estado = 'form';
+  }
+
+  selecionarSecao(secao: Secao): void {
+    this.secaoAtiva = secao;
+    if (secao === 'estatisticas') {
+      if (this.isBrowser && localStorage.getItem(LS_KEY_GOATCOUNTER_TOKEN)) {
+        void this.carregarEstatisticas();
+      } else {
+        this.gcEstado = 'token';
+      }
+    }
+  }
+
+  salvarTokenGoatCounter(): void {
+    const token = this.gcTokenInput.trim();
+    if (!token) return;
+    localStorage.setItem(LS_KEY_GOATCOUNTER_TOKEN, token);
+    this.gcTokenInput = '';
+    void this.carregarEstatisticas();
+  }
+
+  trocarTokenGoatCounter(): void {
+    localStorage.removeItem(LS_KEY_GOATCOUNTER_TOKEN);
+    this.gcTotal = null;
+    this.gcLocations = [];
+    this.gcEstado = 'token';
+  }
+
+  async carregarEstatisticas(): Promise<void> {
+    this.gcEstado = 'carregando';
+    this.gcErro = '';
+
+    const inicio = new Date(Date.now() - this.gcPeriodoDias * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .slice(0, 10);
+
+    try {
+      const [total, locations] = await Promise.all([
+        this.goatcounter.getTotal(inicio),
+        this.goatcounter.getLocations(inicio)
+      ]);
+      this.gcTotal = total;
+      this.gcLocations = locations;
+      this.gcEstado = 'dados';
+    } catch (e) {
+      const detalhe = e instanceof GoatCounterApiError ? ` (${e.status} — ${e.message})` : '';
+      this.gcErro = `Falha ao carregar estatísticas${detalhe}`;
+      this.gcEstado = 'erro';
+    }
   }
 }

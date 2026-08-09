@@ -45,13 +45,118 @@
 }
 
 @if (estado === 'form') {
-  <form class="d-flex flex-column gap-3" (ngSubmit)="publicar()">
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarToken()">
-        Trocar token
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="btn-group" role="tablist">
+      <button
+        class="btn btn-sm"
+        [class.btn-primary]="secaoAtiva === 'publicar'"
+        [class.btn-outline-secondary]="secaoAtiva !== 'publicar'"
+        type="button"
+        (click)="selecionarSecao('publicar')"
+      >
+        Publicar
+      </button>
+      <button
+        class="btn btn-sm"
+        [class.btn-primary]="secaoAtiva === 'estatisticas'"
+        [class.btn-outline-secondary]="secaoAtiva !== 'estatisticas'"
+        type="button"
+        (click)="selecionarSecao('estatisticas')"
+      >
+        Estatísticas
       </button>
     </div>
+    <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarToken()">
+      Trocar token do GitHub
+    </button>
+  </div>
+}
 
+@if (estado === 'form' && secaoAtiva === 'estatisticas') {
+  <div class="d-flex flex-column gap-3">
+    @if (gcEstado === 'token') {
+      <form class="d-flex flex-column gap-3" style="max-width: 32rem" (ngSubmit)="salvarTokenGoatCounter()">
+        <p class="text-muted small mb-0">
+          Cole aqui o token de API do GoatCounter (crie uma conta gratuita em
+          <a href="https://www.goatcounter.com" target="_blank" rel="noopener">goatcounter.com</a>,
+          depois em Settings → API → New key). Fica guardado só no
+          <code>localStorage</code> deste navegador.
+        </p>
+        <label class="form-label">
+          Token da API
+          <input
+            class="form-control"
+            type="password"
+            name="gcToken"
+            [(ngModel)]="gcTokenInput"
+            autocomplete="off"
+          />
+        </label>
+        <button class="btn btn-primary" type="submit">Salvar token</button>
+      </form>
+    }
+
+    @if (gcEstado === 'carregando') {
+      <p>Carregando estatísticas…</p>
+    }
+
+    @if (gcEstado === 'erro') {
+      <div class="d-flex flex-column gap-2">
+        <p class="text-danger mb-0">{{ gcErro }}</p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary btn-sm" type="button" (click)="carregarEstatisticas()">
+            Tentar de novo
+          </button>
+          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="trocarTokenGoatCounter()">
+            Trocar token
+          </button>
+        </div>
+      </div>
+    }
+
+    @if (gcEstado === 'dados') {
+      <div class="d-flex flex-column gap-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="text-muted small mb-0">Últimos {{ gcPeriodoDias }} dias</p>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm" type="button" (click)="carregarEstatisticas()">
+              ↻ Atualizar
+            </button>
+            <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarTokenGoatCounter()">
+              Trocar token
+            </button>
+          </div>
+        </div>
+
+        <div class="border rounded p-3">
+          <div class="section-label">Visitas</div>
+          <p class="mb-0" style="font-size: 2rem">{{ gcTotal?.total ?? 0 }}</p>
+        </div>
+
+        <div class="border rounded p-3">
+          <div class="section-label mb-2">Por país/região</div>
+          @if (gcLocations.length) {
+            <table class="table table-sm mb-0">
+              <tbody>
+                @for (loc of gcLocations; track loc.nome) {
+                  <tr>
+                    <td>{{ loc.nome }}</td>
+                    <td class="text-end">{{ loc.contagem }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          } @else {
+            <p class="text-muted small mb-0">Sem dados ainda nesse período.</p>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
+
+@if (estado === 'form' && secaoAtiva === 'publicar') {
+  <form class="d-flex flex-column gap-3" (ngSubmit)="publicar()">
     <label class="form-label">
       Título
       <input
