@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /redacao-456695fe59f9
 
 Sitemap: https://meditacoesbiblicas.github.io/meditacoes-biblicas/sitemap.xml
