@@ -66,9 +66,16 @@
         Estatísticas
       </button>
     </div>
-    <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarToken()">
-      Trocar token do GitHub
-    </button>
+    <div class="d-flex gap-3">
+      @if (secaoAtiva === 'estatisticas' && (gcEstado === 'dados' || gcEstado === 'erro')) {
+        <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarTokenGoatCounter()">
+          Trocar token do GoatCounter
+        </button>
+      }
+      <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarToken()">
+        Trocar token do GitHub
+      </button>
+    </div>
   </div>
 }
 
@@ -103,12 +110,9 @@
     @if (gcEstado === 'erro') {
       <div class="d-flex flex-column gap-2">
         <p class="text-danger mb-0">{{ gcErro }}</p>
-        <div class="d-flex gap-2">
+        <div>
           <button class="btn btn-primary btn-sm" type="button" (click)="carregarEstatisticas()">
             Tentar de novo
-          </button>
-          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="trocarTokenGoatCounter()">
-            Trocar token
           </button>
         </div>
       </div>
@@ -118,14 +122,9 @@
       <div class="d-flex flex-column gap-3">
         <div class="d-flex justify-content-between align-items-center">
           <p class="text-muted small mb-0">Últimos {{ gcPeriodoDias }} dias</p>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary btn-sm" type="button" (click)="carregarEstatisticas()">
-              ↻ Atualizar
-            </button>
-            <button class="btn btn-link btn-sm p-0" type="button" (click)="trocarTokenGoatCounter()">
-              Trocar token
-            </button>
-          </div>
+          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="carregarEstatisticas()">
+            ↻ Atualizar
+          </button>
         </div>
 
         <div class="border rounded p-3">
