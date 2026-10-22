@@ -63,6 +63,12 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. Sem Ja
 - Este arquivo (`CLAUDE.md`) não vai para o site público: o `angular.json` do repositório o ignora na publicação.
 - A entrada na lista da home está em `src/app/data/meditations.ts` (id `bem-aventurancas`, campo `url`). Entradas com `url` abrem a página estática em vez do leitor de markdown.
 
+## QR Code em tela cheia
+
+- `qr.html`: página só com o QR Code ocupando a tela (para projetar na igreja), com o título e o endereço embaixo. Aponta para a URL publicada do estudo. O mapa (`index.html`) tem o botão "QR Code em tela cheia" que leva a ela; o link de volta fica invisível e só aparece ao passar o mouse.
+- O QR é um SVG embutido na própria página (sem JavaScript). Foi gerado com a biblioteca npm `qrcode` (correção de erro Q, margem de 4 módulos) e conferido decodificando de volta para a URL. **Se a URL do estudo mudar, gere o QR de novo.** (A regra é a URL não mudar.)
+- A página não tem o pixel de visitas de propósito: é só a tela de projeção.
+
 ## Contagem de visitas
 
 - Cada página termina com um pixel do GoatCounter (`<img src=".../count?p=/meditacoes-biblicas/bem-aventurancas/<arquivo>">`): sem JavaScript e sem cookies. O valor de `p=` precisa bater com o caminho publicado da página.
