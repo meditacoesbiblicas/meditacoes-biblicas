@@ -31,6 +31,19 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 
 .wrap { max-width: 1280px; margin: 0 auto; padding: 40px 32px 80px; }
 
+/* ---------- barra do site (volta para Meditações, Quem sou eu, Sobre) ---------- */
+.site-bar { background: var(--navy); color: #FAF8F3; }
+.site-bar-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 32px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 24px;
+}
+.site-bar a { color: inherit; text-decoration: none; }
+.site-bar a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.site-brand { padding: 14px 0; font: 600 21px/1 var(--serif); }
+.site-links { display: flex; gap: 24px; }
+.site-links a { padding: 14px 0; font: 600 16px/1 var(--sans); color: #D9D4C7; }
+.site-brand:hover, .site-links a:hover { color: var(--gold); }
+
 /* ---------- cabeçalho ---------- */
 .top { margin: 0 0 8px; }
 .top .kicker {
@@ -204,6 +217,7 @@ mark { padding: 0 .12em; border-radius: 3px; background: var(--gold); color: var
 /* ---------- telas estreitas ---------- */
 @media (max-width: 980px) {
   body { font-size: 17px; }
+  .site-bar-inner { padding: 0 18px; }
   .wrap { padding: 28px 18px 64px; }
 
   .map { display: flex; flex-direction: column; align-items: stretch; gap: 12px; margin-top: 32px; }
