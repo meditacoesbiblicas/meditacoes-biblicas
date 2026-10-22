@@ -15,7 +15,7 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. Sem Ja
 - "Sal e luz" (v.13–15) é outra seção, fora das bem-aventuranças.
 - O mapa usa âncoras: `#v3`, `#v4`, `#v5`, `#v6`, `#v7`, `#v8`, `#v9`, `#v10`, `#v13`. Cada `<section class="group" id="vN">` da página de detalhe tem o id correspondente.
 
-## Barra do site (em TODAS as 7 páginas, inclusive o mapa)
+## Barra do site (em TODAS as 8 páginas: o mapa, as 6 de detalhe e o `qr.html`)
 
 - `<header class="site-bar">` logo depois de `<body>`, fora do `.wrap`: Meditações (`../`), Quem sou eu (`../quem-sou-eu/`) e Sobre (`../sobre/`). Serve para voltar ao site principal com um clique, de qualquer página.
 - Só HTML e CSS (sem JavaScript). **Ao criar página nova, copie a barra.** Se as rotas do site principal mudarem, atualize os 3 links.
@@ -63,11 +63,12 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. Sem Ja
 - Este arquivo (`CLAUDE.md`) não vai para o site público: o `angular.json` do repositório o ignora na publicação.
 - A entrada na lista da home está em `src/app/data/meditations.ts` (id `bem-aventurancas`, campo `url`). Entradas com `url` abrem a página estática em vez do leitor de markdown.
 
-## QR Code em tela cheia
+## QR Code
 
-- `qr.html`: página só com o QR Code ocupando a tela (para projetar na igreja), com o título e o endereço embaixo. Aponta para a URL publicada do estudo. O mapa (`index.html`) tem o botão "QR Code em tela cheia" que leva a ela; o link de volta fica invisível e só aparece ao passar o mouse.
-- O QR é um SVG embutido na própria página (sem JavaScript). Foi gerado com a biblioteca npm `qrcode` (correção de erro Q, margem de 4 módulos) e conferido decodificando de volta para a URL. **Se a URL do estudo mudar, gere o QR de novo.** (A regra é a URL não mudar.)
-- A página não tem o pixel de visitas de propósito: é só a tela de projeção.
+- **Cartão no mapa:** no canto superior direito do `index.html` há um cartão (`.qr-card`, no estilo dos outros cartões) com o QR em miniatura. Ele leva ao `qr.html`. No celular o cartão vem abaixo do texto de abertura.
+- **`qr.html`:** só a barra do site, o QR e, embaixo, o título (que é link para o mapa) e o endereço. O QR ocupa a janela inteira **sem rolagem** (testado de 390px a 1920px). Para isso ele é posicionado de forma absoluta na área livre entre a barra e a legenda; não troque por `height: 100%` em flex/SVG, porque o Safari estoura a altura.
+- **`qr.svg`:** a imagem do QR (usada no cartão e no `qr.html`). Aponta para a URL publicada do estudo. Foi gerada com a biblioteca npm `qrcode` (correção de erro Q, margem de 4 módulos) e conferida decodificando de volta para a URL. **Se a URL do estudo mudar, gere de novo.** (A regra é a URL não mudar.)
+- O `qr.html` não tem o pixel de visitas de propósito: é só a tela de projeção.
 
 ## Contagem de visitas
 
