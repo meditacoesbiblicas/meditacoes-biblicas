@@ -11,8 +11,11 @@ import { TEMPOS_LEITURA } from '../../data/reading-times';
 import { SeoService } from '../../core/seo.service';
 import { SITE_URL } from '../../core/site.config';
 
+// só meditações com leitor próprio (entradas com `url` abrem páginas estáticas e ficam de fora)
+const MEDITACOES_LEITOR = MEDITACOES.filter(m => !m.url);
+
 // mesma ordenação usada por padrão na home (mais recentes primeiro)
-const MEDITACOES_POR_DATA = [...MEDITACOES].sort((a, b) => b.data.localeCompare(a.data));
+const MEDITACOES_POR_DATA = [...MEDITACOES_LEITOR].sort((a, b) => b.data.localeCompare(a.data));
 
 @Component({
   standalone: true,
@@ -41,7 +44,7 @@ export default class MeditacaoPage {
   ) {
     this.route.paramMap.subscribe(pm => {
       this.id = pm.get('id') ?? '';
-      this.m = MEDITACOES.find(x => x.id === this.id) ?? null;
+      this.m = MEDITACOES_LEITOR.find(x => x.id === this.id) ?? null;
       this.tempoLeitura = TEMPOS_LEITURA[this.id] ?? 1;
       this.urlAtual = `${SITE_URL}/meditacao/${this.id}`;
 

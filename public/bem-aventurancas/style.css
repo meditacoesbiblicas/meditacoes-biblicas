@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Newsreader:wght@500;600&display=swap");
+
+:root {
+  --bg: #FAF8F3;
+  --ink: #1E2230;
+  --navy: #1F2A44;
+  --gold: #F2D9A0;
+  --muted: #4A4638;
+  --line: #8C8576;
+  --blue-bg: #E9EFFA; --blue-bd: #B7C8EA; --blue-tx: #1F4A9C;
+  --or-bg: #FBEBDD;   --or-bd: #EBBF9C;   --or-tx: #9A4310;
+  --gr-bg: #E3F1EC;   --gr-bd: #A8D0C3;   --gr-tx: #17604C;
+  --gy-bg: #EFECE4;   --gy-bd: #CFC9BA;   --gy-tx: #4A4638;
+  --serif: Newsreader, Georgia, "Times New Roman", serif;
+  --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --card-h: 112px;
+  --gap: 40px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 18px/1.55 var(--sans);
+}
+
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
+
+.wrap { max-width: 1280px; margin: 0 auto; padding: 40px 32px 80px; }
+
+/* ---------- cabeçalho ---------- */
+.top { margin: 0 0 8px; }
+.top .kicker {
+  margin: 0 0 6px;
+  font: 600 13px/16px var(--sans);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.top h1 {
+  margin: 0 0 10px;
+  font: 600 clamp(30px, 4.2vw, 46px)/1.1 var(--serif);
+  color: var(--navy);
+}
+.top p { margin: 0; color: var(--muted); max-width: 720px; }
+
+/* ---------- etiquetas (legenda e anotações) ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 6px 14px; border-radius: 999px; border: 1px solid;
+  font: 600 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase;
+}
+.blue { --bg-c: var(--blue-bg); --bd-c: var(--blue-bd); --tx-c: var(--blue-tx); }
+.orange { --bg-c: var(--or-bg); --bd-c: var(--or-bd); --tx-c: var(--or-tx); }
+.green { --bg-c: var(--gr-bg); --bd-c: var(--gr-bd); --tx-c: var(--gr-tx); }
+.gray { --bg-c: var(--gy-bg); --bd-c: var(--gy-bd); --tx-c: var(--gy-tx); }
+.chip.blue, .chip.orange, .chip.green, .chip.gray { background: var(--bg-c); border-color: var(--bd-c); color: var(--tx-c); }
+
+/* ---------- mapa (index) ---------- */
+.map {
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 260px) 1fr;
+  column-gap: 96px;
+  row-gap: var(--gap);
+  margin-top: 48px;
+  align-items: start;
+}
+.stack { position: relative; display: grid; grid-auto-rows: var(--card-h); row-gap: var(--gap); }
+.stack.left { grid-column: 1; grid-row: 1; }
+.stack.right { grid-column: 3; grid-row: 1; }
+.stack.chain { grid-column: 3; grid-row: 2; }
+
+.stack.left::before, .stack.right::before {
+  content: ""; position: absolute; width: 2px; background: var(--line);
+  top: calc(var(--card-h) / 2); bottom: calc(var(--card-h) / 2);
+}
+.stack.left::before { right: -49px; }
+.stack.right::before { left: -49px; }
+
+.branch {
+  position: relative;
+  display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  height: var(--card-h);
+  padding: 12px 20px;
+  background: #fff;
+  border: 1.5px solid var(--navy);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.branch:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(31, 42, 68, .16); }
+.branch .v { font: 600 12px/16px var(--sans); letter-spacing: .08em; color: var(--muted); }
+.branch .t { font: 600 clamp(17px, 1.6vw, 21px)/1.15 var(--serif); color: var(--navy); }
+.branch .s { font-size: 13.5px; line-height: 1.3; color: var(--muted); }
+
+.stack.left .branch::after, .stack.right .branch::before {
+  content: ""; position: absolute; top: 50%; width: 48px; height: 2px; margin-top: -1px; background: var(--line);
+}
+.stack.left .branch::after { left: 100%; }
+.stack.right .branch::before { right: 100%; }
+
+.stack.chain .branch::before {
+  content: ""; position: absolute; left: 50%; bottom: 100%; width: 2px; height: var(--gap); margin-left: -1px;
+  background: repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 11px);
+}
+.branch.next { border-style: dashed; background: transparent; }
+.stack.chain .branch::after {
+  content: ""; position: absolute; left: 50%; top: -9px; margin-left: -6px;
+  border: 6px solid transparent; border-top: 8px solid var(--line); border-bottom: 0;
+}
+
+.root {
+  grid-column: 2; grid-row: 1; align-self: center; position: relative;
+  padding: 22px 18px; text-align: center;
+  background: var(--navy); color: #FAF8F3; border-radius: 18px;
+}
+.root .kicker { display: block; font: 600 12px/16px var(--sans); letter-spacing: .1em; color: var(--gold); }
+.root h2 { margin: 4px 0 0; font: 600 clamp(22px, 2.2vw, 28px)/1.15 var(--serif); }
+.root::before, .root::after { content: ""; position: absolute; top: 50%; width: 48px; height: 2px; margin-top: -1px; background: var(--line); }
+.root::before { right: 100%; }
+.root::after { left: 100%; }
+
+.patterns {
+  grid-column: 1 / span 2; grid-row: 2;
+  padding: 22px 26px;
+  background: var(--gy-bg); border: 1px solid var(--gy-bd); border-radius: 14px;
+}
+.patterns h2 { margin: 0 0 8px; font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.patterns ul { margin: 0; padding: 0; list-style: none; font-size: 16px; line-height: 1.7; }
+.patterns li b { font-weight: 600; }
+
+/* ---------- páginas de detalhe ---------- */
+.crumbs { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin: 0 0 36px; font-size: 15px; }
+.crumbs a.back {
+  display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 999px;
+  border: 1.5px solid var(--navy); color: var(--navy); font-weight: 600; text-decoration: none; background: #fff;
+}
+.crumbs a.back:hover { background: var(--navy); color: #fff; }
+.pages { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.pages a {
+  display: inline-block; padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--gy-bd); background: var(--gy-bg); text-decoration: none; font-size: 14px; color: var(--muted);
+}
+.pages a:hover { border-color: var(--navy); }
+.pages a[aria-current="page"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+.pages li.after { margin-left: 8px; padding-left: 10px; border-left: 1px solid var(--gy-bd); }
+
+.group {
+  display: grid; grid-template-columns: minmax(260px, 340px) 1fr; gap: 48px;
+  margin: 56px 0 0; align-items: start; scroll-margin-top: 24px;
+}
+.verse {
+  position: sticky; top: 24px;
+  padding: 26px; border-radius: 16px;
+  background: var(--navy); color: #FAF8F3;
+}
+.group:target .verse { outline: 3px solid var(--gold); outline-offset: 4px; }
+.verse .ref { font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.verse h2 { margin: 6px 0 10px; font: 600 28px/1.2 var(--serif); }
+.verse p { margin: 0; font-size: 15px; line-height: 1.5; color: #D9D4C7; }
+.verse blockquote.bible { margin: 14px 0 0; padding: 0; font: 500 20px/1.45 var(--serif); color: #FAF8F3; }
+.verse blockquote.bible p { font: inherit; color: inherit; }
+.verse blockquote.bible p + p { margin-top: 10px; }
+.verse .marks { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(250, 248, 243, .22); }
+.verse .ref + h2 + blockquote.bible { margin-top: 14px; }
+
+.notes { display: grid; gap: 16px; }
+.note {
+  padding: 18px 24px 20px; border-radius: 14px; border: 1px solid var(--bd-c); background: var(--bg-c);
+}
+.note .tag { display: block; font: 600 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--tx-c); }
+.note h3 { margin: 4px 0 6px; font: 600 19px/1.3 var(--sans); }
+.note p { margin: 0; }
+
+/* texto bíblico citado, com o trecho-chave destacado */
+.text { margin: 10px 0 0; padding: 2px 0 2px 16px; border-left: 3px solid var(--tx-c, var(--line)); font: 500 20px/1.5 var(--serif); color: var(--ink); }
+.text p + p { margin-top: 6px; }
+.n { margin-right: 4px; font: 600 11px/1 var(--sans); color: var(--tx-c, var(--muted)); vertical-align: super; }
+.verse .n { color: var(--gold); }
+mark { padding: 0 .12em; border-radius: 3px; background: var(--gold); color: var(--ink); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.verse mark { color: var(--navy); }
+.note .obs { margin-top: 10px; font-size: 15px; line-height: 1.45; color: var(--muted); }
+.note .full {
+  display: inline-block; margin-top: 8px; padding: 6px 0;
+  font: 600 14px/1.3 var(--sans); color: var(--tx-c); text-decoration: underline; text-underline-offset: 3px;
+}
+.note .full:hover { text-decoration-thickness: 2px; }
+.notes h4.sub { margin: 12px 0 -4px; font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.notes h4.sub:first-child { margin-top: 0; }
+
+.pager { display: flex; justify-content: space-between; gap: 16px; margin: 72px 0 0; padding-top: 28px; border-top: 1px solid var(--gy-bd); }
+.pager a {
+  display: inline-flex; flex-direction: column; gap: 2px; padding: 12px 20px; border-radius: 12px;
+  border: 1.5px solid var(--navy); background: #fff; text-decoration: none; color: var(--navy);
+}
+.pager a:hover { background: var(--navy); color: #fff; }
+.pager .dir { font: 600 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.pager .next { text-align: right; margin-left: auto; }
+
+/* ---------- telas estreitas ---------- */
+@media (max-width: 980px) {
+  body { font-size: 17px; }
+  .wrap { padding: 28px 18px 64px; }
+
+  .map { display: flex; flex-direction: column; align-items: stretch; gap: 12px; margin-top: 32px; }
+  .root { order: 0; align-self: stretch; }
+  .stack.left { order: 1; }
+  .stack.right { order: 2; }
+  .stack.chain { order: 3; }
+  .patterns { order: 4; margin-top: 12px; }
+  .stack { grid-auto-rows: auto; row-gap: 12px; }
+  .branch { height: auto; min-height: 88px; }
+  .stack::before, .branch::before, .branch::after, .root::before, .root::after { display: none !important; }
+
+  .group { grid-template-columns: 1fr; gap: 16px; margin-top: 40px; }
+  .verse { position: static; }
+  .verse blockquote.bible { font-size: 19px; }
+  .text { font-size: 18px; }
+  .pages li.after { margin-left: 0; padding-left: 0; border-left: 0; }
+  .pager a { padding: 10px 14px; }
+}

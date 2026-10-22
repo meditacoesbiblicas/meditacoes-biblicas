@@ -86,25 +86,48 @@
 <!-- Lista -->
 <div class="home-list">
   @for (m of meditacoesFiltradas; track m.id) {
-    <a
-      class="home-row"
-      [routerLink]="['/meditacao', m.id]"
-      [attr.aria-label]="'Abrir meditação: ' + m.titulo"
-    >
-      <div class="reading-eyebrow">
-        <span>{{ m.tema }}</span>
-        <span class="reading-eyebrow-dot">·</span>
-        <span class="reading-eyebrow-dot">{{ formatarData(m.data) }}</span>
-        <span class="reading-eyebrow-dot">·</span>
-        <span class="reading-eyebrow-dot">{{ tempoLeitura(m.id) }} min de leitura</span>
-      </div>
+    @if (m.url) {
+      <!-- Entrada que abre uma página estática própria (ex.: estudo das bem-aventuranças) -->
+      <a
+        class="home-row"
+        [href]="m.url"
+        [attr.aria-label]="'Abrir estudo: ' + m.titulo"
+      >
+        <div class="reading-eyebrow">
+          <span>{{ m.tema }}</span>
+          <span class="reading-eyebrow-dot">·</span>
+          <span class="reading-eyebrow-dot">{{ formatarData(m.data) }}</span>
+          <span class="reading-eyebrow-dot">·</span>
+          <span class="reading-eyebrow-dot">estudo interativo</span>
+        </div>
 
-      <h2 class="home-row-title">{{ m.titulo }}</h2>
-      <p class="home-row-verse">{{ m.versoChave }}</p>
-      <p class="home-resumo mb-2">{{ m.resumo }}</p>
+        <h2 class="home-row-title">{{ m.titulo }}</h2>
+        <p class="home-row-verse">{{ m.versoChave }}</p>
+        <p class="home-resumo mb-2">{{ m.resumo }}</p>
 
-      <span class="home-row-cta">Ler</span>
-    </a>
+        <span class="home-row-cta">Abrir</span>
+      </a>
+    } @else {
+      <a
+        class="home-row"
+        [routerLink]="['/meditacao', m.id]"
+        [attr.aria-label]="'Abrir meditação: ' + m.titulo"
+      >
+        <div class="reading-eyebrow">
+          <span>{{ m.tema }}</span>
+          <span class="reading-eyebrow-dot">·</span>
+          <span class="reading-eyebrow-dot">{{ formatarData(m.data) }}</span>
+          <span class="reading-eyebrow-dot">·</span>
+          <span class="reading-eyebrow-dot">{{ tempoLeitura(m.id) }} min de leitura</span>
+        </div>
+
+        <h2 class="home-row-title">{{ m.titulo }}</h2>
+        <p class="home-row-verse">{{ m.versoChave }}</p>
+        <p class="home-resumo mb-2">{{ m.resumo }}</p>
+
+        <span class="home-row-cta">Ler</span>
+      </a>
+    }
   }
 </div>
 

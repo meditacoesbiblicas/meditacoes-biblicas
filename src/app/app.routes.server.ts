@@ -6,7 +6,7 @@ export const serverRoutes: ServerRoute[] = [
     path: 'meditacao/:id',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      return MEDITACOES.map(m => ({ id: m.id }));
+      return MEDITACOES.filter(m => !m.url).map(m => ({ id: m.id }));
     }
   },
   {

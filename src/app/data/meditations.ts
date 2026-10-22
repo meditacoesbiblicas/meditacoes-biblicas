@@ -3,13 +3,28 @@ export type Meditacao = {
   titulo: string;
   versoChave: string;
   resumo: string;
-  arquivoMd: string;
+  // Meditação comum: o texto vem de public/content/<arquivoMd>.
+  arquivoMd?: string;
   referencias: string[];
   tema: string;
   data: string;
+  // Entrada que abre uma página estática própria (relativa à base do site), em vez
+  // do leitor de markdown. Não tem arquivoMd, nem página /meditacao/<id>.
+  url?: string;
 };
 
 export const MEDITACOES: Meditacao[] = [
+  {
+    id: "bem-aventurancas",
+    data: "2026-10-22",
+    tema: "Estudo bíblico",
+    titulo: "📜 Bem-aventuranças · Mateus 5",
+    versoChave: "Mateus 5:3–12",
+    resumo: "Mapa de estudo dos versículos 3 a 12, com paralelos, contrastes e exemplos anotados.",
+    referencias: ["Mt 5:3-12"],
+    url: "bem-aventurancas/"
+  },
+
   {
     id: "quando-obedecer-a-deus-custa-a-aprovacao-de-alguem-que-amamos",
     data: "2026-08-07",
