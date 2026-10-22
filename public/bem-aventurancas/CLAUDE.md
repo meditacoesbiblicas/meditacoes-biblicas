@@ -15,6 +15,12 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. Sem Ja
 - "Sal e luz" (v.13–15) é outra seção, fora das bem-aventuranças.
 - O mapa usa âncoras: `#v3`, `#v4`, `#v5`, `#v6`, `#v7`, `#v8`, `#v9`, `#v10`, `#v13`. Cada `<section class="group" id="vN">` da página de detalhe tem o id correspondente.
 
+## Barra do site (em TODAS as 7 páginas, inclusive o mapa)
+
+- `<header class="site-bar">` logo depois de `<body>`, fora do `.wrap`: Meditações (`../`), Quem sou eu (`../quem-sou-eu/`) e Sobre (`../sobre/`). Serve para voltar ao site principal com um clique, de qualquer página.
+- Só HTML e CSS (sem JavaScript). **Ao criar página nova, copie a barra.** Se as rotas do site principal mudarem, atualize os 3 links.
+- Abrindo por `file://`, esses 3 links não funcionam (saem da pasta); no site publicado funcionam.
+
 ## Navegação (repetida em todas as páginas de detalhe)
 
 - Topo: `<nav class="crumbs">` com o botão "← Mapa" e as 6 pílulas (v.3, v.4–5, v.6–8, v.9, v.10–12 e "Sal e luz · v.13–15"). A página atual leva `aria-current="page"`.
