@@ -20,7 +20,7 @@ export const MEDITACOES: Meditacao[] = [
     tema: "Estudo bíblico",
     titulo: "📜 Bem-aventuranças · Mateus 5",
     versoChave: "Mateus 5:3–12",
-    resumo: "Mapa de estudo dos versículos 3 a 12, com paralelos, contrastes e exemplos anotados.",
+    resumo: "Mapa de estudo dos versículos 3 a 12, com paralelos, contrastes e exemplos, e uma trilha que continua até o v.30.",
     referencias: ["Mt 5:3-12"],
     url: "bem-aventurancas/"
   },
