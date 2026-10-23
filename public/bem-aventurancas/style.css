@@ -11,6 +11,7 @@
   --or-bg: #FBEBDD;   --or-bd: #EBBF9C;   --or-tx: #9A4310;
   --gr-bg: #E3F1EC;   --gr-bd: #A8D0C3;   --gr-tx: #17604C;
   --gy-bg: #EFECE4;   --gy-bd: #CFC9BA;   --gy-tx: #4A4638;
+  --pu-bg: #EFEAF7;   --pu-bd: #CDBFE6;   --pu-tx: #563A8A;
   --serif: Newsreader, Georgia, "Times New Roman", serif;
   --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --card-h: 112px;
@@ -71,7 +72,8 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 .orange { --bg-c: var(--or-bg); --bd-c: var(--or-bd); --tx-c: var(--or-tx); }
 .green { --bg-c: var(--gr-bg); --bd-c: var(--gr-bd); --tx-c: var(--gr-tx); }
 .gray { --bg-c: var(--gy-bg); --bd-c: var(--gy-bd); --tx-c: var(--gy-tx); }
-.chip.blue, .chip.orange, .chip.green, .chip.gray { background: var(--bg-c); border-color: var(--bd-c); color: var(--tx-c); }
+.purple { --bg-c: var(--pu-bg); --bd-c: var(--pu-bd); --tx-c: var(--pu-tx); }
+.chip.blue, .chip.orange, .chip.green, .chip.gray, .chip.purple { background: var(--bg-c); border-color: var(--bd-c); color: var(--tx-c); }
 
 /* ---------- mapa (index) ---------- */
 .map {
@@ -116,15 +118,6 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 .stack.left .branch::after { left: 100%; }
 .stack.right .branch::before { right: 100%; }
 
-.stack.chain .branch::before {
-  content: ""; position: absolute; left: 50%; bottom: 100%; width: 2px; height: var(--gap); margin-left: -1px;
-  background: repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 11px);
-}
-.branch.next { border-style: dashed; background: transparent; }
-.stack.chain .branch::after {
-  content: ""; position: absolute; left: 50%; top: -9px; margin-left: -6px;
-  border: 6px solid transparent; border-top: 8px solid var(--line); border-bottom: 0;
-}
 
 .root {
   grid-column: 2; grid-row: 1; align-self: center; position: relative;
@@ -145,6 +138,9 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 .patterns h2 { margin: 0 0 8px; font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .patterns ul { margin: 0; padding: 0; list-style: none; font-size: 16px; line-height: 1.7; }
 .patterns li b { font-weight: 600; }
+.patterns li + li { margin-top: 8px; }
+.patterns a { color: var(--navy); text-underline-offset: 3px; }
+.top .versoes { margin-top: 14px; font-size: 14px; }
 
 /* ---------- páginas de detalhe ---------- */
 .crumbs { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin: 0 0 36px; font-size: 15px; }
@@ -178,7 +174,6 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 .verse blockquote.bible { margin: 14px 0 0; padding: 0; font: 500 20px/1.45 var(--serif); color: #FAF8F3; }
 .verse blockquote.bible p { font: inherit; color: inherit; }
 .verse blockquote.bible p + p { margin-top: 10px; }
-.verse .marks { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(250, 248, 243, .22); }
 .verse .ref + h2 + blockquote.bible { margin-top: 14px; }
 
 .notes { display: grid; gap: 16px; }
@@ -187,7 +182,9 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 }
 .note .tag { display: block; font: 600 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--tx-c); }
 .note h3 { margin: 4px 0 6px; font: 600 19px/1.3 var(--sans); }
+.note .ver { margin-left: 8px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--bd-c); background: rgba(255, 255, 255, .6); font: 600 11px/1.5 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--tx-c); vertical-align: middle; white-space: nowrap; }
 .note p { margin: 0; }
+.note p + p { margin-top: 8px; }
 
 /* texto bíblico citado, com o trecho-chave destacado */
 .text { margin: 10px 0 0; padding: 2px 0 2px 16px; border-left: 3px solid var(--tx-c, var(--line)); font: 500 20px/1.5 var(--serif); color: var(--ink); }
@@ -215,7 +212,8 @@ mark { padding: 0 .12em; border-radius: 3px; background: var(--gold); color: var
 .pager .next { text-align: right; margin-left: auto; }
 
 /* ---------- cartão do QR Code (canto do mapa) ---------- */
-.top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 48px; align-items: start; }
+/* só o cabeçalho do mapa tem duas colunas (texto + cartão do QR); nas páginas de detalhe o .top continua em bloco */
+.top-mapa { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 48px; align-items: start; }
 .qr-card {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   width: 188px; padding: 14px 14px 12px; text-align: center;
@@ -247,7 +245,7 @@ body.qr .qr-legenda span { font: 400 clamp(12px, 1.8vmin, 20px)/1.3 var(--sans);
 @media (max-width: 980px) {
   body { font-size: 17px; }
   .site-bar-inner { padding: 0 18px; }
-  .top { grid-template-columns: 1fr; }
+  .top-mapa { grid-template-columns: 1fr; }
   .qr-card { flex-direction: row; width: auto; max-width: 380px; gap: 14px; padding: 10px 16px 10px 10px; text-align: left; }
   .qr-card img { width: 72px; height: 72px; margin: 0; flex: none; }
   .wrap { padding: 28px 18px 64px; }
