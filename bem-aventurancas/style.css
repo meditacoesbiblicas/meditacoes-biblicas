@@ -224,8 +224,8 @@ mark { padding: 0 .12em; border-radius: 3px; background: var(--gold); color: var
 .depois-banner:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(31, 42, 68, .3); }
 .depois-banner:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 /* fio que liga a árvore ao convite */
-.depois-banner::before { content: ""; position: absolute; left: 50%; top: calc(var(--gap) * -1); width: 2px; height: var(--gap); margin-left: -1px; background: var(--line); }
-.depois-banner::after { content: ""; position: absolute; left: 50%; top: -6px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--gold); border: 2px solid var(--navy); }
+.depois-banner::before { content: ""; box-sizing: border-box; position: absolute; left: 50%; top: calc(var(--gap) * -1); width: 2px; height: var(--gap); margin-left: -1px; background: var(--line); }
+.depois-banner::after { content: ""; box-sizing: border-box; position: absolute; left: 50%; top: -6px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--gold); border: 2px solid var(--navy); }
 .db-kicker { grid-column: 1; font: 600 12px/16px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
 .db-titulo { grid-column: 1; font: 600 clamp(25px, 2.8vw, 36px)/1.15 var(--serif); }
 .db-sub { grid-column: 1; font-size: 16px; color: #D9D4C7; }
