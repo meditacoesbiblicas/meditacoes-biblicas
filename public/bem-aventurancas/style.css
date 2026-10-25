@@ -65,9 +65,6 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 .no { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 50%; background: var(--navy); color: var(--gold); font: 600 13px/1 var(--serif); letter-spacing: 0; vertical-align: middle; }
 .verse .no { background: var(--gold); color: var(--navy); }
 
-/* selo "Em construção" ao lado do título do mapa */
-.top .kicker .obra { margin-left: 8px; padding: 2px 10px; border-radius: 999px; border: 1.5px solid var(--or-bd); background: var(--or-bg); color: var(--or-tx); font: 600 11px/1.6 var(--sans); letter-spacing: .08em; vertical-align: middle; white-space: nowrap; }
-
 /* ---------- etiquetas (legenda e anotações) ---------- */
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
 .chip {
@@ -207,6 +204,10 @@ mark { padding: 0 .12em; border-radius: 3px; background: var(--gold); color: var
 .note .full:hover { text-decoration-thickness: 2px; }
 .notes h4.sub { margin: 12px 0 -4px; font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .notes h4.sub:first-child { margin-top: 0; }
+
+.em-construcao { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 56px 0 0; padding: 18px 24px; border: 1.5px dashed var(--or-bd); border-radius: 14px; background: var(--or-bg); }
+.em-construcao .selo { padding: 3px 12px; border-radius: 999px; border: 1.5px solid var(--or-bd); background: #fff; font: 600 12px/1.6 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--or-tx); white-space: nowrap; }
+.em-construcao p { margin: 0; flex: 1 1 320px; color: var(--ink); }
 
 .pager { display: flex; justify-content: space-between; gap: 16px; margin: 72px 0 0; padding-top: 28px; border-top: 1px solid var(--gy-bd); }
 .pager a {

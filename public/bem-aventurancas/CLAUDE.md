@@ -1,6 +1,6 @@
-# Sermão do Monte (Mt 5–7) — site de estudo, em construção
+# Sermão do Monte (Mt 5–7) — site de estudo
 
-Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O estudo é o Sermão do Monte (Mt 5–7), em construção**: começa pelas bem-aventuranças (Mt 5:3–12) e já segue pela trilha até Mt 5:30; o resto virá aos poucos (o site diz isso no mapa, com o selo "Em construção", e no último passo da trilha). A pasta e a URL continuam `bem-aventurancas` (a URL não muda). Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
+Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O estudo é o Sermão do Monte (Mt 5–7), ainda incompleto**: começa pelas bem-aventuranças (Mt 5:3–12) e já segue pela trilha até Mt 5:30; o resto virá aos poucos. **O aviso "Em construção" fica só no fim do que já foi feito** (caixa pontilhada no fim de `v27-30.html` e o 5º passo "A trilha continua" em `depois.html`); **não** coloque selo de construção no mapa nem na lista da home, e não ligue "em construção" a "Mateus 5–7". Na lista da home o versículo-chave é "Mateus 5–7" (o sermão todo). A pasta e a URL continuam `bem-aventurancas` (a URL não muda). Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
 
 ## Arquivos
 
