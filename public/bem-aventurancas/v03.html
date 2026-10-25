@@ -20,7 +20,10 @@
 <div class="wrap">
 
 <nav class="crumbs" aria-label="Navegação">
-  <a class="back" href="index.html">← Sermão do Monte</a>
+  <div class="voltares">
+    <a class="back" href="index.html">← Sermão do Monte</a>
+    <a class="back" id="voltar-origem" href="mapa.html">← Mapa das bem-aventuranças</a>
+  </div>
   <ul class="pages">
     <li><a href="mapa.html">Mapa</a></li>
     <li><a href="v03.html" aria-current="page">1 · v.3</a></li>
@@ -144,12 +147,18 @@
 
 
 <nav class="pager" aria-label="Anterior e próxima">
-  <a class="prev" href="mapa.html"><span class="dir">← Voltar</span>Mapa das bem-aventuranças</a>
+  <a class="prev" id="prev-origem" href="mapa.html"><span class="dir">← Voltar</span>Mapa das bem-aventuranças</a>
   <a class="next" href="v04-05.html"><span class="dir">Próxima →</span>v.4–5 · Os que choram e os mansos</a>
 </nav>
 
 </div>
 <!-- contagem de visitas (GoatCounter): sem JavaScript e sem cookies; o caminho em p= precisa bater com a URL publicada -->
 <img src="https://meditacoesbiblicas.goatcounter.com/count?p=/meditacoes-biblicas/bem-aventurancas/v03.html" width="1" height="1" alt="">
+<script>
+/* lembra de onde o leitor veio (mapa ou ilustração do caminho) para o botão "voltar" levar de volta ao lugar certo */
+try{if(sessionStorage.getItem('origem-bem-aventurancas')==='caminho'){
+var b=document.getElementById('voltar-origem');if(b){b.href='caminho.html';b.textContent='← O caminho e as portas';}
+var p=document.getElementById('prev-origem');if(p){p.href='caminho.html';p.lastChild.textContent='O caminho e as portas';}}}catch(e){}
+</script>
 </body>
 </html>
