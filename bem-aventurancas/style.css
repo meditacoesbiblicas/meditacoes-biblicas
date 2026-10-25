@@ -147,6 +147,7 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 
 /* ---------- páginas de detalhe ---------- */
 .crumbs { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin: 0 0 36px; font-size: 15px; }
+.voltares { display: flex; flex-wrap: wrap; gap: 8px; }
 .crumbs a.back {
   display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 999px;
   border: 1.5px solid var(--navy); color: var(--navy); font-weight: 600; text-decoration: none; background: #fff;
@@ -336,9 +337,19 @@ body.caminho { background: var(--bg); }
   max-width: 1440px; margin: 0 auto; padding: 28px 32px 56px;
 }
 .cm-figura { margin: 0; }
-.cm-foto { display: block; line-height: 0; overflow: hidden; border-radius: 18px; background: #FAF0DD; box-shadow: 0 10px 30px rgba(31, 42, 68, .18); }
+.cm-foto { position: relative; display: block; line-height: 0; overflow: hidden; border-radius: 18px; background: #FAF0DD; box-shadow: 0 10px 30px rgba(31, 42, 68, .18); }
 .cm-foto img { display: block; width: 100%; height: auto; }
-.cm-figura figcaption { margin: 10px 4px 0; font: 400 13px/1.3 var(--sans); color: var(--muted); }
+.cm-figura figcaption { margin: 10px 4px 0; font: 400 13.5px/1.4 var(--sans); color: var(--muted); }
+.cm-figura figcaption a { color: var(--navy); }
+/* cada porta da ilustração é um link: ao pousar o mouse (ou focar), ela acende e mostra o nome */
+.hot { position: absolute; z-index: 1; border-radius: 42% 42% 4px 4px / 28% 28% 4px 4px; transition: background .15s ease, box-shadow .15s ease; }
+.hot:hover, .hot:focus-visible { z-index: 3; outline: none; background: rgba(242, 217, 160, .22); box-shadow: 0 0 0 3px var(--gold), 0 0 26px rgba(242, 217, 160, .85); }
+.hot::after {
+  content: attr(data-nome); position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -8px);
+  padding: 6px 14px; border-radius: 999px; background: var(--navy); color: #FAF8F3; box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
+  font: 600 14px/1.2 var(--sans); white-space: nowrap; line-height: 1.2; opacity: 0; pointer-events: none; transition: opacity .15s ease;
+}
+.hot:hover::after, .hot:focus-visible::after { opacity: 1; }
 .cm-painel {
   padding: 30px 28px 28px; border-radius: 20px; color: #FAF8F3;
   background: radial-gradient(90% 60% at 100% 0%, rgba(242, 217, 160, .28), rgba(242, 217, 160, 0) 70%), linear-gradient(160deg, #2D3C66 0%, var(--navy) 55%, #141C30 100%);
