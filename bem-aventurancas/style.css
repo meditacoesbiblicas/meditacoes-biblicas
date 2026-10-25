@@ -337,9 +337,12 @@ body.caminho { background: var(--bg); }
   max-width: 1440px; margin: 0 auto; padding: 28px 32px 56px;
 }
 .cm-figura { margin: 0; }
-.cm-foto { position: relative; display: block; line-height: 0; overflow: hidden; border-radius: 18px; background: #FAF0DD; box-shadow: 0 10px 30px rgba(31, 42, 68, .18); }
+.cm-foto { position: relative; display: block; line-height: 0; overflow: hidden; cursor: zoom-in; border-radius: 18px; background: #FAF0DD; box-shadow: 0 10px 30px rgba(31, 42, 68, .18); }
 .cm-foto img { display: block; width: 100%; height: auto; }
-.cm-figura figcaption { margin: 10px 4px 0; font: 400 13.5px/1.4 var(--sans); color: var(--muted); }
+.cm-foto .dica { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 14px 12px; text-align: center; font: 600 14px/1.3 var(--sans); color: #FAF8F3; background: linear-gradient(transparent, rgba(20, 28, 48, .9)); opacity: 0; transition: opacity .15s ease; }
+.cm-foto:hover .dica, .cm-foto:focus-visible .dica { opacity: 1; }
+@media (hover: none) { .cm-foto .dica { opacity: 1; } }
+.cm-figura figcaption { margin: 8px 4px 0; font: 400 12.5px/1.4 var(--sans); color: var(--muted); }
 .cm-figura figcaption a { color: var(--navy); }
 /* cada porta da ilustração é um link: ao pousar o mouse (ou focar), ela acende e mostra o nome */
 .hot { position: absolute; z-index: 1; border-radius: 42% 42% 4px 4px / 28% 28% 4px 4px; transition: background .15s ease, box-shadow .15s ease; }
@@ -378,6 +381,26 @@ body.caminho { background: var(--bg); }
 }
 .cm-ir { display: block; padding: 14px 22px; border-radius: 999px; background: var(--gold); color: var(--navy); text-align: center; font: 600 17px/1.2 var(--sans); text-decoration: none; transition: transform .12s ease; }
 .cm-ir:hover, .cm-ir:focus-visible { transform: translateY(-2px); }
+
+/* ---------- ilustração ampliada: a imagem ocupa a janela e cada porta é um link ---------- */
+body.ampliada { margin: 0; height: 100vh; height: 100dvh; overflow: hidden; background: #FAF0DD; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+body.ampliada .am-quadro { position: relative; min-height: 0; margin: 0; }
+/* a moldura tem a proporção da imagem (3:2) e fica centralizada, para as áreas clicáveis (em %) caírem sobre as portas */
+body.ampliada .am-moldura { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 3 / 2; max-width: 100%; }
+body.ampliada .am-img { display: block; width: 100%; height: 100%; object-fit: contain; }
+body.ampliada .am-voltar { position: absolute; top: 14px; left: 18px; z-index: 5; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--navy); background: rgba(255, 255, 255, .9); color: var(--navy); font: 600 15px/1.2 var(--sans); text-decoration: none; }
+body.ampliada .am-voltar:hover, body.ampliada .am-voltar:focus-visible { background: var(--navy); color: #fff; outline: none; }
+body.ampliada .am-dica { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); z-index: 5; padding: 5px 14px; border-radius: 999px; background: rgba(31, 42, 68, .82); color: #FAF8F3; font: 600 13px/1.3 var(--sans); white-space: nowrap; pointer-events: none; }
+body.ampliada .am-dica .cel { display: none; }
+/* celular em pé: a imagem fica na altura da tela e se arrasta para o lado (as áreas clicáveis acompanham) */
+@media (max-width: 760px) {
+  body.ampliada .am-quadro { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+  body.ampliada .am-moldura { position: relative; top: auto; bottom: auto; left: auto; transform: none; height: 100%; width: auto; max-width: none; }
+  body.ampliada .am-voltar { position: fixed; top: 58px; left: 10px; }
+  body.ampliada .am-dica { position: fixed; top: auto; bottom: 14px; }
+  body.ampliada .am-dica .pc { display: none; }
+  body.ampliada .am-dica .cel { display: inline; }
+}
 
 /* ---------- página do QR Code em tela cheia ---------- */
 /* O QR é posicionado de forma absoluta dentro da área livre (entre a barra e a legenda), assim ele
