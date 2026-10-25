@@ -1,26 +1,28 @@
 # Sermão do Monte (Mt 5–7) — site de estudo
 
-Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O estudo é o Sermão do Monte (Mt 5–7), ainda incompleto**: começa pelas bem-aventuranças (Mt 5:3–12) e já segue pela trilha até Mt 5:30; o resto virá aos poucos. **O aviso "Em construção" fica só no fim do que já foi feito** (caixa pontilhada no fim de `v27-30.html` e o 5º passo "A trilha continua" em `depois.html`); **não** coloque selo de construção no mapa nem na lista da home, e não ligue "em construção" a "Mateus 5–7". Na lista da home o versículo-chave é "Mateus 5–7" (o sermão todo). A pasta e a URL continuam `bem-aventurancas` (a URL não muda). Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
+Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O estudo é o Sermão do Monte (Mt 5:1 a 7:29), feito por partes e ainda incompleto.** O foco é o sermão; as bem-aventuranças são só a primeira parte (e a ilustração do caminho e das portas é delas). O que ainda não foi feito aparece, em cada lugar, com o selo **"A construir"** (não "em construção"): nos cartões de `index.html`, nos passos 5–8 de `depois.html` e na caixa do fim de `v27-30.html`. Na lista da home o título é "Sermão do Monte" e o versículo-chave "Mateus 5–7". A pasta e a URL continuam `bem-aventurancas` (a URL não muda). Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
 
-## Arquivos
+## Arquivos (três níveis: o sermão → as partes → os detalhes)
 
-- `index.html` — mapa do estudo (um ramo por versículo/grupo), legenda dos cartões e o quadro "O que o conjunto mostra".
-- `v03.html`, `v04-05.html`, `v06-08.html`, `v09.html`, `v10-12.html` — as bem-aventuranças.
-- `depois.html` — a **trilha** "Depois das bem-aventuranças" (Mt 5:13–30), página de layout próprio (hero azul-marinho com o v.20 como chave, 4 passos numa linha do tempo; cada passo mostra "Por fora → Por dentro"). No mapa ela é o banner `.depois-banner` logo abaixo da árvore ("E depois das bem-aventuranças?"), que substituiu o antigo cartão "Sal e luz".
+- `index.html` — **página inicial = mapa do Sermão do Monte (Mt 5:1 a 7:29)**, por capítulos (Mateus 5, 6 e 7) e por partes. Cada parte é um cartão: **"Pronto"** (azul-marinho, abre a página) ou **"A construir"** (pontilhado, sem link). Tem a barra de progresso ("5 de 22 partes prontas"; o número sai do script `build_index.py`, não é manual). A parte das bem-aventuranças é um cartão em destaque com a ilustração. **Ao fazer uma parte nova: tire o "A construir" dela e ligue o cartão à página.** Esta é a URL que não pode mudar.
+- `mapa.html` — **o mapa das bem-aventuranças** (Mt 5:3–12): a árvore com um ramo por versículo/grupo, a legenda dos cartões, o QR Code e o cartão "O caminho e as portas" no canto do cabeçalho, o quadro "O que as bem-aventuranças mostram" e o banner "Depois das bem-aventuranças" (leva à trilha). Botão "← Sermão do Monte" no topo. Antes isto era o `index.html`.
+- `v03.html`, `v04-05.html`, `v06-08.html`, `v09.html`, `v10-12.html` — as bem-aventuranças (detalhe).
+- `depois.html` — a **trilha "Depois das bem-aventuranças" (Mt 5:13–48)**: hero azul-marinho com o v.20 como fio, linha do tempo de 8 passos. Os passos 1–4 (sal e luz, a lei, raiva, cobiça) estão prontos e levam às páginas; os passos 5–8 (divórcio, juramentos, olho por olho, amor aos inimigos) estão "A construir". Cada passo pronto mostra "Por fora → Por dentro".
 - `v13-15.html` — "Sal e luz" (v.13–16; o nome do arquivo é mantido por causa da URL): grupos `#v13` (sal) e `#v14` (luz: luz×trevas, boas obras e o candelabro/santuário).
 - `v17-20.html` — a lei (v.17–19, grupo `#v17`) e a justiça que excede a dos escribas e fariseus (v.20, grupo `#v20`).
 - `v21-26.html` — da morte à raiva (`#v21`) e reconciliar-se antes de oferecer (`#v23`).
-- `v27-30.html` — do adultério à cobiça (`#v27`) e arrancar o olho/cortar a mão (`#v29`).
+- `v27-30.html` — do adultério à cobiça (`#v27`) e arrancar o olho/cortar a mão (`#v29`). No fim tem a caixa "A construir" (o restante, Mt 5:31 em diante).
+- `caminho.html` — página de abertura da ilustração (é para onde o QR Code aponta); ver "Caminho e portas" abaixo.
 - `style.css` — único CSS. Fontes via `@import` do Google Fonts (Inter e Newsreader), com fallback do sistema.
 
 ## Estrutura do estudo
 
 - **Numeração das portas (1 a 8):** v.3=1, v.4=2, v.5=3, v.6=4, v.7=5, v.8=6, v.9=7, v.10–12=8. Aparece nos ramos do mapa (`<b class="no">`), no cabeçalho de cada grupo ("Porta N · Mateus 5:x") e nas pílulas. Bate com a ilustração `caminho.html` (cada bem-aventurança é uma porta do caminho único; o juízo no fim). Ao criar grupo novo de bem-aventurança, atualize o `PORTA` do script e os ramos.
-- `caminho.html` (+ `caminho.jpg`, `caminho-mini.jpg`): **página de abertura, e é para onde o QR Code aponta** (pedido do dono: quem escaneia vê a ilustração, as 8 portas clicáveis — cada uma leva ao ramo da bem-aventurança — e o botão "Ver o mapa do estudo →", que continua o estudo). No PC: imagem grande à esquerda + painel azul-marinho com as portas à direita (no celular: imagem em cima e portas em pílulas; o celular é a referência de qualidade, o PC tem que ficar no mesmo nível). A imagem abre o `caminho.jpg` inteiro. Criada com IA (Gemini) a partir de roteiro do dono. **Tem o pixel de visitas** (é a entrada do QR). No mapa (PC), o cartão `.caminho-card` fica **ao lado do QR (QR à esquerda, caminho à direita), com a mesma largura e a mesma altura** (`.top-lado`, 2 colunas de 188px); no celular ficam empilhados; os dois abrem, respectivamente, `qr.html` e `caminho.html`. Link também no fim da trilha.
+- `caminho.html` (+ `caminho.jpg`, `caminho-mini.jpg`): **página de abertura, e é para onde o QR Code aponta** (pedido do dono: quem escaneia vê a ilustração, as 8 portas clicáveis — cada uma leva ao ramo da bem-aventurança — e o botão "Ver o mapa das bem-aventuranças →", que leva ao `mapa.html`). No PC: imagem grande à esquerda + painel azul-marinho com as portas à direita (no celular: imagem em cima e portas em pílulas; o celular é a referência de qualidade, o PC tem que ficar no mesmo nível). A imagem abre o `caminho.jpg` inteiro. Criada com IA (Gemini) a partir de roteiro do dono. **Tem o pixel de visitas** (é a entrada do QR). No `mapa.html` (PC), o cartão `.caminho-card` fica **ao lado do QR (QR à esquerda, caminho à direita), com a mesma largura e a mesma altura** (`.top-lado`, 2 colunas de 188px); no celular ficam empilhados; os dois abrem, respectivamente, `qr.html` e `caminho.html`. Link também no fim da trilha.
 
 - As bem-aventuranças são Mt 5:3–12: oito (v.3–10); os v.11–12 ampliam a oitava, no mesmo tópico (`v10-12.html`).
 - Depois delas vem a trilha (`depois.html`): Sal e luz (v.13–16) → A lei e a justiça maior (v.17–20) → Da morte à raiva (v.21–26) → Do adultério à cobiça (v.27–30). O fio é Mt 5:20: a justiça que excede a dos escribas e fariseus, "de fora para dentro" (a lei vista pelo ato × Jesus olhando o coração).
-- O mapa usa âncoras: `#v3`, `#v4`, `#v5`, `#v6`, `#v7`, `#v8`, `#v9`, `#v10`; a trilha usa `#v13`, `#v14`, `#v17`, `#v20`, `#v21`, `#v23`, `#v27`, `#v29`. Cada `<section class="group" id="vN">` da página de detalhe tem o id correspondente.
+- O mapa das bem-aventuranças usa âncoras: `#v3`, `#v4`, `#v5`, `#v6`, `#v7`, `#v8`, `#v9`, `#v10`; a trilha usa `#v13`, `#v14`, `#v17`, `#v20`, `#v21`, `#v23`, `#v27`, `#v29`. Cada `<section class="group" id="vN">` da página de detalhe tem o id correspondente.
 
 ## Barra do site (em TODAS as páginas: o mapa, a trilha, as de detalhe e o `qr.html`)
 
@@ -30,9 +32,9 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O es
 
 ## Navegação (repetida em todas as páginas de detalhe)
 
-- Topo: `<nav class="crumbs">` com o botão "← Mapa" e as pílulas: v.3, v.4–5, v.6–8, v.9, v.10–12 e, separadas, "Trilha", "Sal e luz", "A lei", "Raiva" e "Cobiça". A página atual leva `aria-current="page"`.
-- Rodapé: `<nav class="pager">` com Anterior/Próxima. A primeira página volta ao Mapa; o fim da cadeia (`v27-30.html`) volta para a trilha (`depois.html`). A trilha em si não tem pager.
-- **Ao criar ou renomear uma página, atualize TODAS** (pílulas de todas as páginas, pager das vizinhas, ramo no `index.html`).
+- Topo: `<nav class="crumbs">` com o botão "← Sermão do Monte" (volta para `index.html`) e as pílulas: "Mapa" (`mapa.html`), 1 · v.3, v.4–5, v.6–8, v.9, v.10–12 e, separadas, "Trilha", "Sal e luz", "A lei", "Raiva" e "Cobiça". A página atual leva `aria-current="page"`.
+- Rodapé: `<nav class="pager">` com Anterior/Próxima. A primeira página (`v03.html`) volta ao `mapa.html`; o fim da cadeia (`v27-30.html`) volta para a trilha (`depois.html`). A trilha em si não tem pager.
+- **Ao criar ou renomear uma página, atualize TODAS** (pílulas de todas as páginas, pager das vizinhas, ramo no `mapa.html` e cartão no `index.html`).
 
 ## Card (cartão) de conteúdo
 
