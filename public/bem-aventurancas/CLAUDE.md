@@ -1,6 +1,6 @@
-# Bem-aventuranças · Mateus 5 — site de estudo
+# Sermão do Monte (Mt 5–7) — site de estudo, em construção
 
-Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
+Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O estudo é o Sermão do Monte (Mt 5–7), em construção**: começa pelas bem-aventuranças (Mt 5:3–12) e já segue pela trilha até Mt 5:30; o resto virá aos poucos (o site diz isso no mapa, com o selo "Em construção", e no último passo da trilha). A pasta e a URL continuam `bem-aventurancas` (a URL não muda). Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
 
 ## Arquivos
 

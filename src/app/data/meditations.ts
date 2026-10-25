@@ -18,10 +18,10 @@ export const MEDITACOES: Meditacao[] = [
     id: "bem-aventurancas",
     data: "2026-10-22",
     tema: "Estudo bíblico",
-    titulo: "📜 Bem-aventuranças · Mateus 5",
+    titulo: "📜 Sermão do Monte · Mateus 5–7 (em construção)",
     versoChave: "Mateus 5:3–12",
-    resumo: "Mapa de estudo dos versículos 3 a 12, com paralelos, contrastes e exemplos, e uma trilha que continua até o v.30.",
-    referencias: ["Mt 5:3-12"],
+    resumo: "Estudo interativo do Sermão do Monte, em construção: começa pelas bem-aventuranças e segue por uma trilha até Mateus 5:30, com paralelos, contrastes e exemplos.",
+    referencias: ["Mt 5:3-30"],
     url: "bem-aventurancas/"
   },
 
