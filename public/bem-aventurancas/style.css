@@ -346,13 +346,13 @@ body.caminho { background: var(--bg); }
 .cm-figura figcaption a { color: var(--navy); }
 /* cada porta da ilustração é um link: ao pousar o mouse (ou focar), ela acende e mostra o nome */
 .hot { position: absolute; z-index: 1; border-radius: 50% 50% 4px 4px / var(--rv, 30%) var(--rv, 30%) 4px 4px; transition: background .15s ease, box-shadow .15s ease; }
-.hot:hover, .hot:focus-visible { z-index: 3; outline: none; background: rgba(242, 217, 160, .2); box-shadow: 0 0 0 3px var(--gold), 0 0 22px rgba(242, 217, 160, .8); }
+.hot:hover, .hot:focus-visible, .hot.ativa { z-index: 3; outline: none; background: rgba(242, 217, 160, .2); box-shadow: 0 0 0 3px var(--gold), 0 0 22px rgba(242, 217, 160, .8); }
 .hot::after {
   content: attr(data-nome); position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -8px);
   padding: 6px 14px; border-radius: 999px; background: var(--navy); color: #FAF8F3; box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
   font: 600 14px/1.2 var(--sans); white-space: nowrap; line-height: 1.2; opacity: 0; pointer-events: none; transition: opacity .15s ease;
 }
-.hot:hover::after, .hot:focus-visible::after { opacity: 1; }
+.hot:hover::after, .hot:focus-visible::after, .hot.ativa::after { opacity: 1; }
 .cm-painel {
   padding: 24px 26px 22px; border-radius: 20px; color: #FAF8F3;
   background: radial-gradient(90% 60% at 100% 0%, rgba(242, 217, 160, .28), rgba(242, 217, 160, 0) 70%), linear-gradient(160deg, #2D3C66 0%, var(--navy) 55%, #141C30 100%);
