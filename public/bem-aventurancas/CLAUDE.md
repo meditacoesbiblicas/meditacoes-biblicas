@@ -75,6 +75,12 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. Sem Ja
 - Este arquivo (`CLAUDE.md`) não vai para o site público: o `angular.json` do repositório o ignora na publicação.
 - A entrada na lista da home está em `src/app/data/meditations.ts` (id `bem-aventurancas`, campo `url`). Entradas com `url` abrem a página estática em vez do leitor de markdown.
 
+## Cópia offline (para usar sem internet)
+
+- Pasta `~/BemAventurancas-offline/` (fora do iCloud de propósito, para o iCloud não descarregar os arquivos sem internet). Abre com dois cliques em `index.html`. Gerada por `scripts/atualizar-offline.py` a partir desta pasta (`public/bem-aventurancas/`).
+- **Regra do dono: toda vez que o estudo for atualizado, a cópia offline também.** Um hook `post-commit` (e `post-merge`) em `.git/hooks/` roda o script a cada commit; mesmo assim, **depois de qualquer alteração, rode `python3 scripts/atualizar-offline.py`** se o hook não tiver rodado (hooks não vão no git: em outra máquina, recrie).
+- A cópia muda só: fontes locais (`fonts/`), sem contador de visitas, barra do site com "Meditações" → `index.html` e "Quem sou eu"/"Sobre" apontando para a internet; sem `CLAUDE.md`. Não edite a pasta offline à mão: ela é sobrescrita.
+
 ## QR Code
 
 - **Cartão no mapa:** no canto superior direito do `index.html` há um cartão (`.qr-card`, no estilo dos outros cartões) com o QR em miniatura. Ele leva ao `qr.html`. No celular o cartão vem abaixo do texto de abertura.
