@@ -61,6 +61,10 @@ a:focus-visible { outline: 3px solid var(--blue-tx); outline-offset: 3px; }
 }
 .top p { margin: 0; color: var(--muted); max-width: 720px; }
 
+/* número da bem-aventurança (a "porta" da ilustração do caminho: 1 a 8) */
+.no { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 50%; background: var(--navy); color: var(--gold); font: 600 13px/1 var(--serif); letter-spacing: 0; vertical-align: middle; }
+.verse .no { background: var(--gold); color: var(--navy); }
+
 /* ---------- etiquetas (legenda e anotações) ---------- */
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
 .chip {
@@ -300,6 +304,55 @@ mark { padding: 0 .12em; border-radius: 3px; background: var(--gold); color: var
 .qr-card .t { font: 600 19px/1.15 var(--serif); }
 .qr-card .s { font: 400 13.5px/1.3 var(--sans); color: var(--muted); }
 
+/* ---------- cartão da ilustração "o caminho e as portas" (canto do mapa, acima do QR) ---------- */
+.top-lado { display: flex; flex-direction: row; align-items: stretch; gap: 14px; }
+.caminho-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  width: 188px; padding: 10px 10px 12px; text-align: center;
+  background: #fff; border: 1.5px solid var(--navy); border-radius: 14px;
+  text-decoration: none; color: var(--navy);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.caminho-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(31, 42, 68, .16); }
+.caminho-card img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; }
+.caminho-card .txt { display: grid; gap: 3px; }
+.caminho-card .t { font: 600 17px/1.15 var(--serif); }
+.caminho-card .s { font: 400 13px/1.3 var(--sans); color: var(--muted); }
+
+/* ---------- página da ilustração em tela cheia ---------- */
+/* Mesma ideia do qr.html: a imagem é posicionada de forma absoluta na área livre entre a barra e a legenda. */
+body.caminho {
+  margin: 0; height: 100vh; height: 100dvh; overflow: hidden; background: #FAF0DD;
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+}
+body.caminho .cm-quadro { position: relative; min-height: 0; margin: 0; }
+/* A moldura tem a proporção da imagem (3:2) e fica centralizada; nas telas mais largas as bordas esmaecem para o fundo creme, sem corte seco. */
+body.caminho .cm-moldura {
+  position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 3 / 2; max-width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+}
+body.caminho .cm-img { display: block; width: 100%; height: 100%; object-fit: contain; }
+body.caminho .cm-legenda {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 28px;
+  padding: 10px 28px 12px; background: var(--navy); color: #FAF8F3;
+}
+body.caminho .cm-titulo { display: grid; gap: 1px; }
+body.caminho .cm-titulo strong { font: 600 20px/1.15 var(--serif); }
+body.caminho .cm-titulo span { font: 400 14px/1.3 var(--sans); color: #D9D4C7; }
+body.caminho .cm-portas { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 520px; justify-content: center; margin: 0; padding: 0; list-style: none; }
+body.caminho .cm-portas a {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 5px; border-radius: 999px;
+  border: 1px solid rgba(242, 217, 160, .5); background: rgba(255, 255, 255, .08);
+  font: 600 13.5px/1.2 var(--sans); color: #FAF8F3; text-decoration: none;
+}
+body.caminho .cm-portas a:hover, body.caminho .cm-portas a:focus-visible { background: rgba(242, 217, 160, .22); outline: none; }
+body.caminho .cm-portas b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--gold); color: var(--navy); font: 600 13px/1 var(--serif); }
+body.caminho .cm-acoes { display: grid; gap: 3px; justify-items: end; }
+body.caminho .cm-ir { padding: 8px 18px; border-radius: 999px; background: var(--gold); color: var(--navy); font: 600 15px/1.2 var(--sans); text-decoration: none; white-space: nowrap; }
+body.caminho .cm-ir:hover { filter: brightness(1.05); }
+body.caminho .cm-credito { font: 400 12px/1.2 var(--sans); color: #B9B3A4; }
+
 /* ---------- página do QR Code em tela cheia ---------- */
 /* O QR é posicionado de forma absoluta dentro da área livre (entre a barra e a legenda), assim ele
    se ajusta à altura real da janela em qualquer navegador (inclusive Safari), sem rolagem. */
@@ -319,6 +372,15 @@ body.qr .qr-legenda span { font: 400 clamp(12px, 1.8vmin, 20px)/1.3 var(--sans);
   body { font-size: 17px; }
   .site-bar-inner { padding: 0 18px; }
   .top-mapa { grid-template-columns: 1fr; }
+  .top-lado { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .caminho-card { flex-direction: row; width: auto; max-width: 380px; gap: 14px; padding: 10px 16px 10px 10px; text-align: left; }
+  .caminho-card img { width: 96px; flex: none; }
+  body.caminho { height: auto; overflow: visible; display: block; }
+  body.caminho .cm-quadro { aspect-ratio: 3 / 2; }
+  body.caminho .cm-moldura { left: 0; transform: none; width: 100%; -webkit-mask-image: none; mask-image: none; }
+  body.caminho .cm-legenda { padding: 14px 18px 18px; }
+  body.caminho .cm-portas { justify-content: flex-start; }
+  body.caminho .cm-acoes { justify-items: start; }
   .qr-card { flex-direction: row; width: auto; max-width: 380px; gap: 14px; padding: 10px 16px 10px 10px; text-align: left; }
   .qr-card img { width: 72px; height: 72px; margin: 0; flex: none; }
   .wrap { padding: 28px 18px 64px; }
