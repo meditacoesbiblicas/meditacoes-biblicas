@@ -345,8 +345,8 @@ body.caminho { background: var(--bg); }
 .cm-figura figcaption { margin: 8px 4px 0; font: 400 12.5px/1.4 var(--sans); color: var(--muted); }
 .cm-figura figcaption a { color: var(--navy); }
 /* cada porta da ilustração é um link: ao pousar o mouse (ou focar), ela acende e mostra o nome */
-.hot { position: absolute; z-index: 1; border-radius: 42% 42% 4px 4px / 28% 28% 4px 4px; transition: background .15s ease, box-shadow .15s ease; }
-.hot:hover, .hot:focus-visible { z-index: 3; outline: none; background: rgba(242, 217, 160, .22); box-shadow: 0 0 0 3px var(--gold), 0 0 26px rgba(242, 217, 160, .85); }
+.hot { position: absolute; z-index: 1; border-radius: 50% 50% 4px 4px / var(--rv, 30%) var(--rv, 30%) 4px 4px; transition: background .15s ease, box-shadow .15s ease; }
+.hot:hover, .hot:focus-visible { z-index: 3; outline: none; background: rgba(242, 217, 160, .2); box-shadow: 0 0 0 3px var(--gold), 0 0 22px rgba(242, 217, 160, .8); }
 .hot::after {
   content: attr(data-nome); position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -8px);
   padding: 6px 14px; border-radius: 999px; background: var(--navy); color: #FAF8F3; box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
@@ -354,17 +354,17 @@ body.caminho { background: var(--bg); }
 }
 .hot:hover::after, .hot:focus-visible::after { opacity: 1; }
 .cm-painel {
-  padding: 30px 28px 28px; border-radius: 20px; color: #FAF8F3;
+  padding: 24px 26px 22px; border-radius: 20px; color: #FAF8F3;
   background: radial-gradient(90% 60% at 100% 0%, rgba(242, 217, 160, .28), rgba(242, 217, 160, 0) 70%), linear-gradient(160deg, #2D3C66 0%, var(--navy) 55%, #141C30 100%);
   box-shadow: 0 10px 30px rgba(31, 42, 68, .22);
 }
 .cm-kicker { margin: 0 0 8px; font: 600 12px/16px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
 .cm-painel h1 { margin: 0 0 8px; font: 600 clamp(30px, 3vw, 40px)/1.1 var(--serif); }
-.cm-sub { margin: 0 0 18px; font-size: 17px; line-height: 1.45; color: #D9D4C7; }
-.cm-portas { display: grid; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; }
+.cm-sub { margin: 0 0 14px; font-size: 17px; line-height: 1.45; color: #D9D4C7; }
+.cm-portas { display: grid; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
 .cm-portas a {
   display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 14px; align-items: center;
-  padding: 7px 14px 7px 9px; border-radius: 14px; text-decoration: none; color: #FAF8F3;
+  padding: 6px 14px 6px 8px; border-radius: 14px; text-decoration: none; color: #FAF8F3;
   border: 1px solid rgba(242, 217, 160, .38); background: rgba(255, 255, 255, .07);
   transition: background .12s ease, transform .12s ease;
 }
@@ -539,3 +539,17 @@ body.qr .qr-legenda span { font: 400 clamp(12px, 1.8vmin, 20px)/1.3 var(--sans);
 .cap .faixa .vs { font: 600 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase; }
 .cap .faixa .tt { font: 600 18px/1.2 var(--serif); }
 .cap .faixa .ds { flex: 1 1 260px; font-size: 15px; }
+
+/* QR Code pequeno (clica e abre em tela cheia): no cartão das bem-aventuranças da página inicial e na página do caminho */
+.qr-mini { display: grid; justify-items: center; gap: 2px; width: 78px; padding: 6px 6px 4px; border-radius: 10px; background: #fff; color: var(--navy); text-decoration: none; text-align: center; font: 600 11px/1.2 var(--sans); transition: transform .12s ease; }
+.qr-mini img { display: block; width: 64px; height: 64px; }
+.qr-mini:hover, .qr-mini:focus-visible { transform: translateY(-2px); }
+.destaque { position: relative; }
+.destaque > .qr-mini { position: absolute; right: 22px; bottom: 22px; box-shadow: 0 4px 14px rgba(0, 0, 0, .3); }
+.cm-qr { display: flex; align-items: center; gap: 12px; margin-top: 12px; color: #D9D4C7; text-decoration: none; font: 400 14px/1.35 var(--sans); }
+.cm-qr .qr-mini { flex: none; width: 62px; padding: 4px; }
+.cm-qr .qr-mini img { width: 54px; height: 54px; }
+.cm-qr .qr-mini span { display: none; }
+.cm-qr b { color: #FAF8F3; }
+.cm-qr:hover .qr-mini, .cm-qr:focus-visible .qr-mini { transform: translateY(-2px); }
+@media (max-width: 980px) { .destaque > .qr-mini { position: static; justify-self: start; box-shadow: none; } }
