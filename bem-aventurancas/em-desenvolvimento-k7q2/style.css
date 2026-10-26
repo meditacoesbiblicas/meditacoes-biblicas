@@ -662,3 +662,30 @@ body.ampliada .am-sermao:hover, body.ampliada .am-sermao:focus-visible { backgro
 html.entrando body::after { content: ""; position: fixed; inset: 0; z-index: 100000; pointer-events: none; background: radial-gradient(circle at 50% 50%, #ffffff 0%, #FFF1C9 48%, #F5D58A 100%); animation: luz-sai 1.3s cubic-bezier(.3, .1, .2, 1) forwards; }
 @keyframes luz-sai { 0% { opacity: 1; } 30% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) { html.entrando body::after { display: none; } .porta-cena { display: none; } }
+
+/* ---------- conclusão: títulos sem número (para não se confundir com as portas 1 a 8) ---------- */
+.cc-sec h2 { padding-left: 16px; border-left: 6px solid #D9A93D; }
+
+/* ---------- convite para a conclusão, no fim da porta 8 ---------- */
+.cc-convite { position: relative; display: grid; grid-template-columns: minmax(180px, 280px) minmax(0, 1fr); gap: 34px; align-items: center; margin: 64px 0 0; padding: clamp(26px, 4vw, 46px); border-radius: 24px; color: #FAF8F3; overflow: hidden;
+  background: radial-gradient(80% 140% at 0% 50%, rgba(242, 217, 160, .38), rgba(242, 217, 160, 0) 62%), linear-gradient(135deg, #2D3C66 0%, var(--navy) 55%, #141C30 100%);
+  box-shadow: 0 14px 36px rgba(31, 42, 68, .3); border: 1.5px solid rgba(242, 217, 160, .55); }
+.cc-conv-sinal { display: flex; align-items: center; justify-content: center; gap: 4px; color: var(--gold); font: 500 clamp(120px, 14vw, 190px)/0.8 var(--serif); }
+.cc-conv-sinal .p { text-shadow: 0 0 30px rgba(242, 217, 160, .6); }
+.cc-conv-sinal .pts { display: grid; grid-template-columns: repeat(3, 14px); gap: 12px; }
+.cc-conv-sinal .pts i { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #fff 0, var(--gold) 60%, #D9A93D 100%); box-shadow: 0 0 14px rgba(242, 217, 160, .8); animation: cc-pulsa 2.6s ease-in-out infinite; }
+.cc-conv-sinal .pts i:nth-child(2n) { animation-delay: .5s; }
+.cc-conv-sinal .pts i:nth-child(3n) { animation-delay: 1s; }
+@keyframes cc-pulsa { 0%, 100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
+.cc-conv-kicker { margin: 0 0 8px; font: 600 12px/16px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.cc-convite h2 { margin: 0 0 10px; font: 600 clamp(28px, 3.6vw, 44px)/1.1 var(--serif); }
+.cc-convite p { margin: 0; max-width: 58ch; font-size: 18px; line-height: 1.55; color: #D9D4C7; }
+.cc-convite .cc-conv-kicker { color: var(--gold); }
+.cc-conv-botao { display: inline-block; margin-top: 22px; padding: 16px 32px; border-radius: 999px; background: var(--gold); color: var(--navy); text-decoration: none; font: 600 19px/1.2 var(--sans); box-shadow: 0 8px 22px rgba(0, 0, 0, .3); transition: transform .12s ease; }
+.cc-conv-botao:hover, .cc-conv-botao:focus-visible { transform: translateY(-2px); }
+.cc-convite + .volta-imagem { margin-top: 28px; }
+@media (prefers-reduced-motion: reduce) { .cc-conv-sinal .pts i { animation: none; } }
+@media (max-width: 980px) { .cc-convite { grid-template-columns: 1fr; gap: 14px; text-align: left; } .cc-conv-sinal { justify-content: flex-start; font-size: 110px; } }
+
+/* o QR pequeno do cartão não pode cobrir o texto */
+@media (min-width: 981px) { .destaque .corpo { padding-right: 96px; } }
