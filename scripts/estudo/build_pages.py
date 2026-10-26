@@ -168,8 +168,16 @@ VOLTA = '''<div class="volta-imagem">
 
 
 # fim da porta 8: leva à conclusão de todas as bem-aventuranças (só quem chegou até aqui a lê) e à imagem
-FINAL8 = '''<div class="volta-imagem fim">
-  <a class="botao-conclusao" href="conclusao.html">Ver a conclusão das bem-aventuranças →</a>
+FINAL8 = '''<aside class="cc-convite" aria-labelledby="cc-conv-t">
+  <div class="cc-conv-sinal" aria-hidden="true"><span class="p">(</span><span class="pts"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="p">)</span></div>
+  <div class="cc-conv-texto">
+    <p class="cc-conv-kicker">Você chegou à última porta</p>
+    <h2 id="cc-conv-t">Conclusão das bem-aventuranças</h2>
+    <p>Olhe para as oito de uma vez: a moldura que a primeira e a última formam, o que cresce entre elas e o que cada ponta tem de oposto.</p>
+    <a class="cc-conv-botao" href="conclusao.html">Ler a conclusão →</a>
+  </div>
+</aside>
+<div class="volta-imagem fim">
   <a class="botao-volta" id="volta-imagem" href="caminho-ampliado.html">← Voltar à imagem das portas</a>
 </div>'''
 
@@ -546,7 +554,7 @@ def conclusao():
 </header>
 
 <section class="cc-sec" aria-labelledby="cc-moldura">
-  <h2 id="cc-moldura"><span class="cc-num">1</span> A moldura: dois parênteses</h2>
+  <h2 id="cc-moldura">A moldura: dois parênteses</h2>
   <p class="cc-intro">A primeira e a última bem-aventurança têm a <b>mesma promessa</b>, e no presente: “deles é o Reino dos céus”. Elas abrem e fecham a lista, e as seis do meio ficam dentro desses parênteses.</p>
   <div class="moldura">
     <a class="paren esq" href="v03.html#v3"><span class="num">1</span><b>Pobres em espírito</b><span class="prom">“deles é o Reino dos céus”</span><span class="quando">já no presente</span></a>
@@ -561,32 +569,20 @@ def conclusao():
 </section>
 
 <section class="cc-sec" aria-labelledby="cc-dentro">
-  <h2 id="cc-dentro"><span class="cc-num">2</span> Dentro dos parênteses: tudo nasce da humildade</h2>
-  <p class="cc-intro">Quem é pobre de espírito (porta 1) chora pelo pecado (2), é manso (3), tem fome e sede de justiça (4), é misericordioso (5), é puro de coração (6) e é pacificador (7). Cada uma leva à seguinte.</p>
+  <h2 id="cc-dentro">Dentro dos parênteses: uma progressão</h2>
+  <p class="cc-intro">Quem é pobre de espírito (porta 1) reconhece a sua necessidade, e isso o leva a chorar pelo pecado (porta 2). Ver o pecado e querer ser livre dele leva a aprender a ser manso (porta 3), e assim por diante: uma coisa leva à outra, e a pessoa vai crescendo.</p>
   <article class="note purple cc-cartao">
     <span class="tag">Ellen White</span>
     <h3>O Maior Discurso de Cristo, p. 13.2</h3>
-    <blockquote class="text"><p>Há, através das bem-aventuranças, <mark>uma progressão na experiência cristã</mark>. Os que sentiram sua necessidade de Cristo, os que choraram por causa do pecado, e se sentaram com Cristo na escola da aflição, hão de, com o divino Mestre, aprender a ser mansos.</p></blockquote>
+    <blockquote class="text"><p>Há, através das bem-aventuranças, <mark>uma progressão na experiência cristã</mark>. Os que sentiram sua necessidade de Cristo, os que choraram por causa do pecado, e se sentaram com Cristo na escola da aflição, hão de, com o divino Mestre, <mark>aprender a ser mansos</mark>.</p></blockquote>
     <a class="full" href="https://m.egwwritings.org/pt/book/1956.106" target="_blank" rel="noopener">Abrir o trecho no site do Ellen G. White ↗</a>
   </article>
-  <p class="cc-intro">E o perseguido (porta 8) precisa da humildade e de todas as outras para suportar. A humildade, no fim, termina em perseguição: quem vive assim é o que o mundo aborrece. Duas ligações se repetem pelo caminho: o que se dá, volta (porta 5, misericordiosos); e depois de ser pacificador e chamado filho de Deus, vem a perseguição, como aconteceu com Abel (portas 7 e 8).</p>
-</section>
-
-<section class="cc-sec" aria-labelledby="cc-tempo">
-  <h2 id="cc-tempo"><span class="cc-num">3</span> Presente e futuro</h2>
-  <p class="cc-intro">Repare nos verbos: na porta 1 e na porta 8 o Reino “é” deles, no presente. Nas seis do meio, os verbos estão no futuro: serão consolados, herdarão, serão fartos, alcançarão, verão, serão chamados.</p>
-  <div class="cc-tabela-caixa">
-    <table class="cc-tabela">
-      <thead><tr><th>Porta</th><th>Bem-aventurança</th><th>A promessa</th><th>Quando</th></tr></thead>
-      <tbody>
-@@LINHAS@@
-      </tbody>
-    </table>
-  </div>
+  <p class="cc-intro">Repare no verbo: “hão de aprender”. Não é automático. É uma escola, em que se aprende aos poucos, e a pessoa pode cair, voltar ao caminho e aprender só em parte. Pelo caminho há quem ajude: os misericordiosos (porta 5) levantam quem caiu, e os pacificadores (porta 7) reconciliam. As promessas das seis do meio estão no futuro, e quem passa por elas não desiste: continua até alcançá-las.</p>
+  <p class="cc-intro">E o perseguido (porta 8) precisa da humildade e de todas as outras para suportar. A humildade, no fim, termina em perseguição.</p>
 </section>
 
 <section class="cc-sec" aria-labelledby="cc-laodiceia">
-  <h2 id="cc-laodiceia"><span class="cc-num">4</span> O oposto de cada ponta: Laodiceia</h2>
+  <h2 id="cc-laodiceia">O oposto de cada ponta: Laodiceia</h2>
   <p class="cc-intro">A carta à igreja de Laodiceia mostra o contrário das duas portas que fecham a moldura.</p>
   <div class="cc-par">
     <article class="note orange cc-cartao">
@@ -610,7 +606,7 @@ def conclusao():
   <article class="note gray">
     <span class="tag">Conclusão</span>
     <h3 id="cc-fim">Um só caminho, oito portas</h3>
-    <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Entre as duas, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
+    <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Passando por todas elas, da primeira à oitava, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
     <p class="obs">E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”.</p>
   </article>
   <div class="volta-imagem fim">
@@ -1046,7 +1042,7 @@ HUB = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
     <h3 id="fecho">De fora para dentro</h3>
     <p>Os escribas e fariseus cuidavam da aparência: obras para serem vistos, palavras sem prática, sepulcros caiados por fora. Jesus pede a justiça que começa onde só Deus vê, e que ninguém produz sozinho: ela é dada por Deus a quem tem fome e sede dela.</p>
     <p class="obs">É por isso que as bem-aventuranças vêm primeiro: o pobre de espírito reconhece que precisa dela, e a recebe.</p>
-    <p class="obs">Para fechar a mensagem: <a href="caminho.html">rever o caminho e as portas</a>. Para ver o sermão inteiro: <a href="index.html">mapa do Sermão do Monte</a>.</p>
+    <p class="obs">Para fechar a mensagem: <a href="caminho-ampliado.html">rever o caminho e as portas</a>. Para ver o sermão inteiro: <a href="index.html">mapa do Sermão do Monte</a>.</p>
   </article>
 </section>
 

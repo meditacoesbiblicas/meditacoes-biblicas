@@ -100,17 +100,14 @@ html = '''<!doctype html>
 
     <h3 class="grupo">As bem-aventuranças <small>Mateus 5:3–12</small></h3>
     <article class="destaque">
-      <a class="foto" href="caminho.html" aria-label="O caminho e as portas: abrir a ilustração">
+      <a class="foto" href="caminho-ampliado.html" aria-label="O caminho e as portas: abrir a ilustração">
         <img src="caminho-mini.jpg" alt="Ilustração: o caminho estreito com as oito portas e, no alto, o juízo" width="320" height="213">
       </a>
       <div class="corpo">
         <span class="topo"><span class="vs">Mateus 5:3–12</span><span class="st ok">Pronto</span></span>
         <h4>As bem-aventuranças: oito portas no caminho</h4>
-        <p>Cada bem-aventurança é uma porta do caminho cristão, que é um só. Abra a ilustração e entre por cada porta: cada uma tem a sua página, com versículos e explicação. É para a ilustração que o QR Code aponta.</p>
-        <ol class="portas" aria-label="As oito portas">
-''' + dots + '''
-        </ol>
-        <p class="acoes"><a class="botao" href="caminho.html">Abrir o caminho e as portas →</a></p>
+        <p>Cada bem-aventurança é uma porta do caminho cristão, que é um só. Abra a ilustração, escolha uma porta e abra-a: cada uma leva à sua página, com versículos e explicação. É para essa ilustração que o QR Code aponta.</p>
+        <p class="acoes"><a class="botao" href="caminho-ampliado.html">Abrir a ilustração e entrar pelas portas →</a></p>
       </div>
       <a class="qr-mini" href="qr.html" title="Ampliar o QR Code em tela cheia" aria-label="Abrir o QR Code em tela cheia"><img src="qr.svg" alt="" width="64" height="64"><span>QR Code</span></a>
     </article>
