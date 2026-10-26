@@ -39,7 +39,7 @@ def pixel(arq):
 
 def crumbs(atual):
     li = []
-    for arq, rot in PAGINAS:
+    for arq, rot in PAGINAS + [('conclusao.html', 'Conclusão')]:
         cur = ' aria-current="page"' if arq == atual else ''
         li.append('    <li><a href="%s"%s>%s</a></li>' % (arq, cur, rot))
     for i, (arq, rot) in enumerate(DEPOIS):
@@ -47,7 +47,7 @@ def crumbs(atual):
         cls = ' class="after"' if i == 0 else ''
         li.append('    <li%s><a href="%s"%s>%s</a></li>' % (cls, arq, cur, rot))
     voltar = '<a class="back" href="index.html">← Sermão do Monte</a>'
-    if atual in [a for a, _ in PAGINAS]:
+    if atual in [a for a, _ in PAGINAS] + [('conclusao.html', '')]:
         # nas páginas das bem-aventuranças, o 2º botão volta para a ilustração de onde o leitor veio (ampliada ou página do caminho); o script abaixo troca o destino
         voltar += '\n    <a class="back" id="voltar-origem" href="caminho-ampliado.html">← A ilustração das portas</a>'
     return ('<nav class="crumbs" aria-label="Navegação">\n  <div class="voltares">\n    ' + voltar + '\n  </div>\n  <ul class="pages">\n'
@@ -162,6 +162,13 @@ VOLTA = '''<div class="volta-imagem">
 </div>'''
 
 
+# fim da porta 8: leva à conclusão de todas as bem-aventuranças (só quem chegou até aqui a lê) e à imagem
+FINAL8 = '''<div class="volta-imagem fim">
+  <a class="botao-conclusao" href="conclusao.html">Ver a conclusão das bem-aventuranças →</a>
+  <a class="botao-volta" id="volta-imagem" href="caminho-ampliado.html">← Voltar à imagem das portas</a>
+</div>'''
+
+
 def bible(*paras):
     if len(paras) == 1:
         return '<blockquote class="bible"><p>%s</p></blockquote>' % paras[0]
@@ -214,7 +221,7 @@ v3 = grupo('v3', 'Mateus 5:3', 'Pobres em espírito',
          corpo=bq('não um principiante, para que, <mark>envaidecendo-se com orgulho</mark>, não caia na condenação do diabo.'),
          link=bkj('1tm/3/6')),
     card('gray', 'Conclusão', 'Pobre de espírito: quem reconhece a sua necessidade',
-         extra_p=['A ARA traduz “humildes de espírito”. Quem se humilha diante de Deus é exaltado por Ele (Tg 4:10), e Deus habita com o contrito (Is 57:15). O contrário é o orgulho (Pv 16:18) e a igreja de Laodiceia, que se achava rica e sem falta de nada (Ap 3:17).'],
+         extra_p=['A versão Almeida Revista e Atualizada (ARA) traduz “humildes de espírito”. Quem se humilha diante de Deus é exaltado por Ele (Tg 4:10), e Deus habita com o contrito (Is 57:15). O contrário é o orgulho (Pv 16:18) e a igreja de Laodiceia, que se achava rica e sem falta de nada (Ap 3:17).'],
          obs='E repare no tempo do verbo: “deles é o Reino” está no presente. A mesma promessa fecha a lista na <a href="v10-12.html#v10">porta 8</a>.'),
     ])
 pagina('v03.html', 'Mateus 5:3 · Pobres em espírito — Sermão do Monte', 'Mateus 5:3 · porta 1', 'Pobres em espírito', None, [v3],
@@ -373,23 +380,41 @@ v8 = grupo('v8', 'Mateus 5:8', 'Puros de coração',
          corpo=bq(n('3', 'Quem subirá ao monte do Senhor ou quem estará no seu lugar santo?'),
                   n('4', 'Aquele que é <mark>limpo de mãos e puro de coração</mark>, que não entrega a sua alma à vaidade, nem jura enganosamente.')),
          link=arc('sl/24/3')),
-    card('blue', 'Paralelo', '1 Pedro 1:22',
-         corpo=bq('<mark>Purificando a vossa alma</mark> na obediência à verdade… amai-vos ardentemente uns aos outros, <mark>com um coração puro</mark>;'),
-         link=arc('1pe/1/22')),
     card('blue', 'Paralelo', 'Salmos 15:1,2',
          antes='O Salmo 15 pergunta quem pode habitar na presença de Deus (uma imagem de quem será salvo). A resposta começa no coração: quem anda em sinceridade e fala a verdade “segundo o seu coração”.',
          corpo=bq(n('1', 'Senhor, quem <mark>habitará no teu tabernáculo</mark>? Quem <mark>morará no teu santo monte</mark>?'),
                   n('2', 'Aquele que <mark>anda em sinceridade</mark>, e pratica a justiça, e fala verazmente <mark>segundo o seu coração</mark>;')),
          link=arc('sl/15/1')),
+    card('purple', 'Ellen White', 'O Maior Discurso de Cristo, p. 25.1',
+         corpo=bq('…não somente puros no sentido em que o mundo entende a pureza, livres do que é sensual, puros de concupiscências, mas <mark>fiéis nos íntimos desígnios e motivos da alma, isentos de orgulho e de interesse egoísta</mark>, humildes, abnegados, semelhantes a uma criança.'),
+         obs='Sobre as palavras de Jesus “bem-aventurados os limpos de coração”.',
+         link=egw('1956.166')),
     ('sub', 'A esperança de ver a Deus'),
     card('blue', 'Paralelo', '1 João 3:1–3',
          antes='Quem espera ver a Cristo como Ele é começa, desde agora, a se purificar.',
          corpo=bq(n('2', '…porque assim como é <mark>o veremos</mark>.'),
                   n('3', 'E qualquer que nele tem esta esperança <mark>purifica-se a si mesmo, como também ele é puro</mark>.')),
          link=arc('1jo/3/1')),
-    ('sub', 'O oposto: o coração que quis o lugar de Deus'),
+    card('purple', 'Ellen White', 'O Maior Discurso de Cristo, p. 24.3',
+         corpo=bq('Jesus não menciona essa pureza cerimonial como uma das condições de entrar em Seu reino, mas indica a necessidade da pureza de coração… Na cidade de Deus não entrará coisa alguma que contamine. <mark>Todos quantos houverem de ser seus moradores, hão de se ter tornado aqui puros de coração.</mark>'),
+         link=egw('1956.163')),
+    ('sub', 'O oposto: limpo por fora, contaminado por dentro'),
+    card('orange', 'Contraste', 'Mateus 23:25,26',
+         antes='O contrário do coração limpo não é só o que é sensual: é também quem cuida do que aparece e deixa o interior sujo. Jesus disse isto aos fariseus.',
+         corpo=bq(n('25', 'Ai de vós, escribas e fariseus, hipócritas! Pois que <mark>limpais o exterior do copo e do prato</mark>, mas <mark>o interior está cheio de rapina e de iniquidade</mark>.'),
+                  n('26', 'Fariseu cego! <mark>Limpa primeiro o interior</mark> do copo e do prato, para que também o exterior fique limpo.')),
+         link=arc('mt/23/25')),
+    card('purple', 'Ellen White', 'O Maior Discurso de Cristo, p. 24.2',
+         corpo=bq('Tinham o espírito preocupado com regras e restrições e o temor de contaminação exterior, e <mark>não percebiam a mancha que o egoísmo e a malícia comunicavam à alma</mark>.'),
+         obs='Sobre os judeus no tempo de Jesus, que cuidavam da limpeza cerimonial.',
+         link=egw('1956.162')),
+    card('orange', 'Contraste', 'Tiago 4:8',
+         antes='“Duplo ânimo” é o coração dividido, que quer Deus e quer o pecado ao mesmo tempo. Tiago manda purificar o coração.',
+         corpo=bq('Chegai-vos a Deus, e ele se chegará a vós. Limpai as mãos, pecadores; e, vós de <mark>duplo ânimo</mark>, <mark>purificai o coração</mark>.'),
+         link=arc('tg/4/8')),
+    ('sub', 'A raiz: o orgulho que quis o lugar de Deus'),
     card('orange', 'Contraste', 'Isaías 14:13,14',
-         antes='Este é o coração que quis tomar o lugar de Deus. Quando diz “serei semelhante ao Altíssimo”, não quer imitar a Deus como modelo: quer usurpar, tomar à força, a honra que pertence só a Ele. É o oposto do coração limpo.',
+         antes='Este é o coração que quis tomar o lugar de Deus. Quando diz “serei semelhante ao Altíssimo”, não quer imitar a Deus como modelo: quer usurpar, tomar à força, a honra que pertence só a Ele. É a raiz do orgulho, do qual o coração limpo é livre.',
          corpo=bq(n('13', 'E tu dizias <mark>no teu coração</mark>: Eu subirei ao céu, e, acima das estrelas de Deus, <mark>exaltarei o meu trono</mark>,'),
                   n('14', '…e <mark>serei semelhante ao Altíssimo</mark>.')),
          link=arc('is/14/13')),
@@ -398,7 +423,8 @@ v8 = grupo('v8', 'Mateus 5:8', 'Puros de coração',
          obs='Sobre Lúcifer. O próprio parágrafo cita Isaías 14:13,14.',
          link=egw('1815.78')),
     card('gray', 'Conclusão', 'A pureza vem de dentro',
-         extra_p=['O Salmo 24:3,4 diz que sobe ao monte do Senhor quem é “limpo de mãos e puro de coração”, e o Salmo 15 confirma que a resposta começa no coração: quem anda em sinceridade e fala a verdade “segundo o seu coração” (v.2). A pureza vai de dentro para fora; não basta parecer certo por fora.']),
+         extra_p=['Ser limpo de coração é ser fiel nos motivos da alma, sem orgulho e sem interesse egoísta (MDC 25.1). Sobe ao monte do Senhor quem é “limpo de mãos e puro de coração” (Sl 24:3,4), e quem espera ver a Cristo se purifica desde agora (1Jo 3:3).',
+                  'O oposto não é só o sensual: é o limpo por fora e contaminado por dentro (Mt 23:25,26), o de duplo ânimo (Tg 4:8) e, na raiz, o orgulho que quer o lugar de Deus (Is 14:13,14). A pureza vai de dentro para fora; não basta parecer certo por fora.']),
     ])
 pagina('v08.html', 'Mateus 5:8 · Puros de coração — Sermão do Monte', 'Mateus 5:8 · porta 6', 'Puros de coração', None, [v8],
        pager(('v07.html', '← Anterior', 'Porta 5 · Misericordiosos'), ('v09.html', 'Próxima →', 'Porta 7 · Pacificadores')), final=VOLTA)
@@ -472,16 +498,133 @@ v10 = grupo('v10', 'Mateus 5:10–12', 'Perseguidos',
          antes='Há o sofrimento que vem de fazer o mal e o que vem de fazer a vontade de Deus. Só o segundo é a perseguição bem-aventurada (v.16).',
          corpo=bq('Mas que nenhum de vós padeça <mark>como homicida, ou como ladrão, ou como malfeitor</mark>…'),
          link=bkj('1pe/4/15')),
-    card('gray', 'Conclusão', 'Uma só bem-aventurança',
-         extra_p=['A perseguição aparece três vezes seguidas (v.10, 11 e 12). Não são três bem-aventuranças, é uma só, repetida para dar ênfase: não é fácil fazer o certo e ser perseguido, e a repetição sustenta quem passa por isso.']),
-    card('gray', 'Conclusão', 'A moldura: o v.3 e o v.10 como parênteses',
-         extra_p=['A primeira e a última bem-aventurança abrem e fecham a lista como parênteses, com a mesma promessa e no presente: “deles é o Reino dos céus” (<a href="v03.html#v3">porta 1</a> e porta 8).',
-                  'Dentro dos parênteses fica tudo o que nasce da humildade: quem é pobre de espírito chora pelo pecado, é manso, tem fome e sede de justiça, é misericordioso, é puro de coração e é pacificador. O perseguido do v.10 precisa da humildade e de todas essas, e a humildade, no fim, termina em perseguição.',
-                  'As seis do meio são promessas para o futuro: serão consolados, herdarão a terra, serão fartos, alcançarão misericórdia, verão a Deus e serão chamados filhos de Deus.'],
-         obs='A porta 1 tem o seu oposto em Ap 3:17 (quem se acha rico), e a porta 8 tem o seu em Ap 3:16 (o morno).'),
+    card('gray', 'Conclusão', 'Uma só bem-aventurança, em três passos',
+         extra_p=['Jesus repete a perseguição três vezes seguidas (v.10, 11 e 12), mas não são três bem-aventuranças: é uma só, que vai se completando.',
+                  'No v.10 vem a causa: ser perseguido “por causa da justiça”. No v.11, como isso acontece: injúrias, perseguição e mentiras, “por minha causa”. No v.12, o que fazer e o que esperar: exultar e se alegrar, porque é grande o galardão nos céus e os profetas também foram perseguidos.',
+                  'Quem ouve já sabe, desde o início, que isso pode acontecer, e sabe também por que vale a pena.']),
     ])
 pagina('v10-12.html', 'Mateus 5:10–12 · Perseguidos — Sermão do Monte', 'Mateus 5:10–12 · porta 8', 'Perseguidos por causa da justiça', 'O v.10 é a bem-aventurança; os v.11–12 a ampliam.', [v10],
-       pager(('v09.html', '← Anterior', 'Porta 7 · Pacificadores'), ('v13-15.html', 'Próxima →', 'Sal e luz · v.13–16')), final=VOLTA)
+       pager(('v09.html', '← Anterior', 'Porta 7 · Pacificadores'), ('conclusao.html', 'Próxima →', 'Conclusão das bem-aventuranças')), final=FINAL8)
+
+# =====================================================================================
+# conclusao.html — conclusão de TODAS as bem-aventuranças (página própria, largura total; só quem chegou à porta 8 chega aqui)
+# =====================================================================================
+def conclusao():
+    TAB = [
+        ('1', 'Pobres em espírito', 'v03.html#v3', 'deles é o Reino dos céus', 'presente'),
+        ('2', 'Os que choram', 'v04.html#v4', 'serão consolados', 'futuro'),
+        ('3', 'Mansos', 'v05.html#v5', 'herdarão a terra', 'futuro'),
+        ('4', 'Fome e sede de justiça', 'v06.html#v6', 'serão fartos', 'futuro'),
+        ('5', 'Misericordiosos', 'v07.html#v7', 'alcançarão misericórdia', 'futuro'),
+        ('6', 'Puros de coração', 'v08.html#v8', 'verão a Deus', 'futuro'),
+        ('7', 'Pacificadores', 'v09.html#v9', 'serão chamados filhos de Deus', 'futuro'),
+        ('8', 'Perseguidos', 'v10-12.html#v10', 'deles é o Reino dos céus', 'presente'),
+    ]
+    meio = '\n'.join('        <li><a href="%s"><span class="num">%s</span><b>%s</b><span class="prom">%s</span></a></li>' % (h, n_, nome, prom)
+                     for n_, nome, h, prom, q in TAB[1:7])
+    linhas = '\n'.join('        <tr class="%s"><td><a href="%s"><span class="num">%s</span></a></td><td><a href="%s">%s</a></td><td>%s</td><td><span class="tempo %s">%s</span></td></tr>'
+                       % (q, h, n_, h, nome, prom, q, 'agora' if q == 'presente' else 'depois') for n_, nome, h, prom, q in TAB)
+    img = ''
+    if os.path.exists(os.path.join(DEST, 'conclusao.jpg')):
+        img = '''
+  <figure class="cc-imagem">
+    <img src="conclusao.jpg" alt="Ilustração: as oito portas em fila; a primeira e a última, maiores e douradas, abraçam as seis do meio como dois parênteses.">
+    <figcaption>Ilustração criada com IA</figcaption>
+  </figure>'''
+    corpo = '''
+<header class="cc-hero">
+  <div class="cc-hero-texto">
+    <p class="kicker">Mateus 5:3–12 · as oito portas</p>
+    <h1>Conclusão das bem-aventuranças</h1>
+    <p class="lede">Você passou pelas oito portas. Vista de cima, a lista tem uma forma: a primeira e a última se fecham uma na outra, como parênteses, e guardam entre elas tudo o que nasce da humildade.</p>
+  </div>@@IMG@@
+</header>
+
+<section class="cc-sec" aria-labelledby="cc-moldura">
+  <h2 id="cc-moldura"><span class="cc-num">1</span> A moldura: dois parênteses</h2>
+  <p class="cc-intro">A primeira e a última bem-aventurança têm a <b>mesma promessa</b>, e no presente: “deles é o Reino dos céus”. Elas abrem e fecham a lista, e as seis do meio ficam dentro desses parênteses.</p>
+  <div class="moldura">
+    <a class="paren esq" href="v03.html#v3"><span class="num">1</span><b>Pobres em espírito</b><span class="prom">“deles é o Reino dos céus”</span><span class="quando">já no presente</span></a>
+    <div class="meio">
+      <ol>
+@@MEIO@@
+      </ol>
+      <p class="rotulo-meio">Seis promessas para o futuro</p>
+    </div>
+    <a class="paren dir" href="v10-12.html#v10"><span class="num">8</span><b>Perseguidos</b><span class="prom">“deles é o Reino dos céus”</span><span class="quando">já no presente</span></a>
+  </div>
+</section>
+
+<section class="cc-sec" aria-labelledby="cc-dentro">
+  <h2 id="cc-dentro"><span class="cc-num">2</span> Dentro dos parênteses: tudo nasce da humildade</h2>
+  <p class="cc-intro">Quem é pobre de espírito (porta 1) chora pelo pecado (2), é manso (3), tem fome e sede de justiça (4), é misericordioso (5), é puro de coração (6) e é pacificador (7). Cada uma leva à seguinte.</p>
+  <article class="note purple cc-cartao">
+    <span class="tag">Ellen White</span>
+    <h3>O Maior Discurso de Cristo, p. 13.2</h3>
+    <blockquote class="text"><p>Há, através das bem-aventuranças, <mark>uma progressão na experiência cristã</mark>. Os que sentiram sua necessidade de Cristo, os que choraram por causa do pecado, e se sentaram com Cristo na escola da aflição, hão de, com o divino Mestre, aprender a ser mansos.</p></blockquote>
+    <a class="full" href="https://m.egwwritings.org/pt/book/1956.106" target="_blank" rel="noopener">Abrir o trecho no site do Ellen G. White ↗</a>
+  </article>
+  <p class="cc-intro">E o perseguido (porta 8) precisa da humildade e de todas as outras para suportar. A humildade, no fim, termina em perseguição: quem vive assim é o que o mundo aborrece. Duas ligações se repetem pelo caminho: o que se dá, volta (porta 5, misericordiosos); e depois de ser pacificador e chamado filho de Deus, vem a perseguição, como aconteceu com Abel (portas 7 e 8).</p>
+</section>
+
+<section class="cc-sec" aria-labelledby="cc-tempo">
+  <h2 id="cc-tempo"><span class="cc-num">3</span> Presente e futuro</h2>
+  <p class="cc-intro">Repare nos verbos: na porta 1 e na porta 8 o Reino “é” deles, no presente. Nas seis do meio, os verbos estão no futuro: serão consolados, herdarão, serão fartos, alcançarão, verão, serão chamados.</p>
+  <div class="cc-tabela-caixa">
+    <table class="cc-tabela">
+      <thead><tr><th>Porta</th><th>Bem-aventurança</th><th>A promessa</th><th>Quando</th></tr></thead>
+      <tbody>
+@@LINHAS@@
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="cc-sec" aria-labelledby="cc-laodiceia">
+  <h2 id="cc-laodiceia"><span class="cc-num">4</span> O oposto de cada ponta: Laodiceia</h2>
+  <p class="cc-intro">A carta à igreja de Laodiceia mostra o contrário das duas portas que fecham a moldura.</p>
+  <div class="cc-par">
+    <article class="note orange cc-cartao">
+      <span class="tag">Contraste da porta 1</span>
+      <h3>Apocalipse 3:17</h3>
+      <p class="antes">Quem se acha rico e sem falta de nada é o oposto do pobre de espírito.</p>
+      <blockquote class="text"><p>Como dizes: <mark>Rico sou, e estou enriquecido, e de nada tenho falta</mark>… e não sabes que és um desgraçado, e miserável, e <mark>pobre</mark>, e cego, e nu</p></blockquote>
+      <a class="full" href="https://www.bibliaonline.com.br/arc/ap/3/17+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+    </article>
+    <article class="note orange cc-cartao">
+      <span class="tag">Contraste da porta 8</span>
+      <h3>Apocalipse 3:16</h3>
+      <p class="antes">O morno, que não se decide, é o oposto do perseguido, que está decidido e por isso é expulso.</p>
+      <blockquote class="text"><p>Assim, porque és <mark>morno</mark> e não és frio nem quente, vomitar-te-ei da minha boca.</p></blockquote>
+      <a class="full" href="https://www.bibliaonline.com.br/arc/ap/3/16+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+    </article>
+  </div>
+</section>
+
+<section class="cc-fecho" aria-labelledby="cc-fim">
+  <article class="note gray">
+    <span class="tag">Conclusão</span>
+    <h3 id="cc-fim">Um só caminho, oito portas</h3>
+    <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Entre as duas, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
+    <p class="obs">E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”.</p>
+  </article>
+  <div class="volta-imagem fim">
+    <a class="botao-conclusao" href="v13-15.html">Continuar: sal e luz →</a>
+    <a class="botao-volta" id="volta-imagem" href="caminho-ampliado.html">← Voltar à imagem das portas</a>
+  </div>
+</section>
+'''
+    corpo = corpo.replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
+    html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+            '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n</head>\n<body class="conclusao">\n'
+            + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
+            + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('v13-15.html', 'Próxima →', 'Sal e luz · v.13–16'))
+            + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
+    gravar(DEST, 'conclusao.html', html, RASC)
+
+
+conclusao()
 
 # =====================================================================================
 # v.13–16  Sal e luz
