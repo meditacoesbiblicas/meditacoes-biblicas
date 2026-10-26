@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from rascunho import gravar
 DEST = sys.argv[1]
 RASC = '--rascunho' in sys.argv
+PARCIAL = '--parcial' in sys.argv  # produção só com as bem-aventuranças: o resto do capítulo 5 que já está feito aparece como "A construir"
 
 BARRA = '''<!-- barra do site: leva de volta às Meditações; links relativos à pasta do estudo -->
 <header class="site-bar">
@@ -47,6 +48,8 @@ CAP7 = [
     ('Mateus 7:28–29', 'Conclusão', 'As multidões se admiram do ensino de Jesus.', None),
 ]
 
+if PARCIAL:
+    CAP5_DEPOIS = [(v, ti, d, None) for (v, ti, d, h) in CAP5_DEPOIS]
 PRONTAS = 1 + sum(1 for x in CAP5_DEPOIS if x[3])  # bem-aventuranças + as partes com página
 TOTAL = 1 + len(CAP5_INICIO) + len(CAP5_DEPOIS) + len(CAP6) + len(CAP7)
 
@@ -112,7 +115,7 @@ html = '''<!doctype html>
       <a class="qr-mini" href="qr.html" title="Ampliar o QR Code em tela cheia" aria-label="Abrir o QR Code em tela cheia"><img src="qr.svg" alt="" width="64" height="64"><span>QR Code</span></a>
     </article>
 
-    <h3 class="grupo">Depois das bem-aventuranças <small>Mateus 5:13–48</small> <a class="ver-trilha" href="depois.html">Ver a trilha →</a></h3>
+    <h3 class="grupo">Depois das bem-aventuranças <small>Mateus 5:13–48</small>@@VER_TRILHA@@</h3>
 ''' + grade(CAP5_DEPOIS) + '''
   </section>
 
@@ -134,5 +137,6 @@ html = '''<!doctype html>
 </body>
 </html>
 '''
+html = html.replace('@@VER_TRILHA@@', '' if PARCIAL else ' <a class="ver-trilha" href="depois.html">Ver a trilha →</a>')
 gravar(DEST, 'index.html', html, RASC)
 print('index ok:', PRONTAS, 'de', TOTAL)

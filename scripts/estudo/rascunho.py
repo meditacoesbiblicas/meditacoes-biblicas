@@ -10,7 +10,7 @@ Forma de trabalho combinada com o dono do site:
 
 Comandos:
   python3 scripts/estudo/rascunho.py criar     copia a versão publicada para o rascunho (sobrescreve o rascunho!)
-  python3 scripts/estudo/rascunho.py promover  copia o rascunho para a versão publicada (e apaga da publicada o que saiu do rascunho)
+  python3 scripts/estudo/rascunho.py promover  copia o rascunho para a versão publicada, SÓ com as bem-aventuranças e a conclusão (sal e luz, a lei, raiva e cobiça ficam "A construir"); `--completo` publica tudo; `--destino DIR` faz um ensaio numa pasta qualquer
 
 As páginas HTML do rascunho diferem das publicadas só por: a meta noindex, a faixa no topo, os links da barra do site
 (`../../` em vez de `../`) e o contador de visitas, que fica comentado (`<!--PIXEL ...-->`). `desrascunhar` desfaz isso.
@@ -88,23 +88,48 @@ def criar():
     print('Rascunho criado em', RASCUNHO)
 
 
-def promover():
+# páginas que o dono ainda não leu: por enquanto não vão para a versão publicada (ficam como "A construir" lá e prontas no rascunho)
+EXCLUIR_PARCIAL = {'v13-15.html', 'v17-20.html', 'v21-26.html', 'v27-30.html', 'depois.html'}
+
+
+def promover(destino=None, parcial=True):
+    """Rascunho -> versão publicada. Com parcial=True (padrão, vontade do dono), só vão as bem-aventuranças e a conclusão: sal e luz,
+    a lei, raiva e cobiça ficam "A construir" na publicada e a trilha não é publicada. As páginas geradas são refeitas em modo --parcial."""
+    import subprocess
+    import tempfile
     if not os.path.isdir(RASCUNHO):
         sys.exit('Não existe rascunho.')
-    novos = _arquivos(RASCUNHO)
-    for nome in novos:
+    destino = destino or PUBLICADA
+    aqui = os.path.dirname(os.path.abspath(__file__))
+    tmp = tempfile.mkdtemp()
+    for nome in _arquivos(RASCUNHO):  # imagens etc. (a conclusão usa conclusao.jpg se existir)
+        if not nome.endswith('.html'):
+            shutil.copy2(os.path.join(RASCUNHO, nome), os.path.join(tmp, nome))
+    extra = ['--parcial'] if parcial else []
+    subprocess.check_call([sys.executable, os.path.join(aqui, 'build_pages.py'), tmp] + extra, stdout=subprocess.DEVNULL)
+    subprocess.check_call([sys.executable, os.path.join(aqui, 'build_index.py'), tmp] + extra, stdout=subprocess.DEVNULL)
+    geradas = {n for n in os.listdir(tmp) if n.endswith('.html')}
+    os.makedirs(destino, exist_ok=True)
+    finais = set()
+    for nome in _arquivos(RASCUNHO):
+        if parcial and nome in EXCLUIR_PARCIAL:
+            continue
         origem = os.path.join(RASCUNHO, nome)
-        destino = os.path.join(PUBLICADA, nome)
-        if nome.endswith('.html'):
-            with open(destino, 'w', encoding='utf-8') as f:
+        alvo = os.path.join(destino, nome)
+        if nome in geradas:
+            shutil.copy2(os.path.join(tmp, nome), alvo)
+        elif nome.endswith('.html'):
+            with open(alvo, 'w', encoding='utf-8') as f:
                 f.write(desrascunhar(open(origem, encoding='utf-8').read()))
         else:
-            shutil.copy2(origem, destino)
-    for nome in _arquivos(PUBLICADA):
-        if nome not in novos:
-            os.remove(os.path.join(PUBLICADA, nome))
+            shutil.copy2(origem, alvo)
+        finais.add(nome)
+    for nome in _arquivos(destino):
+        if nome not in finais:
+            os.remove(os.path.join(destino, nome))
             print('Removido da publicada:', nome)
-    print('Rascunho promovido para a versão publicada.')
+    shutil.rmtree(tmp, ignore_errors=True)
+    print('Rascunho promovido para', destino, '(parcial)' if parcial else '(completo)')
 
 
 if __name__ == '__main__':
@@ -112,6 +137,8 @@ if __name__ == '__main__':
     if cmd == 'criar':
         criar()
     elif cmd == 'promover':
-        promover()
+        # --completo: publica também a trilha; --destino DIR: ensaio numa pasta qualquer (não mexe na publicada)
+        dest = sys.argv[sys.argv.index('--destino') + 1] if '--destino' in sys.argv else None
+        promover(dest, parcial='--completo' not in sys.argv)
     else:
         print(__doc__)

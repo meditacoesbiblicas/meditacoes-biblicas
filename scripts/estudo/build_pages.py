@@ -9,6 +9,8 @@ from rascunho import gravar
 
 DEST = sys.argv[1]
 RASC = '--rascunho' in sys.argv
+# --parcial: versão para a produção SÓ com as bem-aventuranças + conclusão (sal e luz, a lei, raiva e cobiça ficam "A construir" e a trilha não é gerada)
+PARCIAL = '--parcial' in sys.argv
 
 BARRA = '''<!-- barra do site: leva de volta às Meditações; links relativos à pasta do estudo -->
 <header class="site-bar">
@@ -30,6 +32,8 @@ DEPOIS = [
     ('depois.html', 'Trilha'), ('v13-15.html', 'Sal e luz'), ('v17-20.html', 'A lei'),
     ('v21-26.html', 'Raiva'), ('v27-30.html', 'Cobiça'),
 ]
+if PARCIAL:
+    DEPOIS = []
 
 
 def pixel(arq):
@@ -425,9 +429,9 @@ v8 = grupo('v8', 'Mateus 5:8', 'Puros de coração',
          antes='“Duplo ânimo” é o coração dividido, que quer Deus e quer o pecado ao mesmo tempo. Tiago manda purificar o coração.',
          corpo=bq('Chegai-vos a Deus, e ele se chegará a vós. Limpai as mãos, pecadores; e, vós de <mark>duplo ânimo</mark>, <mark>purificai o coração</mark>.'),
          link=arc('tg/4/8')),
-    ('sub', 'A raiz: o orgulho que quis o lugar de Deus'),
+    ('sub', 'O oposto levado ao extremo: o coração que quis o lugar de Deus'),
     card('orange', 'Contraste', 'Isaías 14:13,14',
-         antes='Este é o coração que quis tomar o lugar de Deus. Quando diz “serei semelhante ao Altíssimo”, não quer imitar a Deus como modelo: quer usurpar, tomar à força, a honra que pertence só a Ele. É a raiz do orgulho, do qual o coração limpo é livre.',
+         antes='Este é o coração que quis tomar o lugar de Deus. Quando diz “serei semelhante ao Altíssimo”, não quer imitar a Deus como modelo: quer usurpar, tomar à força, a honra que pertence só a Ele. É o orgulho levado ao extremo (Paulo diz que o orgulho derrubou o diabo, 1Tm 3:6), e o coração limpo é livre dele (MDC 25.1).',
          corpo=bq(n('13', 'E tu dizias <mark>no teu coração</mark>: Eu subirei ao céu, e, acima das estrelas de Deus, <mark>exaltarei o meu trono</mark>,'),
                   n('14', '…e <mark>serei semelhante ao Altíssimo</mark>.')),
          link=arc('is/14/13')),
@@ -437,7 +441,7 @@ v8 = grupo('v8', 'Mateus 5:8', 'Puros de coração',
          link=egw('1815.78')),
     card('gray', 'Conclusão', 'A pureza vem de dentro',
          extra_p=['Ser limpo de coração é ser fiel nos motivos da alma, sem orgulho e sem interesse egoísta (MDC 25.1). Sobe ao monte do Senhor quem é “limpo de mãos e puro de coração” (Sl 24:3,4), e quem espera ver a Cristo se purifica desde agora (1Jo 3:3).',
-                  'O oposto não é só o sensual: é o limpo por fora e contaminado por dentro (Mt 23:25,26), o de duplo ânimo (Tg 4:8) e, na raiz, o orgulho que quer o lugar de Deus (Is 14:13,14). A pureza vai de dentro para fora; não basta parecer certo por fora.']),
+                  'O oposto não é só o sensual: é o limpo por fora e contaminado por dentro (Mt 23:25,26), o de duplo ânimo (Tg 4:8) e, no extremo, o coração que quis o lugar de Deus (Is 14:13,14), o orgulho de que o coração limpo é livre. A pureza vai de dentro para fora; não basta parecer certo por fora.']),
     ])
 pagina('v08.html', 'Mateus 5:8 · Puros de coração — Sermão do Monte', 'Mateus 5:8 · porta 6', 'Puros de coração', None, [v8],
        pager(('v07.html', '← Anterior', 'Porta 5 · Misericordiosos'), ('v09.html', 'Próxima →', 'Porta 7 · Pacificadores')), final=VOLTA)
@@ -607,20 +611,21 @@ def conclusao():
     <span class="tag">Conclusão</span>
     <h3 id="cc-fim">Um só caminho, oito portas</h3>
     <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Passando por todas elas, da primeira à oitava, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
-    <p class="obs">E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”.</p>
+    <p>E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”. Repare que não é “será”: é “é”. Quem vive em humildade diante de Deus e quem é perseguido por causa da justiça já tem, hoje, o Reino dos céus. As outras seis promessas se cumprem no futuro; esta é para agora.</p>
   </article>
   <div class="volta-imagem fim">
-    <a class="botao-conclusao" href="v13-15.html">Continuar: sal e luz →</a>
+    <a class="botao-conclusao" href="@@PROX_HREF@@">@@PROX_TXT@@</a>
     <a class="botao-volta" id="volta-imagem" href="caminho-ampliado.html">← Voltar à imagem das portas</a>
   </div>
 </section>
 '''
-    corpo = corpo.replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
+    prox = ('index.html', 'Voltar ao Sermão do Monte →', 'Sermão do Monte') if PARCIAL else ('v13-15.html', 'Continuar: sal e luz →', 'Sal e luz · v.13–16')
+    corpo = corpo.replace('@@PROX_HREF@@', prox[0]).replace('@@PROX_TXT@@', prox[1]).replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
-            + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('v13-15.html', 'Próxima →', 'Sal e luz · v.13–16'))
+            + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
             + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
     gravar(DEST, 'conclusao.html', html, RASC)
 
@@ -1049,5 +1054,12 @@ HUB = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
 </div>
 ''' + pixel('depois.html') + '\n</body>\n</html>\n')
 gravar(DEST, 'depois.html', HUB, RASC)
+
+if PARCIAL:
+    for nome in ('v13-15.html', 'v17-20.html', 'v21-26.html', 'v27-30.html', 'depois.html'):
+        try:
+            os.remove(os.path.join(DEST, nome))
+        except OSError:
+            pass
 
 print('ok')
