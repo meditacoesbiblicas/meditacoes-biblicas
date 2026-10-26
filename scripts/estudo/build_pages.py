@@ -141,6 +141,11 @@ var p=document.getElementById('prev-origem');if(p){p.href=m[0];p.lastChild.textC
 </script>'''
 
 
+# quem chega pela animação da porta (caminho-ampliado.html) entra na página saindo da mesma luz; a classe vai no <html> antes de a página aparecer
+ENTRADA = '''<script>try{var t=+sessionStorage.getItem('porta-aberta');if(t){sessionStorage.removeItem('porta-aberta');if(Date.now()-t<8000)document.documentElement.className+=' entrando';}}catch(e){}</script>
+'''
+
+
 def pagina(arq, titulo, kicker, h1, sub, grupos, pg, comentario='', final=''):
     cab = '<header class="top">\n  <p class="kicker">%s</p>\n  <h1>%s</h1>' % (kicker, h1)
     if sub:
@@ -148,8 +153,8 @@ def pagina(arq, titulo, kicker, h1, sub, grupos, pg, comentario='', final=''):
     cab += '\n</header>'
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-            '<title>%s</title>\n<link rel="stylesheet" href="style.css">\n</head>\n<body>\n%s\n<div class="wrap">\n\n%s\n\n%s\n\n%s'
-            % (titulo, BARRA, crumbs(arq), cab, comentario))
+            '<title>%s</title>\n<link rel="stylesheet" href="style.css">\n%s</head>\n<body>\n%s\n<div class="wrap">\n\n%s\n\n%s\n\n%s'
+            % (titulo, ENTRADA if arq in [a for a, _ in PAGINAS] else '', BARRA, crumbs(arq), cab, comentario))
     html += '\n'.join(['\n' + g + '\n' for g in grupos])
     extra = ('\n' + ORIGEM) if arq in [a for a, _ in PAGINAS] else ''
     html += '\n%s\n\n%s\n\n</div>\n%s%s\n</body>\n</html>\n' % (final, pg, pixel(arq), extra)
@@ -617,7 +622,7 @@ def conclusao():
     corpo = corpo.replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-            '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n</head>\n<body class="conclusao">\n'
+            '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
             + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('v13-15.html', 'Próxima →', 'Sal e luz · v.13–16'))
             + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')

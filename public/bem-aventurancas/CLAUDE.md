@@ -16,6 +16,15 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O es
   4. Mande ao dono os dois links novos (desenvolvimento e backup) e atualize esta seção.
   Regra de nomes para qualquer versão futura: **original + `-desenvolvimento`** para o rascunho e **original + `-backup`** para o backup. **Não faça nada disso antes de ele pedir para publicar.**
 
+## O que está SÓ NO RASCUNHO (ainda não publicado) — atualizado em 2026-10-26
+
+Quando o dono mandar publicar, passe cada item para as seções certas deste arquivo e apague esta lista. Detalhes de cada um estão nos geradores (`scripts/estudo/`) e nos comentários dos HTML do rascunho.
+- **Uma página por bem-aventurança** (`v03`, `v04`, `v05`, `v06`, `v07`, `v08`, `v09`, `v10-12`); `v04-05.html`, `v06-08.html` e `mapa.html` viram redirecionamentos; versículos em blocos com subtítulos, do mais simples ao mais difícil, com explicação ANTES do versículo (`<p class="antes">`); o **mapa foi removido**; botão "← Voltar à imagem das portas" no fim de cada porta.
+- **`conclusao.html`**: conclusão de todas as bem-aventuranças (a moldura em forma de parênteses, "tudo nasce da humildade" com EGW MDC 13.2, tabela presente × futuro, o oposto Laodiceia). Só se chega a ela pelo fim da porta 8. Quando existir `conclusao.jpg` na pasta, o gerador a coloca no cabeçalho (o dono está gerando a imagem; o script dela foi entregue na conversa).
+- **QR Code direto na ilustração:** `qr.svg` aponta para `.../bem-aventurancas/caminho-ampliado.html` (e não mais para `caminho.html`); `qr.html` mostra esse endereço. Gerador: `scripts/estudo/gerar_qr.mjs`. QRs antigos (para `caminho.html`) continuam funcionando.
+- **A porta que se abre** (`caminho-ampliado.html`): ao abrir uma porta (clique no PC; 2º toque no celular), duas folhas giram, a luz divina enche a tela e só então carrega a página da bem-aventurança, que nasce da mesma luz (`html.entrando`, ligada por um script no `<head>` das páginas das portas e da conclusão, via `sessionStorage['porta-aberta']`). Web Animations API; ~1,6 s; clicar de novo pula; `prefers-reduced-motion` vai direto; trata o botão "voltar" do navegador (`pageshow`). As folhas/luz são CSS (`.porta-*`), posicionadas sobre o vão do arco a partir da área clicável (`.hot`): se a ilustração for trocada, ajuste as áreas (`.hot`) **e** os recuos do vão no script (0,19/0,20/0,62/0,76).
+- `caminho-ampliado.html` ganhou o botão "Sermão do Monte" e **o contador de visitas** (é a entrada do QR); no celular a imagem abre centralizada nas portas.
+
 ## Arquivos (três níveis: o sermão → as partes → os detalhes)
 
 - `index.html` — **página inicial = mapa do Sermão do Monte (Mt 5:1 a 7:29)**, por capítulos (Mateus 5, 6 e 7) e por partes. Cada parte é um cartão: **"Pronto"** (azul-marinho, abre a página) ou **"A construir"** (pontilhado, sem link). Tem a barra de progresso ("5 de 22 partes prontas"; o número sai do script `build_index.py`, não é manual). A parte das bem-aventuranças é um cartão em destaque com a ilustração. **Ao fazer uma parte nova: tire o "A construir" dela e ligue o cartão à página.** Esta é a URL que não pode mudar.
