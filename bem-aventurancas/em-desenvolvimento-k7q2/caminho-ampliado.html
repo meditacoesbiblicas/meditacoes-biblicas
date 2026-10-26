@@ -10,7 +10,8 @@
 <body class="ampliada">
 <div class="rascunho-faixa">VERSÃO EM DESENVOLVIMENTO · ainda não publicada · <a href="../caminho-ampliado.html">ver a versão publicada desta página</a></div>
 <!-- Ilustração ampliada: a imagem ocupa a janela, sem rolagem. Cada porta é um link para a sua bem-aventurança (áreas em porcentagem sobre a imagem 3:2).
-     Sem contagem de visitas (é tela de projeção). O pequeno script lembra que o leitor veio por aqui, para o botão "voltar" das bem-aventuranças trazê-lo de volta. -->
+     É para cá que o QR Code aponta. Ao abrir uma porta, uma animação (a porta se abre e a luz enche a tela) leva à página da bem-aventurança.
+     O pequeno script também lembra que o leitor veio por aqui, para o botão "voltar" das bem-aventuranças trazê-lo de volta. -->
 <header class="site-bar">
   <div class="site-bar-inner">
     <a class="site-brand" href="../../">Meditações</a>
@@ -33,19 +34,104 @@
     <a class="hot" style="left:71.55%;top:28.52%;width:7.68%;height:15.23%;--rv:34.8%" href="v10-12.html#v10" data-nome="Porta 8 · Perseguidos" aria-label="Porta 8: Perseguidos"></a>
   </div>
   <a class="am-voltar" href="caminho.html">← O caminho e as portas</a>
+  <a class="am-sermao" href="index.html">Sermão do Monte</a>
   <span class="am-dica"><span class="pc">Passe o mouse sobre uma porta e clique para abrir a bem-aventurança.</span><span class="cel">Toque numa porta para selecionar, toque de novo para abrir.</span></span>
 </main>
 <script>
-/* celular (sem mouse): o 1º toque seleciona a porta (acende e mostra o nome) e o 2º toque abre; tocar fora desfaz a seleção */
-(function(){
-  if(!window.matchMedia||!matchMedia('(hover: none)').matches)return;
-  var hs=[].slice.call(document.querySelectorAll('.hot'));
-  hs.forEach(function(a){a.addEventListener('click',function(e){
-    if(!a.classList.contains('ativa')){e.preventDefault();hs.forEach(function(x){x.classList.remove('ativa')});a.classList.add('ativa');}
-  });});
-  document.addEventListener('click',function(e){if(!(e.target.closest&&e.target.closest('.hot')))hs.forEach(function(x){x.classList.remove('ativa')});});
+/* A PORTA QUE SE ABRE: ao abrir uma porta da ilustração, as duas folhas giram, a luz divina enche a tela e só então carrega a página da
+   bem-aventurança (que nasce da mesma luz: ver "html.entrando" no style.css). Clicar de novo durante a animação pula direto.
+   No celular (sem mouse): o 1º toque seleciona a porta (acende e mostra o nome) e o 2º toque abre; tocar fora desfaz a seleção.
+   Quem prefere menos movimento (prefers-reduced-motion) vai direto, sem animação. */
+(function () {
+  var hs = [].slice.call(document.querySelectorAll('.hot'));
+  var toque = !!(window.matchMedia && matchMedia('(hover: none)').matches);
+  var reduz = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var ocupado = false, indo = false;
+
+  function ir(url) {
+    if (indo) return;
+    indo = true;
+    try { sessionStorage.setItem('porta-aberta', String(Date.now())); } catch (e) {}
+    location.href = url;
+  }
+
+  function limpar() {
+    [].slice.call(document.querySelectorAll('.porta-cena')).forEach(function (c) { c.parentNode.removeChild(c); });
+    ocupado = false;
+    indo = false;
+  }
+
+  function abrir(a) {
+    var url = a.href;
+    if (reduz || !document.body.animate || !window.Promise) { ir(url); return; }
+    ocupado = true;
+    var r = a.getBoundingClientRect(), vw = window.innerWidth, vh = window.innerHeight;
+    // a área clicável inclui a pedra do arco; a porta fica só no vão
+    var L = r.left + r.width * 0.19, T = r.top + r.height * 0.20, W = r.width * 0.62, H = r.height * 0.76;
+    var cx = L + W / 2, cy = T + H / 2;
+    var cena = document.createElement('div');
+    cena.className = 'porta-cena';
+    cena.setAttribute('aria-hidden', 'true');
+    cena.style.setProperty('--cx', (cx / vw * 100) + '%');
+    cena.style.setProperty('--cy', (cy / vh * 100) + '%');
+    cena.innerHTML = '<div class="porta-escurece"></div><div class="porta-brilho"></div>' +
+      '<div class="porta-anim"><div class="porta-luz"></div><div class="porta-raios"></div><div class="porta-folha esq"></div><div class="porta-folha dir"></div></div>' +
+      '<div class="porta-clarao"></div>';
+    document.body.appendChild(cena);
+    var q = function (s) { return cena.querySelector(s); };
+    var p = q('.porta-anim'), br = q('.porta-brilho');
+    var v = (W / 2 / H * 100).toFixed(1);
+    p.style.cssText = 'left:' + L + 'px;top:' + T + 'px;width:' + W + 'px;height:' + H + 'px;border-radius:50% 50% 2px 2px/' + v + '% ' + v + '% 2px 2px';
+    br.style.cssText = 'left:' + (cx - 2 * W) + 'px;top:' + (cy - 1.1 * H) + 'px;width:' + (4 * W) + 'px;height:' + (2.2 * H) + 'px';
+
+    var dx = vw / 2 - cx, dy = vh / 2 - cy, S = Math.max(vw / W, vh / H) * 1.4;
+    var abre = 'cubic-bezier(.55,0,.2,1)';
+    function an(el, kf, o) { o.fill = 'both'; return el.animate(kf, o); }
+    var A = [
+      an(q('.porta-escurece'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, easing: 'ease-out' }),
+      an(p, [{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' }),
+      an(br, [{ opacity: 0, transform: 'scale(.5)' }, { opacity: .9, transform: 'scale(1)', offset: .55 }, { opacity: .55, transform: 'scale(1.5)' }], { duration: 1200, delay: 200, easing: 'ease-out' }),
+      an(q('.porta-folha.esq'), [{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(112deg)' }], { duration: 780, delay: 240, easing: abre }),
+      an(q('.porta-folha.dir'), [{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(-112deg)' }], { duration: 780, delay: 240, easing: abre }),
+      an(q('.porta-luz'), [{ opacity: .5, transform: 'scale(.8)' }, { opacity: 1, transform: 'scale(1.2)' }], { duration: 900, delay: 220, easing: 'ease-out' }),
+      an(q('.porta-raios'), [{ opacity: 0, transform: 'rotate(0deg)' }, { opacity: .9, transform: 'rotate(24deg)' }], { duration: 1300, delay: 320, easing: 'ease-out' }),
+      an(p, [{ transform: 'translate(0px,0px) scale(1)' }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + S + ')' }], { duration: 760, delay: 860, easing: 'cubic-bezier(.6,.02,.9,.4)' }),
+      an(q('.porta-clarao'), [{ opacity: 0 }, { opacity: 1 }], { duration: 380, delay: 1200, easing: 'ease-in' })
+    ];
+    cena.addEventListener('click', function () { ir(url); });
+    Promise.all(A.map(function (x) { return x.finished; })).then(function () { ir(url); });
+  }
+
+  hs.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // abrir em outra aba: comportamento normal
+      e.preventDefault();
+      if (ocupado) return;
+      if (toque && !a.classList.contains('ativa')) {
+        hs.forEach(function (x) { x.classList.remove('ativa'); });
+        a.classList.add('ativa');
+        return;
+      }
+      abrir(a);
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!(e.target.closest && e.target.closest('.hot'))) hs.forEach(function (x) { x.classList.remove('ativa'); });
+  });
+  // voltando pelo botão do navegador a página pode vir pronta (cache): tira a cena da porta
+  window.addEventListener('pageshow', function (ev) { if (ev.persisted) limpar(); });
+
+  // celular em pé: a imagem se arrasta para o lado; começa com as portas no meio da tela
+  var quadro = document.querySelector('.am-quadro');
+  function centra() {
+    if (quadro && window.matchMedia && matchMedia('(max-width: 760px)').matches) quadro.scrollLeft = quadro.scrollWidth * 0.5 - quadro.clientWidth / 2;
+  }
+  centra();
+  window.addEventListener('load', centra);
 })();
 </script>
 <script>try{sessionStorage.setItem('origem-bem-aventurancas','ampliada')}catch(e){}</script>
+<!-- contagem de visitas (GoatCounter): sem JavaScript e sem cookies; o caminho em p= precisa bater com a URL publicada (esta é a página do QR Code) -->
+<!--PIXEL<img src="https://meditacoesbiblicas.goatcounter.com/count?p=/meditacoes-biblicas/bem-aventurancas/caminho-ampliado.html" width="1" height="1" alt="">-->
 </body>
 </html>

@@ -630,3 +630,35 @@ body.qr .qr-legenda span { font: 400 clamp(12px, 1.8vmin, 20px)/1.3 var(--sans);
   .meio ol { grid-template-columns: 1fr 1fr; }
   .cc-par { grid-template-columns: 1fr; }
 }
+
+/* ---------- a porta que se abre (ilustração ampliada) ---------- */
+body.ampliada .am-sermao { position: absolute; top: 14px; right: 18px; z-index: 5; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--navy); background: rgba(255, 255, 255, .9); color: var(--navy); font: 600 15px/1.2 var(--sans); text-decoration: none; }
+body.ampliada .am-sermao:hover, body.ampliada .am-sermao:focus-visible { background: var(--navy); color: #fff; outline: none; }
+@media (max-width: 760px) { body.ampliada .am-sermao { position: fixed; top: 58px; right: 10px; } }
+
+.porta-cena { position: fixed; inset: 0; z-index: 100000; cursor: progress; }
+.porta-escurece { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(20, 28, 48, .35), rgba(7, 11, 22, .9)); }
+/* a luz que escapa da porta e ilumina o que está em volta */
+.porta-brilho { position: absolute; opacity: 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 244, 196, .95), rgba(255, 220, 130, .5) 45%, rgba(255, 200, 90, 0) 100%); will-change: transform, opacity; }
+.porta-anim { position: absolute; overflow: hidden; perspective: 800px; background: #fff3c9; opacity: 0; box-shadow: 0 0 0 2px rgba(110, 76, 22, .95), 0 0 34px 8px rgba(255, 226, 150, .75); will-change: transform; }
+.porta-luz { position: absolute; inset: 0; opacity: .5; background: radial-gradient(ellipse at 50% 62%, #ffffff 0%, #fff6d4 24%, #ffe08f 52%, #f5b552 80%, #e69a2c 100%); }
+.porta-raios { position: absolute; left: -60%; right: -60%; top: -60%; bottom: -60%; opacity: 0; background: repeating-conic-gradient(from 0deg at 50% 60%, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, .9) 1.8deg, rgba(255, 255, 255, 0) 4.6deg, rgba(255, 255, 255, 0) 11deg); -webkit-mask-image: radial-gradient(circle at 50% 60%, #000 0, transparent 62%); mask-image: radial-gradient(circle at 50% 60%, #000 0, transparent 62%); }
+.porta-folha {
+  position: absolute; top: 0; bottom: 0; width: 50.8%;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  background:
+    radial-gradient(circle at var(--puxa, 80%) 54%, #fff3c4 0 2.5px, #d9a93d 3px 6px, #6b4a14 7px 8px, rgba(0, 0, 0, 0) 9px),
+    linear-gradient(90deg, rgba(0, 0, 0, .35), rgba(255, 255, 255, .1) 16%, rgba(0, 0, 0, .06) 55%, rgba(0, 0, 0, .4)),
+    repeating-linear-gradient(90deg, rgba(60, 36, 8, .12) 0 2px, rgba(0, 0, 0, 0) 2px 10px),
+    linear-gradient(180deg, #c19a57 0%, #9c7236 55%, #7a5524 100%);
+  box-shadow: inset 0 0 0 2px rgba(63, 38, 9, .85), inset 0 0 14px rgba(0, 0, 0, .5);
+}
+.porta-folha::before { content: ""; position: absolute; inset: 9% 14% 6%; border: 2px solid rgba(63, 38, 9, .55); border-radius: 40% 40% 2px 2px / 18% 18% 2px 2px; box-shadow: inset 0 0 8px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 236, 170, .25); }
+.porta-folha.esq { left: 0; transform-origin: 0 50%; --puxa: 82%; }
+.porta-folha.dir { right: 0; transform-origin: 100% 50%; --puxa: 18%; }
+.porta-clarao { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at 50% 50%, #ffffff 0%, #FFF1C9 48%, #F5D58A 100%); }
+
+/* a página da bem-aventurança nasce da mesma luz (o script do <head> põe a classe antes de a página aparecer) */
+html.entrando body::after { content: ""; position: fixed; inset: 0; z-index: 100000; pointer-events: none; background: radial-gradient(circle at 50% 50%, #ffffff 0%, #FFF1C9 48%, #F5D58A 100%); animation: luz-sai 1.3s cubic-bezier(.3, .1, .2, 1) forwards; }
+@keyframes luz-sai { 0% { opacity: 1; } 30% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { html.entrando body::after { display: none; } .porta-cena { display: none; } }
