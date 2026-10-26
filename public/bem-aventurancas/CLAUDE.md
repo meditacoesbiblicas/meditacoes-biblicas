@@ -2,6 +2,14 @@
 
 Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O estudo é o Sermão do Monte (Mt 5:1 a 7:29), feito por partes e ainda incompleto.** O foco é o sermão; as bem-aventuranças são só a primeira parte (e a ilustração do caminho e das portas é delas). O que ainda não foi feito aparece, em cada lugar, com o selo **"A construir"** (não "em construção"): nos cartões de `index.html`, nos passos 5–8 de `depois.html` e na caixa do fim de `v27-30.html`. Na lista da home o título é "Sermão do Monte" e o versículo-chave "Mateus 5–7". A pasta e a URL continuam `bem-aventurancas` (a URL não muda). Sem JavaScript, sem build. O dono pede melhorias uma por vez; responder sempre em português do Brasil.
 
+## Forma de trabalho: RASCUNHO primeiro, produção só quando o dono mandar
+
+- **Toda mudança nova vai primeiro para o rascunho** (versão em desenvolvimento): pasta `public/bem-aventurancas/em-desenvolvimento-k7q2/` (cópia completa do estudo, sem link em lugar nenhum, `noindex`, com uma faixa laranja "VERSÃO EM DESENVOLVIMENTO" no rodapé da janela e o contador de visitas desligado). Endereço: `https://meditacoesbiblicas.github.io/meditacoes-biblicas/bem-aventurancas/em-desenvolvimento-k7q2/index.html`. O dono compara com a versão publicada (a faixa tem o link da página publicada equivalente).
+- **Só publique na versão de verdade quando ele disser "coloca em produção".** Aí rode `python3 scripts/estudo/rascunho.py promover` (copia o rascunho para a versão publicada, desfazendo a forma de rascunho, e apaga da publicada o que saiu do rascunho), depois commit/push e confira ao vivo. `python3 scripts/estudo/rascunho.py criar` recria o rascunho a partir da publicada (**sobrescreve** o rascunho).
+- **Geradores** (no repositório): `scripts/estudo/build_pages.py <pasta> [--rascunho]` (todas as páginas de detalhe e `depois.html`), `scripts/estudo/build_index.py <pasta> [--rascunho]` (`index.html`) e `scripts/estudo/verify.py <pasta>` (confere cada citação no bibliaonline e no site da Ellen White). Páginas feitas à mão (`caminho.html`, `caminho-ampliado.html`, `qr.html`, `style.css`, redirecionamentos) editam-se direto na pasta do rascunho.
+- Depois de promover, a cópia offline também é atualizada (o hook de commit já faz isso).
+- Não cite nem divulgue o endereço do rascunho em lugar público; só ao dono.
+
 ## Arquivos (três níveis: o sermão → as partes → os detalhes)
 
 - `index.html` — **página inicial = mapa do Sermão do Monte (Mt 5:1 a 7:29)**, por capítulos (Mateus 5, 6 e 7) e por partes. Cada parte é um cartão: **"Pronto"** (azul-marinho, abre a página) ou **"A construir"** (pontilhado, sem link). Tem a barra de progresso ("5 de 22 partes prontas"; o número sai do script `build_index.py`, não é manual). A parte das bem-aventuranças é um cartão em destaque com a ilustração. **Ao fazer uma parte nova: tire o "A construir" dela e ligue o cartão à página.** Esta é a URL que não pode mudar.
