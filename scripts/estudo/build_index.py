@@ -110,7 +110,7 @@ html = '''<!doctype html>
         <ol class="portas" aria-label="As oito portas">
 ''' + dots + '''
         </ol>
-        <p class="acoes"><a class="botao" href="caminho.html">Abrir o caminho e as portas →</a> <a class="botao claro" href="v03.html">Começar pela porta 1</a></p>
+        <p class="acoes"><a class="botao" href="caminho.html">Abrir o caminho e as portas →</a></p>
       </div>
       <a class="qr-mini" href="qr.html" title="Ampliar o QR Code em tela cheia" aria-label="Abrir o QR Code em tela cheia"><img src="qr.svg" alt="" width="64" height="64"><span>QR Code</span></a>
     </article>

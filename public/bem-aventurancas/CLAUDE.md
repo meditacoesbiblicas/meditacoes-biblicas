@@ -9,6 +9,12 @@ Site estático (HTML + CSS puro) de estudo bíblico, projetado na igreja. **O es
 - **Geradores** (no repositório): `scripts/estudo/build_pages.py <pasta> [--rascunho]` (todas as páginas de detalhe e `depois.html`), `scripts/estudo/build_index.py <pasta> [--rascunho]` (`index.html`) e `scripts/estudo/verify.py <pasta>` (confere cada citação no bibliaonline e no site da Ellen White). Páginas feitas à mão (`caminho.html`, `caminho-ampliado.html`, `qr.html`, `style.css`, redirecionamentos) editam-se direto na pasta do rascunho.
 - Depois de promover, a cópia offline também é atualizada (o hook de commit já faz isso).
 - Não cite nem divulgue o endereço do rascunho em lugar público; só ao dono.
+- **QUANDO O DONO MANDAR PUBLICAR (e só então), faça isto, nesta ordem** (combinado em 2026-10-26; o dono não gostou do endereço `em-desenvolvimento-k7q2` porque é difícil de lembrar):
+  1. **Backup da versão publicada ANTES de promover:** copie a versão publicada atual (como está agora, sem as mudanças) para `public/bem-aventurancas-backup/` (endereço: `https://meditacoesbiblicas.github.io/meditacoes-biblicas/bem-aventurancas-backup/`), na forma de rascunho/backup (noindex, faixa de aviso "BACKUP da versão anterior", contador desligado). Pasta ao lado de `bem-aventurancas/`, não dentro dela.
+  2. **Promova** o rascunho para a publicada (`rascunho.py promover`).
+  3. **Troque o endereço do rascunho** de `bem-aventurancas/em-desenvolvimento-k7q2/` para `public/bem-aventurancas-desenvolvimento/` (endereço: `.../bem-aventurancas-desenvolvimento/`): o nome do original + `-desenvolvimento`. Ajuste o `rascunho.py` (pasta fora de `bem-aventurancas/`, links da barra do site voltam a ser `../`, link da faixa vira `../bem-aventurancas/<arquivo>`) e remova a pasta antiga.
+  4. Mande ao dono os dois links novos (desenvolvimento e backup) e atualize esta seção.
+  Regra de nomes para qualquer versão futura: **original + `-desenvolvimento`** para o rascunho e **original + `-backup`** para o backup. **Não faça nada disso antes de ele pedir para publicar.**
 
 ## Arquivos (três níveis: o sermão → as partes → os detalhes)
 
