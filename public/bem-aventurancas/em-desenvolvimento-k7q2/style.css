@@ -689,3 +689,7 @@ html.entrando body::after { content: ""; position: fixed; inset: 0; z-index: 100
 
 /* o QR pequeno do cartão não pode cobrir o texto */
 @media (min-width: 981px) { .destaque .corpo { padding-right: 96px; } }
+
+/* rótulo da porta: nome e número + o que acontece ao abrir (duas linhas); no celular o texto diz "toque de novo" */
+.hot::after { content: attr(data-nome) "\A" attr(data-acao); white-space: pre; text-align: center; border-radius: 14px; }
+@media (hover: none) { .hot::after { content: attr(data-nome) "\A" attr(data-acao-cel); } }
