@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O caminho e as portas (ampliado) · Sermão do Monte · Mateus 5</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="ampliada">
+<div class="rascunho-faixa backup">BACKUP da versão anterior · guardada antes da publicação de 26/10/2026 · <a href="../bem-aventurancas/caminho-ampliado.html">ver a versão atual desta página</a></div>
+<!-- Ilustração ampliada: a imagem ocupa a janela, sem rolagem. Cada porta é um link para a sua bem-aventurança (áreas em porcentagem sobre a imagem 3:2).
+     Sem contagem de visitas (é tela de projeção). O pequeno script lembra que o leitor veio por aqui, para o botão "voltar" das bem-aventuranças trazê-lo de volta. -->
+<header class="site-bar">
+  <div class="site-bar-inner">
+    <a class="site-brand" href="../">Meditações</a>
+    <nav class="site-links" aria-label="Site Meditações Bíblicas">
+      <a href="../quem-sou-eu/">Quem sou eu</a>
+      <a href="../sobre/">Sobre</a>
+    </nav>
+  </div>
+</header>
+<main class="am-quadro">
+  <div class="am-moldura">
+    <img class="am-img" src="caminho.jpg" alt="Um caminho estreito e iluminado sobe pela montanha atravessando oito portas de pedra numeradas, uma para cada bem-aventurança, em direção ao trono de luz e aos livros abertos do juízo, no alto.">
+    <a class="hot" style="left:20.90%;top:60.35%;width:8.72%;height:16.60%;--rv:36.3%" href="v03.html#v3" data-nome="Porta 1 · Pobres em espírito" aria-label="Porta 1: Pobres em espírito"></a>
+    <a class="hot" style="left:28.78%;top:56.25%;width:7.75%;height:16.80%;--rv:31.8%" href="v04-05.html#v4" data-nome="Porta 2 · Os que choram" aria-label="Porta 2: Os que choram"></a>
+    <a class="hot" style="left:35.48%;top:52.34%;width:8.01%;height:17.77%;--rv:31.1%" href="v04-05.html#v5" data-nome="Porta 3 · Mansos" aria-label="Porta 3: Mansos"></a>
+    <a class="hot" style="left:42.25%;top:48.63%;width:8.59%;height:16.60%;--rv:35.7%" href="v06-08.html#v6" data-nome="Porta 4 · Fome e sede de justiça" aria-label="Porta 4: Fome e sede de justiça"></a>
+    <a class="hot" style="left:49.80%;top:43.26%;width:8.79%;height:18.07%;--rv:33.6%" href="v06-08.html#v7" data-nome="Porta 5 · Misericordiosos" aria-label="Porta 5: Misericordiosos"></a>
+    <a class="hot" style="left:57.36%;top:37.99%;width:8.01%;height:16.02%;--rv:34.5%" href="v06-08.html#v8" data-nome="Porta 6 · Puros de coração" aria-label="Porta 6: Puros de coração"></a>
+    <a class="hot" style="left:64.45%;top:33.40%;width:8.20%;height:16.70%;--rv:33.9%" href="v09.html#v9" data-nome="Porta 7 · Pacificadores" aria-label="Porta 7: Pacificadores"></a>
+    <a class="hot" style="left:71.55%;top:28.52%;width:7.68%;height:15.23%;--rv:34.8%" href="v10-12.html#v10" data-nome="Porta 8 · Perseguidos" aria-label="Porta 8: Perseguidos"></a>
+  </div>
+  <a class="am-voltar" href="caminho.html">← O caminho e as portas</a>
+  <span class="am-dica"><span class="pc">Passe o mouse sobre uma porta e clique para abrir a bem-aventurança.</span><span class="cel">Toque numa porta para selecionar, toque de novo para abrir.</span></span>
+</main>
+<script>
+/* celular (sem mouse): o 1º toque seleciona a porta (acende e mostra o nome) e o 2º toque abre; tocar fora desfaz a seleção */
+(function(){
+  if(!window.matchMedia||!matchMedia('(hover: none)').matches)return;
+  var hs=[].slice.call(document.querySelectorAll('.hot'));
+  hs.forEach(function(a){a.addEventListener('click',function(e){
+    if(!a.classList.contains('ativa')){e.preventDefault();hs.forEach(function(x){x.classList.remove('ativa')});a.classList.add('ativa');}
+  });});
+  document.addEventListener('click',function(e){if(!(e.target.closest&&e.target.closest('.hot')))hs.forEach(function(x){x.classList.remove('ativa')});});
+})();
+</script>
+<script>try{sessionStorage.setItem('origem-bem-aventurancas','ampliada')}catch(e){}</script>
+</body>
+</html>

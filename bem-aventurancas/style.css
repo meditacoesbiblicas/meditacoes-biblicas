@@ -553,3 +553,155 @@ body.qr .qr-legenda span { font: 400 clamp(12px, 1.8vmin, 20px)/1.3 var(--sans);
 .cm-qr b { color: #FAF8F3; }
 .cm-qr:hover .qr-mini, .cm-qr:focus-visible .qr-mini { transform: translateY(-2px); }
 @media (max-width: 980px) { .destaque > .qr-mini { position: static; justify-self: start; box-shadow: none; } }
+
+/* ---------- rascunho: faixa de aviso (só existe na versão em desenvolvimento) ---------- */
+.rascunho-faixa { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; padding: 7px 14px; background: #B3541E; color: #fff; text-align: center; font: 600 13px/1.3 var(--sans, system-ui); letter-spacing: .02em; box-shadow: 0 -2px 10px rgba(0, 0, 0, .25); }
+.rascunho-faixa a { color: #FFE9C7; }
+
+/* ---------- explicação antes do versículo e botão de voltar à imagem (fim de cada bem-aventurança) ---------- */
+.note .antes { margin: 4px 0 2px; font-size: 16px; line-height: 1.5; color: var(--ink); }
+.volta-imagem { display: flex; justify-content: center; margin: 56px 0 0; }
+.botao-volta { display: inline-block; padding: 16px 30px; border-radius: 999px; background: var(--navy); color: var(--gold); text-decoration: none; font: 600 18px/1.2 var(--sans); box-shadow: 0 8px 22px rgba(31, 42, 68, .25); transition: transform .12s ease, box-shadow .12s ease; }
+.botao-volta:hover, .botao-volta:focus-visible { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(31, 42, 68, .32); }
+.volta-imagem + .pager { margin-top: 36px; }
+@media (max-width: 980px) { .volta-imagem { margin-top: 40px; } .botao-volta { padding: 14px 22px; font-size: 17px; } }
+
+/* ---------- conclusão das bem-aventuranças (página própria, largura total) ---------- */
+.volta-imagem.fim { flex-wrap: wrap; gap: 14px 16px; align-items: center; }
+.botao-conclusao { display: inline-block; padding: 16px 30px; border-radius: 999px; background: var(--gold); color: var(--navy); text-decoration: none; font: 600 18px/1.2 var(--sans); box-shadow: 0 8px 22px rgba(31, 42, 68, .22); transition: transform .12s ease; }
+.botao-conclusao:hover, .botao-conclusao:focus-visible { transform: translateY(-2px); }
+.cc-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: center; margin: 8px 0 0; padding: clamp(26px, 4vw, 52px); border-radius: 22px; color: #FAF8F3; background: radial-gradient(120% 150% at 100% 0%, #3C4C7C 0%, var(--navy) 52%, #131B2E 100%); overflow: hidden; }
+.cc-hero:not(:has(.cc-imagem)) { grid-template-columns: 1fr; }
+.cc-hero .kicker { margin: 0 0 12px; font: 600 13px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.cc-hero h1 { margin: 0 0 16px; font: 600 clamp(32px, 5vw, 56px)/1.08 var(--serif); }
+.cc-hero .lede { margin: 0; max-width: 62ch; font-size: 19px; line-height: 1.55; color: #D9D4C7; }
+.cc-imagem { margin: 0; }
+.cc-imagem img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 10px 28px rgba(0, 0, 0, .4); }
+.cc-imagem figcaption { margin-top: 6px; font: 400 12px/1.3 var(--sans); color: #B9B3A4; }
+
+.cc-sec { margin: 60px 0 0; }
+.cc-sec h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 12px; font: 600 clamp(24px, 3vw, 32px)/1.2 var(--serif); color: var(--navy); }
+.cc-num { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: var(--gold); font: 600 18px/1 var(--serif); }
+.cc-intro { max-width: 78ch; margin: 0 0 16px; font-size: 18px; line-height: 1.6; }
+.cc-cartao { max-width: 860px; margin-bottom: 14px; }
+
+/* a moldura: a 1ª e a 8ª abraçam as seis do meio, como parênteses */
+.moldura { display: grid; grid-template-columns: minmax(190px, 240px) minmax(0, 1fr) minmax(190px, 240px); gap: 16px; align-items: stretch; margin-top: 24px; }
+.paren { display: grid; align-content: center; gap: 6px; padding: 26px 30px; text-decoration: none; color: var(--navy); background: linear-gradient(90deg, rgba(242, 217, 160, .55), rgba(242, 217, 160, .12)); transition: transform .12s ease; }
+.paren.esq { border-left: 10px solid #D9A93D; border-radius: 120px 0 0 120px / 50%; padding-left: 38px; }
+.paren.dir { border-right: 10px solid #D9A93D; border-radius: 0 120px 120px 0 / 50%; padding-right: 38px; text-align: right; background: linear-gradient(270deg, rgba(242, 217, 160, .55), rgba(242, 217, 160, .12)); }
+.paren:hover, .paren:focus-visible { transform: translateY(-2px); }
+.paren .num, .meio .num, .cc-tabela .num { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--gold); font: 600 16px/1 var(--serif); }
+.paren.dir .num { justify-self: end; }
+.paren.esq .num { justify-self: start; }
+.paren b { font: 600 22px/1.2 var(--serif); }
+.paren .prom { font: 600 16px/1.35 var(--serif); }
+.paren .quando { font: 600 11px/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #8A5A00; }
+.meio { display: grid; align-content: center; }
+.meio ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.meio li a { display: grid; gap: 4px; justify-items: start; height: 100%; padding: 12px 14px; border: 1.5px solid var(--navy); border-radius: 12px; background: #fff; color: var(--navy); text-decoration: none; transition: transform .12s ease, box-shadow .12s ease; }
+.meio li a:hover, .meio li a:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(31, 42, 68, .16); }
+.meio li b { font: 600 17px/1.2 var(--serif); }
+.meio .prom { font: 400 14px/1.35 var(--sans); color: var(--muted); }
+.rotulo-meio { margin: 12px 0 0; text-align: center; font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.cc-tabela-caixa { overflow-x: auto; border: 1.5px solid var(--navy); border-radius: 14px; background: #fff; }
+.cc-tabela { width: 100%; border-collapse: collapse; font-size: 16.5px; }
+.cc-tabela th { padding: 12px 16px; text-align: left; font: 600 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--gy-bg); }
+.cc-tabela td { padding: 11px 16px; border-top: 1px solid var(--gy-bd); }
+.cc-tabela tr.presente td { background: rgba(242, 217, 160, .3); }
+.cc-tabela a { color: var(--navy); text-decoration: none; font-weight: 600; }
+.cc-tabela a:hover { text-decoration: underline; }
+.tempo { padding: 2px 10px; border-radius: 999px; font: 600 11px/1.6 var(--sans); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.tempo.agora { background: var(--gr-bg); border: 1px solid var(--gr-bd); color: var(--gr-tx); }
+.tempo.depois { background: var(--gy-bg); border: 1px solid var(--gy-bd); color: var(--gy-tx); }
+
+.cc-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.cc-par .cc-cartao { max-width: none; margin: 0; }
+.cc-fecho { margin: 60px 0 0; max-width: 860px; }
+
+@media (max-width: 980px) {
+  .cc-hero { grid-template-columns: 1fr; }
+  .moldura { grid-template-columns: 1fr; }
+  .paren.esq, .paren.dir { border-left: 0; border-right: 0; border-radius: 22px; padding: 20px 22px; text-align: left; }
+  .paren.esq { border-top: 10px solid #D9A93D; }
+  .paren.dir { border-bottom: 10px solid #D9A93D; }
+  .paren.dir .num { justify-self: start; }
+  .meio ol { grid-template-columns: 1fr 1fr; }
+  .cc-par { grid-template-columns: 1fr; }
+}
+
+/* ---------- a porta que se abre (ilustração ampliada) ---------- */
+body.ampliada .am-sermao { position: absolute; top: 14px; right: 18px; z-index: 5; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--navy); background: rgba(255, 255, 255, .9); color: var(--navy); font: 600 15px/1.2 var(--sans); text-decoration: none; }
+body.ampliada .am-sermao:hover, body.ampliada .am-sermao:focus-visible { background: var(--navy); color: #fff; outline: none; }
+@media (max-width: 760px) { body.ampliada .am-sermao { position: fixed; top: 58px; right: 10px; } }
+
+.porta-cena { position: fixed; inset: 0; z-index: 100000; cursor: progress; }
+.porta-escurece { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(20, 28, 48, .35), rgba(7, 11, 22, .9)); }
+/* a luz que escapa da porta e ilumina o que está em volta */
+.porta-brilho { position: absolute; opacity: 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 244, 196, .95), rgba(255, 220, 130, .5) 45%, rgba(255, 200, 90, 0) 100%); will-change: transform, opacity; }
+.porta-anim { position: absolute; overflow: hidden; perspective: 800px; background: #fff3c9; opacity: 0; box-shadow: 0 0 0 2px rgba(110, 76, 22, .95), 0 0 34px 8px rgba(255, 226, 150, .75); will-change: transform; }
+.porta-luz { position: absolute; inset: 0; opacity: .5; background: radial-gradient(ellipse at 50% 62%, #ffffff 0%, #fff6d4 24%, #ffe08f 52%, #f5b552 80%, #e69a2c 100%); }
+.porta-raios { position: absolute; left: -60%; right: -60%; top: -60%; bottom: -60%; opacity: 0; background: repeating-conic-gradient(from 0deg at 50% 60%, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, .9) 1.8deg, rgba(255, 255, 255, 0) 4.6deg, rgba(255, 255, 255, 0) 11deg); -webkit-mask-image: radial-gradient(circle at 50% 60%, #000 0, transparent 62%); mask-image: radial-gradient(circle at 50% 60%, #000 0, transparent 62%); }
+.porta-folha {
+  position: absolute; top: 0; bottom: 0; width: 50.8%;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  background:
+    radial-gradient(circle at var(--puxa, 80%) 54%, #fff3c4 0 2.5px, #d9a93d 3px 6px, #6b4a14 7px 8px, rgba(0, 0, 0, 0) 9px),
+    linear-gradient(90deg, rgba(0, 0, 0, .35), rgba(255, 255, 255, .1) 16%, rgba(0, 0, 0, .06) 55%, rgba(0, 0, 0, .4)),
+    repeating-linear-gradient(90deg, rgba(60, 36, 8, .12) 0 2px, rgba(0, 0, 0, 0) 2px 10px),
+    linear-gradient(180deg, #c19a57 0%, #9c7236 55%, #7a5524 100%);
+  box-shadow: inset 0 0 0 2px rgba(63, 38, 9, .85), inset 0 0 14px rgba(0, 0, 0, .5);
+}
+.porta-folha::before { content: ""; position: absolute; inset: 9% 14% 6%; border: 2px solid rgba(63, 38, 9, .55); border-radius: 40% 40% 2px 2px / 18% 18% 2px 2px; box-shadow: inset 0 0 8px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 236, 170, .25); }
+.porta-folha.esq { left: 0; transform-origin: 0 50%; --puxa: 82%; }
+.porta-folha.dir { right: 0; transform-origin: 100% 50%; --puxa: 18%; }
+.porta-clarao { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at 50% 50%, #ffffff 0%, #FFF1C9 48%, #F5D58A 100%); }
+
+/* a página da bem-aventurança nasce da mesma luz (o script do <head> põe a classe antes de a página aparecer) */
+html.entrando body::after { content: ""; position: fixed; inset: 0; z-index: 100000; pointer-events: none; background: radial-gradient(circle at 50% 50%, #ffffff 0%, #FFF1C9 48%, #F5D58A 100%); animation: luz-sai 1.3s cubic-bezier(.3, .1, .2, 1) forwards; }
+@keyframes luz-sai { 0% { opacity: 1; } 30% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { html.entrando body::after { display: none; } .porta-cena { display: none; } }
+
+/* ---------- conclusão: títulos sem número (para não se confundir com as portas 1 a 8) ---------- */
+.cc-sec h2 { padding-left: 16px; border-left: 6px solid #D9A93D; }
+
+/* ---------- convite para a conclusão, no fim da porta 8 ---------- */
+.cc-convite { position: relative; display: grid; grid-template-columns: minmax(180px, 280px) minmax(0, 1fr); gap: 34px; align-items: center; margin: 64px 0 0; padding: clamp(26px, 4vw, 46px); border-radius: 24px; color: #FAF8F3; overflow: hidden;
+  background: radial-gradient(80% 140% at 0% 50%, rgba(242, 217, 160, .38), rgba(242, 217, 160, 0) 62%), linear-gradient(135deg, #2D3C66 0%, var(--navy) 55%, #141C30 100%);
+  box-shadow: 0 14px 36px rgba(31, 42, 68, .3); border: 1.5px solid rgba(242, 217, 160, .55); }
+.cc-conv-sinal { display: flex; align-items: center; justify-content: center; gap: 4px; color: var(--gold); font: 500 clamp(120px, 14vw, 190px)/0.8 var(--serif); }
+.cc-conv-sinal .p { text-shadow: 0 0 30px rgba(242, 217, 160, .6); }
+.cc-conv-sinal .pts { display: grid; grid-template-columns: repeat(3, 14px); gap: 12px; }
+.cc-conv-sinal .pts i { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #fff 0, var(--gold) 60%, #D9A93D 100%); box-shadow: 0 0 14px rgba(242, 217, 160, .8); animation: cc-pulsa 2.6s ease-in-out infinite; }
+.cc-conv-sinal .pts i:nth-child(2n) { animation-delay: .5s; }
+.cc-conv-sinal .pts i:nth-child(3n) { animation-delay: 1s; }
+@keyframes cc-pulsa { 0%, 100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
+.cc-conv-kicker { margin: 0 0 8px; font: 600 12px/16px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.cc-convite h2 { margin: 0 0 10px; font: 600 clamp(28px, 3.6vw, 44px)/1.1 var(--serif); }
+.cc-convite p { margin: 0; max-width: 58ch; font-size: 18px; line-height: 1.55; color: #D9D4C7; }
+.cc-convite .cc-conv-kicker { color: var(--gold); }
+.cc-conv-botao { display: inline-block; margin-top: 22px; padding: 16px 32px; border-radius: 999px; background: var(--gold); color: var(--navy); text-decoration: none; font: 600 19px/1.2 var(--sans); box-shadow: 0 8px 22px rgba(0, 0, 0, .3); transition: transform .12s ease; }
+.cc-conv-botao:hover, .cc-conv-botao:focus-visible { transform: translateY(-2px); }
+.cc-convite + .volta-imagem { margin-top: 28px; }
+@media (prefers-reduced-motion: reduce) { .cc-conv-sinal .pts i { animation: none; } }
+@media (max-width: 980px) { .cc-convite { grid-template-columns: 1fr; gap: 14px; text-align: left; } .cc-conv-sinal { justify-content: flex-start; font-size: 110px; } }
+
+/* o QR pequeno do cartão não pode cobrir o texto */
+@media (min-width: 981px) { .destaque .corpo { padding-right: 96px; } }
+
+/* rótulo da porta: nome e número + o que acontece ao abrir (duas linhas); no celular o texto diz "toque de novo" */
+.hot::after { content: attr(data-nome) "\A" attr(data-acao); white-space: pre; text-align: center; border-radius: 14px; }
+@media (hover: none) { .hot::after { content: attr(data-nome) "\A" attr(data-acao-cel); } }
+
+/* menção a Ellen White no texto: nome por extenso, com link para o cartão com o trecho */
+a.ref-egw { color: var(--pu-tx); text-decoration: underline; text-underline-offset: 3px; }
+article.note[id^="egw-"] { scroll-margin-top: 24px; }
+article.note[id^="egw-"]:target { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* versículo mencionado no texto: link para o cartão com o versículo (mesma página) ou para a Bíblia Online */
+a.ref-vers, a.ref-biblia { color: var(--blue-tx); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a.ref-vers:hover, a.ref-biblia:hover { text-decoration-thickness: 2px; }
+a.ref-biblia::after { content: " ↗"; font-size: .8em; }
+article.note[id^="v-"] { scroll-margin-top: 24px; }
+article.note[id^="v-"]:target { outline: 3px solid var(--gold); outline-offset: 3px; }
