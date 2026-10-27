@@ -693,3 +693,8 @@ html.entrando body::after { content: ""; position: fixed; inset: 0; z-index: 100
 /* rótulo da porta: nome e número + o que acontece ao abrir (duas linhas); no celular o texto diz "toque de novo" */
 .hot::after { content: attr(data-nome) "\A" attr(data-acao); white-space: pre; text-align: center; border-radius: 14px; }
 @media (hover: none) { .hot::after { content: attr(data-nome) "\A" attr(data-acao-cel); } }
+
+/* menção a Ellen White no texto: nome por extenso, com link para o cartão com o trecho */
+a.ref-egw { color: var(--pu-tx); text-decoration: underline; text-underline-offset: 3px; }
+article.note[id^="egw-"] { scroll-margin-top: 24px; }
+article.note[id^="egw-"]:target { outline: 3px solid var(--gold); outline-offset: 3px; }

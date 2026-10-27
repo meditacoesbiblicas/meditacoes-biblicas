@@ -3,7 +3,7 @@
 # Conteúdo para o público, sem descrição de marcas do dono.
 # Uso: python3 scripts/estudo/build_pages.py <pasta-de-saída> [--rascunho]
 #   --rascunho: grava na forma do rascunho (noindex, faixa, contador desligado); ver rascunho.py.
-import os, sys
+import os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from rascunho import gravar
 
@@ -100,7 +100,9 @@ ARA = ' <span class="ver">ARA</span>'
 
 
 def card(cor, tag, h3, corpo=None, obs=None, link=None, extra_p=None, antes=None):
-    partes = ['    <article class="note %s">' % cor,
+    m_egw = re.search(r'p\. (\d+)\.(\d+)', h3) if tag == 'Ellen White' else None
+    ident = ' id="egw-%s-%s"' % m_egw.groups() if m_egw else ''
+    partes = ['    <article class="note %s"%s>' % (cor, ident),
               '      <span class="tag">%s</span>' % tag,
               '      <h3>%s</h3>' % h3]
     if antes:
@@ -150,6 +152,17 @@ ENTRADA = '''<script>try{var t=+sessionStorage.getItem('porta-aberta');if(t){ses
 '''
 
 
+def refs_egw(html):
+    """No texto corrido, em vez da sigla "MDC 25.1": o nome do livro por extenso e, se o cartão com o trecho está na mesma página, um link para ele."""
+    def troca(m):
+        n1, n2 = m.group(1), m.group(2)
+        nome = 'O Maior Discurso de Cristo, p. %s.%s' % (n1, n2)
+        if 'id="egw-%s-%s"' % (n1, n2) in html:
+            return '<a class="ref-egw" href="#egw-%s-%s">%s</a>' % (n1, n2, nome)
+        return nome
+    return re.sub(r'MDC (\d+)\.(\d+)', troca, html)
+
+
 def pagina(arq, titulo, kicker, h1, sub, grupos, pg, comentario='', final=''):
     cab = '<header class="top">\n  <p class="kicker">%s</p>\n  <h1>%s</h1>' % (kicker, h1)
     if sub:
@@ -162,7 +175,7 @@ def pagina(arq, titulo, kicker, h1, sub, grupos, pg, comentario='', final=''):
     html += '\n'.join(['\n' + g + '\n' for g in grupos])
     extra = ('\n' + ORIGEM) if arq in [a for a, _ in PAGINAS] else ''
     html += '\n%s\n\n%s\n\n</div>\n%s%s\n</body>\n</html>\n' % (final, pg, pixel(arq), extra)
-    gravar(DEST, arq, html, RASC)
+    gravar(DEST, arq, refs_egw(html), RASC)
 
 
 # botão no fim de cada bem-aventurança: volta à ilustração (a imagem é usada na palestra)
@@ -234,7 +247,7 @@ v3 = grupo('v3', 'Mateus 5:3', 'Pobres em espírito',
                   '(e não sabes que és um desgraçado, e miserável, e <mark>pobre</mark>, e cego, e nu)'),
          link=arc('ap/3/17')),
     card('orange', 'Contraste', '1 Timóteo 3:6' + KJ,
-         antes='Paulo diz como escolher um líder: não alguém recém-chegado, para que o orgulho não o derrube, como derrubou o diabo.',
+         antes='Paulo diz como escolher um líder da igreja: não alguém recém-convertido (“principiante”), para que, ficando orgulhoso (“ensoberbecendo-se”), não caia na mesma condenação que o diabo recebeu. Orgulho e queda andam juntos.',
          corpo=bq('não um principiante, para que, <mark>envaidecendo-se com orgulho</mark>, não caia na condenação do diabo.'),
          link=bkj('1tm/3/6')),
     card('gray', 'Conclusão', 'Pobre de espírito: quem reconhece a sua necessidade',
@@ -431,7 +444,7 @@ v8 = grupo('v8', 'Mateus 5:8', 'Puros de coração',
          link=arc('tg/4/8')),
     ('sub', 'O oposto levado ao extremo: o coração que quis o lugar de Deus'),
     card('orange', 'Contraste', 'Isaías 14:13,14',
-         antes='Este é o coração que quis tomar o lugar de Deus. Quando diz “serei semelhante ao Altíssimo”, não quer imitar a Deus como modelo: quer usurpar, tomar à força, a honra que pertence só a Ele. É o orgulho levado ao extremo (Paulo diz que o orgulho derrubou o diabo, 1Tm 3:6), e o coração limpo é livre dele (MDC 25.1).',
+         antes='Este é o coração que quis tomar o lugar de Deus. Quando diz “serei semelhante ao Altíssimo”, não quer imitar a Deus como modelo: quer usurpar, tomar à força, a honra que pertence só a Deus. É o oposto do coração limpo, que é fiel nos motivos e livre de interesse egoísta (MDC 25.1).',
          corpo=bq(n('13', 'E tu dizias <mark>no teu coração</mark>: Eu subirei ao céu, e, acima das estrelas de Deus, <mark>exaltarei o meu trono</mark>,'),
                   n('14', '…e <mark>serei semelhante ao Altíssimo</mark>.')),
          link=arc('is/14/13')),
@@ -441,7 +454,7 @@ v8 = grupo('v8', 'Mateus 5:8', 'Puros de coração',
          link=egw('1815.78')),
     card('gray', 'Conclusão', 'A pureza vem de dentro',
          extra_p=['Ser limpo de coração é ser fiel nos motivos da alma, sem orgulho e sem interesse egoísta (MDC 25.1). Sobe ao monte do Senhor quem é “limpo de mãos e puro de coração” (Sl 24:3,4), e quem espera ver a Cristo se purifica desde agora (1Jo 3:3).',
-                  'O oposto não é só o sensual: é o limpo por fora e contaminado por dentro (Mt 23:25,26), o de duplo ânimo (Tg 4:8) e, no extremo, o coração que quis o lugar de Deus (Is 14:13,14), o orgulho de que o coração limpo é livre. A pureza vai de dentro para fora; não basta parecer certo por fora.']),
+                  'O oposto não é só o sensual: é o limpo por fora e contaminado por dentro (Mt 23:25,26), o de duplo ânimo (Tg 4:8) e, no extremo, o coração que quis o lugar de Deus (Is 14:13,14: “exaltarei o meu trono”). A pureza vai de dentro para fora; não basta parecer certo por fora.']),
     ])
 pagina('v08.html', 'Mateus 5:8 · Puros de coração — Sermão do Monte', 'Mateus 5:8 · porta 6', 'Puros de coração', None, [v8],
        pager(('v07.html', '← Anterior', 'Porta 5 · Misericordiosos'), ('v09.html', 'Próxima →', 'Porta 7 · Pacificadores')), final=VOLTA)
@@ -611,7 +624,7 @@ def conclusao():
     <span class="tag">Conclusão</span>
     <h3 id="cc-fim">Um só caminho, oito portas</h3>
     <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Passando por todas elas, da primeira à oitava, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
-    <p>E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”. Repare que não é “será”: é “é”. Quem vive em humildade diante de Deus e quem é perseguido por causa da justiça já tem, hoje, o Reino dos céus. As outras seis promessas se cumprem no futuro; esta é para agora.</p>
+    <p>E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”. Não é uma promessa só para o futuro: vale para hoje. Quem vive em humildade diante de Deus e quem é perseguido por causa da justiça já tem, agora, o Reino dos céus. As outras seis promessas se cumprem no futuro; esta vale desde já.</p>
   </article>
   <div class="volta-imagem fim">
     <a class="botao-conclusao" href="@@PROX_HREF@@">@@PROX_TXT@@</a>
@@ -627,7 +640,7 @@ def conclusao():
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
             + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
             + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
-    gravar(DEST, 'conclusao.html', html, RASC)
+    gravar(DEST, 'conclusao.html', refs_egw(html), RASC)
 
 
 conclusao()
