@@ -170,7 +170,7 @@ ABREV = {'Gn': 'gn', 'Êx': 'ex', 'Lv': 'lv', 'Nm': 'nm', 'Dt': 'dt', 'Js': 'js'
          'At': 'at', 'Rm': 'rm', '1Co': '1co', '2Co': '2co', 'Gl': 'gl', 'Ef': 'ef', 'Fp': 'fp', 'Cl': 'cl', '1Ts': '1ts', '2Ts': '2ts', '1Tm': '1tm',
          '2Tm': '2tm', 'Tt': 'tt', 'Hb': 'hb', 'Tg': 'tg', '1Pe': '1pe', '2Pe': '2pe', '1Jo': '1jo', '2Jo': '2jo', '3Jo': '3jo', 'Ap': 'ap'}
 _ABR_RE = '|'.join(sorted((re.escape(k) for k in ABREV), key=len, reverse=True))
-_REF_RE = re.compile(r'(?<![\w/#])(' + _ABR_RE + r')\s(\d+):(\d+(?:[,–-]\d+)*)|(?<![\w/#])Salmo (\d+)\b')
+_REF_RE = re.compile(r'(?<![\w/#])(' + _ABR_RE + r')\s(\d+):(\d+(?:[,–-]\d+)*)')
 _SKIP = {'a', 'h1', 'h2', 'h3', 'h4', 'blockquote', 'span', 'mark', 'title', 'script', 'style', 'button', 'aside', 'b'}
 
 
