@@ -32,7 +32,13 @@
     <a class="hot" style="left:71.55%;top:28.52%;width:7.68%;height:15.23%;--rv:34.8%" href="v10-12.html#v10" data-nome="Porta 8 · Perseguidos" data-acao="Clique para abrir o ensino sobre os perseguidos" data-acao-cel="Toque de novo para abrir o ensino sobre os perseguidos" aria-label="Porta 8: Perseguidos"></a>
   </div>
   <a class="am-voltar" href="index.html">← Sermão do Monte</a>
-  <span class="am-dica"><span class="pc">Passe o mouse sobre uma porta e clique para estudar esta bem-aventurança.</span><span class="cel">Toque numa porta para selecionar, toque de novo para estudá-la.</span></span>
+  <div class="am-dica" id="am-dica" role="status" aria-live="polite">
+    <span class="arrasta pe">↔ Arraste a imagem para os lados para ver todas as portas.</span>
+    <span class="arrasta deitado">↕ Arraste a imagem para cima ou para baixo para ver tudo.</span>
+    <span class="pc">Passe o mouse sobre uma porta e clique para estudar esta bem-aventurança.</span>
+    <span class="cel">Toque em uma porta para selecioná-la. Toque de novo para abrir a porta e estudá-la.</span>
+    <span class="sel"><b></b><span class="cel">Toque de novo para abrir a porta e estudá-la.</span><span class="pc">Clique para abrir a porta e estudá-la.</span></span>
+  </div>
 </main>
 <script>
 /* A PORTA QUE SE ABRE: ao abrir uma porta da ilustração, as duas folhas giram, a luz divina enche a tela e só então carrega a página da
@@ -118,13 +124,59 @@
   // voltando pelo botão do navegador a página pode vir pronta (cache): tira a cena da porta
   window.addEventListener('pageshow', function (ev) { if (ev.persisted) limpar(); });
 
-  // celular em pé: a imagem se arrasta para o lado; começa com as portas no meio da tela
+  // celular em pé: a imagem se arrasta para os lados; celular deitado: ocupa a largura da tela e se arrasta para cima e para baixo.
+  // Nos dois casos começa com as portas no meio da tela.
   var quadro = document.querySelector('.am-quadro');
-  function centra() {
-    if (quadro && window.matchMedia && matchMedia('(max-width: 760px)').matches) quadro.scrollLeft = quadro.scrollWidth * 0.5 - quadro.clientWidth / 2;
+  var dica = document.getElementById('am-dica');
+  var rotulo = dica && dica.querySelector('.sel b');
+  function mm(q) { return !!(window.matchMedia && matchMedia(q).matches); }
+  function modo() {
+    if (mm('(max-width: 760px) and (orientation: portrait)')) return 'pe';
+    if (mm('(max-height: 520px) and (orientation: landscape)')) return 'deitado';
+    return '';
   }
+  function centra() {
+    if (!quadro) return;
+    var m = modo();
+    if (m === 'pe') { quadro.scrollTop = 0; quadro.scrollLeft = quadro.scrollWidth * 0.5 - quadro.clientWidth / 2; }
+    // deitado: as portas ficam um pouco acima do meio, porque a faixa de dica cobre a parte de baixo
+    else if (m === 'deitado') { quadro.scrollLeft = 0; quadro.scrollTop = quadro.scrollHeight * 0.527 - quadro.clientHeight * 0.46; }
+  }
+  var modoAntes = modo();
+  function aoMudar() { var m = modo(); if (m !== modoAntes) { modoAntes = m; centra(); } }
   centra();
   window.addEventListener('load', centra);
+  window.addEventListener('resize', aoMudar);
+  window.addEventListener('orientationchange', function () { setTimeout(aoMudar, 150); });
+
+  // nome da porta e o que fazer, na faixa de baixo (o rótulo flutuante da porta não cabe em tela pequena)
+  function mostra(a) {
+    if (!dica || !rotulo || getComputedStyle(dica).position !== 'fixed') return; // só na faixa de baixo (telas pequenas e de toque)
+    if (a) { rotulo.textContent = a.getAttribute('data-nome'); dica.classList.add('com-porta'); }
+    else dica.classList.remove('com-porta');
+  }
+  // a porta selecionada não pode ficar escondida atrás da faixa de baixo nem fora da tela: rola o quadro só o necessário
+  function traz(a) {
+    if (!quadro || !dica || !modo() || getComputedStyle(dica).position !== 'fixed') return;
+    var r = a.getBoundingClientRect(), q = quadro.getBoundingClientRect(), b = dica.getBoundingClientRect();
+    var dx = 0, dy = 0, limite = b.top - 8;
+    if (r.left < q.left + 8) dx = r.left - q.left - 8; else if (r.right > q.right - 8) dx = r.right - q.right + 8;
+    if (r.bottom > limite) dy = r.bottom - limite;
+    if (r.top - dy < q.top + 8) dy = r.top - q.top - 8;
+    if (dx || dy) quadro.scrollBy({ left: dx, top: dy, behavior: 'smooth' });
+  }
+  hs.forEach(function (a) {
+    if (!toque) {
+      a.addEventListener('mouseover', function () { mostra(a); });
+      a.addEventListener('mouseout', function () { mostra(null); });
+    }
+    a.addEventListener('focus', function () { mostra(a); });
+    a.addEventListener('blur', function () { mostra(null); });
+    a.addEventListener('click', function () { if (toque && a.classList.contains('ativa')) { mostra(a); traz(a); } });
+  });
+  document.addEventListener('click', function (e) {
+    if (!(e.target.closest && e.target.closest('.hot'))) mostra(null);
+  });
 })();
 </script>
 <script>try{sessionStorage.setItem('origem-bem-aventurancas','ampliada')}catch(e){}</script>
