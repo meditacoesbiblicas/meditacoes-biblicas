@@ -163,6 +163,83 @@ def refs_egw(html):
     return re.sub(r'MDC (\d+)\.(\d+)', troca, html)
 
 
+# ---- referências bíblicas no texto corrido: nada solto ----
+# "Sl 24:3,4" no texto vira link: para o cartão com esse versículo, se ele está na mesma página; senão, para a Bíblia Online (ARC).
+ABREV = {'Gn': 'gn', 'Êx': 'ex', 'Lv': 'lv', 'Nm': 'nm', 'Dt': 'dt', 'Js': 'js', 'Jz': 'jz', '1Sm': '1sm', '2Sm': '2sm', '1Cr': '1cr', '2Cr': '2cr',
+         'Jó': 'job', 'Sl': 'sl', 'Pv': 'pv', 'Ec': 'ec', 'Is': 'is', 'Jr': 'jr', 'Ez': 'ez', 'Dn': 'dn', 'Mt': 'mt', 'Mc': 'mc', 'Lc': 'lc', 'Jo': 'jo',
+         'At': 'at', 'Rm': 'rm', '1Co': '1co', '2Co': '2co', 'Gl': 'gl', 'Ef': 'ef', 'Fp': 'fp', 'Cl': 'cl', '1Ts': '1ts', '2Ts': '2ts', '1Tm': '1tm',
+         '2Tm': '2tm', 'Tt': 'tt', 'Hb': 'hb', 'Tg': 'tg', '1Pe': '1pe', '2Pe': '2pe', '1Jo': '1jo', '2Jo': '2jo', '3Jo': '3jo', 'Ap': 'ap'}
+_ABR_RE = '|'.join(sorted((re.escape(k) for k in ABREV), key=len, reverse=True))
+_REF_RE = re.compile(r'(?<![\w/#])(' + _ABR_RE + r')\s(\d+):(\d+(?:[,–-]\d+)*)|(?<![\w/#])Salmo (\d+)\b')
+_SKIP = {'a', 'h1', 'h2', 'h3', 'h4', 'blockquote', 'span', 'mark', 'title', 'script', 'style', 'button', 'aside', 'b'}
+
+
+def _versos(txt):
+    out = set()
+    for parte in txt.split(','):
+        m = re.match(r'(\d+)\s*[–-]\s*(\d+)$', parte.strip())
+        if m:
+            out.update(range(int(m.group(1)), int(m.group(2)) + 1))
+        elif parte.strip().isdigit():
+            out.add(int(parte.strip()))
+    return out
+
+
+def refs_biblia(html):
+    cartoes = {}   # (slug, cap) -> [(versos, id)]
+
+    def marca(m):
+        tag, corpo = m.group(1), m.group(2)
+        h3 = re.search(r'<h3[^>]*>(.*?)</h3>', corpo, re.S)
+        link = re.search(r'bibliaonline\.com\.br/(?:arc|bkj|ara)/([^/]+)/(\d+)/(\d+)\+', corpo)
+        if not h3 or not link:
+            return m.group(0)
+        slug, cap, v1 = link.group(1), int(link.group(2)), int(link.group(3))
+        vs = re.search(r':\s*([\d,–\-]+)', re.sub(r'<[^>]+>', '', h3.group(1)))
+        versos = _versos(vs.group(1)) if vs else set()
+        versos = versos | {v1}
+        idm = re.search(r' id="([^"]+)"', tag)
+        ident = idm.group(1) if idm else 'v-%s-%d-%d' % (slug, cap, v1)
+        cartoes.setdefault((slug, cap), []).append((versos, ident))
+        if not idm:
+            tag = tag[:-1] + ' id="%s">' % ident
+        return tag + corpo + '</article>'
+
+    html = re.sub(r'(<article class="note [a-z]+"[^>]*>)(.*?)</article>', marca, html, flags=re.S)
+
+    def troca(m):
+        if m.group(1):
+            slug, cap = ABREV[m.group(1)], int(m.group(2))
+            versos = _versos(m.group(3))
+            v1 = min(versos) if versos else 1
+        else:
+            slug, cap, versos, v1 = 'sl', int(m.group(4)), set(), 1
+        for vs, ident in cartoes.get((slug, cap), []):
+            if not versos or min(versos) in vs:
+                return '<a class="ref-vers" href="#%s">%s</a>' % (ident, m.group(0))
+        return ('<a class="ref-biblia" href="https://www.bibliaonline.com.br/arc/%s/%d/%d+" target="_blank" rel="noopener" '
+                'title="Ler na Bíblia Online (ARC)">%s</a>' % (slug, cap, v1, m.group(0)))
+
+    partes = re.split(r'(<[^>]+>)', html)
+    pilha = []
+    for i, p in enumerate(partes):
+        if p.startswith('<'):
+            tg = re.match(r'</?\s*([a-zA-Z0-9]+)', p)
+            if tg:
+                nome = tg.group(1).lower()
+                if nome in ('br', 'img', 'meta', 'link', 'input', 'hr') or p.endswith('/>'):
+                    continue
+                if p.startswith('</'):
+                    if nome in pilha:
+                        while pilha and pilha.pop() != nome:
+                            pass
+                else:
+                    pilha.append(nome)
+        elif p.strip() and not (set(pilha) & _SKIP) and 'p' in pilha:
+            partes[i] = _REF_RE.sub(troca, p)
+    return ''.join(partes)
+
+
 def pagina(arq, titulo, kicker, h1, sub, grupos, pg, comentario='', final=''):
     cab = '<header class="top">\n  <p class="kicker">%s</p>\n  <h1>%s</h1>' % (kicker, h1)
     if sub:
@@ -175,7 +252,7 @@ def pagina(arq, titulo, kicker, h1, sub, grupos, pg, comentario='', final=''):
     html += '\n'.join(['\n' + g + '\n' for g in grupos])
     extra = ('\n' + ORIGEM) if arq in [a for a, _ in PAGINAS] else ''
     html += '\n%s\n\n%s\n\n</div>\n%s%s\n</body>\n</html>\n' % (final, pg, pixel(arq), extra)
-    gravar(DEST, arq, refs_egw(html), RASC)
+    gravar(DEST, arq, refs_biblia(refs_egw(html)), RASC)
 
 
 # botão no fim de cada bem-aventurança: volta à ilustração (a imagem é usada na palestra)
@@ -640,7 +717,7 @@ def conclusao():
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
             + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
             + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
-    gravar(DEST, 'conclusao.html', refs_egw(html), RASC)
+    gravar(DEST, 'conclusao.html', refs_biblia(refs_egw(html)), RASC)
 
 
 conclusao()
@@ -1066,7 +1143,7 @@ HUB = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
 
 </div>
 ''' + pixel('depois.html') + '\n</body>\n</html>\n')
-gravar(DEST, 'depois.html', HUB, RASC)
+gravar(DEST, 'depois.html', refs_biblia(HUB), RASC)
 
 if PARCIAL:
     for nome in ('v13-15.html', 'v17-20.html', 'v21-26.html', 'v27-30.html', 'depois.html'):
