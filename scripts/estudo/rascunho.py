@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
-"""Rascunho (versão em desenvolvimento) do estudo "Sermão do Monte".
+"""Rascunho (versão em desenvolvimento) e backup do estudo "Sermão do Monte".
 
 Forma de trabalho combinada com o dono do site:
-  1. Toda mudança nova vai primeiro para uma cópia escondida do estudo, em
-         public/bem-aventurancas/<PASTA_RASCUNHO>/
-     (endereço sem link em lugar nenhum, com <meta robots noindex> e uma faixa "VERSÃO EM DESENVOLVIMENTO").
-  2. O dono compara o rascunho com a versão publicada.
-  3. Só quando ele diz "coloca em produção" é que se roda `promover`.
+  1. Toda mudança nova vai primeiro para a versão EM DESENVOLVIMENTO, uma cópia do estudo em
+         public/bem-aventurancas-desenvolvimento/
+     (endereço sem link em lugar nenhum, com <meta robots noindex> e uma faixa laranja "VERSÃO EM DESENVOLVIMENTO").
+  2. O dono compara com a versão publicada (public/bem-aventurancas/).
+  3. Só quando ele diz "coloca em produção" se roda `promover`. Ele guarda antes, automaticamente, o BACKUP da versão
+     publicada que está no ar, em
+         public/bem-aventurancas-backup/
+     (cada publicação sobrescreve o backup: ele é sempre "o que estava no ar antes da última publicação").
+
+Regra de nomes: nome do original + "-desenvolvimento" e nome do original + "-backup".
 
 Comandos:
   python3 scripts/estudo/rascunho.py criar     copia a versão publicada para o rascunho (sobrescreve o rascunho!)
-  python3 scripts/estudo/rascunho.py promover  copia o rascunho para a versão publicada, SÓ com as bem-aventuranças e a conclusão (sal e luz, a lei, raiva e cobiça ficam "A construir"); `--completo` publica tudo; `--destino DIR` faz um ensaio numa pasta qualquer
+  python3 scripts/estudo/rascunho.py backup    só guarda a cópia de backup da versão publicada
+  python3 scripts/estudo/rascunho.py promover  faz o backup e copia o rascunho para a versão publicada, SÓ com as bem-aventuranças
+                                               e a conclusão (sal e luz, a lei, raiva e cobiça ficam "A construir"); `--completo`
+                                               publica tudo; `--destino DIR` faz um ensaio numa pasta qualquer (sem backup e sem
+                                               tocar na publicada)
 
-As páginas HTML do rascunho diferem das publicadas só por: a meta noindex, a faixa no topo, os links da barra do site
-(`../../` em vez de `../`) e o contador de visitas, que fica comentado (`<!--PIXEL ...-->`). `desrascunhar` desfaz isso.
+As páginas HTML do rascunho e do backup diferem das publicadas só por: a meta noindex, a faixa de aviso no rodapé da janela e o
+contador de visitas, que fica comentado (`<!--PIXEL ...-->`). `desrascunhar` desfaz isso. As três pastas ficam no mesmo nível,
+então os links relativos (inclusive os da barra do site, `../`) são os mesmos nas três.
 Os geradores (build_pages.py e build_index.py) aceitam --rascunho e já gravam nessa forma.
 """
 import os
@@ -22,41 +32,47 @@ import shutil
 import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PUBLICADA = os.path.join(RAIZ, 'public', 'bem-aventurancas')
-PASTA_RASCUNHO = 'em-desenvolvimento-k7q2'
-RASCUNHO = os.path.join(PUBLICADA, PASTA_RASCUNHO)
-NAO_COPIAR = {'CLAUDE.md', '.DS_Store', PASTA_RASCUNHO}
+PUBLICO = os.path.join(RAIZ, 'public')
+PASTA_PUBLICADA = 'bem-aventurancas'
+PASTA_RASCUNHO = 'bem-aventurancas-desenvolvimento'
+PASTA_BACKUP = 'bem-aventurancas-backup'
+PUBLICADA = os.path.join(PUBLICO, PASTA_PUBLICADA)
+RASCUNHO = os.path.join(PUBLICO, PASTA_RASCUNHO)
+BACKUP = os.path.join(PUBLICO, PASTA_BACKUP)
+NAO_COPIAR = {'CLAUDE.md', '.DS_Store'}
 
 NOINDEX = '<meta name="robots" content="noindex, nofollow">\n'
+CSS_FAIXA = '''
+/* ---------- faixa de aviso (só existe nas cópias de rascunho e de backup) ---------- */
+.rascunho-faixa { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; padding: 7px 14px; background: #B3541E; color: #fff; text-align: center; font: 600 13px/1.3 var(--sans, system-ui); letter-spacing: .02em; box-shadow: 0 -2px 10px rgba(0, 0, 0, .25); }
+.rascunho-faixa.backup { background: #3A4A73; }
+.rascunho-faixa a { color: #FFE9C7; }
+'''
 
 
-def faixa(nome):
+def faixa(nome, tipo='rascunho'):
+    if tipo == 'backup':
+        return ('<div class="rascunho-faixa backup">BACKUP da versão anterior · guardada antes da última publicação · '
+                '<a href="../%s/%s">ver a versão atual desta página</a></div>\n' % (PASTA_PUBLICADA, nome))
     return ('<div class="rascunho-faixa">VERSÃO EM DESENVOLVIMENTO · ainda não publicada · '
-            '<a href="../%s">ver a versão publicada desta página</a></div>\n' % nome)
+            '<a href="../%s/%s">ver a versão publicada desta página</a></div>\n' % (PASTA_PUBLICADA, nome))
 
 
-def rascunhar(html, nome):
-    """Publicada -> rascunho."""
+def rascunhar(html, nome, tipo='rascunho'):
+    """Publicada -> rascunho (ou backup)."""
     if 'rascunho-faixa' in html:
         return html
     html = html.replace('<meta charset="utf-8">\n', '<meta charset="utf-8">\n' + NOINDEX, 1)
-    html = re.sub(r'(<body[^>]*>\n)', lambda m: m.group(1) + faixa(nome), html, count=1)
-    # barra do site: está um nível mais fundo
-    html = html.replace('<a class="site-brand" href="../">', '<a class="site-brand" href="../../">')
-    html = html.replace('<a href="../quem-sou-eu/">', '<a href="../../quem-sou-eu/">')
-    html = html.replace('<a href="../sobre/">', '<a href="../../sobre/">')
-    # contador de visitas desligado (visitas ao rascunho não contam)
+    html = re.sub(r'(<body[^>]*>\n)', lambda m: m.group(1) + faixa(nome, tipo), html, count=1)
+    # contador de visitas desligado (visitas ao rascunho/backup não contam)
     html = re.sub(r'(<img src="https://meditacoesbiblicas\.goatcounter\.com/[^>]*>)', r'<!--PIXEL\1-->', html)
     return html
 
 
 def desrascunhar(html):
-    """Rascunho -> publicada (desfaz `rascunhar`)."""
+    """Rascunho (ou backup) -> publicada (desfaz `rascunhar`)."""
     html = html.replace(NOINDEX, '', 1)
-    html = re.sub(r'<div class="rascunho-faixa">.*?</div>\n', '', html, count=1, flags=re.S)
-    html = html.replace('<a class="site-brand" href="../../">', '<a class="site-brand" href="../">')
-    html = html.replace('<a href="../../quem-sou-eu/">', '<a href="../quem-sou-eu/">')
-    html = html.replace('<a href="../../sobre/">', '<a href="../sobre/">')
+    html = re.sub(r'<div class="rascunho-faixa[^"]*">.*?</div>\n', '', html, count=1, flags=re.S)
     html = re.sub(r'<!--PIXEL(<img [^>]*>)-->', r'\1', html)
     return html
 
@@ -74,18 +90,32 @@ def _arquivos(pasta):
     return sorted(n for n in os.listdir(pasta) if n not in NAO_COPIAR and os.path.isfile(os.path.join(pasta, n)))
 
 
-def criar():
-    if os.path.isdir(RASCUNHO):
-        shutil.rmtree(RASCUNHO)
-    os.makedirs(RASCUNHO)
-    for nome in _arquivos(PUBLICADA):
-        origem = os.path.join(PUBLICADA, nome)
-        destino = os.path.join(RASCUNHO, nome)
+def _copiar_como(origem_dir, destino_dir, tipo):
+    if os.path.isdir(destino_dir):
+        shutil.rmtree(destino_dir)
+    os.makedirs(destino_dir)
+    for nome in _arquivos(origem_dir):
+        origem = os.path.join(origem_dir, nome)
+        destino = os.path.join(destino_dir, nome)
         if nome.endswith('.html'):
-            gravar(RASCUNHO, nome, open(origem, encoding='utf-8').read(), True)
+            gravar(destino_dir, nome, rascunhar(open(origem, encoding='utf-8').read(), nome, tipo), False)
+        elif nome == 'style.css':
+            css = open(origem, encoding='utf-8').read()
+            if '.rascunho-faixa' not in css:
+                css += CSS_FAIXA
+            open(destino, 'w', encoding='utf-8').write(css)
         else:
             shutil.copy2(origem, destino)
+
+
+def criar():
+    _copiar_como(PUBLICADA, RASCUNHO, 'rascunho')
     print('Rascunho criado em', RASCUNHO)
+
+
+def backup():
+    _copiar_como(PUBLICADA, BACKUP, 'backup')
+    print('Backup guardado em', BACKUP)
 
 
 # páginas que o dono ainda não leu: por enquanto não vão para a versão publicada (ficam como "A construir" lá e prontas no rascunho)
@@ -93,12 +123,15 @@ EXCLUIR_PARCIAL = {'v13-15.html', 'v17-20.html', 'v21-26.html', 'v27-30.html', '
 
 
 def promover(destino=None, parcial=True):
-    """Rascunho -> versão publicada. Com parcial=True (padrão, vontade do dono), só vão as bem-aventuranças e a conclusão: sal e luz,
-    a lei, raiva e cobiça ficam "A construir" na publicada e a trilha não é publicada. As páginas geradas são refeitas em modo --parcial."""
+    """Rascunho -> versão publicada, depois de guardar o backup da que está no ar. Com parcial=True (padrão, vontade do dono), só vão
+    as bem-aventuranças e a conclusão: sal e luz, a lei, raiva e cobiça ficam "A construir" na publicada e a trilha não é publicada.
+    As páginas geradas são refeitas em modo --parcial."""
     import subprocess
     import tempfile
     if not os.path.isdir(RASCUNHO):
         sys.exit('Não existe rascunho.')
+    if destino is None:
+        backup()
     destino = destino or PUBLICADA
     aqui = os.path.dirname(os.path.abspath(__file__))
     tmp = tempfile.mkdtemp()
@@ -136,8 +169,9 @@ if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else ''
     if cmd == 'criar':
         criar()
+    elif cmd == 'backup':
+        backup()
     elif cmd == 'promover':
-        # --completo: publica também a trilha; --destino DIR: ensaio numa pasta qualquer (não mexe na publicada)
         dest = sys.argv[sys.argv.index('--destino') + 1] if '--destino' in sys.argv else None
         promover(dest, parcial='--completo' not in sys.argv)
     else:
