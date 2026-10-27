@@ -698,3 +698,10 @@ html.entrando body::after { content: ""; position: fixed; inset: 0; z-index: 100
 a.ref-egw { color: var(--pu-tx); text-decoration: underline; text-underline-offset: 3px; }
 article.note[id^="egw-"] { scroll-margin-top: 24px; }
 article.note[id^="egw-"]:target { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* versículo mencionado no texto: link para o cartão com o versículo (mesma página) ou para a Bíblia Online */
+a.ref-vers, a.ref-biblia { color: var(--blue-tx); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a.ref-vers:hover, a.ref-biblia:hover { text-decoration-thickness: 2px; }
+a.ref-biblia::after { content: " ↗"; font-size: .8em; }
+article.note[id^="v-"] { scroll-margin-top: 24px; }
+article.note[id^="v-"]:target { outline: 3px solid var(--gold); outline-offset: 3px; }
