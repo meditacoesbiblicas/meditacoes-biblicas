@@ -47,6 +47,9 @@ CSS_FAIXA = '''
 .rascunho-faixa { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; padding: 7px 14px; background: #B3541E; color: #fff; text-align: center; font: 600 13px/1.3 var(--sans, system-ui); letter-spacing: .02em; box-shadow: 0 -2px 10px rgba(0, 0, 0, .25); }
 .rascunho-faixa.backup { background: #3A4A73; }
 .rascunho-faixa a { color: #FFE9C7; }
+/* a faixa fixa não pode cobrir a dica da ilustração ampliada */
+body.ampliada:has(.rascunho-faixa) { --faixa: 38px; }
+@media (max-width: 760px) { body.ampliada:has(.rascunho-faixa) { --faixa: 58px; } }
 '''
 
 
