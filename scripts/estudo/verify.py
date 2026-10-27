@@ -54,7 +54,7 @@ def pedacos(h):
 erros = 0; checados = 0
 for arq in sorted(glob.glob(os.path.join(PASTA, 'v*.html')) + glob.glob(os.path.join(PASTA, 'conclusao.html'))):
     s = open(arq, encoding='utf-8').read()
-    for art in re.findall(r'<article class="note [a-z]+">.*?</article>', s, re.S):
+    for art in re.findall(r'<article class="note [a-z]+"[^>]*>.*?</article>', s, re.S):
         h3 = re.sub(r'<[^>]+>', '', re.search(r'<h3[^>]*>(.*?)</h3>', art, re.S).group(1)).strip()
         cor = re.search(r'class="note ([a-z]+)"', art).group(1)
         bq = re.search(r'<blockquote class="text">(.*?)</blockquote>', art, re.S)
