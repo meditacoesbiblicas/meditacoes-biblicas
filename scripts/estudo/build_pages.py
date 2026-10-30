@@ -645,15 +645,15 @@ def conclusao():
   <p class="cc-intro">E o centro das sete é a porta 4: três vêm antes dela e três vêm depois. Esta é uma leitura para meditar. O texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
   <div class="sete" role="group" aria-label="As oito portas em três blocos e a oitava, à parte">
     <div class="sete-bloco antes">
-      <p class="sete-rot">Preparam o coração</p>
+      <p class="sete-rot">Chegando a Cristo</p>
       <ol>@@A@@</ol>
     </div>
     <div class="sete-bloco centro">
-      <p class="sete-rot">O centro: Cristo</p>
+      <p class="sete-rot">Em Cristo: alimentando-se</p>
       <ol>@@C@@</ol>
     </div>
     <div class="sete-bloco depois">
-      <p class="sete-rot">O que nasce de quem se alimenta de Cristo</p>
+      <p class="sete-rot">Os frutos</p>
       <ol>@@D@@</ol>
     </div>
     <div class="sete-bloco fora">
@@ -662,18 +662,18 @@ def conclusao():
     </div>
   </div>
 
-  <h3 class="cc-sub">Antes do centro: o coração fica pronto</h3>
+  <h3 class="cc-sub">Antes do centro: chegando a Cristo</h3>
   <p class="cc-intro">Quem não sente a sua pobreza (porta 1) e não chora pelo pecado (porta 2) não procura Cristo. E quem tenta fazer tudo com a própria força também não. A mansidão (porta 3) é confiar: entregar o caminho ao Senhor e descansar nele, sabendo que ele fará com o seu poder, e não eu com a minha força. Sem esse sossego a pessoa fica ansiosa pelo futuro e não consegue se alimentar de Cristo.</p>
   @@SL37@@
 
-  <h3 class="cc-sub">No centro: a fome e a sede de justiça</h3>
+  <h3 class="cc-sub">No centro: alimentando-se de Cristo</h3>
   <p class="cc-intro">A fome e a sede são o que mais incomoda o corpo: a pessoa quer saciar logo. Jesus compara a isso a inquietude por justiça. E a justiça é uma Pessoa: só Cristo sacia essa fome e essa sede.</p>
   <div class="cc-par">
   @@JO635@@
   @@CO130@@
   </div>
 
-  <h3 class="cc-sub">Depois do centro: o fruto</h3>
+  <h3 class="cc-sub">Depois do centro: os frutos</h3>
   <p class="cc-intro">Quem se alimenta de Cristo dá fruto: é misericordioso (porta 5), puro de coração (porta 6) e pacificador (porta 7). E não é por esforço próprio.</p>
   @@JO155@@
 
@@ -687,9 +687,9 @@ def conclusao():
   @@JO644@@
   </div>
   <article class="note gray cc-cartao">
-    <span class="tag">Conclusão</span>
-    <h3>O Pai atrai, e Cristo chama quem está cansado</h3>
-    <p>As três primeiras portas não são um preço que se paga para ter o direito de chegar a Cristo. Ele convida quem está cansado, e é o Pai quem atrai a pessoa. As portas 1, 2 e 3 são o que acontece no coração de quem começa a ver o seu estado e a olhar para ele. É isso que o deixa com fome e sede de justiça.</p>
+    <span class="tag">Comentário</span>
+    <h3>Deus dá o primeiro passo</h3>
+    <p>As três primeiras portas não são o preço para ter o direito de chegar a Cristo. Quem começa é Deus: o Pai, o Filho e o Espírito Santo, que são um só, atraem e chamam quem está cansado e o fazem enxergar o seu estado (Jo 16:8). As portas 1, 2 e 3 são isso acontecendo no coração de quem começa a ver o seu estado e a olhar para ele. É isso que o deixa com fome e sede de justiça. Depois vêm os frutos.</p>
   </article>
 </section>
 """
