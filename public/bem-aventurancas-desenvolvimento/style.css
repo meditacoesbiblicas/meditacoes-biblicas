@@ -618,7 +618,9 @@ body.ampliada:has(.rascunho-faixa) { --faixa: 38px; }
 .cc-sec h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 12px; font: 600 clamp(24px, 3vw, 32px)/1.2 var(--serif); color: var(--navy); }
 .cc-num { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: var(--gold); font: 600 18px/1 var(--serif); }
 .cc-intro { max-width: 78ch; margin: 0 0 16px; font-size: 18px; line-height: 1.6; }
-.cc-cartao { max-width: 860px; margin-bottom: 14px; }
+/* tudo na mesma largura e no mesmo ritmo: cartões, pares, quadros e diagramas ocupam a largura toda e se separam por 16px; só o texto corrido tem largura de leitura */
+.cc-cartao, .cc-sec > .note { max-width: none; margin: 0 0 16px; }
+.cc-cartao > p, .cc-cartao > blockquote { max-width: 100ch; }
 
 /* a moldura: a 1ª e a 8ª abraçam as seis do meio, como parênteses */
 .moldura { display: grid; grid-template-columns: minmax(190px, 240px) minmax(0, 1fr) minmax(190px, 240px); gap: 16px; align-items: stretch; margin-top: 24px; }
@@ -651,9 +653,15 @@ body.ampliada:has(.rascunho-faixa) { --faixa: 38px; }
 .tempo.agora { background: var(--gr-bg); border: 1px solid var(--gr-bd); color: var(--gr-tx); }
 .tempo.depois { background: var(--gy-bg); border: 1px solid var(--gy-bd); color: var(--gy-tx); }
 
-.cc-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.cc-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 16px; }
 .cc-par .cc-cartao { max-width: none; margin: 0; }
-.cc-fecho { margin: 60px 0 0; max-width: 860px; }
+/* nos pares, o link "Ler o texto completo" fica na mesma linha, no pé dos dois cartões */
+.cc-par > .note { display: flex; flex-direction: column; margin: 0; }
+.cc-par > .note .full { margin-top: auto; padding-top: 10px; align-self: flex-start; }
+.cc-fecho { margin: 40px 0 0; }
+.cc-sec > :last-child, .cc-fecho > article:last-of-type { margin-bottom: 0; }
+.cc-sec > .moldura, .cc-sec > .sete, .cc-sec > .cc-tabela-caixa { margin: 8px 0 16px; }
+.cc-sec > .cc-intro + .cc-par, .cc-sec > .cc-intro + .cc-cartao { margin-top: 0; }
 
 @media (max-width: 980px) {
   .cc-hero { grid-template-columns: 1fr; }
