@@ -634,6 +634,100 @@ def conclusao():
     <img src="conclusao.jpg" alt="Ilustração: as oito portas em fila; a primeira e a última, maiores e douradas, abraçam as seis do meio como dois parênteses.">
     <figcaption>Ilustração criada com IA</figcaption>
   </figure>'''
+    # Atualização de 30/10/2026 (meditação do dono): as sete primeiras acontecem na pessoa, a 4ª é o centro, a 8ª vem de fora
+    def porta(n_, nome, h):
+        return '<li><a href="%s"><span class="num">%s</span><span>%s</span></a></li>' % (h, n_, nome)
+    sete = """
+<section class="cc-sec" id="sete-e-uma" aria-labelledby="cc-sete">
+  <h2 id="cc-sete">Sete acontecem em você, uma vem de fora</h2>
+  <p class="cc-atualiza"><span>Atualização</span> 30/10/2026</p>
+  <p class="cc-intro">Há mais uma diferença entre as portas. As <b>sete primeiras</b> descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela: ela reconhece a sua pobreza, chora pelo pecado, aprende a ser mansa, tem fome de justiça, e daí nascem a misericórdia, a pureza e a paz. São mudanças de caráter. A <b>oitava</b> é diferente: não depende de mim. Não está em mim ser perseguido; é preciso que alguém me persiga.</p>
+  <p class="cc-intro">E o centro das sete é a porta 4: três vêm antes dela e três vêm depois. Esta é uma leitura para meditar. O texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
+  <div class="sete" role="group" aria-label="As oito portas em três blocos e a oitava, à parte">
+    <div class="sete-bloco antes">
+      <p class="sete-rot">Preparam o coração</p>
+      <ol>@@A@@</ol>
+    </div>
+    <div class="sete-bloco centro">
+      <p class="sete-rot">O centro: Cristo</p>
+      <ol>@@C@@</ol>
+    </div>
+    <div class="sete-bloco depois">
+      <p class="sete-rot">O que nasce de quem se alimenta de Cristo</p>
+      <ol>@@D@@</ol>
+    </div>
+    <div class="sete-bloco fora">
+      <p class="sete-rot">Vem de fora</p>
+      <ol>@@E@@</ol>
+    </div>
+  </div>
+
+  <h3 class="cc-sub">Antes do centro: o coração fica pronto</h3>
+  <p class="cc-intro">Quem não sente a sua pobreza (porta 1) e não chora pelo pecado (porta 2) não procura Cristo. E quem tenta fazer tudo com a própria força também não. A mansidão (porta 3) é confiar: entregar o caminho ao Senhor e descansar nele, sabendo que ele fará com o seu poder, e não eu com a minha força. Sem esse sossego a pessoa fica ansiosa pelo futuro e não consegue se alimentar de Cristo.</p>
+  @@SL37@@
+
+  <h3 class="cc-sub">No centro: a fome e a sede de justiça</h3>
+  <p class="cc-intro">A fome e a sede são o que mais incomoda o corpo: a pessoa quer saciar logo. Jesus compara a isso a inquietude por justiça. E a justiça é uma Pessoa: só Cristo sacia essa fome e essa sede.</p>
+  <div class="cc-par">
+  @@JO635@@
+  @@CO130@@
+  </div>
+
+  <h3 class="cc-sub">Depois do centro: o fruto</h3>
+  <p class="cc-intro">Quem se alimenta de Cristo dá fruto: é misericordioso (porta 5), puro de coração (porta 6) e pacificador (porta 7). E não é por esforço próprio.</p>
+  @@JO155@@
+
+  <h3 class="cc-sub">A oitava: o que os outros fazem</h3>
+  <p class="cc-intro">Na oitava, o verbo muda de dono. Nas sete primeiras a pessoa é descrita pelo que ela é; aqui, quem age são os outros: injuriam, perseguem e dizem mal. Repare também na palavra <b>justiça</b>: a porta 4 tem fome dela e a porta 8 é perseguida por causa dela. E, como a porta 1, ela tem o Reino dos céus já no presente.</p>
+  @@MT511@@
+
+  <h3 class="cc-sub">Um cuidado: não é uma escada de merecimento</h3>
+  <div class="cc-par">
+  @@MT1128@@
+  @@JO644@@
+  </div>
+  <article class="note gray cc-cartao">
+    <span class="tag">Conclusão</span>
+    <h3>O Pai atrai, e Cristo chama quem está cansado</h3>
+    <p>As três primeiras portas não são um preço que se paga para ter o direito de chegar a Cristo. Ele convida quem está cansado, e é o Pai quem atrai a pessoa. As portas 1, 2 e 3 são o que acontece no coração de quem começa a ver o seu estado e a olhar para ele. É isso que o deixa com fome e sede de justiça.</p>
+  </article>
+</section>
+"""
+    sete = sete.replace('@@A@@', ''.join(porta(*t) for t in (('1', 'Pobres em espírito', 'v03.html#v3'), ('2', 'Os que choram', 'v04.html#v4'), ('3', 'Mansos', 'v05.html#v5'))))
+    sete = sete.replace('@@C@@', porta('4', 'Fome e sede de justiça', 'v06.html#v6'))
+    sete = sete.replace('@@D@@', ''.join(porta(*t) for t in (('5', 'Misericordiosos', 'v07.html#v7'), ('6', 'Puros de coração', 'v08.html#v8'), ('7', 'Pacificadores', 'v09.html#v9'))))
+    sete = sete.replace('@@E@@', porta('8', 'Perseguidos', 'v10-12.html#v10'))
+    sete = sete.replace('@@SL37@@', card('blue', 'Mansidão é confiar', 'Salmo 37:5, 7, 11',
+        antes='Os mansos entregam o caminho ao Senhor e descansam nele, em vez de forçar com as próprias forças. É a mansidão da porta 3, com a sua promessa.',
+        corpo=bq(n('5', 'Entrega o teu caminho ao Senhor; <mark>confia nele</mark>, e ele tudo fará.'),
+                 n('7', '<mark>Descansa no Senhor</mark> e espera nele…'),
+                 n('11', 'Mas <mark>os mansos herdarão a terra</mark>…')),
+        link=arc('sl/37/5')))
+    sete = sete.replace('@@JO635@@', card('green', 'Cristo sacia', 'João 6:35',
+        antes='Quem tem fome e sede de justiça encontra em Cristo o que procura: ele mesmo é o pão.',
+        corpo=bq(n('35', 'Eu sou o pão da vida; <mark>aquele que vem a mim não terá fome</mark>; e <mark>quem crê em mim nunca terá sede</mark>.')),
+        link=arc('jo/6/35')))
+    sete = sete.replace('@@CO130@@', card('green', 'Cristo é a justiça', '1 Coríntios 1:30',
+        antes='A justiça que a porta 4 deseja não é algo que a pessoa produz: Deus a deu em Cristo.',
+        corpo=bq(n('30', 'Mas vós sois dele, em Jesus Cristo, o qual para nós <mark>foi feito por Deus</mark> sabedoria, e <mark>justiça</mark>, e santificação, e redenção;')),
+        link=arc('1co/1/30')))
+    sete = sete.replace('@@JO155@@', card('green', 'O fruto vem de permanecer', 'João 15:5',
+        antes='Misericórdia, pureza e paz são fruto de quem permanece em Cristo, e não de esforço próprio.',
+        corpo=bq(n('5', 'Eu sou a videira, vós, as varas; <mark>quem está em mim, e eu nele, este dá muito fruto</mark>, porque <mark>sem mim nada podereis fazer</mark>.')),
+        link=arc('jo/15/5')))
+    sete = sete.replace('@@MT511@@', card('orange', 'A porta 8 vem de fora', 'Mateus 5:11',
+        antes='Quem age aqui são os outros: eles injuriam, perseguem e falam mal. O bem-aventurado só permanece firme.',
+        corpo=bq(n('11', 'bem-aventurados sois vós quando <mark>vos injuriarem, e perseguirem, e, mentindo, disserem todo o mal contra vós</mark>, por minha causa.')),
+        link=arc('mt/5/11')))
+    sete = sete.replace('@@MT1128@@', card('blue', 'Cristo chama', 'Mateus 11:28',
+        antes='Jesus não manda primeiro se tornar pronto: ele convida quem está cansado.',
+        corpo=bq(n('28', '<mark>Vinde a mim, todos os que estais cansados e oprimidos</mark>, e eu vos aliviarei.')),
+        link=arc('mt/11/28')))
+    sete = sete.replace('@@JO644@@', card('blue', 'O Pai atrai', 'João 6:44',
+        antes='Quem vem a Cristo foi atraído antes pelo Pai: o começo é obra de Deus.',
+        corpo=bq(n('44', 'Ninguém pode vir a mim, <mark>se o Pai, que me enviou, o não trouxer</mark>; e eu o ressuscitarei no último Dia.')),
+        link=arc('jo/6/44')))
+
     corpo = '''
 <header class="cc-hero">
   <div class="cc-hero-texto">
@@ -671,6 +765,7 @@ def conclusao():
   <p class="cc-intro">E o perseguido (porta 8) precisa da humildade e de todas as outras para suportar. A humildade, no fim, termina em perseguição.</p>
 </section>
 
+@@SETE@@
 <section class="cc-sec" aria-labelledby="cc-laodiceia">
   <h2 id="cc-laodiceia">O oposto de cada ponta: Laodiceia</h2>
   <p class="cc-intro">A carta à igreja de Laodiceia mostra o contrário das duas portas que fecham a moldura.</p>
@@ -706,7 +801,7 @@ def conclusao():
 </section>
 '''
     prox = ('index.html', 'Voltar ao Sermão do Monte →', 'Sermão do Monte') if PARCIAL else ('v13-15.html', 'Continuar: sal e luz →', 'Sal e luz · v.13–16')
-    corpo = corpo.replace('@@PROX_HREF@@', prox[0]).replace('@@PROX_TXT@@', prox[1]).replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
+    corpo = corpo.replace('@@PROX_HREF@@', prox[0]).replace('@@PROX_TXT@@', prox[1]).replace('@@SETE@@', sete).replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
