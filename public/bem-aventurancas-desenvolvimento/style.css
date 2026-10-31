@@ -769,3 +769,8 @@ article.note[id^="v-"]:target { outline: 3px solid var(--gold); outline-offset: 
   .sete { grid-template-columns: 1fr; }
   .sete-bloco a { font-size: 18px; }
 }
+
+/* cursor da porta (só com mouse): um anel dourado vazado de 64px, com contorno azul-marinho para aparecer em qualquer fundo; bom para telão e palestra, e não cobre a figura. Sem suporte, volta à mãozinha */
+@media (hover: hover) and (pointer: fine) {
+  .hot { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='24' fill='rgba(242,217,160,.18)' stroke='%231F2A44' stroke-width='9'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23F2D9A0' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='4.5' fill='%23F2D9A0' stroke='%231F2A44' stroke-width='2'/%3E%3C/svg%3E") 32 32, pointer; }
+}
