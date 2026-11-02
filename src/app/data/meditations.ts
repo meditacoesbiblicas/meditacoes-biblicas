@@ -16,7 +16,7 @@ export type Meditacao = {
 export const MEDITACOES: Meditacao[] = [
   {
     id: "bem-aventurancas",
-    data: "2026-10-22",
+    data: "2026-11-02",
     tema: "Estudo bíblico",
     titulo: "📜 Sermão do Monte",
     versoChave: "Mateus 5–7",
