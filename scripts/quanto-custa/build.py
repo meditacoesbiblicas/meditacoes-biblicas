@@ -1,22 +1,31 @@
 # -*- coding: utf-8 -*-
-# Gera as páginas do estudo "Quanto custa?" (capa + um arquivo por ato) e a ilustração provisória do Ato 1.
+# Gera as páginas do estudo "Quanto custa?" (capa + um arquivo por ato).
 # Uso: python3 scripts/quanto-custa/build.py <pasta-de-saída> [--rascunho]
 #
 # Regras do estudo (combinadas com o dono do site):
 #  - nada nas páginas (título, capa, meta, navegação) pode adiantar o que vem nos atos seguintes;
 #  - um ato por vez, só avança com a confirmação do dono;
-#  - preços e fatos só entram como texto final depois de conferidos (ver DADOS: valor None = "a confirmar").
+#  - preços e fatos só entram como texto final depois de conferidos (ver ITENS: valor None = "a confirmar").
+# A ilustração do Ato 1 (vitrine.jpg) foi gerada no Gemini; as áreas clicáveis estão medidas em areas_ato1.py.
 import json
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'estudo'))
+AQUI = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(os.path.dirname(AQUI), 'estudo'))
+sys.path.insert(0, AQUI)
 from rascunho import gravar  # noqa: E402
+import areas_ato1 as A  # noqa: E402
 
 PASTA = 'quanto-custa'          # pasta da versão publicada (ainda não existe); a de desenvolvimento é PASTA + '-desenvolvimento'
 DEST = sys.argv[1]
 RASC = '--rascunho' in sys.argv
 PROXIMO = None                  # próximo ato construído (ex.: 'ato-02.html'); None enquanto não existir
+IMG = 'vitrine.jpg'
+RAZAO = A.W / A.H               # proporção da ilustração (o CSS usa a mesma, para as áreas caírem exatamente sobre os itens)
+ALT_VITRINE = ('Uma vitrine de degraus de madeira que sobem da esquerda para a direita. Sobre cada degrau há um objeto, com uma etiqueta '
+               'em branco pendurada na frente: uma xícara de café, uma pequena mesa posta para a família, uma mala de viagem com chapéu '
+               'de palha e mapa, livros com capelo de formatura, malas de viagem com um avião em miniatura, um carro e uma casa.')
 
 BARRA = '''<!-- barra do site: leva de volta às Meditações; links relativos à pasta do estudo -->
 <header class="site-bar">
@@ -31,69 +40,60 @@ BARRA = '''<!-- barra do site: leva de volta às Meditações; links relativos �
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Ato 1: a vitrine. Sete itens, do mais barato ao mais caro (nível 1 a 7).
-# preco/nota/recebe = None  ->  o painel mostra "a confirmar": nada de valor inventado antes de conferir a fonte.
+# preco/nota/recebe/tag = None  ->  "a confirmar": nada de valor inventado antes de conferir a fonte.
+#   preco = número em reais (o painel mostra com vírgula e milhar); tag = forma curta para a etiqueta na imagem ("543 mil").
 # ----------------------------------------------------------------------------------------------------------------------
-ITENS = [
-    dict(nome='Um café', emoji='☕', tam=84),
-    dict(nome='Uma refeição em família', emoji='🍽️', tam=100),
-    dict(nome='Um fim de semana fora', emoji='🧳', tam=110),
-    dict(nome='Um curso', emoji='🎓', tam=124),
-    dict(nome='Uma viagem internacional em família', emoji='✈️', tam=140),
-    dict(nome='Um carro', emoji='🚗', tam=160),
-    dict(nome='Uma casa', emoji='🏠', tam=190),
-]
-for i, it in enumerate(ITENS):
-    it.update(nivel=i + 1, preco=None, nota=None, recebe=None)
-
-W, H = 1536, 1024        # proporção 3:2, a mesma da ilustração final
-SW, X0, Y0, DY = 176, 140, 850, 88
+NOMES = ['Um café', 'Uma refeição em família', 'Um fim de semana fora', 'Um curso',
+         'Uma viagem internacional em família', 'Um carro', 'Uma casa']
+ITENS = [dict(nome=n, nivel=i + 1, preco=None, nota=None, recebe=None, tag=None) for i, n in enumerate(NOMES)]
+assert len(ITENS) == len(A.AREAS) == 7
 
 
-def geometria():
-    """Posição de cada item na ilustração provisória (em px do desenho) e a área clicável (em % da imagem)."""
-    saida = []
+def f(v):
+    return ('%.2f' % v).rstrip('0').rstrip('.')
+
+
+def pct(v, total):
+    return f(v / total * 100)
+
+
+def rect(r, cls='', rx=None):
+    x0, y0, x1, y1 = r
+    return '<rect%s x="%s" y="%s" width="%s" height="%s"%s/>' % (
+        (' class="%s"' % cls) if cls else '', f(x0), f(y0), f(x1 - x0), f(y1 - y0), (' rx="%s"' % rx) if rx else '')
+
+
+def overlay_svg():
+    """Camada SVG sobre a ilustração (mesmo sistema de coordenadas dela): as áreas de toque e o brilho dourado de cada item."""
+    g = ['<svg class="av-ov" viewBox="0 0 %d %d" preserveAspectRatio="none" role="group" aria-label="Itens da vitrine">' % (A.W, A.H)]
     for i, it in enumerate(ITENS):
-        s = it['tam']
-        xc = X0 + i * SW + SW / 2
-        y = Y0 - i * DY
-        topo = y - s * 1.02 - 6
-        base = y + 58
-        larg = s * 1.2
-        saida.append(dict(xc=xc, y=y, s=s,
-                          left=(xc - larg / 2) / W * 100, top=topo / H * 100,
-                          width=larg / W * 100, height=(base - topo) / H * 100))
-    return saida
+        a = A.AREAS[i]
+        g.append('        <g class="item" data-i="%d" tabindex="0" role="button" aria-pressed="false" aria-label="Item %d de %d: %s">'
+                 % (i, i + 1, len(ITENS), it['nome']))
+        for r in A.areas_de_toque(i):
+            g.append('          ' + rect(r, 'hit'))
+        g.append('          <g class="hl" aria-hidden="true">')
+        for r, rx in ((A.pad(a['box'], 10), 26), (A.etiqueta_papel(a['tag']), 18)):
+            g.append('            ' + rect(r, 'glow', rx))
+            g.append('            ' + rect(r, 'ring', rx))
+        g.append('          </g>')
+        g.append('        </g>')
+    g.append('      </svg>')
+    return '\n'.join(g)
 
 
-def svg_provisorio():
-    g = geometria()
-    p = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="%d" height="%d">' % (W, H, W, H),
-         '<defs>'
-         '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4DA"/><stop offset="1" stop-color="#F1D9A4"/></linearGradient>'
-         '<radialGradient id="luz" cx="0.78" cy="0.12" r="0.7"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>'
-         '<linearGradient id="madeira" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C99A55"/><stop offset="1" stop-color="#8E6431"/></linearGradient>'
-         '</defs>',
-         '<rect width="%d" height="%d" fill="url(#bg)"/>' % (W, H),
-         '<rect width="%d" height="%d" fill="url(#luz)"/>' % (W, H)]
-    for i, a in enumerate(g):
-        x = X0 + i * SW
-        p.append('<rect x="%d" y="%d" width="%d" height="%d" fill="url(#madeira)"/>' % (x, a['y'], SW + 1, H - a['y']))
-        p.append('<rect x="%d" y="%d" width="%d" height="14" fill="#E8C98A"/>' % (x, a['y'], SW + 1))
-        p.append('<rect x="%d" y="%d" width="2" height="%d" fill="#6E4C22" opacity=".45"/>' % (x, a['y'], H - a['y']))
-    for i, a in enumerate(g):
-        it = ITENS[i]
-        p.append('<ellipse cx="%.0f" cy="%.0f" rx="%.0f" ry="10" fill="#000" opacity=".16"/>' % (a['xc'], a['y'] + 6, a['s'] * .5))
-        p.append('<text x="%.0f" y="%.0f" font-size="%d" text-anchor="middle" '
-                 'font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">%s</text>'
-                 % (a['xc'], a['y'] - a['s'] * .12, a['s'], it['emoji']))
-        # etiqueta em branco, pendurada na frente do degrau
-        p.append('<path d="M%.0f %.0f Q%.0f %.0f %.0f %.0f" stroke="#1F2A44" stroke-width="1.6" fill="none"/>'
-                 % (a['xc'], a['y'] + 30, a['xc'] + 9, a['y'] + 15, a['xc'] + 2, a['y'] + 3))
-        p.append('<rect x="%.0f" y="%.0f" width="52" height="32" rx="5" fill="#FFF8E7" stroke="#1F2A44" stroke-width="1.6"/>'
-                 % (a['xc'] - 26, a['y'] + 22))
-        p.append('<circle cx="%.0f" cy="%.0f" r="3.2" fill="#fff" stroke="#1F2A44" stroke-width="1.4"/>' % (a['xc'], a['y'] + 30))
-    p.append('</svg>')
-    return '\n'.join(p)
+def selos_e_etiquetas():
+    """✓ de item visto (no canto do objeto) e o texto que aparece na etiqueta da própria imagem."""
+    out = []
+    for i, it in enumerate(ITENS):
+        x0, y0, x1, y1 = A.AREAS[i]['box']
+        out.append('      <span class="ok" data-i="%d" aria-hidden="true" style="left:%s%%;top:%s%%">✓</span>' % (i, pct(x1, A.W), pct(y0, A.H)))
+    for i, it in enumerate(ITENS):
+        x, y, w, h = A.AREAS[i]['tag']
+        out.append('      <div class="etq" data-i="%d" aria-hidden="true" style="left:%s%%;top:%s%%;width:%s%%;height:%s%%">'
+                   '<span class="etq-rs">R$</span><span class="etq-v">%s</span></div>'
+                   % (i, pct(x, A.W), pct(y, A.H), pct(w, A.W), pct(h, A.H), it['tag'] or '—'))
+    return '\n'.join(out)
 
 
 def escreve(nome, html):
@@ -124,7 +124,7 @@ def capa():
       <a class="botao-capa" href="ato-01.html">Começar →</a>
     </div>
     <figure class="capa-figura">
-      <img src="vitrine-provisoria.svg" alt="Uma vitrine em degraus, com um objeto em cada degrau, do menor ao maior." width="1536" height="1024">
+      <img src="@@IMG@@" alt="@@ALT@@" width="@@W@@" height="@@H@@">
     </figure>
   </header>
 </div>
@@ -133,7 +133,8 @@ def capa():
 </body>
 </html>
 '''
-    escreve('index.html', html.replace('@@BARRA@@', BARRA).replace('@@PASTA@@', PASTA))
+    escreve('index.html', html.replace('@@BARRA@@', BARRA).replace('@@PASTA@@', PASTA).replace('@@IMG@@', IMG)
+            .replace('@@ALT@@', ALT_VITRINE).replace('@@W@@', str(A.W)).replace('@@H@@', str(A.H)))
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -144,8 +145,12 @@ JS_ATO1 = r'''
   'use strict';
   var dados = JSON.parse(document.getElementById('dados').textContent);
   var itens = dados.itens, total = itens.length;
-  var hs = [].slice.call(document.querySelectorAll('.hot'));
+  var hs = [].slice.call(document.querySelectorAll('.item'));
+  var oks = [].slice.call(document.querySelectorAll('.ok'));
+  var etqs = [].slice.call(document.querySelectorAll('.etq'));
   var quadro = document.getElementById('quadro');
+  var moldura = document.getElementById('moldura');
+  var dica = document.getElementById('dica-item');
   var painel = document.getElementById('painel');
   var vazio = document.getElementById('p-vazio');
   var cartao = document.getElementById('p-cartao');
@@ -153,6 +158,7 @@ JS_ATO1 = r'''
   var bAnt = document.getElementById('p-ant'), bProx = document.getElementById('p-prox');
   var pontos = [].slice.call(document.querySelectorAll('.p-vistos i'));
   var reduz = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var mouse = !!(window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches);
   var CHAVE = 'quanto-custa-ato1';
   var atual = -1, vistos = {}, ficha = 0;
   try { vistos = JSON.parse(sessionStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { vistos = {}; }
@@ -198,7 +204,12 @@ JS_ATO1 = r'''
 
   function marcar() {
     var n = 0;
-    hs.forEach(function (h, i) { var v = !!vistos[i]; h.classList.toggle('visto', v); if (v) n++; });
+    hs.forEach(function (h, i) {
+      var v = !!vistos[i];
+      oks[i].classList.toggle('on', v);
+      etqs[i].classList.toggle('on', v);
+      if (v) n++;
+    });
     pontos.forEach(function (p, i) { p.classList.toggle('on', !!vistos[i]); });
     el('p-vistos-n').textContent = n + ' de ' + total;
     painel.classList.toggle('completo', n === total);
@@ -207,18 +218,18 @@ JS_ATO1 = r'''
   function centrar(i) {
     // só quando a imagem é maior que a janela (celular em pé): leva o item para o meio
     if (!quadro || quadro.scrollWidth <= quadro.clientWidth + 2) return;
-    var h = hs[i], m = h.offsetParent, alvo = m.offsetLeft + h.offsetLeft + h.offsetWidth / 2 - quadro.clientWidth / 2;
+    var alvo = moldura.offsetLeft + itens[i].cx * moldura.offsetWidth - quadro.clientWidth / 2;
     quadro.scrollTo({ left: alvo, behavior: reduz ? 'auto' : 'smooth' });
   }
 
-  // a etiqueta gira (como virar uma etiqueta de preço): sai de lado, troca o conteúdo e volta balançando, presa pelo furo
+  // a etiqueta do painel gira (como virar uma etiqueta de preço): sai de lado, troca o conteúdo e volta balançando, presa pelo furo
   function entra() {
     et.animate([
-        { transform: 'perspective(900px) rotateY(90deg)' },
-        { transform: 'perspective(900px) rotateY(0deg) rotateZ(-3deg)', offset: .7 },
-        { transform: 'perspective(900px) rotateY(0deg) rotateZ(1.5deg)', offset: .85 },
-        { transform: 'perspective(900px) rotateY(0deg) rotateZ(0deg)' }
-      ], { duration: 460, easing: 'cubic-bezier(.2,.8,.2,1)' });
+      { transform: 'perspective(900px) rotateY(90deg)' },
+      { transform: 'perspective(900px) rotateY(0deg) rotateZ(-3deg)', offset: .7 },
+      { transform: 'perspective(900px) rotateY(0deg) rotateZ(1.5deg)', offset: .85 },
+      { transform: 'perspective(900px) rotateY(0deg) rotateZ(0deg)' }
+    ], { duration: 460, easing: 'cubic-bezier(.2,.8,.2,1)' });
   }
 
   function animarEtiqueta(troca, soEntrada) {
@@ -235,17 +246,38 @@ JS_ATO1 = r'''
     }, function () {});
   }
 
+  // a etiqueta que está na própria imagem vira, na primeira vez que o item é aberto
+  function virarEtiquetaDaImagem(i) {
+    var e = etqs[i];
+    if (reduz || !e.animate) return;
+    e.animate([
+      { transform: 'perspective(500px) rotateY(90deg)', opacity: 0 },
+      { transform: 'perspective(500px) rotateY(0deg)', opacity: 1 }
+    ], { duration: 480, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  }
+
+  function mostraDica(i) {
+    if (!dica) return;
+    dica.textContent = itens[i].nome;
+    dica.style.left = itens[i].dx + '%';
+    dica.style.top = itens[i].dy + '%';
+    dica.hidden = false;
+  }
+  function escondeDica() { if (dica) dica.hidden = true; }
+
   function selecionar(i, vindoDoTeclado) {
     if (i < 0 || i >= total) return;
-    var primeira = atual === -1;
+    var primeira = atual === -1, novo = !vistos[i];
     atual = i;
     hs.forEach(function (h, k) { h.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+    etqs.forEach(function (e, k) { e.classList.toggle('sel', k === i); });
     vistos[i] = 1;
     try { sessionStorage.setItem(CHAVE, JSON.stringify(vistos)); } catch (e) {}
     vazio.hidden = true;
     cartao.hidden = false;
     animarEtiqueta(function () { preencher(i); medidores(i, true); }, primeira);
     marcar();
+    if (novo) virarEtiquetaDaImagem(i);
     centrar(i);
     if (vindoDoTeclado) hs[i].focus({ preventScroll: true });
     if (history.replaceState) history.replaceState(null, '', '#item-' + (i + 1));
@@ -254,6 +286,7 @@ JS_ATO1 = r'''
   function limpar() {
     atual = -1; ficha++;
     hs.forEach(function (h) { h.setAttribute('aria-pressed', 'false'); });
+    etqs.forEach(function (e) { e.classList.remove('sel'); });
     cartao.hidden = true; vazio.hidden = false;
     if (history.replaceState) history.replaceState(null, '', location.pathname);
   }
@@ -261,9 +294,14 @@ JS_ATO1 = r'''
   hs.forEach(function (h, i) {
     h.addEventListener('click', function () { selecionar(i); });
     h.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); selecionar(Math.min(i + 1, total - 1), true); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selecionar(i); }
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); selecionar(Math.min(i + 1, total - 1), true); }
       else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); selecionar(Math.max(i - 1, 0), true); }
     });
+    if (mouse) {
+      h.addEventListener('pointerenter', function () { mostraDica(i); });
+      h.addEventListener('pointerleave', escondeDica);
+    }
   });
   bAnt.addEventListener('click', function () { selecionar(atual - 1); });
   bProx.addEventListener('click', function () { selecionar(atual + 1); });
@@ -271,37 +309,36 @@ JS_ATO1 = r'''
   document.addEventListener('keydown', function (e) {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     var t = e.target && e.target.tagName;
-    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
-    if (e.target && e.target.classList && e.target.classList.contains('hot') && /^Arrow/.test(e.key)) return;
+    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || t === 'BUTTON') return;
+    if (e.target && e.target.classList && e.target.classList.contains('item')) { if (/^(Arrow|Enter| )/.test(e.key)) return; }
     if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); selecionar(atual < 0 ? 0 : Math.min(atual + 1, total - 1), true); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); selecionar(atual < 0 ? 0 : Math.max(atual - 1, 0), true); }
     else if (e.key === 'Home') { e.preventDefault(); selecionar(0, true); }
     else if (e.key === 'End') { e.preventDefault(); selecionar(total - 1, true); }
-    else if (e.key === 'Escape') { limpar(); }
+    else if (e.key === 'Escape') { limpar(); escondeDica(); }
   });
 
   marcar();
   var m = /^#item-(\d+)$/.exec(location.hash);
   if (m && +m[1] >= 1 && +m[1] <= total) selecionar(+m[1] - 1);
   // celular em pé: começa com o primeiro item à vista
-  if (quadro) quadro.scrollLeft = 0;
+  if (quadro && !m) quadro.scrollLeft = 0;
 })();
 '''
 
 
 def ato01():
-    g = geometria()
-    hots = []
-    for i, (it, a) in enumerate(zip(ITENS, g)):
-        hots.append('        <button type="button" class="hot" style="left:%.2f%%;top:%.2f%%;width:%.2f%%;height:%.2f%%" '
-                    'data-nome="%s" aria-pressed="false" aria-label="Item %d de %d: %s"></button>'
-                    % (a['left'], a['top'], a['width'], a['height'], it['nome'], i + 1, len(ITENS), it['nome']))
-    dados = dict(itens=[dict(nome=it['nome'], nivel=it['nivel'], preco=it['preco'], nota=it['nota'], recebe=it['recebe']) for it in ITENS],
-                 proximo=PROXIMO)
+    dados_itens = []
+    for i, it in enumerate(ITENS):
+        x0, y0, x1, y1 = A.AREAS[i]['box']
+        d = dict(nome=it['nome'], nivel=it['nivel'], preco=it['preco'], nota=it['nota'], recebe=it['recebe'], tag=it['tag'],
+                 cx=round((x0 + x1) / 2 / A.W, 4), dx=round((x0 + x1) / 2 / A.W * 100, 2), dy=round(y0 / A.H * 100, 2))
+        dados_itens.append(d)
+    dados = dict(itens=dados_itens, proximo=PROXIMO)
     pontos = ''.join('<i></i>' for _ in ITENS)
     segs = ''.join('<i></i>' for _ in range(7))
     cont = ('\n      <a class="p-continuar" id="p-continuar" href="%s">Continuar →</a>' % PROXIMO) if PROXIMO else ''
-    dev = ('\n      <p class="p-dev">Protótipo do Ato 1: ilustração provisória; textos e preços ainda a confirmar.</p>' if RASC else '')
+    dev = ('\n    <p class="p-dev">Ato 1 em teste: ilustração do Gemini; textos e preços ainda a confirmar.</p>' if RASC else '')
     html = '''<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -313,12 +350,14 @@ def ato01():
 </head>
 <body class="ato">
 @@BARRA@@
-<main class="av" id="av">
+<main class="av" id="av" style="--r:@@RAZAO@@">
   <section class="av-palco" aria-label="A vitrine">
     <div class="av-quadro" id="quadro">
       <div class="av-moldura" id="moldura">
-        <img class="av-img" src="vitrine-provisoria.svg" width="1536" height="1024" alt="Uma vitrine em degraus que sobem da esquerda para a direita. Em cada degrau há um item com uma etiqueta: um café, uma refeição em família, um fim de semana fora, um curso, uma viagem internacional em família, um carro e uma casa.">
-@@HOTS@@
+        <img class="av-img" src="@@IMG@@" width="@@W@@" height="@@H@@" alt="@@ALT@@" fetchpriority="high">
+      @@OVERLAY@@
+@@SELOS@@
+        <div class="dica-item" id="dica-item" hidden></div>
       </div>
     </div>
     <a class="av-voltar" href="index.html">← Início</a>
@@ -357,16 +396,16 @@ def ato01():
 </body>
 </html>
 '''
-    html = (html.replace('@@BARRA@@', BARRA).replace('@@HOTS@@', '\n'.join(hots)).replace('@@PONTOS@@', pontos)
-            .replace('@@SEGS@@', segs).replace('@@CONT@@', cont).replace('@@DEV@@', dev)
+    html = (html.replace('@@BARRA@@', BARRA).replace('@@RAZAO@@', '%.6f' % RAZAO).replace('@@IMG@@', IMG)
+            .replace('@@W@@', str(A.W)).replace('@@H@@', str(A.H)).replace('@@ALT@@', ALT_VITRINE)
+            .replace('@@OVERLAY@@', overlay_svg()).replace('@@SELOS@@', selos_e_etiquetas())
+            .replace('@@PONTOS@@', pontos).replace('@@SEGS@@', segs).replace('@@CONT@@', cont).replace('@@DEV@@', dev)
             .replace('@@DADOS@@', json.dumps(dados, ensure_ascii=False)).replace('@@JS@@', JS_ATO1)
             .replace('@@PASTA@@', PASTA))
     escreve('ato-01.html', html)
 
 
 os.makedirs(DEST, exist_ok=True)
-with open(os.path.join(DEST, 'vitrine-provisoria.svg'), 'w', encoding='utf-8') as f:
-    f.write(svg_provisorio())
 capa()
 ato01()
 print('quanto-custa ok:', DEST)
