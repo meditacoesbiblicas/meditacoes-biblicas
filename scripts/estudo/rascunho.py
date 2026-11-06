@@ -53,20 +53,21 @@ body.ampliada:has(.rascunho-faixa) { --faixa: 38px; }
 '''
 
 
-def faixa(nome, tipo='rascunho'):
+def faixa(nome, tipo='rascunho', publicada=PASTA_PUBLICADA):
+    # `publicada`: pasta da versão publicada do estudo (outros estudos do site reaproveitam estas funções)
     if tipo == 'backup':
         return ('<div class="rascunho-faixa backup">BACKUP da versão anterior · guardada antes da última publicação · '
-                '<a href="../%s/%s">ver a versão atual desta página</a></div>\n' % (PASTA_PUBLICADA, nome))
+                '<a href="../%s/%s">ver a versão atual desta página</a></div>\n' % (publicada, nome))
     return ('<div class="rascunho-faixa">VERSÃO EM DESENVOLVIMENTO · ainda não publicada · '
-            '<a href="../%s/%s">ver a versão publicada desta página</a></div>\n' % (PASTA_PUBLICADA, nome))
+            '<a href="../%s/%s">ver a versão publicada desta página</a></div>\n' % (publicada, nome))
 
 
-def rascunhar(html, nome, tipo='rascunho'):
+def rascunhar(html, nome, tipo='rascunho', publicada=PASTA_PUBLICADA):
     """Publicada -> rascunho (ou backup)."""
     if 'rascunho-faixa' in html:
         return html
     html = html.replace('<meta charset="utf-8">\n', '<meta charset="utf-8">\n' + NOINDEX, 1)
-    html = re.sub(r'(<body[^>]*>\n)', lambda m: m.group(1) + faixa(nome, tipo), html, count=1)
+    html = re.sub(r'(<body[^>]*>\n)', lambda m: m.group(1) + faixa(nome, tipo, publicada), html, count=1)
     # contador de visitas desligado (visitas ao rascunho/backup não contam)
     html = re.sub(r'(<img src="https://meditacoesbiblicas\.goatcounter\.com/[^>]*>)', r'<!--PIXEL\1-->', html)
     return html
@@ -80,10 +81,10 @@ def desrascunhar(html):
     return html
 
 
-def gravar(pasta, nome, html, rascunho):
+def gravar(pasta, nome, html, rascunho, publicada=PASTA_PUBLICADA):
     """Grava uma página gerada: na forma publicada ou na do rascunho."""
     if rascunho:
-        html = rascunhar(html, nome)
+        html = rascunhar(html, nome, 'rascunho', publicada)
     os.makedirs(pasta, exist_ok=True)
     with open(os.path.join(pasta, nome), 'w', encoding='utf-8') as f:
         f.write(html)
