@@ -19,16 +19,16 @@ DIA_LUZ_KM = C_KM_S * 86400              # 25,9 bilhões de km (Voyager 1 chega 
 PTAX = 5.4621                            # dólar PTAX (Banco Central), venda, 05/11/2026
 
 # ---------------------------------------------------------------- distâncias (em km, quando a luz leva tempo conhecido)
-# (id, nome, distância em km, observação)
+# (id, nome, distância típica em km, mínima, máxima, observação)
 CORPOS = [
-    ('lua', 'Lua', LUA_KM, 'distância média'),
-    ('sol', 'Sol', UA_KM, '1 unidade astronômica'),
-    ('venus', 'Vênus', 41e6, 'de 38 a 261 milhões de km, conforme a posição'),
-    ('marte', 'Marte', 225e6, 'de 55 a 401 milhões de km; média de 225 milhões'),
-    ('jupiter', 'Júpiter', 778e6, 'de 588 a 968 milhões de km'),
-    ('netuno', 'Netuno', 4.5e9, 'cerca de 4,5 bilhões de km'),
-    ('voyager', 'Voyager 1', DIA_LUZ_KM, '1 dia-luz em novembro de 2026'),
-    ('proxima', 'Próxima do Centauro', 4.2465 * ANO_LUZ_KM, 'a estrela mais próxima do Sol'),
+    ('lua', 'Lua', LUA_KM, 363300, 405500, 'distância média; de 363.300 a 405.500 km'),
+    ('sol', 'Sol', UA_KM, 147.1e6, 152.1e6, '1 unidade astronômica (média)'),
+    ('venus', 'Vênus', 41e6, 38.2e6, 261.0e6, 'de 38 a 261 milhões de km, conforme a posição'),
+    ('marte', 'Marte', 225e6, 54.6e6, 401.4e6, 'de 55 a 401 milhões de km; média de 225 milhões'),
+    ('jupiter', 'Júpiter', 778e6, 588.5e6, 968.0e6, 'de 588 a 968 milhões de km'),
+    ('netuno', 'Netuno', 4.5e9, 4.306e9, 4.687e9, 'de 4,3 a 4,7 bilhões de km'),
+    ('voyager', 'Voyager 1', DIA_LUZ_KM, None, None, '1 dia-luz em novembro de 2026'),
+    ('proxima', 'Próxima do Centauro', 4.2465 * ANO_LUZ_KM, None, None, 'a estrela mais próxima do Sol'),
 ]
 
 # ---------------------------------------------------------------- estrelas para o céu da parte 6 (nome, distância em anos-luz, cor)
@@ -38,9 +38,19 @@ ESTRELAS = [
     ('Estrela Polar', 446), ('Rigel', 848), ('Deneb', 2029),
 ]
 
+# ---------------------------------------------------------------- velocidades (id, nome, km/s)
+VELOCIDADES = [
+    ('pe', 'Uma pessoa andando', 5 / 3600),
+    ('carro', 'Um carro a 100 km/h', 100 / 3600),
+    ('aviao', 'Um avião a jato', 900 / 3600),
+    ('voyager', 'A sonda Voyager 1', VOYAGER_KM_S),
+    ('luz', 'A luz', C_KM_S),
+]
+
 # ---------------------------------------------------------------- escada do universo (diâmetros em anos-luz)
 NIVEIS = [
     ('terra', 'A Terra', 12742 / ANO_LUZ_KM, 'cerca de 12.742 km de diâmetro'),
+    ('lua', 'A Terra e a Lua', 2 * LUA_KM / ANO_LUZ_KM, 'a Lua gira a cerca de 384 mil km da Terra: a órbita tem uns 769 mil km de lado a lado'),
     ('sistema', 'O Sistema Solar', 2 * 4.5e9 / ANO_LUZ_KM, 'até a órbita de Netuno: cerca de 9 bilhões de km de lado a lado'),
     ('vizinhanca', 'A vizinhança do Sol', 20, 'estrelas num raio de 10 anos-luz (a mais próxima está a 4,2)'),
     ('galaxia', 'A Via Láctea', 100000, 'cerca de 100 mil anos-luz de diâmetro, com centenas de bilhões de estrelas'),
@@ -85,17 +95,17 @@ def reais(usd):
 
 
 VIAGENS = [
-    dict(id='plataforma', nome='Na plataforma', alt_km=0, rotulo='A viagem começa aqui'),
-    dict(id='karman', nome='Beira do espaço', alt_km=100, rotulo='Linha de Kármán: 100 km',
+    dict(id='plataforma', nome='Na plataforma', chip='🚀 Plataforma', alt_km=0, rotulo='A viagem começa aqui'),
+    dict(id='karman', nome='Beira do espaço', chip='🌍 Beira do espaço', alt_km=100, imagine='Imagine ver a curvatura da Terra e flutuar por alguns minutos.', rotulo='Linha de Kármán: 100 km',
          usd=750e3, preco='US$ 750 mil por assento', tempo='alguns minutos sem peso',
          nota='Virgin Galactic anunciou US$ 750 mil por assento em março de 2026 e, em agosto, retirou esse preço, com novos valores maiores a caminho e o primeiro voo comercial adiado para fevereiro de 2027. '
               'Na Blue Origin, o único preço conhecido é o de um assento leiloado em junho de 2021: US$ 28 milhões.'),
-    dict(id='estacao', nome='Estação Espacial', alt_km=400, rotulo='Órbita da Estação Espacial: 400 km',
+    dict(id='estacao', nome='Estação Espacial', chip='🛰️ Estação', alt_km=400, imagine='Imagine dar uma volta na Terra a cada hora e meia e ver o sol nascer 16 vezes por dia.', rotulo='Órbita da Estação Espacial: 400 km',
          usd=65e6, preco='cerca de US$ 55 a 70 milhões', tempo='cerca de 1 dia até chegar; 10 a 14 dias lá',
          nota='A Axiom Space não divulga o preço oficialmente; as reportagens falam em cerca de US$ 55 milhões nas primeiras missões e US$ 59 a 70 milhões na Ax-4 (2025).'),
-    dict(id='lua', nome='Lua', alt_km=LUA_KM, rotulo='Lua: 384.400 km', usd=None, preco='nenhum bilhete à venda', tempo='cerca de 3 dias (como nas missões Apollo)',
-         nota='Não existe passagem comercial para a Lua.'),
-    dict(id='marte', nome='Marte', alt_km=225e6, rotulo='Marte: 225 milhões de km (em média)', usd=500e3, preco='meta: menos de US$ 500 mil', tempo='cerca de 7 meses (como a sonda Perseverance)',
+    dict(id='lua', nome='Lua', chip='🌕 Lua', alt_km=LUA_KM, imagine='Imagine ver a Terra do tamanho de uma bolinha azul no céu preto.', rotulo='Lua: 384.400 km', usd=None, preco='nenhum bilhete à venda', tempo='cerca de 3 dias (como na missão Artemis II, segundo a NASA)',
+         nota='Não existe passagem comercial para a Lua. Os astronautas da missão Artemis II levaram cerca de 3 dias para chegar lá (NASA).'),
+    dict(id='marte', nome='Marte', chip='🔴 Marte', alt_km=225e6, imagine='Imagine pisar numa terra vermelha e ver a Terra como uma estrela azul.', rotulo='Marte: 225 milhões de km (em média)', usd=500e3, preco='meta: menos de US$ 500 mil', tempo='cerca de 7 meses (como a sonda Perseverance)',
          nota='Elon Musk disse em 2019 que um bilhete para Marte custaria um dia menos de US$ 500 mil e, em 2022, falou em US$ 100 mil como exemplo. É meta declarada, não preço: ainda não existe viagem tripulada a Marte.'),
 ]
 
@@ -104,7 +114,8 @@ def json_dados():
     d = dict(
         c=C_KM_S, anoS=ANO_S, anoLuzKm=ANO_LUZ_KM, uaKm=UA_KM, parsecKm=PARSEC_KM, parsecAl=PARSEC_AL, terraCirc=TERRA_CIRC_KM, luaKm=LUA_KM,
         somMs=SOM_M_S, voyagerKms=VOYAGER_KM_S, diaLuzKm=DIA_LUZ_KM, ptax=PTAX,
-        corpos=[dict(id=i, nome=n, km=k, obs=o) for i, n, k, o in CORPOS],
+        corpos=[dict(id=i, nome=n, km=k, min=mn, max=mx, obs=o) for i, n, k, mn, mx, o in CORPOS],
+        velocidades=[dict(id=i, nome=n, kms=v) for i, n, v in VELOCIDADES],
         estrelas=[dict(nome=n, al=a) for n, a in ESTRELAS],
         niveis=[dict(id=i, nome=n, al=a, obs=o) for i, n, a, o in NIVEIS],
         precos=[dict(id=p['id'], nome=p['nome'], valor=p['valor'], texto=p['texto'], aprox=p['aprox'], nota=p['nota'], conta=p['conta'],

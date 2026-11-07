@@ -253,3 +253,55 @@
     setTimeout(function () { if (meu === seq) el.textContent = texto; }, dur + 150);
   };
 })();
+
+/* ---- extras 2: rótulos sobre imagens, suavização e medidas ---- */
+(function () {
+  var OVM = window.OVM, F = OVM.fmt;
+  OVM.caminhoArr = function (ctx, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r); ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+    ctx.lineTo(x + r, y + h); ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r); ctx.arcTo(x, y, x + r, y, r); ctx.closePath();
+  };
+  // rótulo em pílula escura sobre imagens; devolve a largura
+  OVM.pilula = function (ctx, txt, x, y, o) {
+    o = o || {};
+    var px = o.px || 13;
+    ctx.save();
+    ctx.font = OVM.fonte(px, o.peso || 600, o.serif);
+    var tw = ctx.measureText(txt).width, pad = o.pad == null ? 9 : o.pad, w = tw + pad * 2, h = px + 10;
+    var x0 = o.ancora === 'esq' ? x : o.ancora === 'dir' ? x - w : x - w / 2;
+    ctx.globalAlpha = o.alpha == null ? 1 : o.alpha;
+    ctx.fillStyle = o.fundo || 'rgba(6,10,26,.76)';
+    OVM.caminhoArr(ctx, x0, y - h / 2, w, h, h / 2); ctx.fill();
+    if (o.borda) { ctx.strokeStyle = o.borda; ctx.lineWidth = 1; ctx.stroke(); }
+    ctx.fillStyle = o.cor || '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.fillText(txt, x0 + pad, y + 0.5);
+    ctx.restore();
+    return w;
+  };
+  OVM.seguir = function (atual, alvo, taxa, dt) { return atual + (alvo - atual) * (1 - Math.exp(-taxa * dt)); };
+  // distância em km -> texto ("384.400 km", "149,6 milhões de km", "4,2 anos-luz", "93 bilhões de anos-luz")
+  F.distKm = function (km) {
+    var AL = window.OVM_DADOS ? OVM_DADOS.anoLuzKm : 9.4607e12;
+    if (km < 1e6) return F.n(km, km < 10 && km % 1 ? 1 : 0) + ' km';
+    if (km < AL * 0.1) return F.grande(km) + ' de km';
+    var ly = km / AL;
+    if (ly < 1000) return F.n(ly, ly < 10 ? 1 : 0) + (Math.round(ly * 10) / 10 === 1 ? ' ano-luz' : ' anos-luz');
+    if (ly < 1e6) return F.n(Math.round(ly / 10) * 10) + ' anos-luz';
+    return F.grande(ly) + ' de anos-luz';
+  };
+  // distância em km -> parsecs, em letras pequenas ("≈ 28,5 Gpc")
+  F.parsecKm = function (km) {
+    var pc = km / (window.OVM_DADOS ? OVM_DADOS.parsecKm : 3.0857e13);
+    if (pc < 1000) return '≈ ' + F.n(pc, pc < 10 ? 1 : 0) + ' pc';
+    if (pc < 1e6) return '≈ ' + F.n(pc / 1e3, pc / 1e3 < 10 ? 1 : 0) + ' kpc';
+    if (pc < 1e9) return '≈ ' + F.n(pc / 1e6, pc / 1e6 < 10 ? 1 : 0) + ' Mpc';
+    return '≈ ' + F.n(pc / 1e9, 1) + ' Gpc';
+  };
+  // comprimento em metros -> texto (18 cm · 3 mm · 30 µm · 2 nm · 5 fm)
+  F.metros = function (m) {
+    var u = [[1e3, 1e3, 'km'], [1, 1, 'm'], [1e-2, 1e-2, 'cm'], [1e-3, 1e-3, 'mm'], [1e-6, 1e-6, 'µm'], [5e-11, 1e-9, 'nm'], [5e-14, 1e-12, 'pm'], [0, 1e-15, 'fm']];
+    for (var i = 0; i < u.length; i++) if (m >= u[i][0]) { var v = m / u[i][1]; return F.n(v, v < 10 && Math.abs(v - Math.round(v)) > 0.05 ? (v < 1 ? 2 : 1) : 0) + ' ' + u[i][2]; }
+    return F.n(m / 1e-15, 1) + ' fm';
+  };
+})();
