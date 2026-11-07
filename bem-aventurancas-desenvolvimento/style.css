@@ -797,5 +797,5 @@ body.ampliada .am-titulo-img { display: none; }
   body.ampliada .am-titulo-img { display: block; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 5; max-width: calc(100% - 340px); padding: 7px 24px 8px; border-radius: 16px; background: rgba(31, 42, 68, .8); color: #FAF8F3; text-align: center; pointer-events: none; box-shadow: 0 4px 18px rgba(20, 24, 40, .35); }
   body.ampliada .am-titulo-img b { display: block; font: 700 26px/1.2 var(--serif); letter-spacing: .1px; }
   body.ampliada .am-titulo-img span { display: block; margin-top: 2px; font: 600 12px/1.2 var(--sans); letter-spacing: .5px; text-transform: uppercase; color: #F2D9A0; }
-  body.ampliada .am-dica { top: 84px; }
+  body.ampliada .am-dica { top: auto; bottom: calc(16px + var(--faixa, 0px)); }
 }
