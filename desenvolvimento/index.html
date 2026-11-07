@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Em desenvolvimento · Meditações Bíblicas</title>
+<style>
+:root { --navy:#1F2A44; --creme:#FAF0DD; --ouro:#C8923A; --texto:#2A2A33; --mudo:#6B5A3A; --cartao:#FFFFFF; --linha:rgba(31,42,68,.14); }
+@media (prefers-color-scheme: dark) { :root { --creme:#161B2B; --texto:#ECE7DA; --mudo:#C9B98F; --cartao:#202842; --linha:rgba(255,255,255,.16); --navy:#F4E6C4; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--creme); color: var(--texto); font: 400 17px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.faixa { background: #B65A2E; color: #fff; text-align: center; font: 600 13px/1.3 Inter, system-ui, sans-serif; padding: 8px 12px; }
+main { max-width: 760px; margin: 0 auto; padding: 28px 16px 56px; }
+.sup { margin: 0 0 6px; font: 700 12px/1.2 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--mudo); }
+h1 { margin: 0 0 10px; font: 700 clamp(30px, 7vw, 42px)/1.1 Newsreader, Georgia, serif; color: var(--navy); }
+.intro { margin: 0 0 26px; color: var(--mudo); }
+.cartoes { display: grid; gap: 14px; padding: 0; margin: 0; list-style: none; }
+.cartao { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 18px 18px 16px; }
+.cartao h2 { margin: 0 0 6px; font: 700 22px/1.2 Newsreader, Georgia, serif; color: var(--navy); }
+.cartao p { margin: 0 0 12px; font-size: 16px; }
+.end { margin: 0 0 14px; font: 500 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--mudo); word-break: break-all; }
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+.acoes a { display: inline-block; padding: 9px 18px; border-radius: 999px; font: 600 15px/1.2 Inter, system-ui, sans-serif; text-decoration: none; border: 1.5px solid var(--navy); color: var(--navy); }
+.acoes a.principal { background: var(--navy); color: var(--creme); }
+.acoes a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 2px; }
+.sem { font: 600 13px/1.2 Inter, system-ui, sans-serif; color: var(--mudo); align-self: center; }
+</style>
+</head>
+<body>
+<div class="faixa">EM DESENVOLVIMENTO · página de uso interno, sem link no site</div>
+<main>
+<p class="sup">Meditações Bíblicas</p>
+<h1>Em desenvolvimento</h1>
+<p class="intro">Tudo o que está sendo feito mas ainda não foi publicado fica aqui, em <b>/desenvolvimento/</b>. Cada item tem o seu endereço curto: <b>/desenvolvimento/nome-do-item/</b>.</p>
+<ul class="cartoes">
+<li class="cartao"><h2>Sermão do Monte · Bem-aventuranças</h2><p>O estudo do Sermão do Monte (Mt 5–7), com as oito portas do caminho. Aqui está a versão em desenvolvimento, com as partes que ainda não foram publicadas.</p><p class="end">/desenvolvimento/bem-aventurancas/</p><div class="acoes"><a class="principal" href="bem-aventurancas/">Abrir o desenvolvimento</a><a href="../bem-aventurancas/">Ver a versão publicada</a></div></li>
+<li class="cartao"><h2>O que vale mais?</h2><p>A jornada em dez partes: do chocolate quente ao limite do universo e ao núcleo do átomo, até o preço que foi pago por você.</p><p class="end">/desenvolvimento/o-que-vale-mais/</p><div class="acoes"><a class="principal" href="o-que-vale-mais/">Abrir o desenvolvimento</a><span class="sem">Ainda não publicado</span></div></li>
+<li class="cartao"><h2>Quanto custa?</h2><p>O primeiro estudo da escada de preços: a etiqueta que sobe a cada escolha.</p><p class="end">/desenvolvimento/quanto-custa/</p><div class="acoes"><a class="principal" href="quanto-custa/">Abrir o desenvolvimento</a><span class="sem">Ainda não publicado</span></div></li>
+</ul>
+</main>
+</body>
+</html>
