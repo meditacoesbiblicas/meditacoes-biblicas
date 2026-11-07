@@ -317,14 +317,16 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 
 /* ---- cena 2 (refeição em família): camadas da arte do Gemini, animadas por código ---- */
 .v-refeicao .mistura { mix-blend-mode: screen; }
-.v-refeicao .vp.a { opacity: .4; } .v-refeicao .vp.b { opacity: 0; }
+.v-refeicao .vp.a { opacity: .4; } .v-refeicao .vp.b, .v-refeicao .vp.c { opacity: 0; }
 .vig.on .v-refeicao .vp { animation: vaporimg 5.6s ease-in-out infinite; opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; }
-.vig.on .v-refeicao .vp.b { animation-delay: 2.8s; }
+.vig.on .v-refeicao .vp.b { animation-delay: 1.9s; } .vig.on .v-refeicao .vp.c { animation-delay: 3.8s; }
 .v-refeicao .brilho-lampada { opacity: .5; }
 .vig.on .v-refeicao .brilho-lampada { animation: luzraio 4.6s ease-in-out infinite; }
-.vig.on .v-refeicao .familia-img { animation: bobfam 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.vig.on .v-refeicao .familia-img { animation: respira 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.vig.on .v-refeicao .garcom-img { animation: respira 4.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes respira { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.006); } }
 @keyframes bobfam { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-.8px) scale(1.004); } }
-@media (prefers-reduced-motion: reduce) { .vig.on .v-refeicao .vp, .vig.on .v-refeicao .brilho-lampada, .vig.on .v-refeicao .familia-img { animation: none; } .v-refeicao .vp.a { opacity: .4; } }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-refeicao .vp, .vig.on .v-refeicao .brilho-lampada, .vig.on .v-refeicao .familia-img, .vig.on .v-refeicao .garcom-img { animation: none; } .v-refeicao .vp.a { opacity: .4; } }
 
 /* ---- cena 3 (hotel fazenda): camadas da arte do Gemini, animadas por código ---- */
 .v-fim .mistura { mix-blend-mode: screen; }
@@ -336,3 +338,17 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 @keyframes nuvensvao { from { transform: translateX(-26px); } to { transform: translateX(34px); } }
 .vig.on .v-fim .familia-img { animation: bobfam 4.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
 @media (prefers-reduced-motion: reduce) { .vig.on .v-fim .vp, .vig.on .v-fim .nuvens, .vig.on .v-fim .familia-img { animation: none; } .v-fim .vp.a { opacity: .5; } }
+
+/* ---- cena 3 revisada (hotel fazenda: casarão e piscina) ---- */
+.vig.on .v-fim .familia-img { animation: respira 4.6s ease-in-out infinite; }   /* só escala a partir dos pés: nunca "voa" */
+.v-fim .brilhos { opacity: 1; }
+
+/* ---- cena 4 (Paris) ---- */
+.v-viagem .mistura { mix-blend-mode: screen; }
+.v-viagem .brilho-sol { opacity: .55; }
+.vig.on .v-viagem .brilho-sol { animation: luzraio 5s ease-in-out infinite; }
+.vig.on .v-viagem .aviao-g { animation: aviaocruza 16s linear infinite; }
+@keyframes aviaocruza { from { transform: translateX(-80px); } to { transform: translateX(560px); } }
+.v-viagem .aviao-g { transform: translateX(-80px); }
+.vig.on .v-viagem .familia-img { animation: respira 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-viagem .aviao-g, .vig.on .v-viagem .familia-img, .vig.on .v-viagem .brilho-sol, .vig.on .v-viagem .tw, .vig.on .v-fim .familia-img { animation: none; } .v-viagem .aviao-g { transform: translateX(300px); } }

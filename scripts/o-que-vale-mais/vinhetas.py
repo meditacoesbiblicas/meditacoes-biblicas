@@ -11,40 +11,39 @@ CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-labe
 <g fill="#FFF3C4" class="motas"><circle class="mota m1" cx="86" cy="70" r="1.3"/><circle class="mota m2" cx="132" cy="104" r="1"/><circle class="mota m3" cx="176" cy="150" r="1.5"/><circle class="mota m4" cx="112" cy="168" r="1.1"/><circle class="mota m5" cx="214" cy="92" r="1.2"/><circle class="mota m6" cx="60" cy="122" r="1"/></g>
 </svg>'''
 
-REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" aria-label="Uma família de quatro pessoas conversando e sorrindo em volta de uma mesa posta, sob uma lâmpada acesa">
+REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" aria-label="Uma família de quatro pessoas conversando e rindo em volta de uma mesa num restaurante aconchegante, enquanto o garçom chega com pratos vegetarianos e uma jarra de água com limão">
 <defs><radialGradient id="r-brilho" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD98A" stop-opacity=".9"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>
 <filter id="r-sombra" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs>
-<image href="img/cena2-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
-<ellipse class="brilho-lampada mistura" cx="240" cy="96" rx="150" ry="110" fill="url(#r-brilho)"/>
-<ellipse cx="240" cy="299.6" rx="149.4" ry="9" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
-<image class="familia-img" href="img/cena2-familia.webp" x="81.1" y="94.2" width="317.8" height="205.3"/>
-<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="209.0" y="149.2" width="62" height="59.9"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="209.0" y="149.2" width="62" height="59.9"/></g>
-<g fill="#E0526A"><path class="coracao h1" d="M150 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M340 106c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M300 84c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
+<image href="img/cena2-restaurante-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
+<ellipse class="brilho-lampada mistura" cx="240" cy="52" rx="140" ry="74" fill="url(#r-brilho)"/>
+<ellipse cx="203" cy="298" rx="112" ry="8" fill="#2A1408" opacity=".42" filter="url(#r-sombra)"/>
+<ellipse cx="355" cy="292" rx="30" ry="4.5" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
+<image class="familia-img" href="img/cena2-restaurante-familia.webp" x="91" y="106.6" width="224" height="191.4"/>
+<image class="garcom-img" href="img/cena2-garcom.webp" x="325" y="189.5" width="60" height="102.5"/>
+<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="150.5" y="144.5" width="44" height="42.5"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="210" y="142.5" width="44" height="42.5"/><image class="vp c mistura" href="img/cena1-vapor.jpg" x="354" y="171.5" width="28" height="27"/></g>
+<g fill="#E0526A"><path class="coracao h1" d="M130 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M290 112c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M250 96c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
 </svg>'''
 
-FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="Uma família descalça na grama de um hotel fazenda, dando capim a um cavalinho e rindo com as galinhas, com a sede da fazenda ao fundo e nuvens passando">
+FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="Uma família descalça na grama de um hotel fazenda, dando capim a um cavalinho e rindo com as galinhas, com o casarão do hotel e a piscina ao fundo e nuvens passando">
 <image href="img/cena3-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
 <g class="nuvens-g"><image class="nuvens mistura" href="img/cena3-nuvens.jpg" x="-10" y="-10" width="500" height="197.8" opacity=".95"/></g>
-<image href="img/cena3-sede.webp" x="305.5" y="141.4" width="105.0" height="48.6"/>
-<g class="fumacas"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="363.9" y="130.7" width="18" height="17.4"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="363.9" y="130.7" width="18" height="17.4"/></g>
-<ellipse cx="231.0" cy="303.0" rx="90.3" ry="7" fill="#1F3A12" opacity=".35" style="filter: blur(3px)"/>
-<image class="familia-img" href="img/cena3-familia.webp" x="117.5" y="119.6" width="215.0" height="188.4"/>
+<image href="img/cena3-casarao.webp" x="262" y="123.6" width="125" height="66.4"/>
+<image href="img/cena3-piscina.webp" x="96" y="132.3" width="100" height="55.7"/>
+<g fill="#FFFFFF" class="brilhos"><circle class="tw t1" cx="141" cy="155" r="1.8"/><circle class="tw t2" cx="160" cy="163" r="1.4"/><circle class="tw t3" cx="127" cy="167" r="1.6"/></g>
+<ellipse cx="190" cy="304" rx="82" ry="6.5" fill="#1F3A12" opacity=".35" style="filter: blur(3px)"/>
+<image class="familia-img" href="img/cena3-familia.webp" x="95" y="141.5" width="190" height="166.5"/>
 </svg>'''
 
-VIAGEM = '''<svg class="vinheta v-viagem" viewBox="0 0 480 320" role="img" aria-label="Um avião cruzando o globo de uma cidade a outra, em direção a lugares novos">
-<defs>
-<linearGradient id="g-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101A4A"/><stop offset="1" stop-color="#3A5AB8"/></linearGradient>
-<radialGradient id="g-globo" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#7FC2F0"/><stop offset=".6" stop-color="#2A6FB8"/><stop offset="1" stop-color="#143C7A"/></radialGradient>
-</defs>
-<rect width="480" height="320" fill="url(#g-ceu)"/>
-<g fill="#FFFFFF"><circle class="tw t1" cx="52" cy="48" r="1.6"/><circle class="tw t2" cx="140" cy="86" r="1.2"/><circle class="tw t3" cx="396" cy="40" r="1.8"/><circle class="tw t1" cx="440" cy="102" r="1.2"/><circle class="tw t2" cx="220" cy="30" r="1.4"/><circle class="tw t3" cx="330" cy="74" r="1.1"/></g>
-<circle cx="240" cy="430" r="266" fill="#8FD0FF" opacity=".28"/><circle cx="240" cy="430" r="250" fill="url(#g-globo)"/><g fill="#FFFFFF" opacity=".55"><ellipse cx="150" cy="226" rx="34" ry="6"/><ellipse cx="330" cy="214" rx="40" ry="6"/><ellipse cx="240" cy="236" rx="48" ry="5"/><ellipse cx="410" cy="250" rx="26" ry="5"/></g>
-<path d="M120 250q30-26 70-18q34 8 50-8q26-20 66 6q34 22 70 6l20 30q-70 20-130 6q-60-14-146 8z" fill="#5BA86A" opacity=".85"/>
-<path d="M300 232q18-10 36 0q10 14-6 22q-22 4-30-22z" fill="#6DB879" opacity=".9"/>
-<path id="g-rota" d="M96 206Q240 20 384 206" fill="none" stroke="#FFE08A" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>
-<circle cx="96" cy="206" r="7" fill="#FF7A59"/><circle cx="384" cy="206" r="7" fill="#FF7A59"/>
-<path d="M84 206l12-44l12 44z" fill="#2C2540" opacity=".85"/><path d="M366 206h36v-22l-6-8v-10h-6v10h-12v-10h-6v10l-6 8z" fill="#2C2540" opacity=".85"/>
-<g><path transform="scale(-1 1)" d="M-18 0l6-3 22-12 4 1-12 14 14 1 6-5 3 1-3 6 3 6-3 1-6-5-14 1 12 14-4 1-22-12-6-3z" fill="#FFFFFF"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#g-rota"/></animateMotion></path></g>
+VIAGEM = '''<svg class="vinheta v-viagem" viewBox="0 0 480 320" role="img" aria-label="Uma família brasileira com malas diante da Torre Eiffel, em Paris, no fim da tarde, enquanto um avião cruza o céu">
+<defs><radialGradient id="p-sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE3A0" stop-opacity=".95"/><stop offset="1" stop-color="#FFE3A0" stop-opacity="0"/></radialGradient>
+<linearGradient id="p-rastro" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".75"/></linearGradient>
+<filter id="p-sombra" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+<image href="img/cena4-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
+<ellipse class="brilho-sol mistura" cx="262" cy="176" rx="64" ry="46" fill="url(#p-sol)"/>
+<g class="aviao-g"><rect x="-64" y="63" width="66" height="2.6" rx="1.3" fill="url(#p-rastro)"/><image href="img/cena4-aviao.webp" x="0" y="52" width="72" height="17.4"/></g>
+<g fill="#FFE9A8" class="fagulhas mistura"><circle class="tw t1" cx="240" cy="52" r="2.2"/><circle class="tw t2" cx="236" cy="98" r="1.8"/><circle class="tw t3" cx="245" cy="120" r="1.8"/><circle class="tw t1" cx="228" cy="164" r="2"/><circle class="tw t2" cx="254" cy="168" r="1.8"/><circle class="tw t3" cx="240" cy="142" r="1.6"/></g>
+<ellipse cx="236" cy="305" rx="62" ry="6" fill="#4A3320" opacity=".38" filter="url(#p-sombra)"/>
+<image class="familia-img" href="img/cena4-familia.webp" x="171" y="194" width="130" height="111.8"/>
 </svg>'''
 
 CARRO = '''<svg class="vinheta v-carro" viewBox="0 0 480 320" role="img" aria-label="Um carro em uma estrada aberta, em um dia de sol, com a paisagem passando">
