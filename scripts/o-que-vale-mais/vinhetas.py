@@ -1,0 +1,135 @@
+# -*- coding: utf-8 -*-
+# Seis vinhetas animadas (SVG) da parte 1: o que cada coisa "devolve". As animações estão em partes.css (classes .vinheta ...).
+
+CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-label="Uma xícara de café fumegante sobre uma mesa, com a luz da manhã entrando pela janela">
+<defs>
+<linearGradient id="c-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9C2"/><stop offset="1" stop-color="#F1C384"/></linearGradient>
+<radialGradient id="c-luz" cx=".22" cy=".12" r=".95"><stop offset="0" stop-color="#FFF9DE" stop-opacity=".95"/><stop offset="1" stop-color="#FFF9DE" stop-opacity="0"/></radialGradient>
+<linearGradient id="c-raio" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6D2" stop-opacity=".75"/><stop offset="1" stop-color="#FFF6D2" stop-opacity="0"/></linearGradient>
+<linearGradient id="c-mesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9814C"/><stop offset="1" stop-color="#82522B"/></linearGradient>
+</defs>
+<rect width="480" height="320" fill="url(#c-fundo)"/>
+<rect width="480" height="320" fill="url(#c-luz)"/>
+<rect x="44" y="34" width="124" height="140" rx="7" fill="#FFF6DA" stroke="#B88646" stroke-width="7"/>
+<path d="M106 34V174M44 104H168" stroke="#B88646" stroke-width="5"/>
+<polygon class="raio" points="60,174 168,174 372,320 118,320" fill="url(#c-raio)"/>
+<rect y="238" width="480" height="82" fill="url(#c-mesa)"/><rect y="238" width="480" height="7" fill="#C99259"/>
+<ellipse cx="262" cy="257" rx="86" ry="15" fill="#F5EFE4"/><ellipse cx="262" cy="255" rx="70" ry="10.5" fill="#E7DECC"/>
+<path d="M208 192H316V217Q316 256 262 256Q208 256 208 217Z" fill="#FFFDF8"/>
+<path d="M316 202Q348 202 348 225Q348 247 316 241" fill="none" stroke="#FFFDF8" stroke-width="10" stroke-linecap="round"/>
+<ellipse cx="262" cy="192" rx="54" ry="11" fill="#FFFDF8"/><ellipse cx="262" cy="193" rx="47" ry="8" fill="#5B3318"/>
+<ellipse cx="248" cy="191" rx="14" ry="2.6" fill="#8A5A34" opacity=".7"/>
+<g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round">
+<path class="vapor a" d="M240 176Q226 152 242 130Q256 108 242 86"/>
+<path class="vapor b" d="M264 176Q252 154 266 134Q280 112 266 92"/>
+<path class="vapor c" d="M288 176Q276 156 290 138Q302 118 290 100"/>
+</g>
+<g fill="#FFFFFF"><path class="brilho s1" d="M376 88l4 11 11 4-11 4-4 11-4-11-11-4 11-4z"/><path class="brilho s2" d="M96 214l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path class="brilho s3" d="M420 170l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
+</svg>'''
+
+REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" aria-label="Uma família reunida em volta de uma mesa posta, sorrindo">
+<defs>
+<linearGradient id="r-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9DDB4"/><stop offset="1" stop-color="#E4AE72"/></linearGradient>
+<radialGradient id="r-luz" cx=".5" cy=".08" r=".7"><stop offset="0" stop-color="#FFF3C4" stop-opacity=".95"/><stop offset="1" stop-color="#FFF3C4" stop-opacity="0"/></radialGradient>
+<linearGradient id="r-mesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7F0E4"/><stop offset="1" stop-color="#E5D6BD"/></linearGradient>
+</defs>
+<rect width="480" height="320" fill="url(#r-fundo)"/>
+<rect x="36" y="46" width="78" height="56" rx="4" fill="#F4E4C8" stroke="#B3844A" stroke-width="5"/><rect x="366" y="40" width="78" height="62" rx="4" fill="#F4E4C8" stroke="#B3844A" stroke-width="5"/>
+<path d="M50 90l18-22 14 16 12-12 12 18z" fill="#8FB58B"/><circle cx="402" cy="68" r="10" fill="#E9A15C"/>
+<path d="M240 0V44" stroke="#6E4A2A" stroke-width="3"/><path d="M206 78Q206 46 240 44Q274 46 274 78Z" fill="#C9732F"/>
+<rect width="480" height="320" fill="url(#r-luz)"/>
+<g class="pessoa p1"><circle cx="104" cy="156" r="21" fill="#E9B98F"/><path d="M83 152Q84 132 106 133Q126 134 125 154Q116 142 104 143Q92 142 83 152Z" fill="#5A3A22"/><path d="M60 246Q62 192 104 190Q146 192 148 246Z" fill="#4C8CA8"/><path d="M95 163Q104 172 113 163" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="96" cy="154" r="2.2" fill="#3B2415"/><circle cx="113" cy="154" r="2.2" fill="#3B2415"/></g>
+<g class="pessoa p2"><circle cx="196" cy="168" r="17" fill="#D79B6E"/><path d="M178 166Q178 148 197 149Q214 150 214 166Q206 156 196 157Q186 157 178 166Z" fill="#2E2018"/><path d="M162 246Q164 202 196 200Q228 202 230 246Z" fill="#E1B34A"/><path d="M189 175Q196 182 204 175" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="190" cy="167" r="2" fill="#3B2415"/><circle cx="203" cy="167" r="2" fill="#3B2415"/></g>
+<g class="pessoa p3"><circle cx="286" cy="152" r="22" fill="#F0C7A0"/><path d="M264 150Q262 126 288 126Q312 127 309 152Q304 138 288 138Q272 138 264 150Z" fill="#B87A3C"/><path d="M240 246Q242 190 286 188Q330 190 332 246Z" fill="#B85A5A"/><path d="M277 160Q286 170 296 160" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="278" cy="151" r="2.3" fill="#3B2415"/><circle cx="295" cy="151" r="2.3" fill="#3B2415"/></g>
+<g class="pessoa p4"><circle cx="378" cy="160" r="20" fill="#C98E63"/><path d="M358 158Q357 138 380 139Q400 140 398 158Q390 147 378 148Q366 148 358 158Z" fill="#241812"/><path d="M334 246Q336 196 378 194Q420 196 422 246Z" fill="#6B8F4E"/><path d="M369 168Q378 177 388 168" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="370" cy="159" r="2.2" fill="#3B2415"/><circle cx="387" cy="159" r="2.2" fill="#3B2415"/></g>
+<rect y="236" width="480" height="84" fill="url(#r-mesa)"/><rect y="236" width="480" height="6" fill="#D4BF9A"/>
+<ellipse cx="104" cy="262" rx="36" ry="9" fill="#FFFFFF"/><ellipse cx="196" cy="262" rx="36" ry="9" fill="#FFFFFF"/><ellipse cx="286" cy="262" rx="36" ry="9" fill="#FFFFFF"/><ellipse cx="378" cy="262" rx="36" ry="9" fill="#FFFFFF"/>
+<ellipse cx="104" cy="261" rx="22" ry="5" fill="#E8B04A"/><ellipse cx="196" cy="261" rx="22" ry="5" fill="#C9553F"/><ellipse cx="286" cy="261" rx="22" ry="5" fill="#8DB05A"/><ellipse cx="378" cy="261" rx="22" ry="5" fill="#E8B04A"/>
+<ellipse cx="240" cy="284" rx="46" ry="12" fill="#FFFFFF"/><path d="M200 282Q200 258 240 256Q280 258 280 282Q240 292 200 282Z" fill="#C86A3A"/><ellipse cx="240" cy="258" rx="38" ry="7" fill="#E5894E"/>
+<g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".85"><path class="vapor a" d="M226 248Q218 232 228 216"/><path class="vapor b" d="M244 248Q238 230 248 212"/><path class="vapor c" d="M260 248Q254 234 262 220"/></g>
+<g fill="#E0526A"><path class="coracao h1" d="M150 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M332 96c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M240 108c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
+</svg>'''
+
+FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="O sol nascendo sobre montanhas e um lago, com uma pequena cabana de janela acesa">
+<defs>
+<linearGradient id="f-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A78C2"/><stop offset=".55" stop-color="#F1A068"/><stop offset="1" stop-color="#FFD99C"/></linearGradient>
+<radialGradient id="f-sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/><stop offset=".4" stop-color="#FFD27A" stop-opacity=".7"/><stop offset="1" stop-color="#FFD27A" stop-opacity="0"/></radialGradient>
+<linearGradient id="f-lago" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B77C"/><stop offset="1" stop-color="#4C6AA8"/></linearGradient>
+</defs>
+<rect width="480" height="320" fill="url(#f-ceu)"/>
+<circle class="sol" cx="300" cy="170" r="110" fill="url(#f-sol)"/><circle cx="300" cy="172" r="26" fill="#FFF1B8"/>
+<path d="M0 190L70 128L128 176L196 110L262 178L330 132L410 188L480 150V222H0Z" fill="#6E6BA6" opacity=".85"/>
+<path d="M0 214L58 164L120 206L190 150L270 210L350 166L430 212L480 186V240H0Z" fill="#5A5693"/>
+<rect y="226" width="480" height="94" fill="url(#f-lago)"/>
+<g stroke="#FFE7B0" stroke-linecap="round" fill="none"><path class="onda o1" d="M270 244H330" stroke-width="3"/><path class="onda o2" d="M254 258H346" stroke-width="3"/><path class="onda o3" d="M240 276H360" stroke-width="3"/><path class="onda o4" d="M262 296H338" stroke-width="3"/></g>
+<path d="M0 232Q60 214 130 232Q70 246 0 246Z" fill="#3E5A44"/>
+<polygon points="22,236 40,186 58,236" fill="#2E4A39"/><polygon points="52,238 72,176 92,238" fill="#2A4535"/><polygon points="96,236 112,194 128,236" fill="#335040"/>
+<rect x="132" y="206" width="46" height="32" fill="#8A5A34"/><polygon points="124,208 155,180 186,208" fill="#5B3320"/><rect x="146" y="214" width="14" height="14" fill="#FFD670"/><rect x="164" y="190" width="9" height="16" fill="#5B3320"/>
+<g fill="#FFFFFF" opacity=".75"><circle class="fumaca k1" cx="168" cy="180" r="5"/><circle class="fumaca k2" cx="170" cy="174" r="4"/></g>
+<g class="passaros" fill="none" stroke="#3C2A4F" stroke-width="2.6" stroke-linecap="round"><path class="p a" d="M330 70q8-9 16 0q8-9 16 0"/><path class="p b" d="M366 92q6-7 12 0q6-7 12 0"/><path class="p c" d="M298 96q6-7 12 0q6-7 12 0"/></g>
+</svg>'''
+
+VIAGEM = '''<svg class="vinheta v-viagem" viewBox="0 0 480 320" role="img" aria-label="Um avião cruzando o globo de uma cidade a outra, em direção a lugares novos">
+<defs>
+<linearGradient id="g-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101A4A"/><stop offset="1" stop-color="#3A5AB8"/></linearGradient>
+<radialGradient id="g-globo" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#7FC2F0"/><stop offset=".6" stop-color="#2A6FB8"/><stop offset="1" stop-color="#143C7A"/></radialGradient>
+</defs>
+<rect width="480" height="320" fill="url(#g-ceu)"/>
+<g fill="#FFFFFF"><circle class="tw t1" cx="52" cy="48" r="1.6"/><circle class="tw t2" cx="140" cy="86" r="1.2"/><circle class="tw t3" cx="396" cy="40" r="1.8"/><circle class="tw t1" cx="440" cy="102" r="1.2"/><circle class="tw t2" cx="220" cy="30" r="1.4"/><circle class="tw t3" cx="330" cy="74" r="1.1"/></g>
+<circle cx="240" cy="430" r="250" fill="url(#g-globo)"/>
+<path d="M120 250q30-26 70-18q34 8 50-8q26-20 66 6q34 22 70 6l20 30q-70 20-130 6q-60-14-146 8z" fill="#5BA86A" opacity=".85"/>
+<path d="M300 232q18-10 36 0q10 14-6 22q-22 4-30-22z" fill="#6DB879" opacity=".9"/>
+<path id="g-rota" d="M96 206Q240 20 384 206" fill="none" stroke="#FFE08A" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>
+<circle cx="96" cy="206" r="7" fill="#FF7A59"/><circle cx="384" cy="206" r="7" fill="#FF7A59"/>
+<path d="M84 206l12-44l12 44z" fill="#2C2540" opacity=".85"/><path d="M366 206h36v-22l-6-8v-10h-6v10h-12v-10h-6v10l-6 8z" fill="#2C2540" opacity=".85"/>
+<g><path d="M-18 0l6-3 22-12 4 1-12 14 14 1 6-5 3 1-3 6 3 6-3 1-6-5-14 1 12 14-4 1-22-12-6-3z" fill="#FFFFFF"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#g-rota"/></animateMotion></path></g>
+</svg>'''
+
+CARRO = '''<svg class="vinheta v-carro" viewBox="0 0 480 320" role="img" aria-label="Um carro em uma estrada aberta, em um dia de sol, com a paisagem passando">
+<defs>
+<linearGradient id="k-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7EC8F5"/><stop offset="1" stop-color="#E8F6FF"/></linearGradient>
+</defs>
+<rect width="480" height="320" fill="url(#k-ceu)"/>
+<circle cx="392" cy="62" r="30" fill="#FFE57A"/><circle cx="392" cy="62" r="46" fill="#FFE57A" opacity=".25"/>
+<g class="nuvens"><ellipse class="nv n1" cx="90" cy="60" rx="46" ry="14" fill="#FFFFFF" opacity=".9"/><ellipse class="nv n2" cx="260" cy="38" rx="36" ry="11" fill="#FFFFFF" opacity=".85"/></g>
+<g class="morros longe"><path d="M0 214L70 156L140 206L220 140L300 208L380 150L460 204L540 160V236H0Z" fill="#8BB6C9"/><path d="M-480 214L-410 156L-340 206L-260 140L-180 208L-100 150L-20 204L60 160V236H-480Z" fill="#8BB6C9"/></g>
+<g class="morros perto"><path d="M0 236L90 190L190 232L290 184L390 232L480 196V256H0Z" fill="#5E9A6C"/><path d="M-480 236L-390 190L-290 232L-190 184L-90 232L0 196V256H-480Z" fill="#5E9A6C"/></g>
+<rect y="244" width="480" height="76" fill="#4A4F5C"/><rect y="244" width="480" height="6" fill="#6A7080"/>
+<g class="faixas" fill="#FFE9A0"><rect x="0" y="286" width="50" height="6" rx="3"/><rect x="100" y="286" width="50" height="6" rx="3"/><rect x="200" y="286" width="50" height="6" rx="3"/><rect x="300" y="286" width="50" height="6" rx="3"/><rect x="400" y="286" width="50" height="6" rx="3"/><rect x="500" y="286" width="50" height="6" rx="3"/></g>
+<g class="carro-corpo">
+<path d="M118 262L124 232Q130 218 150 214L200 208L238 186Q252 178 272 178H318Q344 180 356 200L384 214Q404 220 406 240L408 262Z" fill="#E24B3B"/>
+<path d="M246 192L274 186H318Q336 188 346 204L248 208Z" fill="#CFEAFB"/><path d="M296 186V206" stroke="#E24B3B" stroke-width="5"/>
+<rect x="120" y="244" width="290" height="10" rx="4" fill="#B93A2E"/><rect x="394" y="226" width="14" height="10" rx="3" fill="#FFF3B0"/><rect x="118" y="230" width="9" height="10" rx="3" fill="#FFB1A8"/>
+<polygon class="farol" points="408,230 480,208 480,258 408,238" fill="#FFF3B0" opacity=".28"/>
+<g class="roda r1"><circle cx="176" cy="264" r="25" fill="#23252D"/><circle cx="176" cy="264" r="13" fill="#B8BDC9"/><path d="M176 253V275M165 264H187M168 256L184 272M184 256L168 272" stroke="#6E7484" stroke-width="3"/></g>
+<g class="roda r2"><circle cx="352" cy="264" r="25" fill="#23252D"/><circle cx="352" cy="264" r="13" fill="#B8BDC9"/><path d="M352 253V275M341 264H363M344 256L360 272M360 256L344 272" stroke="#6E7484" stroke-width="3"/></g>
+</g>
+<g class="vento" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".7"><path class="vt a" d="M30 206H86"/><path class="vt b" d="M10 226H60"/><path class="vt c" d="M46 190H92"/></g>
+</svg>'''
+
+CASA = '''<svg class="vinheta v-casa" viewBox="0 0 480 320" role="img" aria-label="Uma casa ao entardecer, de janelas acesas, com a família lá dentro">
+<defs>
+<linearGradient id="h-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262A66"/><stop offset=".6" stop-color="#8E5C9A"/><stop offset="1" stop-color="#F2A06A"/></linearGradient>
+<radialGradient id="h-luz" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE9A0" stop-opacity=".95"/><stop offset="1" stop-color="#FFE9A0" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="480" height="320" fill="url(#h-ceu)"/>
+<g fill="#FFFFFF"><circle class="est e1" cx="60" cy="40" r="1.6"/><circle class="est e2" cx="130" cy="72" r="1.3"/><circle class="est e3" cx="210" cy="30" r="1.7"/><circle class="est e1" cx="400" cy="46" r="1.5"/><circle class="est e2" cx="448" cy="92" r="1.2"/><circle class="est e3" cx="330" cy="64" r="1.4"/></g>
+<circle cx="52" cy="92" r="16" fill="#FFF3CF"/><circle cx="46" cy="88" r="16" fill="#262A66" opacity=".0"/>
+<path d="M0 262Q120 238 240 252Q360 238 480 258V320H0Z" fill="#2F5A3C"/>
+<path d="M200 320Q214 286 238 270H262Q286 286 300 320Z" fill="#D9C79F" opacity=".9"/>
+<rect x="146" y="162" width="188" height="108" fill="#EAD7B8"/>
+<polygon points="128,166 240,92 352,166" fill="#8B3A2F"/><rect x="296" y="102" width="20" height="40" fill="#6E2E26"/>
+<g class="fumaca-casa" fill="#FFFFFF" opacity=".55"><circle class="fm f1" cx="306" cy="96" r="7"/><circle class="fm f2" cx="310" cy="86" r="6"/><circle class="fm f3" cx="304" cy="76" r="5"/></g>
+<rect x="222" y="206" width="36" height="64" rx="3" fill="#6B4226"/><circle cx="250" cy="240" r="2.6" fill="#E9C56B"/>
+<circle class="aura a1" cx="188" cy="204" r="52" fill="url(#h-luz)"/><circle class="aura a2" cx="292" cy="204" r="52" fill="url(#h-luz)"/><circle class="aura a3" cx="240" cy="150" r="34" fill="url(#h-luz)"/>
+<rect class="janela j1" x="166" y="186" width="44" height="40" rx="3" fill="#FFD670" stroke="#8A5A34" stroke-width="4"/><path d="M188 186V226M166 206H210" stroke="#8A5A34" stroke-width="3"/>
+<rect class="janela j2" x="270" y="186" width="44" height="40" rx="3" fill="#FFD670" stroke="#8A5A34" stroke-width="4"/><path d="M292 186V226M270 206H314" stroke="#8A5A34" stroke-width="3"/>
+<circle class="janela j3" cx="240" cy="140" r="14" fill="#FFD670" stroke="#8A5A34" stroke-width="4"/>
+<g class="familia" fill="#6B3F2E"><circle cx="180" cy="208" r="6"/><path d="M171 226Q172 214 180 214Q188 214 189 226Z"/><circle cx="196" cy="212" r="4.6"/><path d="M189 226Q190 218 196 218Q202 218 203 226Z"/></g>
+<g class="familia2" fill="#5A3328"><circle cx="286" cy="210" r="6"/><path d="M277 226Q278 214 286 214Q294 214 295 226Z"/></g>
+<path d="M396 320V232" stroke="#4A3A2C" stroke-width="5"/><circle cx="396" cy="226" r="8" fill="#FFE9A0"/><circle cx="396" cy="226" r="34" fill="url(#h-luz)" opacity=".7"/>
+<ellipse cx="72" cy="244" rx="30" ry="40" fill="#2A5A38"/><rect x="68" y="266" width="8" height="26" fill="#4A3426"/>
+<g class="vagalumes" fill="#FFF28A"><circle class="vg v1" cx="130" cy="262" r="2.2"/><circle class="vg v2" cx="360" cy="270" r="2.2"/><circle class="vg v3" cx="110" cy="290" r="2"/></g>
+</svg>'''
+
+TODAS = [CAFE, REFEICAO, FIM, VIAGEM, CARRO, CASA]
