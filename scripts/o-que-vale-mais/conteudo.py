@@ -67,7 +67,7 @@ P1_LEITURA = [(
                  'Quanto mais tempo dura o que recebemos, e quanto mais gente alcança, mais caro costuma ser.</p>'
                  '<p>Essa é a ideia que vai nos acompanhar: <b>para receber, é preciso pagar</b>, e o que vale mais custa mais.</p>'),
     ]) + '\n' + curiosos('Como os preços foram conferidos',
-             '<p>Chocolate quente: valor de referência estimado (cardápio de uma padaria). Refeição: Ticket/Edenred, 2024. Dia no hotel fazenda: site do Hotel Fazendão, novembro de 2026. Viagem: Catraca Livre, fevereiro de 2026, com o dólar do Banco Central de 5/11/2026. '
+             '<p>Chocolate quente: valor de referência estimado (cardápio de uma padaria). Refeição: Ticket/Edenred, 2024. Dia no hotel fazenda: site do Hotel Fazendão, novembro de 2026. Viagem a Paris: Confidence Câmbio, 2026. '
              'Carro: UOL Carros, novembro de 2026. Casa: Índice FipeZAP, outubro de 2026. Detalhes em <a href="fontes.html">Fontes</a>.</p>'),
 )]
 
@@ -517,9 +517,10 @@ FONTES_PAG = '''<main class="concl"><section class="concl-texto">
 <li><b>Chocolate quente (estimativa):</b> não achamos uma pesquisa oficial de preço para esse item. Usamos R$ 8, o meio do caminho entre o pequeno (R$ 7,20) e o grande (R$ 8,90) no cardápio de uma padaria (Padaria Brasil, em Cardápio Seguro: cardapioseguro.com.br/padaria-brasil). O preço real varia de lugar para lugar.</li>
 <li><b>Refeição em família:</b> Ticket (Edenred Brasil), Pesquisa +Valor, setembro de 2024 (a mais recente encontrada).</li>
 <li><b>Um dia no hotel fazenda (estimativa):</b> exemplo de um hotel real, o Hotel Fazendão (hotelfazendao.com.br/day-use): R$ 360 por adulto e R$ 180 por criança de 5 a 11 anos, com café da manhã e almoço, consultado em 07/11/2026. O preço varia muito de um hotel fazenda para outro.</li>
-<li><b>Viagem internacional em família (estimativa):</b> Catraca Livre, 13/02/2026; câmbio do Banco Central (PTAX, venda, 05/11/2026: R$ 5,4621).</li>
+<li><b>Viagem a Paris em família (estimativa):</b> Confidence Câmbio, "Quanto custa viajar para Paris em 2026?" (4 pessoas × R$ 14.700 por pessoa em 7 dias), consultado em 07/11/2026.</li>
 <li><b>Carro:</b> levantamento do UOL Carros, publicado pelo jornal A Tarde em 01/11/2026.</li>
 <li><b>Casa:</b> Índice FipeZAP, informe de outubro de 2026.</li>
+<li><b>Câmbio (dólar):</b> Banco Central, PTAX de venda de 05/11/2026: R$ 5,4621.</li>
 <li><b>Viagens espaciais:</b> Virgin Galactic (março e agosto de 2026); Blue Origin (assento leiloado em 2021 por US$ 28 milhões); Axiom Space (valores não oficiais, segundo reportagens); Elon Musk (2019 e 2022: é meta, não preço).</li>
 </ul>
 <h2>Ciência (partes 3 a 5 e 8)</h2>

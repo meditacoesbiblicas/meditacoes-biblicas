@@ -73,11 +73,11 @@ PRECOS = [
                'café da manhã, almoço e uso de toda a área de lazer (piscinas, fazendinha, brinquedoteca). É um exemplo: o preço varia muito de um hotel fazenda para outro. '
                'Fonte: site do Hotel Fazendão (hotelfazendao.com.br/day-use), consultado em 7 de novembro de 2026.',
          imagine='Imagine a família inteira descalça na grama, as crianças rindo com os bichos e um almoço de fazenda.', dura='1 dia', para='a família'),
-    dict(id='viagem', nome='Uma viagem internacional em família', valor=41714.4, texto='41.700', aprox=True, nota='Estimativa: 4 pessoas, 8 dias na Disney.',
-         conta='US$ 7.640 × R$ 5,46 (dólar do Banco Central em 05/11/2026) ≈ R$ 41.700. É uma estimativa para uma família de 4 pessoas em 8 dias, no cenário '
-               'intermediário (passagens, hospedagem, ingressos dos parques, alimentação, transporte local, seguro e documentação), sem compras. '
-               'Pode ir de cerca de R$ 32 mil a R$ 54 mil. Fonte: Catraca Livre, 13/02/2026; câmbio: Banco Central.',
-         imagine='Imagine a família inteira diante de um lugar que só conhecia de foto.', dura='8 dias, anos de memória', para='a família'),
+    dict(id='viagem', nome='Uma viagem a Paris em família', valor=58800.0, texto='58.800', aprox=True, nota='Estimativa: 4 pessoas, 7 dias em Paris.',
+         conta='4 pessoas × R$ 14.700 = R$ 58.800. R$ 14.700 é a estimativa da Confidence Câmbio para uma pessoa em 7 dias em Paris: passagem R$ 4.500, hospedagem R$ 5.500, '
+               'alimentação R$ 2.200, passeios R$ 1.700, transporte R$ 350, seguro R$ 300 e internet R$ 150. É só uma estimativa: uma família que divide os quartos costuma gastar menos, '
+               'e o valor muda com o câmbio e a época do ano. Fonte: Confidence Câmbio, "Quanto custa viajar para Paris em 2026?", consultado em 7 de novembro de 2026.',
+         imagine='Imagine a família inteira diante da Torre Eiffel, um lugar que só conhecia de foto.', dura='7 dias, anos de memória', para='a família'),
     dict(id='carro', nome='Um carro', valor=72490, texto='72.490', aprox=False, nota='O carro novo mais barato do país (nov/2026).',
          conta='Fiat Mobi Like zero-quilômetro, preço de oferta em novembro de 2026, o mais barato entre os carros novos vendidos no Brasil. '
                'Os preços de tabela mudam com as promoções. Fonte: levantamento do UOL Carros, publicado pelo jornal A Tarde em 01/11/2026.',
@@ -87,7 +87,7 @@ PRECOS = [
                'em outubro de 2026 (preço pedido, não o de venda). Os 60 m² são um exemplo. Fonte: Índice FipeZAP, informe de outubro de 2026.',
          imagine='Imagine abrir a porta e saber que aquele lugar é seu, e da sua família.', dura='décadas', para='a família'),
 ]
-CAFES = ['≈ 48 xícaras', '≈ 135 xícaras', '≈ 5 mil xícaras', '≈ 9 mil xícaras', '≈ 68 mil xícaras']
+CAFES = ['≈ 48 xícaras', '≈ 135 xícaras', '≈ 7 mil xícaras', '≈ 9 mil xícaras', '≈ 68 mil xícaras']
 
 # ---------------------------------------------------------------- viagens espaciais (parte 2): US$ e R$ ao câmbio PTAX
 def reais(usd):
