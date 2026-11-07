@@ -188,8 +188,8 @@ OVM.pronto(function () {
     var ia = OVM.lerp(a.iss, b.iss, e);
     if (ia > 0.01) {
       if (IMG.estacao._ok) {
-        var em = IMG.estacao, ew = Math.min(w * 0.62, u * 0.78), eh = ew * em.height / em.width;
-        ctx.save(); ctx.globalAlpha = ia; ctx.translate(w * (0.7 + Math.sin(t * 0.25) * 0.015), h * 0.27); ctx.rotate(Math.sin(t * 0.3) * 0.03); ctx.drawImage(em, -ew / 2, -eh / 2, ew, eh); ctx.restore();
+        var em = IMG.estacao, ew = Math.min(w * 0.3, u * 0.34), eh = ew * em.height / em.width;
+        ctx.save(); ctx.globalAlpha = ia; ctx.translate(w * (0.72 + Math.sin(t * 0.25) * 0.012), h * 0.26); ctx.rotate(Math.sin(t * 0.3) * 0.03); ctx.drawImage(em, -ew / 2, -eh / 2, ew, eh); ctx.restore();
       } else issD(ctx, w * (0.76 + Math.sin(t * 0.25) * 0.02), h * 0.38, u / 330 * 1.1, ia, t);
     }
     // linha de Kármán na parada 1
