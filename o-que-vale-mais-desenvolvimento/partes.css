@@ -390,3 +390,10 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .vig.on .v-casa .v2 { animation-delay: .9s; } .vig.on .v-casa .v3 { animation-delay: 1.8s; } .vig.on .v-casa .v4 { animation-delay: 2.7s; } .vig.on .v-casa .v5 { animation-delay: 3.4s; } .vig.on .v-casa .v6 { animation-delay: 4.1s; }
 @keyframes vagalume { 0%, 100% { opacity: 0; transform: translate(0, 0); } 50% { opacity: 1; transform: translate(6px, -9px); } }
 @media (prefers-reduced-motion: reduce) { .vig.on .v-casa .janela-brilho, .vig.on .v-casa .nuvens, .vig.on .v-casa .familia-img, .vig.on .v-casa .passaro, .vig.on .v-casa .asa, .vig.on .v-casa .vaga { animation: none; } }
+
+/* ---- cena 3 (lago com cachoeira e parquinho) ---- */
+.v-fim .neblina { opacity: .55; }
+.vig.on .v-fim .neblina { animation: luzraio 2.8s ease-in-out infinite; }
+.vig.on .v-fim .tw { animation: pisca 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.vig.on .v-fim .tw.t2 { animation-delay: 1s; } .vig.on .v-fim .tw.t3 { animation-delay: 2s; }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-fim .neblina, .vig.on .v-fim .tw { animation: none; } }
