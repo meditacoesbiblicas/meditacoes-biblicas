@@ -358,13 +358,20 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 /* ---- cena 5 (carro) ---- */
 .v-carro .mistura { mix-blend-mode: screen; }
 .vig.on .v-carro .nuvens { animation: nuvensfim 40s ease-in-out infinite alternate; }
-.vig.on .v-carro .arvores-g { animation: arvorespassam 16s linear infinite; }
+/* paralaxe: árvores (longe, devagar) atrás da cerca; cerca no meio; postes (perto, rápidos) na frente da cerca */
+.vig.on .v-carro .arvores-g { animation: arvorespassam 24s linear infinite; }
 @keyframes arvorespassam { from { transform: translateX(0); } to { transform: translateX(-560px); } }
+.vig.on .v-carro .cerca-g { animation: cercapassa 4.2s linear infinite; }
+@keyframes cercapassa { from { transform: translateX(0); } to { transform: translateX(-256px); } }
+.vig.on .v-carro .postes-g { animation: postespassam 5.2s linear infinite; }
+@keyframes postespassam { from { transform: translateX(0); } to { transform: translateX(-480px); } }
+.vig.on .v-carro .roda { animation: gira .42s linear infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes gira { to { transform: rotate(360deg); } }
 .vig.on .v-carro .tracos { animation: tracospassam 1.1s linear infinite; }
 @keyframes tracospassam { from { transform: translateX(0); } to { transform: translateX(-110px); } }
-.vig.on .v-carro .carro-img { animation: balancar 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.vig.on .v-carro .carro-g { animation: balancar 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
 @keyframes balancar { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-.9px) rotate(-.15deg); } }
-@media (prefers-reduced-motion: reduce) { .vig.on .v-carro .nuvens, .vig.on .v-carro .arvores-g, .vig.on .v-carro .tracos, .vig.on .v-carro .carro-img { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-carro .nuvens, .vig.on .v-carro .arvores-g, .vig.on .v-carro .cerca-g, .vig.on .v-carro .postes-g, .vig.on .v-carro .roda, .vig.on .v-carro .tracos, .vig.on .v-carro .carro-g { animation: none; } }
 
 /* ---- cena 6 (casa) ---- */
 .v-casa .mistura { mix-blend-mode: screen; }

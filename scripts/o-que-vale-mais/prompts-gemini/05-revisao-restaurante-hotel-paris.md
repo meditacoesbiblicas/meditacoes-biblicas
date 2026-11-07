@@ -86,3 +86,19 @@ A piscina colorida (escorregador, guarda-sóis de praia) parecia de resort, não
 ```
 Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, pinceladas visíveis, luz suave de dia de sol vinda do alto à direita. Imagem de objeto isolado para recorte, como uma foto de estúdio sobre chroma key: uma piscina rústica de hotel fazenda, retangular e simples, com borda de pedra natural clara (pedra mineira), água azul-turquesa tranquila, cercada por um pedaço de gramado e um deque de madeira rústica. Ao lado, duas espreguiçadeiras de madeira com almofadas listradas, um guarda-sol de palha (sombreiro), uma rede de varanda pendurada entre dois troncos de madeira e um vaso grande de samambaia. Sem escorregador, sem boias, sem guarda-sóis coloridos de praia, sem pessoas. Vista de frente, de cima para baixo em ângulo suave. O conjunto ocupa cerca de 70% da largura da imagem e fica centralizado. O FUNDO INTEIRO é uma única cor verde pura #00FF00, totalmente lisa, sem gradiente, sem sombra e sem nenhum outro objeto. Bordas nítidas, sem nenhum tom de verde vivo no deque ou nos objetos (o gramado deve ser verde-oliva escuro, bem diferente do fundo). Proporção 3:2 horizontal. Sem texto.
 ```
+
+---
+
+## Hotel fazenda · mais atrações (pedido do dono, 2026-11-07)
+
+A piscina rústica foi substituída por uma piscina em formato de lago com cachoeira artificial, bem de hotel fazenda. E um parquinho com tirolesa, que é o que mais chama atenção de quem visita.
+
+### 3.2c · `hotelfazenda-05-lago-cachoeira.jpg`, fundo verde
+```
+Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, pinceladas visíveis, luz suave de dia de sol vinda do alto à direita. Imagem de objeto isolado para recorte, como uma foto de estúdio sobre chroma key: a área de lazer de um hotel fazenda, uma pequena piscina em formato de lago, de contorno irregular e orgânico, água azul-esverdeada cristalina, com borda de pedras naturais; num dos lados, uma cachoeira artificial pequena, caindo de um paredão de pedras decorado com samambaias, bromélias e musgo; uma pequena ponte de madeira rústica atravessando uma ponta do lago; ao redor, um deque de madeira com duas espreguiçadeiras de madeira com almofadas claras e um guarda-sol de palha. Sem escorregador, sem boias, sem pessoas. Vista de frente, de cima para baixo em ângulo suave. O conjunto ocupa cerca de 70% da largura da imagem e fica centralizado. O FUNDO INTEIRO é uma única cor verde pura #00FF00, totalmente lisa, sem gradiente, sem sombra e sem nenhum outro objeto. Bordas nítidas; as plantas devem ser verde-escuro, bem diferentes do verde do fundo. Proporção 3:2 horizontal. Sem texto.
+```
+
+### 3.3 · `hotelfazenda-06-parquinho.jpg`, fundo verde
+```
+Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, pinceladas visíveis, luz suave de dia de sol vinda do alto à direita. Imagem de objeto isolado para recorte, como uma foto de estúdio sobre chroma key: um parquinho de aventura de hotel fazenda, todo de madeira rústica: uma torre de madeira baixa com escorregador, uma tirolesa curta com roldana e cabo esticado entre dois postes, um balanço de pneu pendurado numa trave, uma gangorra e uma casinha de brincar com telhado de palha. Sem pessoas. Vista de frente, levemente de lado, com um pedaço de gramado embaixo. O conjunto ocupa cerca de 70% da largura da imagem e fica centralizado. O FUNDO INTEIRO é uma única cor verde pura #00FF00, totalmente lisa, sem gradiente, sem sombra e sem nenhum outro objeto. Bordas nítidas, sem nenhum tom de verde vivo na madeira ou nos brinquedos (o gramado deve ser verde-oliva escuro, bem diferente do fundo). Proporção 3:2 horizontal. Sem texto.
+```
