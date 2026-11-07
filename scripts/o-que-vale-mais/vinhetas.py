@@ -11,27 +11,15 @@ CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-labe
 <g fill="#FFF3C4" class="motas"><circle class="mota m1" cx="86" cy="70" r="1.3"/><circle class="mota m2" cx="132" cy="104" r="1"/><circle class="mota m3" cx="176" cy="150" r="1.5"/><circle class="mota m4" cx="112" cy="168" r="1.1"/><circle class="mota m5" cx="214" cy="92" r="1.2"/><circle class="mota m6" cx="60" cy="122" r="1"/></g>
 </svg>'''
 
-REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" aria-label="Uma família reunida em volta de uma mesa posta, sorrindo">
-<defs>
-<linearGradient id="r-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9DDB4"/><stop offset="1" stop-color="#E4AE72"/></linearGradient>
-<radialGradient id="r-luz" cx=".5" cy=".08" r=".7"><stop offset="0" stop-color="#FFF3C4" stop-opacity=".95"/><stop offset="1" stop-color="#FFF3C4" stop-opacity="0"/></radialGradient>
-<linearGradient id="r-mesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7F0E4"/><stop offset="1" stop-color="#E5D6BD"/></linearGradient>
-</defs>
-<rect width="480" height="320" fill="url(#r-fundo)"/>
-<rect x="36" y="46" width="78" height="56" rx="4" fill="#F4E4C8" stroke="#B3844A" stroke-width="5"/><rect x="366" y="40" width="78" height="62" rx="4" fill="#F4E4C8" stroke="#B3844A" stroke-width="5"/>
-<path d="M50 90l18-22 14 16 12-12 12 18z" fill="#8FB58B"/><circle cx="402" cy="68" r="10" fill="#E9A15C"/>
-<path d="M240 0V44" stroke="#6E4A2A" stroke-width="3"/><path d="M206 78Q206 46 240 44Q274 46 274 78Z" fill="#C9732F"/>
-<rect width="480" height="320" fill="url(#r-luz)"/>
-<g class="pessoa p1"><circle cx="104" cy="156" r="21" fill="#E9B98F"/><path d="M83 152Q84 132 106 133Q126 134 125 154Q116 142 104 143Q92 142 83 152Z" fill="#5A3A22"/><path d="M60 246Q62 192 104 190Q146 192 148 246Z" fill="#4C8CA8"/><path d="M95 163Q104 172 113 163" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="96" cy="154" r="2.2" fill="#3B2415"/><circle cx="113" cy="154" r="2.2" fill="#3B2415"/></g>
-<g class="pessoa p2"><circle cx="196" cy="168" r="17" fill="#D79B6E"/><path d="M178 166Q178 148 197 149Q214 150 214 166Q206 156 196 157Q186 157 178 166Z" fill="#2E2018"/><path d="M162 246Q164 202 196 200Q228 202 230 246Z" fill="#E1B34A"/><path d="M189 175Q196 182 204 175" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="190" cy="167" r="2" fill="#3B2415"/><circle cx="203" cy="167" r="2" fill="#3B2415"/></g>
-<g class="pessoa p3"><circle cx="286" cy="152" r="22" fill="#F0C7A0"/><path d="M264 150Q262 126 288 126Q312 127 309 152Q304 138 288 138Q272 138 264 150Z" fill="#B87A3C"/><path d="M240 246Q242 190 286 188Q330 190 332 246Z" fill="#B85A5A"/><path d="M277 160Q286 170 296 160" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="278" cy="151" r="2.3" fill="#3B2415"/><circle cx="295" cy="151" r="2.3" fill="#3B2415"/></g>
-<g class="pessoa p4"><circle cx="378" cy="160" r="20" fill="#C98E63"/><path d="M358 158Q357 138 380 139Q400 140 398 158Q390 147 378 148Q366 148 358 158Z" fill="#241812"/><path d="M334 246Q336 196 378 194Q420 196 422 246Z" fill="#6B8F4E"/><path d="M369 168Q378 177 388 168" fill="none" stroke="#7A3F2B" stroke-width="3" stroke-linecap="round"/><circle cx="370" cy="159" r="2.2" fill="#3B2415"/><circle cx="387" cy="159" r="2.2" fill="#3B2415"/></g>
-<rect y="236" width="480" height="84" fill="url(#r-mesa)"/><rect y="236" width="480" height="6" fill="#D4BF9A"/>
-<ellipse cx="104" cy="262" rx="36" ry="9" fill="#FFFFFF"/><ellipse cx="196" cy="262" rx="36" ry="9" fill="#FFFFFF"/><ellipse cx="286" cy="262" rx="36" ry="9" fill="#FFFFFF"/><ellipse cx="378" cy="262" rx="36" ry="9" fill="#FFFFFF"/>
-<ellipse cx="104" cy="261" rx="22" ry="5" fill="#E8B04A"/><ellipse cx="196" cy="261" rx="22" ry="5" fill="#C9553F"/><ellipse cx="286" cy="261" rx="22" ry="5" fill="#8DB05A"/><ellipse cx="378" cy="261" rx="22" ry="5" fill="#E8B04A"/>
-<ellipse cx="240" cy="284" rx="46" ry="12" fill="#FFFFFF"/><path d="M200 282Q200 258 240 256Q280 258 280 282Q240 292 200 282Z" fill="#C86A3A"/><ellipse cx="240" cy="258" rx="38" ry="7" fill="#E5894E"/>
-<g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".85"><path class="vapor a" d="M226 248Q218 232 228 216"/><path class="vapor b" d="M244 248Q238 230 248 212"/><path class="vapor c" d="M260 248Q254 234 262 220"/></g>
-<g fill="#E0526A"><path class="coracao h1" d="M150 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M332 96c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M240 108c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
+REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" aria-label="Uma família de quatro pessoas conversando e sorrindo em volta de uma mesa posta, sob uma lâmpada acesa">
+<defs><radialGradient id="r-brilho" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD98A" stop-opacity=".9"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>
+<filter id="r-sombra" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs>
+<image href="img/cena2-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
+<ellipse class="brilho-lampada mistura" cx="240" cy="96" rx="150" ry="110" fill="url(#r-brilho)"/>
+<ellipse cx="240" cy="299.6" rx="149.4" ry="9" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
+<image class="familia-img" href="img/cena2-familia.webp" x="81.1" y="94.2" width="317.8" height="205.3"/>
+<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="209.0" y="149.2" width="62" height="59.9"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="209.0" y="149.2" width="62" height="59.9"/></g>
+<g fill="#E0526A"><path class="coracao h1" d="M150 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M340 106c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M300 84c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
 </svg>'''
 
 FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="O sol nascendo sobre montanhas e um lago, com uma pequena cabana de janela acesa">
