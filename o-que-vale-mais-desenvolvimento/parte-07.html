@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O que vale mais? · Parte 7: Onde fica o trono?</title>
+<meta name="description" content="Parte 7 de um estudo em etapas: O que vale mais?">
+<link rel="stylesheet" href="estudo.css?v=1794016764">
+<link rel="stylesheet" href="partes.css?v=1794016764">
+</head>
+<body class="parte" data-tema="noite" data-parte="7">
+<div class="rascunho-faixa">VERSÃO EM DESENVOLVIMENTO · ainda não publicada · <a href="../o-que-vale-mais/parte-07.html">ver a versão publicada desta página</a></div>
+<header class="site-bar">
+  <div class="site-bar-inner">
+    <a class="site-brand" href="../">Meditações</a>
+    <nav class="site-links" aria-label="Site Meditações Bíblicas">
+      <a href="../quem-sou-eu/">Quem sou eu</a>
+      <a href="../sobre/">Sobre</a>
+    </nav>
+  </div>
+</header>
+<div class="estudo-barra"><div class="estudo-barra-inner">
+  <a class="voltar" href="index.html">← Início</a>
+  <p class="titulo"><span class="pn">Parte 7 de 10 · </span><b>Onde fica o trono?</b></p>
+  <ol class="pontos" aria-label="Progresso no estudo"><li data-n="1"><a href="parte-01.html" title="Parte 1" aria-label="Parte 1"></a></li><li data-n="2"><a href="parte-02.html" title="Parte 2" aria-label="Parte 2"></a></li><li data-n="3"><a href="parte-03.html" title="Parte 3" aria-label="Parte 3"></a></li><li data-n="4"><a href="parte-04.html" title="Parte 4" aria-label="Parte 4"></a></li><li data-n="5"><a href="parte-05.html" title="Parte 5" aria-label="Parte 5"></a></li><li data-n="6"><a href="parte-06.html" title="Parte 6" aria-label="Parte 6"></a></li><li data-n="7" class="atual"><a href="parte-07.html" title="Parte 7" aria-label="Parte 7"></a></li><li data-n="8"><a href="parte-08.html" title="Parte 8" aria-label="Parte 8"></a></li><li data-n="9"><a href="parte-09.html" title="Parte 9" aria-label="Parte 9"></a></li><li data-n="10"><a href="parte-10.html" title="Parte 10" aria-label="Parte 10"></a></li></ol>
+  <div class="dev-menu na-barra"><button type="button">Menu ▾</button><ol hidden><li><a href="index.html">Capa</a></li><li><a href="parte-01.html">Parte 1 · Tudo o que a gente quer tem um preço</a></li><li><a href="parte-02.html">Parte 2 · A viagem mais cara</a></li><li><a href="parte-03.html">Parte 3 · Quanto a luz anda?</a></li><li><a href="parte-04.html">Parte 4 · Perto e longe</a></li><li><a href="parte-05.html">Parte 5 · A escada do universo</a></li><li><a href="parte-06.html">Parte 6 · Quem fez tudo isto?</a></li><li class="atual"><a href="parte-07.html">Parte 7 · Onde fica o trono?</a></li><li><a href="parte-08.html">Parte 8 · A grandeza no pequeno</a></li><li><a href="parte-09.html">Parte 9 · Os preços voltam</a></li><li><a href="parte-10.html">Parte 10 · A resposta</a></li><li><a href="conclusao.html">Conclusão</a></li><li><a href="fontes.html">Fontes e conferência</a></li><li><a href="qr.html">QR Code</a></li></ol></div>
+</div></div>
+<main>
+<section class="cena p07" id="cena" aria-label="Cena interativa">
+  <div class="cena-palco" id="palco">
+<div class="p7-cena" id="p7">
+  <canvas id="tela" aria-hidden="true"></canvas>
+  <canvas id="tela2" aria-hidden="true"></canvas>
+  <div class="p5-hud" id="p7-hud" aria-hidden="true"><b id="hud-nome">A Terra</b><span id="hud-tam"></span><small id="hud-pc"></small></div>
+  <ol class="p7-trilho" id="p7-trilho" aria-hidden="true"></ol>
+  <div class="p1-etiqueta" id="p7-etq" aria-hidden="true" style="opacity:0"><span class="furo"></span><b class="sem">nenhum preço paga essa viagem</b></div>
+  <p class="p7-nota" id="p7-nota" aria-hidden="true"></p>
+</div>
+  </div>
+  <div class="cena-painel">
+    <p class="cena-rotulo" id="rotulo"></p>
+    <div class="cena-texto" id="texto" aria-live="polite"></div>
+    <div class="cena-controles" id="controles">
+<div class="ctl" id="ctl-subida">
+  <p class="leitura-chamada"><button type="button" class="btn sec" id="p7-subir">▶ Subir</button><button type="button" class="btn sec" id="p7-voltar">↺ Voltar à Terra</button></p>
+  <label class="ctrl-rotulo" for="p7-dist"><span>Distância da Terra</span><output id="p7-dist-saida">—</output></label>
+  <input type="range" id="p7-dist" min="0" max="100" step="0.1" value="0">
+</div>
+<div class="ctl" id="ctl-raio">
+  <label class="ctrl-rotulo" for="p7-km"><span>A que distância caiu o raio?</span><output id="p7-km-saida">2 km</output></label>
+  <input type="range" id="p7-km" min="0.5" max="6" step="0.1" value="2">
+  <p class="leitura-chamada"><button type="button" class="btn" id="p7-raio">⚡ Relâmpago!</button><button type="button" class="btn sec" id="p7-som" aria-pressed="false">🔇 Som desligado</button></p>
+</div>
+    </div>
+    <div class="cena-nav"><button type="button" id="ant">← Anterior</button><span class="pos" id="pos"></span><button type="button" id="prox">Próximo →</button></div>
+  </div>
+</section>
+<section class="leitura" id="leitura" aria-label="Para ler e pensar">
+<h2>Para ler e pensar</h2>
+<p class="intro">Textos da Bíblia (ARC) e de Ellen G. White copiados do original e conferidos ao vivo nos sites de origem. O que é imaginação vem sempre marcado como imaginação.</p>
+<div class="cartoes">
+<article class="cartao biblia" data-ref="sl/11/4">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Salmo 11:4</h3>
+  <blockquote>
+      <p><span class="n">4</span>O Senhor está no seu santo templo; o trono do Senhor está nos céus; os seus olhos estão atentos, e as suas pálpebras provam os filhos dos homens.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/sl/11/4+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="sl/103/19">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Salmo 103:19</h3>
+  <blockquote>
+      <p><span class="n">19</span>O Senhor tem estabelecido o seu trono nos céus, e o seu reino domina sobre tudo.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/sl/103/19+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="is/66/1">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Isaías 66:1</h3>
+  <p class="antes">A Bíblia diz que o trono está "nos céus", mas não diz em que lugar do universo. Nem este estudo diz.</p>
+  <blockquote>
+      <p><span class="n">1</span>Assim diz o Senhor: O céu é o meu trono, e a terra, o escabelo dos meus pés. Que casa me edificaríeis vós? E que lugar seria o do meu descanso?</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/is/66/1+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="1rs/8/27">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>1 Reis 8:27</h3>
+  <blockquote>
+      <p><span class="n">27</span>Mas, na verdade, habitaria Deus na terra? Eis que <mark>os céus e até o céu dos céus te não poderiam conter</mark>, quanto menos esta casa que eu tenho edificado.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/1rs/8/27+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="sl/139/7,sl/139/8,sl/139/9,sl/139/10">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Salmo 139:7–10</h3>
+  <blockquote>
+      <p><span class="n">7</span><mark>Para onde me irei do teu Espírito</mark> ou para onde fugirei da tua face?</p>
+      <p><span class="n">8</span>Se subir ao céu, tu aí estás; se fizer no Seol a minha cama, eis que tu ali estás também;</p>
+      <p><span class="n">9</span>se tomar as asas da alva, se habitar nas extremidades do mar,</p>
+      <p><span class="n">10</span>até ali a tua mão me guiará e a tua destra me susterá.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/sl/139/7+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="jr/23/23,jr/23/24">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Jeremias 23:23, 24</h3>
+  <blockquote>
+      <p><span class="n">23</span>Sou eu apenas Deus de perto, diz o Senhor, e não também Deus de longe?</p>
+      <p><span class="n">24</span>Esconder-se-ia alguém em esconderijos, de modo que eu não o veja? — diz o Senhor. Porventura, <mark>não encho eu os céus e a terra?</mark> — diz o Senhor.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/jr/23/23+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="jo/14/16,jo/14/17">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>João 14:16, 17</h3>
+  <blockquote>
+      <p><span class="n">16</span>E eu rogarei ao Pai, e ele vos dará <mark>outro Consolador, para que fique convosco para sempre</mark>,</p>
+      <p><span class="n">17</span>o Espírito da verdade, que o mundo não pode receber, porque não o vê, nem o conhece; mas vós o conheceis, porque habita convosco e estará em vós.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/jo/14/16+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+</div>
+<h2>O anjo da ressurreição</h2>
+<div class="cartoes">
+<article class="cartao biblia" data-ref="mt/28/2,mt/28/3">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Mateus 28:2, 3</h3>
+  <blockquote>
+      <p><span class="n">2</span>E eis que houvera um grande terremoto, porque <mark>um anjo do Senhor, descendo do céu</mark>, chegou, removendo a pedra, e sentou-se sobre ela.</p>
+      <p><span class="n">3</span>E o seu aspecto era <mark>como um relâmpago</mark>, e a sua veste branca como a neve.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/mt/28/2+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao egw" data-egw="1813.3468">
+  <span class="tag">Ellen G. White</span>
+  <h3>O Desejado de Todas as Nações, p. 552</h3>
+  <blockquote>
+      <p>… Vestido com a armadura de Deus, deixou este anjo as cortes celestiais. <mark>Os brilhantes raios da glória divina o precediam</mark>, iluminando-lhe o caminho. …</p>
+  </blockquote>
+  <a class="fonte" href="https://m.egwwritings.org/pt/book/1813.3468" target="_blank" rel="noopener">Abrir o trecho no site do Ellen G. White ↗</a>
+</article>
+<article class="cartao egw" data-egw="1813.3470">
+  <span class="tag">Ellen G. White</span>
+  <h3>O Desejado de Todas as Nações, p. 552</h3>
+  <p class="antes">Repare: neste texto, o estrondo de trovões acompanha a saída de Jesus do túmulo, não a descida do anjo.</p>
+  <blockquote>
+      <p>… Aquele que vencera a morte, e a sepultura, saiu do túmulo com o passo do vencedor, por entre o cambalear da terra, <mark>o fuzilar dos relâmpagos e o ribombar dos trovões</mark>. …</p>
+  </blockquote>
+  <a class="fonte" href="https://m.egwwritings.org/pt/book/1813.3470" target="_blank" rel="noopener">Abrir o trecho no site do Ellen G. White ↗</a>
+</article>
+<article class="cartao biblia" data-ref="dn/9/21">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Daniel 9:21</h3>
+  <p class="antes">Outro anjo, Gabriel, "veio voando rapidamente".</p>
+  <blockquote>
+      <p><span class="n">21</span>estando eu, digo, ainda falando na oração, o varão Gabriel, que eu tinha visto na minha visão ao princípio, <mark>veio voando rapidamente</mark> e tocou-me à hora do sacrifício da tarde.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/dn/9/21+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao biblia" data-ref="ez/1/14">
+  <span class="tag">Bíblia · ARC</span>
+  <h3>Ezequiel 1:14</h3>
+  <p class="antes">E, na visão de Ezequiel, os seres celestiais se moviam "à semelhança dos relâmpagos".</p>
+  <blockquote>
+      <p><span class="n">14</span>E os animais corriam e tornavam, à semelhança dos relâmpagos.</p>
+  </blockquote>
+  <a class="fonte" href="https://www.bibliaonline.com.br/arc/ez/1/14+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
+</article>
+<article class="cartao imaginacao">
+  <span class="tag">Imaginação (não está escrito)</span>
+  <h3>A velocidade do anjo</h3>
+  <p><b>O que está escrito:</b> ele desceu do céu, tinha o aspecto de um relâmpago e houve um grande terremoto. <b>O que não está escrito:</b> a que velocidade ele veio.</p><p>Imagine que veio rápido, muito mais rápido que qualquer coisa que conhecemos: quando algo assim "pousa", a terra treme. Na física, nada com massa alcança a velocidade da luz; anjos são seres espirituais, então a comparação é só para ilustrar. <b>Isto é imaginação, não fato.</b></p>
+</article>
+<article class="cartao fato">
+  <span class="tag">Dado conferido</span>
+  <h3>Luz e som: por que o relâmpago vem antes</h3>
+  <p>A luz anda <b>299.792 km por segundo</b>; o som no ar, uns <b>343 m por segundo</b>. A luz é cerca de <b>874 mil vezes</b> mais rápida. Por isso a gente vê o relâmpago e <b>só depois</b> ouve o trovão: a cada <b>3 segundos</b> de espera, o raio caiu a uns <b>1 km</b>.</p>
+  <p class="obs">Conta: 1.000 m ÷ 343 m/s ≈ 2,9 s por quilômetro (som a 20 °C).</p>
+</article>
+</div>
+<details class="curiosos">
+  <summary>O maior preço, e a pergunta que ficou</summary>
+  <div><p><b>Reflexão (não é afirmação da Bíblia):</b> se alguém pudesse ir até onde fica o trono, seria o maior preço que um ser humano poderia pagar, e nenhum dinheiro compra essa viagem. A pergunta que fica é a que vem depois: se tudo tem preço, e Deus está acima de qualquer um, <b>como é possível que Ele se aproxime de nós?</b></p></div>
+</details>
+</section>
+<nav class="proxima" aria-label="Continuar">
+  <a class="btn" href="parte-08.html">Continuar: Parte 8 →</a>
+  <p class="aviso">Você pode voltar e rever esta parte quando quiser.</p>
+</nav>
+</main>
+<footer class="rodape">Fontes e datas da conferência: <a href="fontes.html">Fontes</a>.</footer>
+<noscript><p style="position:fixed;left:0;right:0;top:0;z-index:99999;margin:0;padding:12px 16px;background:#FBEBDD;color:#9A4310;text-align:center;font:600 15px/1.4 system-ui">Esta página precisa de JavaScript para funcionar.</p></noscript>
+<script>window.OVM_DEV=true;</script>
+<script src="dados.js?v=1794016764"></script>
+<script src="estudo.js?v=1794016764"></script>
+<script src="motor.js?v=1794016764"></script>
+<script src="p07.js?v=1794016764"></script>
+</body>
+</html>
