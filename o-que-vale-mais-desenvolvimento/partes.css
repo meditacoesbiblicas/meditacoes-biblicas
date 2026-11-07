@@ -314,3 +314,14 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .vig.on .v-cafe .m2 { animation-delay: 1.2s; } .vig.on .v-cafe .m3 { animation-delay: 2.5s; } .vig.on .v-cafe .m4 { animation-delay: 3.4s; } .vig.on .v-cafe .m5 { animation-delay: 4.6s; } .vig.on .v-cafe .m6 { animation-delay: 5.5s; }
 @keyframes mota { 0% { opacity: 0; transform: translate(0, 4px); } 25% { opacity: .9; } 70% { opacity: .7; transform: translate(10px, -14px); } 100% { opacity: 0; transform: translate(16px, -24px); } }
 @media (prefers-reduced-motion: reduce) { .vig.on .v-cafe .vp, .vig.on .v-cafe .mota, .vig.on .v-cafe .raio { animation: none; } .v-cafe .vp.a { opacity: .45; } }
+
+/* ---- cena 2 (refeição em família): camadas da arte do Gemini, animadas por código ---- */
+.v-refeicao .mistura { mix-blend-mode: screen; }
+.v-refeicao .vp.a { opacity: .4; } .v-refeicao .vp.b { opacity: 0; }
+.vig.on .v-refeicao .vp { animation: vaporimg 5.6s ease-in-out infinite; opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; }
+.vig.on .v-refeicao .vp.b { animation-delay: 2.8s; }
+.v-refeicao .brilho-lampada { opacity: .5; }
+.vig.on .v-refeicao .brilho-lampada { animation: luzraio 4.6s ease-in-out infinite; }
+.vig.on .v-refeicao .familia-img { animation: bobfam 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes bobfam { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-.8px) scale(1.004); } }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-refeicao .vp, .vig.on .v-refeicao .brilho-lampada, .vig.on .v-refeicao .familia-img { animation: none; } .v-refeicao .vp.a { opacity: .4; } }
