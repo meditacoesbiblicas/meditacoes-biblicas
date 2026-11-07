@@ -334,7 +334,8 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .vig.on .v-fim .vp { animation: fumacachamine 6s ease-in-out infinite; opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; }
 .vig.on .v-fim .vp.b { animation-delay: 3s; }
 @keyframes fumacachamine { 0% { opacity: 0; transform: translateY(2px) scale(.7); } 25% { opacity: .75; } 100% { opacity: 0; transform: translate(6px, -16px) scale(1.25); } }
-.vig.on .v-fim .nuvens { animation: nuvensvao 46s ease-in-out infinite alternate; }
+.vig.on .v-fim .nuvens { animation: nuvensfim 40s ease-in-out infinite alternate; }
+@keyframes nuvensfim { from { transform: translateX(-4px); } to { transform: translateX(14px); } }
 @keyframes nuvensvao { from { transform: translateX(-26px); } to { transform: translateX(34px); } }
 .vig.on .v-fim .familia-img { animation: bobfam 4.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
 @media (prefers-reduced-motion: reduce) { .vig.on .v-fim .vp, .vig.on .v-fim .nuvens, .vig.on .v-fim .familia-img { animation: none; } .v-fim .vp.a { opacity: .5; } }
@@ -347,8 +348,9 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .v-viagem .mistura { mix-blend-mode: screen; }
 .v-viagem .brilho-sol { opacity: .55; }
 .vig.on .v-viagem .brilho-sol { animation: luzraio 5s ease-in-out infinite; }
-.vig.on .v-viagem .aviao-g { animation: aviaocruza 16s linear infinite; }
-@keyframes aviaocruza { from { transform: translateX(-80px); } to { transform: translateX(560px); } }
-.v-viagem .aviao-g { transform: translateX(-80px); }
+.vig.on .v-viagem .aviao-g { animation: aviaosobe 18s ease-in-out infinite; }
+/* o avião sobe pelo céu da esquerda e some antes de chegar perto da torre */
+@keyframes aviaosobe { 0% { transform: translate(10px, 88px) rotate(-9deg); opacity: 0; } 6% { opacity: 1; } 58% { transform: translate(128px, 50px) rotate(-9deg); opacity: 1; } 66% { transform: translate(142px, 46px) rotate(-9deg); opacity: 0; } 100% { transform: translate(142px, 46px) rotate(-9deg); opacity: 0; } }
+.v-viagem .aviao-g { transform: translate(100px, 62px) rotate(-9deg); }
 .vig.on .v-viagem .familia-img { animation: respira 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
-@media (prefers-reduced-motion: reduce) { .vig.on .v-viagem .aviao-g, .vig.on .v-viagem .familia-img, .vig.on .v-viagem .brilho-sol, .vig.on .v-viagem .tw, .vig.on .v-fim .familia-img { animation: none; } .v-viagem .aviao-g { transform: translateX(300px); } }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-viagem .aviao-g, .vig.on .v-viagem .familia-img, .vig.on .v-viagem .brilho-sol, .vig.on .v-viagem .tw, .vig.on .v-fim .familia-img { animation: none; } .v-viagem .aviao-g { transform: translate(100px, 62px) rotate(-9deg); } }
