@@ -19,16 +19,16 @@ def regegw(nome, pid, trecho, obra):
     VERSOS[nome] = {'ref': 'Ellen G. White, %s (%s)' % (obra, d['ref']), 't': trecho}
 
 CAPA = dict(
-    descricao='Um estudo em etapas que começa numa xícara de café e vai muito longe.',
+    descricao='Um estudo em etapas que começa numa xícara de chocolate quente e vai muito longe.',
     kicker='Um estudo em etapas',
-    lede='Quase toda escolha que a gente faz esconde uma pergunta. Esta jornada começa numa xícara de café e vai muito, muito longe.',
+    lede='Quase toda escolha que a gente faz esconde uma pergunta. Esta jornada começa numa xícara de chocolate quente e vai muito, muito longe.',
     meta='10 partes · uns 40 minutos · melhor no celular, em pé ou deitado',
 )
 
 # ======================================================================================================================
 # PARTE 1 — Tudo o que a gente quer tem um preço  (o botão do retorno)
 # ======================================================================================================================
-NOMES_CURTOS = ['☕ Café', '🍽️ Refeição', '🏖️ Fim de semana', '✈️ Viagem', '🚗 Carro', '🏠 Casa']
+NOMES_CURTOS = ['🍫 Chocolate quente', '🍽️ Refeição', '🏖️ Fim de semana', '✈️ Viagem', '🚗 Carro', '🏠 Casa']
 vigs = []
 for i, svg in enumerate(V.TODAS):
     svg = svg.replace('<svg class="vinheta', '<svg preserveAspectRatio="xMidYMid slice" class="vinheta', 1)
@@ -44,30 +44,30 @@ P1_PALCO = '''<div class="p1-cena" id="p1">
     <div class="termo preco"><span class="rot" title="Preço">R$</span><div class="barra"><i id="p1-fio-preco"></i></div></div>
     <div class="termo retorno"><span class="rot" title="Retorno">✦</span><div class="barra"><i id="p1-fio-ret"></i></div></div>
   </div>
-  <div class="p1-etiqueta" id="p1-etq" aria-hidden="true"><span class="furo"></span><span class="aprox" id="p1-aprox" hidden>≈</span><span class="rs">R$</span><b id="p1-valor">6,98</b></div>
-  <p class="p1-nome" id="p1-nome" aria-hidden="true">Um café</p>
+  <div class="p1-etiqueta" id="p1-etq" aria-hidden="true"><span class="furo"></span><span class="aprox" id="p1-aprox" hidden>≈</span><span class="rs">R$</span><b id="p1-valor">8</b></div>
+  <p class="p1-nome" id="p1-nome" aria-hidden="true">Um chocolate quente</p>
 </div>''' % '\n'.join(vigs)
 
-P1_CONTROLES = '''<label class="ctrl-rotulo" for="p1-botao"><span>O botão do retorno</span><output id="p1-saida">Um café</output></label>
+P1_CONTROLES = '''<label class="ctrl-rotulo" for="p1-botao"><span>O botão do retorno</span><output id="p1-saida">Um chocolate quente</output></label>
 <input type="range" id="p1-botao" min="0" max="5" step="1" value="0" aria-describedby="rotulo">
 <ul class="chips" id="p1-chips">%s</ul>''' % ''.join('<li><button type="button" class="chip" data-i="%d">%s</button></li>' % (i, n) for i, n in enumerate(NOMES_CURTOS))
 
 RAZAO = D.PRECOS[-1]['valor'] / D.PRECOS[0]['valor']
-assert RAZAO > 77000
+assert 67000 < RAZAO < 68000
 
 P1_LEITURA = [(
     'Para pensar',
     'Estes números foram conferidos em novembro de 2026. Cada conta e cada fonte está em "Conta e fonte", dentro da cena.',
     grade([
-        fato('Do café à casa, quanto o preço sobe?',
-             '<p>Um café custa cerca de <b>R$ 7</b>. Uma casa de 60 m² custa cerca de <b>R$ 542 mil</b>. A casa custa <b>mais de 77 mil vezes</b> o preço do café: dá para tomar mais de 77 mil cafés pelo preço de uma casa.</p>',
-             obs='Conta: R$ 542.520 ÷ R$ 6,98 ≈ 77.725.'),
+        fato('Do chocolate quente à casa, quanto o preço sobe?',
+             '<p>Um chocolate quente custa cerca de <b>R$ 8</b>. Uma casa de 60 m² custa cerca de <b>R$ 542 mil</b>. A casa custa <b>mais de 67 mil vezes</b> o preço do chocolate quente: dá para tomar mais de 67 mil xícaras pelo preço de uma casa.</p>',
+             obs='Conta: R$ 542.520 ÷ R$ 8 ≈ 67.815.'),
         reflexao('O que vale mais custa mais',
-                 '<p>Repare no que cada coisa devolve: o café, uns minutos; a refeição, algumas horas; o fim de semana, dois dias; a viagem, anos de lembrança; o carro, muitos anos; a casa, décadas. '
+                 '<p>Repare no que cada coisa devolve: o chocolate quente, uns minutos; a refeição, algumas horas; o fim de semana, dois dias; a viagem, anos de lembrança; o carro, muitos anos; a casa, décadas. '
                  'Quanto mais tempo dura o que recebemos, e quanto mais gente alcança, mais caro costuma ser.</p>'
                  '<p>Essa é a ideia que vai nos acompanhar: <b>para receber, é preciso pagar</b>, e o que vale mais custa mais.</p>'),
     ]) + '\n' + curiosos('Como os preços foram conferidos',
-             '<p>Café: Procon-SP, setembro de 2026. Refeição: Ticket/Edenred, 2024. Fim de semana: FOHB, maio de 2026. Viagem: Catraca Livre, fevereiro de 2026, com o dólar do Banco Central de 5/11/2026. '
+             '<p>Chocolate quente: valor de referência estimado (cardápio de uma padaria). Refeição: Ticket/Edenred, 2024. Fim de semana: FOHB, maio de 2026. Viagem: Catraca Livre, fevereiro de 2026, com o dólar do Banco Central de 5/11/2026. '
              'Carro: UOL Carros, novembro de 2026. Casa: Índice FipeZAP, outubro de 2026. Detalhes em <a href="fontes.html">Fontes</a>.</p>'),
 )]
 
@@ -388,7 +388,7 @@ P9_LEITURA = [(
         biblia(['ex/21/32'], marcas={'ex/21/32': ['trinta siclos de prata']}, antes='A lei da época fixava o preço de um servo ou de uma serva assim:'),
         biblia(['sl/49/7', 'sl/49/8'], marcas={'sl/49/7': ['nenhum deles, de modo algum, pode remir a seu irmão ou dar a Deus o resgate dele'], 'sl/49/8': ['a redenção da sua alma é caríssima']}),
         fato('Tudo o que vimos, somado',
-             '<p>Se pusermos no prato <b>um de cada</b>: o café, a refeição, a viagem em família, o carro, a casa, a viagem até a Estação Espacial e a meta de Marte, a conta chega a cerca de <b>R$ 358 milhões</b>.</p><p>Ainda assim, nenhum desses preços alcança o de quem está acima de todos.</p>',
+             '<p>Se pusermos no prato <b>um de cada</b>: o chocolate quente, a refeição, a viagem em família, o carro, a casa, a viagem até a Estação Espacial e a meta de Marte, a conta chega a cerca de <b>R$ 358 milhões</b>.</p><p>Ainda assim, nenhum desses preços alcança o de quem está acima de todos.</p>',
              obs='Conta (preços das partes 1 e 2, sem o fim de semana): ≈ R$ %s.' % ('{:,.0f}'.format(TOTAL9).replace(',', '.'))),
         reflexao('A conta que o mundo faz',
                  '<p>No mundo, o valor de alguém quase sempre é medido pelo que a pessoa <b>tem</b> ou pelo que pode <b>oferecer em troca</b>, e nem sempre é dinheiro: pode ser simpatia, utilidade, influência. Quando a gente não tem nada para oferecer, bate a dúvida: <b>"que valor eu tenho?"</b></p>'
@@ -483,7 +483,7 @@ CONCL_CORPO = '''<main class="concl">
   <section class="concl-texto">
     <p class="kicker">Conclusão</p>
     <h1>O que vale mais?</h1>
-    <p class="lede">Passamos de uma xícara de café ao limite do universo, e do universo ao núcleo do átomo. Tudo o que vimos tem preço. Só Deus está acima de qualquer preço, e foi ele quem pagou, <b>por você</b>, o preço mais alto que existe.</p>
+    <p class="lede">Passamos de uma xícara de chocolate quente ao limite do universo, e do universo ao núcleo do átomo. Tudo o que vimos tem preço. Só Deus está acima de qualquer preço, e foi ele quem pagou, <b>por você</b>, o preço mais alto que existe.</p>
     <div class="concl-duas">
       <article class="cartao fato"><span class="tag">Primeira conclusão</span><h3>Você tem valor imenso</h3><p>O valor que Deus dá a você <b>não vem de nada que você fez ou tem</b>. Vem de quem pagou por você.</p></article>
       <article class="cartao reflexao"><span class="tag">Segunda conclusão</span><h3>O pecado é grave</h3><p>Só um preço tão alto pôde nos libertar dele. Temer é <b>reverência</b>: cuidado de não pecar contra quem pagou, não medo de ser rejeitado.</p></article>
@@ -514,7 +514,7 @@ FONTES_PAG = '''<main class="concl"><section class="concl-texto">
 <p class="lede">Tudo foi conferido em <b>6 de novembro de 2026</b>. Os preços mudam com o tempo; os textos da Bíblia e de Ellen G. White foram copiados ao vivo dos sites de origem, e o gerador do estudo se recusa a montar a página se um trecho destacado não existir no texto original.</p>
 <h2>Preços (partes 1, 2 e 9)</h2>
 <ul class="lista">
-<li><b>Café:</b> Procon-SP, pesquisa de preços de produtos de padaria 2026 (22 e 23/09/2026).</li>
+<li><b>Chocolate quente (estimativa):</b> não achamos uma pesquisa oficial de preço para esse item. Usamos R$ 8, o meio do caminho entre o pequeno (R$ 7,20) e o grande (R$ 8,90) no cardápio de uma padaria (Padaria Brasil, em Cardápio Seguro: cardapioseguro.com.br/padaria-brasil). O preço real varia de lugar para lugar.</li>
 <li><b>Refeição em família:</b> Ticket (Edenred Brasil), Pesquisa +Valor, setembro de 2024 (a mais recente encontrada).</li>
 <li><b>Fim de semana fora:</b> FOHB, divulgado pela Panrotas em 08/07/2026.</li>
 <li><b>Viagem internacional em família (estimativa):</b> Catraca Livre, 13/02/2026; câmbio do Banco Central (PTAX, venda, 05/11/2026: R$ 5,4621).</li>

@@ -1,4 +1,4 @@
-/* Capa: um cartaz da jornada. De uma xícara de café (embaixo) a um ponto de luz (no alto), uma régua com as medidas da viagem.
+/* Capa: um cartaz da jornada. De uma xícara de chocolate quente (embaixo) a um ponto de luz (no alto), uma régua com as medidas da viagem.
    Sem pistas do fim: só a escala. */
 OVM.pronto(function () {
   var canvas = OVM.$('#tela');
@@ -6,7 +6,7 @@ OVM.pronto(function () {
   var T = OVM.tela(canvas);
   var est = OVM.estrelas(7, 260);
   var marcas = [
-    { r: 0.00, t: 'R$ 6,98', c: '#FFC46B' },
+    { r: 0.00, t: 'R$ 8', c: '#FFC46B' },
     { r: 0.24, t: 'R$ 542 mil', c: '#FFD27A' },
     { r: 0.50, t: '300.000 km por segundo', c: '#F5E7C6' },
     { r: 0.74, t: '9,5 trilhões de km', c: '#CFE0FF' },
@@ -19,10 +19,11 @@ OVM.pronto(function () {
     OVM.brilho(ctx, 0, -20, 190, 'rgba(255,170,90,A)', 0.35);
     ctx.fillStyle = '#EDE3D2'; ctx.beginPath(); ctx.ellipse(0, 22, 92, 15, 0, 0, 6.2832); ctx.fill();
     ctx.fillStyle = '#CBBFA9'; ctx.beginPath(); ctx.ellipse(0, 19, 74, 10, 0, 0, 6.2832); ctx.fill();
-    ctx.fillStyle = '#FFFDF8'; ctx.beginPath(); ctx.moveTo(-58, -28); ctx.lineTo(58, -28); ctx.lineTo(58, -2); ctx.quadraticCurveTo(58, 28, 0, 28); ctx.quadraticCurveTo(-58, 28, -58, -2); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle = '#FFFDF8'; ctx.lineWidth = 11; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(58, -18); ctx.quadraticCurveTo(92, -18, 92, 4); ctx.quadraticCurveTo(92, 26, 58, 20); ctx.stroke();
-    ctx.fillStyle = '#FFFDF8'; ctx.beginPath(); ctx.ellipse(0, -28, 58, 12, 0, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = '#D9674B'; ctx.beginPath(); ctx.moveTo(-58, -28); ctx.lineTo(58, -28); ctx.lineTo(58, -2); ctx.quadraticCurveTo(58, 28, 0, 28); ctx.quadraticCurveTo(-58, 28, -58, -2); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#D9674B'; ctx.lineWidth = 11; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(58, -18); ctx.quadraticCurveTo(92, -18, 92, 4); ctx.quadraticCurveTo(92, 26, 58, 20); ctx.stroke();
+    ctx.fillStyle = '#E98B6E'; ctx.beginPath(); ctx.ellipse(0, -28, 58, 12, 0, 0, 6.2832); ctx.fill();
     ctx.fillStyle = '#4A2A14'; ctx.beginPath(); ctx.ellipse(0, -27, 50, 8.5, 0, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = '#FFF6E6'; [[-18, -28, 11, 5.5], [6, -25, 10, 5], [24, -29, 8, 4.5]].forEach(function (m) { ctx.beginPath(); ctx.ellipse(m[0], m[1], m[2], m[3], 0, 0, 6.2832); ctx.fill(); });
     ctx.restore();
   }
 

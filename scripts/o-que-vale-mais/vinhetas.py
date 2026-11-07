@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Seis vinhetas animadas (SVG) da parte 1: o que cada coisa "devolve". As animações estão em partes.css (classes .vinheta ...).
 
-CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-label="Uma xícara de café fumegante sobre uma mesa, com a luz da manhã entrando pela janela">
+CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-label="Uma caneca de chocolate quente fumegante, com marshmallows, sobre uma mesa, com a luz da manhã entrando pela janela">
 <defs>
 <linearGradient id="c-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9C2"/><stop offset="1" stop-color="#F1C384"/></linearGradient>
 <radialGradient id="c-luz" cx=".22" cy=".12" r=".95"><stop offset="0" stop-color="#FFF9DE" stop-opacity=".95"/><stop offset="1" stop-color="#FFF9DE" stop-opacity="0"/></radialGradient>
@@ -15,10 +15,12 @@ CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-labe
 <polygon class="raio" points="60,174 168,174 372,320 118,320" fill="url(#c-raio)"/>
 <rect y="238" width="480" height="82" fill="url(#c-mesa)"/><rect y="238" width="480" height="7" fill="#C99259"/>
 <ellipse cx="262" cy="257" rx="86" ry="15" fill="#F5EFE4"/><ellipse cx="262" cy="255" rx="70" ry="10.5" fill="#E7DECC"/>
-<path d="M208 192H316V217Q316 256 262 256Q208 256 208 217Z" fill="#FFFDF8"/>
-<path d="M316 202Q348 202 348 225Q348 247 316 241" fill="none" stroke="#FFFDF8" stroke-width="10" stroke-linecap="round"/>
-<ellipse cx="262" cy="192" rx="54" ry="11" fill="#FFFDF8"/><ellipse cx="262" cy="193" rx="47" ry="8" fill="#5B3318"/>
+<path d="M208 192H316V217Q316 256 262 256Q208 256 208 217Z" fill="#D9674B"/>
+<path d="M214 214H310" stroke="#F4B49C" stroke-width="5" stroke-linecap="round" opacity=".8"/><path d="M222 228H302" stroke="#F4B49C" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+<path d="M316 202Q348 202 348 225Q348 247 316 241" fill="none" stroke="#D9674B" stroke-width="10" stroke-linecap="round"/>
+<ellipse cx="262" cy="192" rx="54" ry="11" fill="#E98B6E"/><ellipse cx="262" cy="193" rx="47" ry="8" fill="#4A2A14"/>
 <ellipse cx="248" cy="191" rx="14" ry="2.6" fill="#8A5A34" opacity=".7"/>
+<g fill="#FFF6E6"><ellipse cx="246" cy="191" rx="9" ry="5"/><ellipse cx="266" cy="194" rx="8" ry="4.6"/><ellipse cx="281" cy="190" rx="7" ry="4"/></g>
 <g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round">
 <path class="vapor a" d="M240 176Q226 152 242 130Q256 108 242 86"/>
 <path class="vapor b" d="M264 176Q252 154 266 134Q280 112 266 92"/>

@@ -60,10 +60,10 @@ NIVEIS = [
 
 # ---------------------------------------------------------------- preços (parte 1) — conferidos em 2026-11-06
 PRECOS = [
-    dict(id='cafe', nome='Um café', valor=6.98, texto='6,98', aprox=False, nota='Xícara de café coado, em padarias de São Paulo.',
-         conta='Preço médio de uma xícara pequena de café coado em 50 padarias da cidade de São Paulo, coletado em 22 e 23 de setembro de 2026. '
-               'Fonte: Procon-SP, pesquisa de preços de produtos de padaria 2026.',
-         imagine='Imagine o cheiro do café fresco e uns minutos só seus.', dura='minutos', para='você'),
+    dict(id='cafe', nome='Um chocolate quente', valor=8.0, texto='8', aprox=True, nota='Uma xícara de chocolate quente, em padaria (valor de referência).',
+         conta='Valor de referência: R$ 8, o meio do caminho entre o chocolate quente pequeno (R$ 7,20) e o grande (R$ 8,90) do cardápio de uma padaria. '
+               'Não encontramos uma pesquisa oficial de preço para esse item, então é uma estimativa; o preço real varia de lugar para lugar. Fonte: cardápio da Padaria Brasil (Cardápio Seguro).',
+         imagine='Imagine o cheiro do chocolate quente e uns minutos só seus, numa manhã fria.', dura='minutos', para='você'),
     dict(id='refeicao', nome='Uma refeição em família', valor=385.76, texto='386', aprox=True, nota='4 refeições completas, a R$ 96,44 cada (em 2024).',
          conta='4 pessoas × R$ 96,44 = R$ 385,76. R$ 96,44 é o preço médio da refeição completa (prato, bebida, sobremesa e café) em restaurante à la carte, '
                'numa pesquisa com mais de 4.500 restaurantes divulgada em setembro de 2024, a mais recente que encontramos. Fonte: Ticket (Edenred Brasil), Pesquisa +Valor.',
@@ -86,7 +86,7 @@ PRECOS = [
                'em outubro de 2026 (preço pedido, não o de venda). Os 60 m² são um exemplo. Fonte: Índice FipeZAP, informe de outubro de 2026.',
          imagine='Imagine abrir a porta e saber que aquele lugar é seu, e da sua família.', dura='décadas', para='a família'),
 ]
-CAFES = ['≈ 55 cafés', '≈ 130 cafés', '≈ 6 mil cafés', '≈ 10 mil cafés', '≈ 78 mil cafés']
+CAFES = ['≈ 48 xícaras', '≈ 110 xícaras', '≈ 5 mil xícaras', '≈ 9 mil xícaras', '≈ 68 mil xícaras']
 
 # ---------------------------------------------------------------- viagens espaciais (parte 2): US$ e R$ ao câmbio PTAX
 def reais(usd):

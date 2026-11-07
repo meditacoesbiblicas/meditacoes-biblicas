@@ -212,7 +212,7 @@ OVM.pronto(function () {
     return {
       rotulo: i === 0 ? 'A viagem mais cara' : 'Parada ' + i + ' de 4',
       html: i === 0 ? function () {
-        return '<b class="grande">Na plataforma</b><p>Do café à casa, o preço foi subindo com o que se recebe. Agora, a viagem que nenhum supermercado vende: <b>sair do planeta</b>.</p>' +
+        return '<b class="grande">Na plataforma</b><p>Do chocolate quente à casa, o preço foi subindo com o que se recebe. Agora, a viagem que nenhum supermercado vende: <b>sair do planeta</b>.</p>' +
           '<p class="pequeno">Toque em <b>Próximo</b> e o foguete sobe até a parada seguinte. O preço sobe com ele.</p>';
       } : function () { return htmlParada(v, i); },
       ir: function () { ir(i); }
