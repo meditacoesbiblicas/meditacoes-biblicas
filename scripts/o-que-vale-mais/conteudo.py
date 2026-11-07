@@ -28,7 +28,7 @@ CAPA = dict(
 # ======================================================================================================================
 # PARTE 1 — Tudo o que a gente quer tem um preço  (o botão do retorno)
 # ======================================================================================================================
-NOMES_CURTOS = ['🍫 Chocolate quente', '🍽️ Refeição', '🏖️ Fim de semana', '✈️ Viagem', '🚗 Carro', '🏠 Casa']
+NOMES_CURTOS = ['🍫 Chocolate quente', '🍽️ Refeição', '🏖️ Descanso fora', '✈️ Viagem', '🚗 Carro', '🏠 Casa']
 vigs = []
 for i, svg in enumerate(V.TODAS):
     svg = svg.replace('<svg class="vinheta', '<svg preserveAspectRatio="xMidYMid slice" class="vinheta', 1)
@@ -63,11 +63,11 @@ P1_LEITURA = [(
              '<p>Um chocolate quente custa cerca de <b>R$ 8</b>. Uma casa de 60 m² custa cerca de <b>R$ 542 mil</b>. A casa custa <b>mais de 67 mil vezes</b> o preço do chocolate quente: dá para tomar mais de 67 mil xícaras pelo preço de uma casa.</p>',
              obs='Conta: R$ 542.520 ÷ R$ 8 ≈ 67.815.'),
         reflexao('O que vale mais custa mais',
-                 '<p>Repare no que cada coisa devolve: o chocolate quente, uns minutos; a refeição, algumas horas; o fim de semana, dois dias; a viagem, anos de lembrança; o carro, muitos anos; a casa, décadas. '
+                 '<p>Repare no que cada coisa devolve: o chocolate quente, uns minutos; a refeição, algumas horas; o descanso fora, dois dias; a viagem, anos de lembrança; o carro, muitos anos; a casa, décadas. '
                  'Quanto mais tempo dura o que recebemos, e quanto mais gente alcança, mais caro costuma ser.</p>'
                  '<p>Essa é a ideia que vai nos acompanhar: <b>para receber, é preciso pagar</b>, e o que vale mais custa mais.</p>'),
     ]) + '\n' + curiosos('Como os preços foram conferidos',
-             '<p>Chocolate quente: valor de referência estimado (cardápio de uma padaria). Refeição: Ticket/Edenred, 2024. Fim de semana: FOHB, maio de 2026. Viagem: Catraca Livre, fevereiro de 2026, com o dólar do Banco Central de 5/11/2026. '
+             '<p>Chocolate quente: valor de referência estimado (cardápio de uma padaria). Refeição: Ticket/Edenred, 2024. Dois dias de descanso: FOHB, maio de 2026. Viagem: Catraca Livre, fevereiro de 2026, com o dólar do Banco Central de 5/11/2026. '
              'Carro: UOL Carros, novembro de 2026. Casa: Índice FipeZAP, outubro de 2026. Detalhes em <a href="fontes.html">Fontes</a>.</p>'),
 )]
 
@@ -389,7 +389,7 @@ P9_LEITURA = [(
         biblia(['sl/49/7', 'sl/49/8'], marcas={'sl/49/7': ['nenhum deles, de modo algum, pode remir a seu irmão ou dar a Deus o resgate dele'], 'sl/49/8': ['a redenção da sua alma é caríssima']}),
         fato('Tudo o que vimos, somado',
              '<p>Se pusermos no prato <b>um de cada</b>: o chocolate quente, a refeição, a viagem em família, o carro, a casa, a viagem até a Estação Espacial e a meta de Marte, a conta chega a cerca de <b>R$ 358 milhões</b>.</p><p>Ainda assim, nenhum desses preços alcança o de quem está acima de todos.</p>',
-             obs='Conta (preços das partes 1 e 2, sem o fim de semana): ≈ R$ %s.' % ('{:,.0f}'.format(TOTAL9).replace(',', '.'))),
+             obs='Conta (preços das partes 1 e 2, sem o descanso fora): ≈ R$ %s.' % ('{:,.0f}'.format(TOTAL9).replace(',', '.'))),
         reflexao('A conta que o mundo faz',
                  '<p>No mundo, o valor de alguém quase sempre é medido pelo que a pessoa <b>tem</b> ou pelo que pode <b>oferecer em troca</b>, e nem sempre é dinheiro: pode ser simpatia, utilidade, influência. Quando a gente não tem nada para oferecer, bate a dúvida: <b>"que valor eu tenho?"</b></p>'
                  '<p>Pessoas já foram vendidas como mercadoria por preços irrisórios. <b>Isso nunca foi o valor delas</b>: foi o que o mundo, errado, chegou a cobrar.</p>'),
@@ -516,7 +516,7 @@ FONTES_PAG = '''<main class="concl"><section class="concl-texto">
 <ul class="lista">
 <li><b>Chocolate quente (estimativa):</b> não achamos uma pesquisa oficial de preço para esse item. Usamos R$ 8, o meio do caminho entre o pequeno (R$ 7,20) e o grande (R$ 8,90) no cardápio de uma padaria (Padaria Brasil, em Cardápio Seguro: cardapioseguro.com.br/padaria-brasil). O preço real varia de lugar para lugar.</li>
 <li><b>Refeição em família:</b> Ticket (Edenred Brasil), Pesquisa +Valor, setembro de 2024 (a mais recente encontrada).</li>
-<li><b>Fim de semana fora:</b> FOHB, divulgado pela Panrotas em 08/07/2026.</li>
+<li><b>Dois dias de descanso fora:</b> FOHB, divulgado pela Panrotas em 08/07/2026.</li>
 <li><b>Viagem internacional em família (estimativa):</b> Catraca Livre, 13/02/2026; câmbio do Banco Central (PTAX, venda, 05/11/2026: R$ 5,4621).</li>
 <li><b>Carro:</b> levantamento do UOL Carros, publicado pelo jornal A Tarde em 01/11/2026.</li>
 <li><b>Casa:</b> Índice FipeZAP, informe de outubro de 2026.</li>
