@@ -98,24 +98,25 @@
           </g>
         </g>
       </svg>
-      <span class="ok" data-i="0" aria-hidden="true" style="left:14.4%;top:61.1%">✓</span>
-      <span class="ok" data-i="1" aria-hidden="true" style="left:29.5%;top:59.46%">✓</span>
-      <span class="ok" data-i="2" aria-hidden="true" style="left:42.8%;top:50.07%">✓</span>
-      <span class="ok" data-i="3" aria-hidden="true" style="left:55.2%;top:42.18%">✓</span>
-      <span class="ok" data-i="4" aria-hidden="true" style="left:69.5%;top:34.8%">✓</span>
-      <span class="ok" data-i="5" aria-hidden="true" style="left:81.6%;top:28.39%">✓</span>
-      <span class="ok" data-i="6" aria-hidden="true" style="left:97.65%;top:11.7%">✓</span>
-      <div class="etq" data-i="0" aria-hidden="true" style="left:7.45%;top:88.08%;width:4.05%;height:8.72%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
-      <div class="etq" data-i="1" aria-hidden="true" style="left:21%;top:80.85%;width:4.05%;height:8.72%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
-      <div class="etq" data-i="2" aria-hidden="true" style="left:34.8%;top:72.95%;width:4.05%;height:8.64%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
-      <div class="etq" data-i="3" aria-hidden="true" style="left:48.65%;top:64.61%;width:4.05%;height:8.72%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
-      <div class="etq" data-i="4" aria-hidden="true" style="left:62.25%;top:57%;width:4.05%;height:8.64%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
-      <div class="etq" data-i="5" aria-hidden="true" style="left:75.85%;top:47.76%;width:4.05%;height:8.64%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
-      <div class="etq" data-i="6" aria-hidden="true" style="left:89.25%;top:38.9%;width:4.05%;height:8.79%"><span class="etq-rs">R$</span><span class="etq-v">—</span></div>
+      <span class="ok" data-i="0" aria-hidden="true" style="left:14.4%;top:61.1%;--i:0">✓</span>
+      <span class="ok" data-i="1" aria-hidden="true" style="left:29.5%;top:59.46%;--i:1">✓</span>
+      <span class="ok" data-i="2" aria-hidden="true" style="left:42.8%;top:50.07%;--i:2">✓</span>
+      <span class="ok" data-i="3" aria-hidden="true" style="left:55.2%;top:42.18%;--i:3">✓</span>
+      <span class="ok" data-i="4" aria-hidden="true" style="left:69.5%;top:34.8%;--i:4">✓</span>
+      <span class="ok" data-i="5" aria-hidden="true" style="left:81.6%;top:28.39%;--i:5">✓</span>
+      <span class="ok" data-i="6" aria-hidden="true" style="left:97.65%;top:11.7%;--i:6">✓</span>
+      <div class="etq" data-i="0" aria-hidden="true" style="left:7.45%;top:88.08%;width:4.05%;height:8.72%;--i:0"><span class="etq-rs">R$</span><span class="etq-v">6,98</span></div>
+      <div class="etq" data-i="1" aria-hidden="true" style="left:21%;top:80.85%;width:4.05%;height:8.72%;--i:1"><span class="etq-rs">R$</span><span class="etq-v">386</span></div>
+      <div class="etq" data-i="2" aria-hidden="true" style="left:34.8%;top:72.95%;width:4.05%;height:8.64%;--i:2"><span class="etq-rs">R$</span><span class="etq-v">903</span></div>
+      <div class="etq" data-i="3" aria-hidden="true" style="left:48.65%;top:64.61%;width:4.05%;height:8.72%;--i:3"><span class="etq-rs">R$</span><span class="etq-v">10 mil</span></div>
+      <div class="etq" data-i="4" aria-hidden="true" style="left:62.25%;top:57%;width:4.05%;height:8.64%;--i:4"><span class="etq-rs">R$</span><span class="etq-v">42 mil</span></div>
+      <div class="etq" data-i="5" aria-hidden="true" style="left:75.85%;top:47.76%;width:4.05%;height:8.64%;--i:5"><span class="etq-rs">R$</span><span class="etq-v">72 mil</span></div>
+      <div class="etq" data-i="6" aria-hidden="true" style="left:89.25%;top:38.9%;width:4.05%;height:8.79%;--i:6"><span class="etq-rs">R$</span><span class="etq-v">543 mil</span></div>
         <div class="dica-item" id="dica-item" hidden></div>
       </div>
     </div>
     <a class="av-voltar" href="index.html">← Início</a>
+    <button type="button" class="av-fim" id="av-fim" hidden><span class="l-longo">O que os sete têm em comum</span><span class="l-curto">O que têm em comum</span> →</button>
   </section>
   <aside class="av-painel" id="painel" aria-live="polite" aria-labelledby="painel-titulo">
     <div class="p-topo">
@@ -127,13 +128,15 @@
       <div class="etiqueta" id="etiqueta">
         <p class="et-pos" id="et-pos"></p>
         <h2 class="et-nome" id="painel-titulo">Vitrine</h2>
-        <p class="et-preco" id="et-preco"><span class="rs">R$</span><span class="valor" id="et-valor"></span></p>
+        <p class="et-preco" id="et-preco"><span class="aprox" id="et-aprox" role="img" aria-label="cerca de" hidden>≈</span><span class="rs">R$</span><span class="valor" id="et-valor"></span></p>
         <p class="et-nota" id="et-nota"></p>
         <p class="et-recebe" id="et-recebe"></p>
         <div class="medidores">
           <div class="medidor paga"><span class="m-rot">Você paga</span><span class="m-seg" role="img"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
           <div class="medidor recebe"><span class="m-rot">Você recebe</span><span class="m-seg" role="img"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
         </div>
+        <p class="m-nota">Comparação entre os sete itens.</p>
+        <details class="et-fonte" id="et-fonte"><summary>Conta e fonte</summary><p id="et-conta"></p></details>
       </div>
       <div class="p-nav">
         <button type="button" id="p-ant">← Anterior</button>
@@ -141,11 +144,19 @@
         <button type="button" id="p-prox">Próximo →</button>
       </div>
     </div>
-    <p class="p-dev">Ato 1 em teste: ilustração do Gemini; textos e preços ainda a confirmar.</p>
+    <div class="p-fecho" id="p-fecho" hidden>
+      <p class="fe-ato">Ato 1 · Tudo tem um preço</p>
+      <h2 class="fe-titulo" id="fe-titulo" tabindex="-1">O que os sete têm em comum</h2>
+      <p>Cada item entrega algo bom, e todos cobram um preço.</p>
+      <p class="fe-ideia">Quanto maior o que a gente recebe, maior o preço. <b>Para receber, é preciso pagar.</b></p>
+      <button type="button" class="fe-voltar" id="fe-voltar">← Rever os itens</button>
+    <p class="p-dev fe-dev">O Ato 2 só começa depois do seu teste deste ato.</p>
+    </div>
+    <p class="p-dev">Ato 1 em teste: ilustração do Gemini; valores e fontes conferidos em 06/11/2026.</p>
   </aside>
 </main>
 <noscript><p style="position:fixed;left:0;right:0;top:0;z-index:99999;margin:0;padding:12px 16px;background:#FBEBDD;color:#9A4310;text-align:center;font:600 15px/1.4 system-ui">Esta página precisa de JavaScript para mostrar as etiquetas da vitrine.</p></noscript>
-<script type="application/json" id="dados">{"itens": [{"nome": "Um café", "nivel": 1, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.1065, "dx": 10.65, "dy": 61.1}, {"nome": "Uma refeição em família", "nivel": 2, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.2375, "dx": 23.75, "dy": 59.46}, {"nome": "Um fim de semana fora", "nivel": 3, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.3705, "dx": 37.05, "dy": 50.07}, {"nome": "Um curso", "nivel": 4, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.5015, "dx": 50.15, "dy": 42.18}, {"nome": "Uma viagem internacional em família", "nivel": 5, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.6322, "dx": 63.22, "dy": 34.8}, {"nome": "Um carro", "nivel": 6, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.7545, "dx": 75.45, "dy": 28.39}, {"nome": "Uma casa", "nivel": 7, "preco": null, "nota": null, "recebe": null, "tag": null, "cx": 0.8875, "dx": 88.75, "dy": 11.7}], "proximo": null}</script>
+<script type="application/json" id="dados">{"itens": [{"nome": "Um café", "nivel": 1, "valor": "6,98", "aprox": false, "nota": "Xícara de café coado, em padarias de São Paulo.", "conta": "Preço médio de uma xícara pequena de café coado em 50 padarias da cidade de São Paulo, coletado em 22 e 23 de setembro de 2026. Fonte: Procon-SP, pesquisa de preços de produtos de padaria 2026.", "recebe": "Uns minutos de pausa e de ânimo. Quando o copo esfria, acabou.", "tag": "6,98", "cx": 0.1065, "dx": 10.65, "dy": 61.1}, {"nome": "Uma refeição em família", "nivel": 2, "valor": "386", "aprox": true, "nota": "4 refeições completas, a R$ 96,44 cada (em 2024).", "conta": "4 pessoas × R$ 96,44 = R$ 385,76. R$ 96,44 é o preço médio da refeição completa (prato, bebida, sobremesa e café) em restaurante à la carte, numa pesquisa com mais de 4.500 restaurantes divulgada em setembro de 2024, a mais recente que encontramos. Fonte: Ticket (Edenred Brasil), Pesquisa +Valor.", "recebe": "Algumas horas juntos à mesa: conversa, riso e uma boa lembrança.", "tag": "386", "cx": 0.2375, "dx": 23.75, "dy": 59.46}, {"nome": "Um fim de semana fora", "nivel": 3, "valor": "903", "aprox": true, "nota": "2 diárias de hotel, só a hospedagem.", "conta": "2 diárias × R$ 451,71 = R$ 903,42. R$ 451,71 foi a diária média dos hotéis acompanhados pelo FOHB em maio de 2026 (amostra de 570 hotéis). Não inclui viagem, comida nem passeios. Fonte: FOHB (Fórum de Operadores Hoteleiros do Brasil), divulgado pela Panrotas em 08/07/2026.", "recebe": "Dois dias de descanso longe da rotina e histórias para contar.", "tag": "903", "cx": 0.3705, "dx": 37.05, "dy": 50.07}, {"nome": "Um curso", "nivel": 4, "valor": "10.020", "aprox": true, "nota": "Um ano de curso superior presencial.", "conta": "12 mensalidades × R$ 835 = R$ 10.020. R$ 835 é a mensalidade mediana dos cursos superiores presenciais em 2026 (metade dos cursos cobra menos, metade cobra mais). Fonte: ABMES, “Cenário de precificação da graduação – Brasil 2026”.", "recebe": "Um conhecimento para a vida toda, que pode abrir portas de trabalho.", "tag": "10 mil", "cx": 0.5015, "dx": 50.15, "dy": 42.18}, {"nome": "Uma viagem internacional em família", "nivel": 5, "valor": "41.700", "aprox": true, "nota": "Estimativa: 4 pessoas, 8 dias na Disney.", "conta": "US$ 7.640 × R$ 5,46 (dólar do Banco Central em 05/11/2026) ≈ R$ 41.700. É uma estimativa para uma família de 4 pessoas em 8 dias, no cenário intermediário (passagens, hospedagem, ingressos dos parques, alimentação, transporte local, seguro e documentação), sem compras. Pode ir de cerca de R$ 32 mil a R$ 54 mil. Fonte: Catraca Livre, 13/02/2026; câmbio: Banco Central.", "recebe": "Lugares novos para a família inteira e histórias para repetir por anos.", "tag": "42 mil", "cx": 0.6322, "dx": 63.22, "dy": 34.8}, {"nome": "Um carro", "nivel": 6, "valor": "72.490", "aprox": false, "nota": "O carro novo mais barato do país (nov/2026).", "conta": "Fiat Mobi Like zero-quilômetro, preço de oferta em novembro de 2026, o mais barato entre os carros novos vendidos no Brasil. Os preços de tabela mudam com as promoções. Fonte: levantamento do UOL Carros, publicado pelo jornal A Tarde em 01/11/2026.", "recebe": "Anos de liberdade para ir e vir, sem depender de horário.", "tag": "72 mil", "cx": 0.7545, "dx": 75.45, "dy": 28.39}, {"nome": "Uma casa", "nivel": 7, "valor": "542.500", "aprox": true, "nota": "Imóvel de 60 m², com 2 dormitórios.", "conta": "60 m² × R$ 9.042 por m² = R$ 542.520. R$ 9.042 é o preço médio anunciado dos imóveis de 2 dormitórios nas 56 cidades acompanhadas, em outubro de 2026 (preço pedido, não o de venda). Os 60 m² são um exemplo. Fonte: Índice FipeZAP, informe de outubro de 2026.", "recebe": "Um lar por décadas: segurança e lugar para a família crescer.", "tag": "543 mil", "cx": 0.8875, "dx": 88.75, "dy": 11.7}], "proximo": null}</script>
 <script>
 (function () {
   'use strict';
@@ -160,6 +171,8 @@
   var painel = document.getElementById('painel');
   var vazio = document.getElementById('p-vazio');
   var cartao = document.getElementById('p-cartao');
+  var fecho = document.getElementById('p-fecho');
+  var fim = document.getElementById('av-fim');
   var et = document.getElementById('etiqueta');
   var bAnt = document.getElementById('p-ant'), bProx = document.getElementById('p-prox');
   var pontos = [].slice.call(document.querySelectorAll('.p-vistos i'));
@@ -170,23 +183,28 @@
   try { vistos = JSON.parse(sessionStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { vistos = {}; }
 
   function el(id) { return document.getElementById(id); }
-  function moeda(v) { return Number(v).toLocaleString('pt-BR', { minimumFractionDigits: v % 1 ? 2 : 0, maximumFractionDigits: 2 }); }
+  function contar() { var n = 0; for (var k = 0; k < total; k++) if (vistos[k]) n++; return n; }
 
   function preencher(i) {
     var it = itens[i];
     el('et-pos').textContent = 'Item ' + (i + 1) + ' de ' + total;
     el('painel-titulo').textContent = it.nome;
-    var pr = el('et-preco'), nota = el('et-nota');
-    if (it.preco === null || it.preco === undefined) {
+    var pr = el('et-preco');
+    if (!it.valor) {
       pr.className = 'et-preco pendente';
       el('et-valor').textContent = '——';
-      nota.textContent = 'Preço a confirmar.';
+      el('et-aprox').hidden = true;
     } else {
       pr.className = 'et-preco';
-      el('et-valor').textContent = moeda(it.preco);
-      nota.textContent = it.nota || '';
+      el('et-valor').textContent = it.valor;
+      el('et-aprox').hidden = !it.aprox;
     }
+    el('et-nota').textContent = it.nota || (it.valor ? '' : 'Preço a confirmar.');
     el('et-recebe').textContent = it.recebe || 'O que este item devolve: texto a definir.';
+    var det = el('et-fonte');
+    det.open = false;
+    det.hidden = !it.conta;
+    el('et-conta').textContent = it.conta || '';
     el('p-pos').textContent = (i + 1) + ' / ' + total;
     bAnt.disabled = i === 0;
     bProx.disabled = i === total - 1;
@@ -217,8 +235,9 @@
       if (v) n++;
     });
     pontos.forEach(function (p, i) { p.classList.toggle('on', !!vistos[i]); });
-    el('p-vistos-n').textContent = n + ' de ' + total;
+    document.getElementById('p-vistos-n').textContent = n + ' de ' + total;
     painel.classList.toggle('completo', n === total);
+    fim.hidden = !(n === total && fecho.hidden);
   }
 
   function centrar(i) {
@@ -262,6 +281,13 @@
     ], { duration: 480, easing: 'cubic-bezier(.2,.8,.2,1)' });
   }
 
+  // ao abrir o sétimo item diferente, as etiquetas (e os ✓) acendem da esquerda para a direita
+  function celebrar() {
+    if (reduz) return;
+    moldura.classList.add('varrer');
+    setTimeout(function () { moldura.classList.remove('varrer'); }, 2600);
+  }
+
   function mostraDica(i) {
     if (!dica) return;
     dica.textContent = itens[i].nome;
@@ -271,29 +297,57 @@
   }
   function escondeDica() { if (dica) dica.hidden = true; }
 
+  function semSelecao() {
+    atual = -1; ficha++;
+    hs.forEach(function (h) { h.setAttribute('aria-pressed', 'false'); });
+    etqs.forEach(function (e) { e.classList.remove('sel'); });
+    cartao.hidden = true;
+  }
+
   function selecionar(i, vindoDoTeclado) {
     if (i < 0 || i >= total) return;
-    var primeira = atual === -1, novo = !vistos[i];
+    var primeira = atual === -1, novo = !vistos[i], antes = contar();
     atual = i;
     hs.forEach(function (h, k) { h.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
     etqs.forEach(function (e, k) { e.classList.toggle('sel', k === i); });
     vistos[i] = 1;
     try { sessionStorage.setItem(CHAVE, JSON.stringify(vistos)); } catch (e) {}
     vazio.hidden = true;
+    fecho.hidden = true;
     cartao.hidden = false;
-    animarEtiqueta(function () { preencher(i); medidores(i, true); }, primeira);
+    animarEtiqueta(function () { preencher(i); medidores(i, true); }, primeira || !!cartao.dataset.vindoDoFecho);
+    delete cartao.dataset.vindoDoFecho;
     marcar();
     if (novo) virarEtiquetaDaImagem(i);
+    if (antes < total && contar() === total) celebrar();
     centrar(i);
     if (vindoDoTeclado) hs[i].focus({ preventScroll: true });
     if (history.replaceState) history.replaceState(null, '', '#item-' + (i + 1));
   }
 
   function limpar() {
-    atual = -1; ficha++;
-    hs.forEach(function (h) { h.setAttribute('aria-pressed', 'false'); });
-    etqs.forEach(function (e) { e.classList.remove('sel'); });
-    cartao.hidden = true; vazio.hidden = false;
+    semSelecao();
+    fecho.hidden = true;
+    vazio.hidden = false;
+    marcar();
+    if (history.replaceState) history.replaceState(null, '', location.pathname);
+  }
+
+  function mostrarFecho() {
+    semSelecao();
+    vazio.hidden = true;
+    fecho.hidden = false;
+    marcar();
+    if (history.replaceState) history.replaceState(null, '', '#fim');
+    var t = document.getElementById('fe-titulo');
+    if (t && t.focus) t.focus({ preventScroll: true });
+  }
+
+  function voltarAosItens() {
+    fecho.hidden = true;
+    vazio.hidden = false;
+    cartao.dataset.vindoDoFecho = '1';
+    marcar();
     if (history.replaceState) history.replaceState(null, '', location.pathname);
   }
 
@@ -311,11 +365,13 @@
   });
   bAnt.addEventListener('click', function () { selecionar(atual - 1); });
   bProx.addEventListener('click', function () { selecionar(atual + 1); });
+  fim.addEventListener('click', mostrarFecho);
+  document.getElementById('fe-voltar').addEventListener('click', voltarAosItens);
   // teclado e controle remoto de apresentação (setas, Page Down/Up, Home/End, Esc)
   document.addEventListener('keydown', function (e) {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     var t = e.target && e.target.tagName;
-    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || t === 'BUTTON') return;
+    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || t === 'BUTTON' || t === 'SUMMARY' || t === 'A') return;
     if (e.target && e.target.classList && e.target.classList.contains('item')) { if (/^(Arrow|Enter| )/.test(e.key)) return; }
     if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); selecionar(atual < 0 ? 0 : Math.min(atual + 1, total - 1), true); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); selecionar(atual < 0 ? 0 : Math.max(atual - 1, 0), true); }
@@ -327,6 +383,7 @@
   marcar();
   var m = /^#item-(\d+)$/.exec(location.hash);
   if (m && +m[1] >= 1 && +m[1] <= total) selecionar(+m[1] - 1);
+  else if (location.hash === '#fim' && contar() === total) mostrarFecho();
   // celular em pé: começa com o primeiro item à vista
   if (quadro && !m) quadro.scrollLeft = 0;
 })();

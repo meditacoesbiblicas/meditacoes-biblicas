@@ -9,6 +9,7 @@
 # A ilustração do Ato 1 (vitrine.jpg) foi gerada no Gemini; as áreas clicáveis estão medidas em areas_ato1.py.
 import json
 import os
+import shutil
 import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -40,12 +41,52 @@ BARRA = '''<!-- barra do site: leva de volta às Meditações; links relativos �
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Ato 1: a vitrine. Sete itens, do mais barato ao mais caro (nível 1 a 7).
-# preco/nota/recebe/tag = None  ->  "a confirmar": nada de valor inventado antes de conferir a fonte.
-#   preco = número em reais (o painel mostra com vírgula e milhar); tag = forma curta para a etiqueta na imagem ("543 mil").
+# Todos os valores foram conferidos nas fontes em 2026-11-06 (ver `conta`). Se uma fonte for atualizada, refaça a conta aqui.
+#   valor = o número mostrado no painel (pt-BR); aprox = True quando é uma conta feita sobre uma média ou uma estimativa ("≈");
+#   nota = uma linha sobre o que o preço cobre; conta = a conta e a fonte (abre em "Conta e fonte");
+#   recebe = o que o item devolve; tag = forma curta para a etiqueta da imagem (só aparece em telas grandes).
 # ----------------------------------------------------------------------------------------------------------------------
-NOMES = ['Um café', 'Uma refeição em família', 'Um fim de semana fora', 'Um curso',
-         'Uma viagem internacional em família', 'Um carro', 'Uma casa']
-ITENS = [dict(nome=n, nivel=i + 1, preco=None, nota=None, recebe=None, tag=None) for i, n in enumerate(NOMES)]
+ITENS = [
+    dict(nome='Um café', valor='6,98', aprox=False, tag='6,98',
+         nota='Xícara de café coado, em padarias de São Paulo.',
+         conta='Preço médio de uma xícara pequena de café coado em 50 padarias da cidade de São Paulo, coletado em 22 e 23 de setembro de 2026. '
+               'Fonte: Procon-SP, pesquisa de preços de produtos de padaria 2026.',
+         recebe='Uns minutos de pausa e de ânimo. Quando o copo esfria, acabou.'),
+    dict(nome='Uma refeição em família', valor='386', aprox=True, tag='386',
+         nota='4 refeições completas, a R$ 96,44 cada (em 2024).',
+         conta='4 pessoas × R$ 96,44 = R$ 385,76. R$ 96,44 é o preço médio da refeição completa (prato, bebida, sobremesa e café) em restaurante à la carte, '
+               'numa pesquisa com mais de 4.500 restaurantes divulgada em setembro de 2024, a mais recente que encontramos. '
+               'Fonte: Ticket (Edenred Brasil), Pesquisa +Valor.',
+         recebe='Algumas horas juntos à mesa: conversa, riso e uma boa lembrança.'),
+    dict(nome='Um fim de semana fora', valor='903', aprox=True, tag='903',
+         nota='2 diárias de hotel, só a hospedagem.',
+         conta='2 diárias × R$ 451,71 = R$ 903,42. R$ 451,71 foi a diária média dos hotéis acompanhados pelo FOHB em maio de 2026 (amostra de 570 hotéis). '
+               'Não inclui viagem, comida nem passeios. Fonte: FOHB (Fórum de Operadores Hoteleiros do Brasil), divulgado pela Panrotas em 08/07/2026.',
+         recebe='Dois dias de descanso longe da rotina e histórias para contar.'),
+    dict(nome='Um curso', valor='10.020', aprox=True, tag='10 mil',
+         nota='Um ano de curso superior presencial.',
+         conta='12 mensalidades × R$ 835 = R$ 10.020. R$ 835 é a mensalidade mediana dos cursos superiores presenciais em 2026 '
+               '(metade dos cursos cobra menos, metade cobra mais). Fonte: ABMES, “Cenário de precificação da graduação – Brasil 2026”.',
+         recebe='Um conhecimento para a vida toda, que pode abrir portas de trabalho.'),
+    dict(nome='Uma viagem internacional em família', valor='41.700', aprox=True, tag='42 mil',
+         nota='Estimativa: 4 pessoas, 8 dias na Disney.',
+         conta='US$ 7.640 × R$ 5,46 (dólar do Banco Central em 05/11/2026) ≈ R$ 41.700. É uma estimativa para uma família de 4 pessoas em 8 dias, '
+               'no cenário intermediário (passagens, hospedagem, ingressos dos parques, alimentação, transporte local, seguro e documentação), sem compras. '
+               'Pode ir de cerca de R$ 32 mil a R$ 54 mil. Fonte: Catraca Livre, 13/02/2026; câmbio: Banco Central.',
+         recebe='Lugares novos para a família inteira e histórias para repetir por anos.'),
+    dict(nome='Um carro', valor='72.490', aprox=False, tag='72 mil',
+         nota='O carro novo mais barato do país (nov/2026).',
+         conta='Fiat Mobi Like zero-quilômetro, preço de oferta em novembro de 2026, o mais barato entre os carros novos vendidos no Brasil. '
+               'Os preços de tabela mudam com as promoções. Fonte: levantamento do UOL Carros, publicado pelo jornal A Tarde em 01/11/2026.',
+         recebe='Anos de liberdade para ir e vir, sem depender de horário.'),
+    dict(nome='Uma casa', valor='542.500', aprox=True, tag='543 mil',
+         nota='Imóvel de 60 m², com 2 dormitórios.',
+         conta='60 m² × R$ 9.042 por m² = R$ 542.520. R$ 9.042 é o preço médio anunciado dos imóveis de 2 dormitórios nas 56 cidades acompanhadas, '
+               'em outubro de 2026 (preço pedido, não o de venda). Os 60 m² são um exemplo. Fonte: Índice FipeZAP, informe de outubro de 2026.',
+         recebe='Um lar por décadas: segurança e lugar para a família crescer.'),
+]
+for i, it in enumerate(ITENS):
+    it['nivel'] = i + 1
 assert len(ITENS) == len(A.AREAS) == 7
 
 
@@ -87,12 +128,12 @@ def selos_e_etiquetas():
     out = []
     for i, it in enumerate(ITENS):
         x0, y0, x1, y1 = A.AREAS[i]['box']
-        out.append('      <span class="ok" data-i="%d" aria-hidden="true" style="left:%s%%;top:%s%%">✓</span>' % (i, pct(x1, A.W), pct(y0, A.H)))
+        out.append('      <span class="ok" data-i="%d" aria-hidden="true" style="left:%s%%;top:%s%%;--i:%d">✓</span>' % (i, pct(x1, A.W), pct(y0, A.H), i))
     for i, it in enumerate(ITENS):
         x, y, w, h = A.AREAS[i]['tag']
-        out.append('      <div class="etq" data-i="%d" aria-hidden="true" style="left:%s%%;top:%s%%;width:%s%%;height:%s%%">'
+        out.append('      <div class="etq" data-i="%d" aria-hidden="true" style="left:%s%%;top:%s%%;width:%s%%;height:%s%%;--i:%d">'
                    '<span class="etq-rs">R$</span><span class="etq-v">%s</span></div>'
-                   % (i, pct(x, A.W), pct(y, A.H), pct(w, A.W), pct(h, A.H), it['tag'] or '—'))
+                   % (i, pct(x, A.W), pct(y, A.H), pct(w, A.W), pct(h, A.H), i, it['tag'] or '—'))
     return '\n'.join(out)
 
 
@@ -121,7 +162,10 @@ def capa():
       <p class="kicker">Um estudo em etapas</p>
       <h1>Quanto custa?</h1>
       <p class="lede">Quase tudo o que a gente quer tem um preço. Vamos olhar de perto o que cada coisa custa e o que ela devolve.</p>
-      <a class="botao-capa" href="ato-01.html">Começar →</a>
+      <div class="capa-acoes">
+        <a class="botao-capa" href="ato-01.html">Começar →</a>
+        <a class="qr-mini" href="qr.html" title="Ampliar o QR Code em tela cheia" aria-label="Abrir o QR Code em tela cheia"><img src="qr.svg" alt="" width="64" height="64"><span>QR Code</span></a>
+      </div>
     </div>
     <figure class="capa-figura">
       <img src="@@IMG@@" alt="@@ALT@@" width="@@W@@" height="@@H@@">
@@ -154,6 +198,8 @@ JS_ATO1 = r'''
   var painel = document.getElementById('painel');
   var vazio = document.getElementById('p-vazio');
   var cartao = document.getElementById('p-cartao');
+  var fecho = document.getElementById('p-fecho');
+  var fim = document.getElementById('av-fim');
   var et = document.getElementById('etiqueta');
   var bAnt = document.getElementById('p-ant'), bProx = document.getElementById('p-prox');
   var pontos = [].slice.call(document.querySelectorAll('.p-vistos i'));
@@ -164,23 +210,28 @@ JS_ATO1 = r'''
   try { vistos = JSON.parse(sessionStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { vistos = {}; }
 
   function el(id) { return document.getElementById(id); }
-  function moeda(v) { return Number(v).toLocaleString('pt-BR', { minimumFractionDigits: v % 1 ? 2 : 0, maximumFractionDigits: 2 }); }
+  function contar() { var n = 0; for (var k = 0; k < total; k++) if (vistos[k]) n++; return n; }
 
   function preencher(i) {
     var it = itens[i];
     el('et-pos').textContent = 'Item ' + (i + 1) + ' de ' + total;
     el('painel-titulo').textContent = it.nome;
-    var pr = el('et-preco'), nota = el('et-nota');
-    if (it.preco === null || it.preco === undefined) {
+    var pr = el('et-preco');
+    if (!it.valor) {
       pr.className = 'et-preco pendente';
       el('et-valor').textContent = '——';
-      nota.textContent = 'Preço a confirmar.';
+      el('et-aprox').hidden = true;
     } else {
       pr.className = 'et-preco';
-      el('et-valor').textContent = moeda(it.preco);
-      nota.textContent = it.nota || '';
+      el('et-valor').textContent = it.valor;
+      el('et-aprox').hidden = !it.aprox;
     }
+    el('et-nota').textContent = it.nota || (it.valor ? '' : 'Preço a confirmar.');
     el('et-recebe').textContent = it.recebe || 'O que este item devolve: texto a definir.';
+    var det = el('et-fonte');
+    det.open = false;
+    det.hidden = !it.conta;
+    el('et-conta').textContent = it.conta || '';
     el('p-pos').textContent = (i + 1) + ' / ' + total;
     bAnt.disabled = i === 0;
     bProx.disabled = i === total - 1;
@@ -211,8 +262,9 @@ JS_ATO1 = r'''
       if (v) n++;
     });
     pontos.forEach(function (p, i) { p.classList.toggle('on', !!vistos[i]); });
-    el('p-vistos-n').textContent = n + ' de ' + total;
+    document.getElementById('p-vistos-n').textContent = n + ' de ' + total;
     painel.classList.toggle('completo', n === total);
+    fim.hidden = !(n === total && fecho.hidden);
   }
 
   function centrar(i) {
@@ -256,6 +308,13 @@ JS_ATO1 = r'''
     ], { duration: 480, easing: 'cubic-bezier(.2,.8,.2,1)' });
   }
 
+  // ao abrir o sétimo item diferente, as etiquetas (e os ✓) acendem da esquerda para a direita
+  function celebrar() {
+    if (reduz) return;
+    moldura.classList.add('varrer');
+    setTimeout(function () { moldura.classList.remove('varrer'); }, 2600);
+  }
+
   function mostraDica(i) {
     if (!dica) return;
     dica.textContent = itens[i].nome;
@@ -265,29 +324,57 @@ JS_ATO1 = r'''
   }
   function escondeDica() { if (dica) dica.hidden = true; }
 
+  function semSelecao() {
+    atual = -1; ficha++;
+    hs.forEach(function (h) { h.setAttribute('aria-pressed', 'false'); });
+    etqs.forEach(function (e) { e.classList.remove('sel'); });
+    cartao.hidden = true;
+  }
+
   function selecionar(i, vindoDoTeclado) {
     if (i < 0 || i >= total) return;
-    var primeira = atual === -1, novo = !vistos[i];
+    var primeira = atual === -1, novo = !vistos[i], antes = contar();
     atual = i;
     hs.forEach(function (h, k) { h.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
     etqs.forEach(function (e, k) { e.classList.toggle('sel', k === i); });
     vistos[i] = 1;
     try { sessionStorage.setItem(CHAVE, JSON.stringify(vistos)); } catch (e) {}
     vazio.hidden = true;
+    fecho.hidden = true;
     cartao.hidden = false;
-    animarEtiqueta(function () { preencher(i); medidores(i, true); }, primeira);
+    animarEtiqueta(function () { preencher(i); medidores(i, true); }, primeira || !!cartao.dataset.vindoDoFecho);
+    delete cartao.dataset.vindoDoFecho;
     marcar();
     if (novo) virarEtiquetaDaImagem(i);
+    if (antes < total && contar() === total) celebrar();
     centrar(i);
     if (vindoDoTeclado) hs[i].focus({ preventScroll: true });
     if (history.replaceState) history.replaceState(null, '', '#item-' + (i + 1));
   }
 
   function limpar() {
-    atual = -1; ficha++;
-    hs.forEach(function (h) { h.setAttribute('aria-pressed', 'false'); });
-    etqs.forEach(function (e) { e.classList.remove('sel'); });
-    cartao.hidden = true; vazio.hidden = false;
+    semSelecao();
+    fecho.hidden = true;
+    vazio.hidden = false;
+    marcar();
+    if (history.replaceState) history.replaceState(null, '', location.pathname);
+  }
+
+  function mostrarFecho() {
+    semSelecao();
+    vazio.hidden = true;
+    fecho.hidden = false;
+    marcar();
+    if (history.replaceState) history.replaceState(null, '', '#fim');
+    var t = document.getElementById('fe-titulo');
+    if (t && t.focus) t.focus({ preventScroll: true });
+  }
+
+  function voltarAosItens() {
+    fecho.hidden = true;
+    vazio.hidden = false;
+    cartao.dataset.vindoDoFecho = '1';
+    marcar();
     if (history.replaceState) history.replaceState(null, '', location.pathname);
   }
 
@@ -305,11 +392,13 @@ JS_ATO1 = r'''
   });
   bAnt.addEventListener('click', function () { selecionar(atual - 1); });
   bProx.addEventListener('click', function () { selecionar(atual + 1); });
+  fim.addEventListener('click', mostrarFecho);
+  document.getElementById('fe-voltar').addEventListener('click', voltarAosItens);
   // teclado e controle remoto de apresentação (setas, Page Down/Up, Home/End, Esc)
   document.addEventListener('keydown', function (e) {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     var t = e.target && e.target.tagName;
-    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || t === 'BUTTON') return;
+    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || t === 'BUTTON' || t === 'SUMMARY' || t === 'A') return;
     if (e.target && e.target.classList && e.target.classList.contains('item')) { if (/^(Arrow|Enter| )/.test(e.key)) return; }
     if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); selecionar(atual < 0 ? 0 : Math.min(atual + 1, total - 1), true); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); selecionar(atual < 0 ? 0 : Math.max(atual - 1, 0), true); }
@@ -321,6 +410,7 @@ JS_ATO1 = r'''
   marcar();
   var m = /^#item-(\d+)$/.exec(location.hash);
   if (m && +m[1] >= 1 && +m[1] <= total) selecionar(+m[1] - 1);
+  else if (location.hash === '#fim' && contar() === total) mostrarFecho();
   // celular em pé: começa com o primeiro item à vista
   if (quadro && !m) quadro.scrollLeft = 0;
 })();
@@ -331,14 +421,15 @@ def ato01():
     dados_itens = []
     for i, it in enumerate(ITENS):
         x0, y0, x1, y1 = A.AREAS[i]['box']
-        d = dict(nome=it['nome'], nivel=it['nivel'], preco=it['preco'], nota=it['nota'], recebe=it['recebe'], tag=it['tag'],
-                 cx=round((x0 + x1) / 2 / A.W, 4), dx=round((x0 + x1) / 2 / A.W * 100, 2), dy=round(y0 / A.H * 100, 2))
-        dados_itens.append(d)
+        dados_itens.append(dict(nome=it['nome'], nivel=it['nivel'], valor=it['valor'], aprox=it['aprox'], nota=it['nota'], conta=it['conta'],
+                                recebe=it['recebe'], tag=it['tag'],
+                                cx=round((x0 + x1) / 2 / A.W, 4), dx=round((x0 + x1) / 2 / A.W * 100, 2), dy=round(y0 / A.H * 100, 2)))
     dados = dict(itens=dados_itens, proximo=PROXIMO)
     pontos = ''.join('<i></i>' for _ in ITENS)
     segs = ''.join('<i></i>' for _ in range(7))
-    cont = ('\n      <a class="p-continuar" id="p-continuar" href="%s">Continuar →</a>' % PROXIMO) if PROXIMO else ''
-    dev = ('\n    <p class="p-dev">Ato 1 em teste: ilustração do Gemini; textos e preços ainda a confirmar.</p>' if RASC else '')
+    cont = ('\n    <a class="fe-continuar" id="fe-continuar" href="%s">Levar a ideia mais longe →</a>' % PROXIMO) if PROXIMO else ''
+    dev = ('\n    <p class="p-dev">Ato 1 em teste: ilustração do Gemini; valores e fontes conferidos em 06/11/2026.</p>' if RASC else '')
+    fe_dev = ('\n    <p class="p-dev fe-dev">O Ato 2 só começa depois do seu teste deste ato.</p>' if (RASC and not PROXIMO) else '')
     html = '''<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -361,6 +452,7 @@ def ato01():
       </div>
     </div>
     <a class="av-voltar" href="index.html">← Início</a>
+    <button type="button" class="av-fim" id="av-fim" hidden><span class="l-longo">O que os sete têm em comum</span><span class="l-curto">O que têm em comum</span> →</button>
   </section>
   <aside class="av-painel" id="painel" aria-live="polite" aria-labelledby="painel-titulo">
     <div class="p-topo">
@@ -372,19 +464,28 @@ def ato01():
       <div class="etiqueta" id="etiqueta">
         <p class="et-pos" id="et-pos"></p>
         <h2 class="et-nome" id="painel-titulo">Vitrine</h2>
-        <p class="et-preco" id="et-preco"><span class="rs">R$</span><span class="valor" id="et-valor"></span></p>
+        <p class="et-preco" id="et-preco"><span class="aprox" id="et-aprox" role="img" aria-label="cerca de" hidden>≈</span><span class="rs">R$</span><span class="valor" id="et-valor"></span></p>
         <p class="et-nota" id="et-nota"></p>
         <p class="et-recebe" id="et-recebe"></p>
         <div class="medidores">
           <div class="medidor paga"><span class="m-rot">Você paga</span><span class="m-seg" role="img">@@SEGS@@</span></div>
           <div class="medidor recebe"><span class="m-rot">Você recebe</span><span class="m-seg" role="img">@@SEGS@@</span></div>
         </div>
+        <p class="m-nota">Comparação entre os sete itens.</p>
+        <details class="et-fonte" id="et-fonte"><summary>Conta e fonte</summary><p id="et-conta"></p></details>
       </div>
       <div class="p-nav">
         <button type="button" id="p-ant">← Anterior</button>
         <span class="p-pos" id="p-pos"></span>
         <button type="button" id="p-prox">Próximo →</button>
-      </div>@@CONT@@
+      </div>
+    </div>
+    <div class="p-fecho" id="p-fecho" hidden>
+      <p class="fe-ato">Ato 1 · Tudo tem um preço</p>
+      <h2 class="fe-titulo" id="fe-titulo" tabindex="-1">O que os sete têm em comum</h2>
+      <p>Cada item entrega algo bom, e todos cobram um preço.</p>
+      <p class="fe-ideia">Quanto maior o que a gente recebe, maior o preço. <b>Para receber, é preciso pagar.</b></p>@@CONT@@
+      <button type="button" class="fe-voltar" id="fe-voltar">← Rever os itens</button>@@FEDEV@@
     </div>@@DEV@@
   </aside>
 </main>
@@ -400,12 +501,46 @@ def ato01():
             .replace('@@W@@', str(A.W)).replace('@@H@@', str(A.H)).replace('@@ALT@@', ALT_VITRINE)
             .replace('@@OVERLAY@@', overlay_svg()).replace('@@SELOS@@', selos_e_etiquetas())
             .replace('@@PONTOS@@', pontos).replace('@@SEGS@@', segs).replace('@@CONT@@', cont).replace('@@DEV@@', dev)
+            .replace('@@FEDEV@@', fe_dev)
             .replace('@@DADOS@@', json.dumps(dados, ensure_ascii=False)).replace('@@JS@@', JS_ATO1)
             .replace('@@PASTA@@', PASTA))
     escreve('ato-01.html', html)
 
 
+# ----------------------------------------------------------------------------------------------------------------------
+# QR Code em tela cheia (para projetar). No desenvolvimento o QR abre o desenvolvimento, para testar no celular;
+# na publicação (sem --rascunho) ele abre o endereço definitivo.
+# ATENÇÃO ao publicar: o qr.svg do desenvolvimento NÃO pode ser copiado para a pasta publicada (ele aponta para o desenvolvimento).
+# ----------------------------------------------------------------------------------------------------------------------
+def qr_page():
+    endereco = 'meditacoesbiblicas.github.io/meditacoes-biblicas/' + (PASTA + '-desenvolvimento' if RASC else PASTA) + '/ato-01.html'
+    teste = '\n  <span class="qr-teste">QR de teste: abre o desenvolvimento. Na publicação ele passa a abrir o endereço definitivo.</span>' if RASC else ''
+    html = '''<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR Code · Quanto custa?</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="qr">
+@@BARRA@@
+<main class="qr-code">
+  <img class="qr-img" src="qr.svg" alt="QR Code que abre o estudo Quanto custa?">
+</main>
+<footer class="qr-legenda">
+  <a class="qr-titulo" href="ato-01.html">Quanto custa? · Ato 1</a>
+  <span>@@ENDERECO@@</span>@@TESTE@@
+</footer>
+</body>
+</html>
+'''
+    escreve('qr.html', html.replace('@@BARRA@@', BARRA).replace('@@ENDERECO@@', endereco).replace('@@TESTE@@', teste))
+
+
 os.makedirs(DEST, exist_ok=True)
+shutil.copyfile(os.path.join(AQUI, 'qr-desenvolvimento.svg' if RASC else 'qr-producao.svg'), os.path.join(DEST, 'qr.svg'))
 capa()
 ato01()
+qr_page()
 print('quanto-custa ok:', DEST)
