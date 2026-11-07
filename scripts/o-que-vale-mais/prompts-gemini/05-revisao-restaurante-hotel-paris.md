@@ -22,7 +22,7 @@ Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, p
 
 ### 2.3 · `restaurante-03-garcom.jpg`, fundo verde
 ```
-Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, pinceladas visíveis. Imagem de objeto isolado para recorte, como uma foto de estúdio sobre chroma key: um garçom brasileiro simpático, de colete preto, camisa branca e avental, em pé, de corpo inteiro, vista de frente, sorrindo, com uma bandeja redonda na mão direita levantada com dois pratos de comida vegetariana saudável (um prato com arroz integral, grão-de-bico, brócolis e cenoura, e uma grande salada colorida de folhas, tomate e pepino) e uma jarra de água com rodelas de limão e folhas de hortelã. Pés no chão, com um pequeno pedaço de piso de madeira sob os sapatos. Ocupa cerca de 55% da altura da imagem e fica centralizado. O FUNDO INTEIRO é uma única cor verde pura #00FF00, totalmente lisa, sem gradiente, sem sombra e sem nenhum outro objeto. Bordas nítidas, sem nenhum tom de verde. Proporção 3:2 horizontal. Sem texto.
+Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, pinceladas visíveis. Imagem de objeto isolado para recorte, como uma foto de estúdio sobre chroma key: um garçom brasileiro simpático, jovem, de pele clara e cabelo castanho curto, de colete preto, camisa branca e avental, em pé, de corpo inteiro, vista de frente, sorrindo, com uma bandeja redonda na mão direita levantada com dois pratos de comida vegetariana saudável (um prato com arroz integral, grão-de-bico, brócolis e cenoura, e uma grande salada colorida de folhas, tomate e pepino) e uma jarra de água com rodelas de limão e folhas de hortelã. Pés no chão, com um pequeno pedaço de piso de madeira sob os sapatos. Ocupa cerca de 55% da altura da imagem e fica centralizado. O FUNDO INTEIRO é uma única cor verde pura #00FF00, totalmente lisa, sem gradiente, sem sombra e sem nenhum outro objeto. Bordas nítidas, sem nenhum tom de verde. Proporção 3:2 horizontal. Sem texto.
 ```
 
 ---
@@ -68,3 +68,10 @@ Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, p
 - Fundos verdes: têm que ser **todo verde liso**. Se vier com cenário ou manchas: "refaça igual, com o fundo 100% verde chapado, sem nenhum outro elemento".
 - Na 2.2 e na 4.2: **os pés tocam o chão**.
 - Na 4.3: **o nariz aponta para a direita** (senão: "espelhe a imagem horizontalmente").
+
+
+---
+
+## Troca do garçom (2026-11-07)
+
+A família é de pele clara; o garçom anterior (pele escura) foi trocado para não parecer que o quadro sugere hierarquia. O prompt 2.3 acima já descreve o novo garçom (pele clara, cabelo castanho). Na cena ele aparece em tamanho proporcional ao da família (cerca de uma cabeça e meia mais alto que quem está sentado).

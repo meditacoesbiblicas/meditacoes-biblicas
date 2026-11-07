@@ -17,10 +17,10 @@ REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" a
 <image href="img/cena2-restaurante-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
 <ellipse class="brilho-lampada mistura" cx="240" cy="52" rx="140" ry="74" fill="url(#r-brilho)"/>
 <ellipse cx="203" cy="298" rx="112" ry="8" fill="#2A1408" opacity=".42" filter="url(#r-sombra)"/>
-<ellipse cx="355" cy="292" rx="30" ry="4.5" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
+<ellipse cx="342" cy="295" rx="38" ry="5" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
 <image class="familia-img" href="img/cena2-restaurante-familia.webp" x="91" y="106.6" width="224" height="191.4"/>
-<image class="garcom-img" href="img/cena2-garcom.webp" x="325" y="189.5" width="60" height="102.5"/>
-<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="150.5" y="144.5" width="44" height="42.5"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="210" y="142.5" width="44" height="42.5"/><image class="vp c mistura" href="img/cena1-vapor.jpg" x="354" y="171.5" width="28" height="27"/></g>
+<image class="garcom-img" href="img/cena2-garcom.webp" x="298" y="144.5" width="88" height="150.3"/>
+<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="150.5" y="144.5" width="44" height="42.5"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="210" y="142.5" width="44" height="42.5"/><image class="vp c mistura" href="img/cena1-vapor.jpg" x="344" y="120" width="40" height="38.7"/></g>
 <g fill="#E0526A"><path class="coracao h1" d="M130 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M290 112c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M250 96c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
 </svg>'''
 
