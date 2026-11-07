@@ -14,8 +14,19 @@ OVM.pronto(function () {
   ];
   var vapor = [], rnd = OVM.rand(11), acum = 0;
 
+  var imgCaneca = new Image(); imgCaneca.src = 'img/cena1-caneca.webp';
+  var imgVapor = new Image(); imgVapor.src = 'img/cena1-vapor.jpg';
+  function pronta(i) { return i.complete && i.naturalWidth > 0; }
+  var DW = 214;   // largura da caneca (com o pires) no desenho, antes da escala
+
   function xicara(ctx, cx, cy, s) {
     ctx.save(); ctx.translate(cx, cy); ctx.scale(s, s);
+    if (pronta(imgCaneca)) {
+      var dh = DW * imgCaneca.naturalHeight / imgCaneca.naturalWidth;
+      OVM.brilho(ctx, 0, -dh * 0.35, 210, 'rgba(255,170,90,A)', 0.3);
+      ctx.drawImage(imgCaneca, -DW / 2, 38 - dh, DW, dh);
+      ctx.restore(); return;
+    }
     OVM.brilho(ctx, 0, -20, 190, 'rgba(255,170,90,A)', 0.35);
     ctx.fillStyle = '#EDE3D2'; ctx.beginPath(); ctx.ellipse(0, 22, 92, 15, 0, 0, 6.2832); ctx.fill();
     ctx.fillStyle = '#CBBFA9'; ctx.beginPath(); ctx.ellipse(0, 19, 74, 10, 0, 0, 6.2832); ctx.fill();
@@ -78,17 +89,21 @@ OVM.pronto(function () {
     // xícara e vapor
     var cs = Math.max(0.55, Math.min(1.25, Math.min(w, h) / 560));
     var cx = portrait ? w * 0.58 : w * 0.7, cy = portrait ? h * 0.88 : h * 0.84;
-    if (!OVM.reduz) {
-      acum += dt;
-      while (acum > 0.12) { acum -= 0.12; vapor.push({ x: cx + (rnd() - 0.5) * 70 * cs, y: cy - 44 * cs, a: 0, f: rnd() * 6, r: (6 + rnd() * 8) * cs, v: (26 + rnd() * 20) * cs }); }
-      for (var q = vapor.length - 1; q >= 0; q--) { var v = vapor[q]; v.a += dt * 0.28; v.y -= v.v * dt; v.x += Math.sin(t * 1.3 + v.f) * 10 * dt; if (v.a >= 1) vapor.splice(q, 1); }
-    }
-    for (var z = 0; z < vapor.length; z++) {
-      var s = vapor[z], al = Math.pow(1 - s.a, 1.6) * 0.42;
-      OVM.brilho(ctx, s.x, s.y, s.r * (1 + s.a * 2.2), 'rgba(255,248,235,A)', al);
-    }
     ctx.textAlign = 'left';
     xicara(ctx, cx, cy, cs);
+    if (pronta(imgVapor) && pronta(imgCaneca)) {
+      // os três fios de vapor (imagem sobre preto, mistura "screen"): cada um sobe, ondula e some, em tempos diferentes
+      var dh = DW * imgCaneca.naturalHeight / imgCaneca.naturalWidth, aro = cy + (38 - dh * 0.86) * cs;
+      var vw = DW * 0.66 * cs, vh = vw * imgVapor.naturalHeight / imgVapor.naturalWidth;
+      ctx.save(); ctx.globalCompositeOperation = 'screen';
+      for (var k = 0; k < 3; k++) {
+        var ph = OVM.reduz ? 0.3 : ((t / 6.4 + k / 3) % 1);
+        var al = Math.sin(Math.PI * Math.min(1, ph * 1.15)) * 0.62;
+        ctx.globalAlpha = Math.max(0, al);
+        ctx.drawImage(imgVapor, cx - vw / 2 + Math.sin(t * 0.9 + k * 2) * 3 * cs + ph * 5 * cs, aro - vh + 8 * cs - ph * 34 * cs, vw, vh);
+      }
+      ctx.restore();
+    }
   }
   OVM.anima(desenhar, canvas);
   desenhar(0.016, 0.5);

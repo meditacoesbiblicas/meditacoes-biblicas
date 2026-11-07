@@ -1,32 +1,14 @@
 # -*- coding: utf-8 -*-
 # Seis vinhetas animadas (SVG) da parte 1: o que cada coisa "devolve". As animações estão em partes.css (classes .vinheta ...).
 
-CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-label="Uma caneca de chocolate quente fumegante, com marshmallows, sobre uma mesa, com a luz da manhã entrando pela janela">
-<defs>
-<linearGradient id="c-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9C2"/><stop offset="1" stop-color="#F1C384"/></linearGradient>
-<radialGradient id="c-luz" cx=".22" cy=".12" r=".95"><stop offset="0" stop-color="#FFF9DE" stop-opacity=".95"/><stop offset="1" stop-color="#FFF9DE" stop-opacity="0"/></radialGradient>
-<linearGradient id="c-raio" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6D2" stop-opacity=".75"/><stop offset="1" stop-color="#FFF6D2" stop-opacity="0"/></linearGradient>
-<linearGradient id="c-mesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9814C"/><stop offset="1" stop-color="#82522B"/></linearGradient>
-</defs>
-<rect width="480" height="320" fill="url(#c-fundo)"/>
-<rect width="480" height="320" fill="url(#c-luz)"/>
-<rect x="44" y="34" width="124" height="140" rx="7" fill="#FFF6DA" stroke="#B88646" stroke-width="7"/>
-<path d="M106 34V174M44 104H168" stroke="#B88646" stroke-width="5"/>
-<polygon class="raio" points="60,174 168,174 372,320 118,320" fill="url(#c-raio)"/>
-<rect y="238" width="480" height="82" fill="url(#c-mesa)"/><rect y="238" width="480" height="7" fill="#C99259"/>
-<ellipse cx="262" cy="257" rx="86" ry="15" fill="#F5EFE4"/><ellipse cx="262" cy="255" rx="70" ry="10.5" fill="#E7DECC"/>
-<path d="M208 192H316V217Q316 256 262 256Q208 256 208 217Z" fill="#D9674B"/>
-<path d="M214 214H310" stroke="#F4B49C" stroke-width="5" stroke-linecap="round" opacity=".8"/><path d="M222 228H302" stroke="#F4B49C" stroke-width="5" stroke-linecap="round" opacity=".55"/>
-<path d="M316 202Q348 202 348 225Q348 247 316 241" fill="none" stroke="#D9674B" stroke-width="10" stroke-linecap="round"/>
-<ellipse cx="262" cy="192" rx="54" ry="11" fill="#E98B6E"/><ellipse cx="262" cy="193" rx="47" ry="8" fill="#4A2A14"/>
-<ellipse cx="248" cy="191" rx="14" ry="2.6" fill="#8A5A34" opacity=".7"/>
-<g fill="#FFF6E6"><ellipse cx="246" cy="191" rx="9" ry="5"/><ellipse cx="266" cy="194" rx="8" ry="4.6"/><ellipse cx="281" cy="190" rx="7" ry="4"/></g>
-<g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round">
-<path class="vapor a" d="M240 176Q226 152 242 130Q256 108 242 86"/>
-<path class="vapor b" d="M264 176Q252 154 266 134Q280 112 266 92"/>
-<path class="vapor c" d="M288 176Q276 156 290 138Q302 118 290 100"/>
-</g>
-<g fill="#FFFFFF"><path class="brilho s1" d="M376 88l4 11 11 4-11 4-4 11-4-11-11-4 11-4z"/><path class="brilho s2" d="M96 214l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path class="brilho s3" d="M420 170l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
+CAFE = '''<svg class="vinheta v-cafe" viewBox="0 0 480 320" role="img" aria-label="Uma caneca de chocolate quente fumegante, com marshmallows, sobre uma mesa de madeira, numa cozinha com a luz da manhã entrando pela janela">
+<defs><filter id="c-sombra" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter></defs>
+<image href="img/cena1-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
+<g opacity=".62"><image class="raio mistura" href="img/cena1-raio.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/></g>
+<ellipse cx="271.2" cy="284.9" rx="43.6" ry="9" fill="#2E1A0A" opacity=".38" filter="url(#c-sombra)"/>
+<image href="img/cena1-caneca.webp" x="187.5" y="161.0" width="169.6" height="125.8"/>
+<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="212.6" y="70.4" width="112" height="108.3"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="212.6" y="70.4" width="112" height="108.3"/><image class="vp c mistura" href="img/cena1-vapor.jpg" x="212.6" y="70.4" width="112" height="108.3"/></g>
+<g fill="#FFF3C4" class="motas"><circle class="mota m1" cx="86" cy="70" r="1.3"/><circle class="mota m2" cx="132" cy="104" r="1"/><circle class="mota m3" cx="176" cy="150" r="1.5"/><circle class="mota m4" cx="112" cy="168" r="1.1"/><circle class="mota m5" cx="214" cy="92" r="1.2"/><circle class="mota m6" cx="60" cy="122" r="1"/></g>
 </svg>'''
 
 REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" aria-label="Uma família reunida em volta de uma mesa posta, sorrindo">
