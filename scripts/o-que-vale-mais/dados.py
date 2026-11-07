@@ -68,10 +68,10 @@ PRECOS = [
          conta='4 pessoas × R$ 96,44 = R$ 385,76. R$ 96,44 é o preço médio da refeição completa (prato, bebida, sobremesa e café) em restaurante à la carte, '
                'numa pesquisa com mais de 4.500 restaurantes divulgada em setembro de 2024, a mais recente que encontramos. Fonte: Ticket (Edenred Brasil), Pesquisa +Valor.',
          imagine='Imagine a mesa cheia, todo mundo falando ao mesmo tempo e alguém rindo alto.', dura='horas', para='a família'),
-    dict(id='fim', nome='Dois dias de descanso fora', valor=903.42, texto='903', aprox=True, nota='2 diárias de hotel, só a hospedagem.',
-         conta='2 diárias × R$ 451,71 = R$ 903,42. R$ 451,71 foi a diária média dos hotéis acompanhados pelo FOHB em maio de 2026 (amostra de 570 hotéis). '
+    dict(id='fim', nome='Um dia de descanso fora', valor=451.71, texto='452', aprox=True, nota='1 diária de hotel, só a hospedagem.',
+         conta='1 diária = R$ 451,71. Esse foi o valor médio da diária dos hotéis acompanhados pelo FOHB em maio de 2026 (amostra de 570 hotéis). '
                'Não inclui viagem, comida nem passeios. Fonte: FOHB (Fórum de Operadores Hoteleiros do Brasil), divulgado pela Panrotas em 08/07/2026.',
-         imagine='Imagine acordar sem despertador, longe da rotina, com o dia todo pela frente.', dura='2 dias', para='quem for junto'),
+         imagine='Imagine acordar sem despertador, longe da rotina, com o dia todo pela frente.', dura='1 dia', para='quem for junto'),
     dict(id='viagem', nome='Uma viagem internacional em família', valor=41714.4, texto='41.700', aprox=True, nota='Estimativa: 4 pessoas, 8 dias na Disney.',
          conta='US$ 7.640 × R$ 5,46 (dólar do Banco Central em 05/11/2026) ≈ R$ 41.700. É uma estimativa para uma família de 4 pessoas em 8 dias, no cenário '
                'intermediário (passagens, hospedagem, ingressos dos parques, alimentação, transporte local, seguro e documentação), sem compras. '
@@ -86,7 +86,7 @@ PRECOS = [
                'em outubro de 2026 (preço pedido, não o de venda). Os 60 m² são um exemplo. Fonte: Índice FipeZAP, informe de outubro de 2026.',
          imagine='Imagine abrir a porta e saber que aquele lugar é seu, e da sua família.', dura='décadas', para='a família'),
 ]
-CAFES = ['≈ 48 xícaras', '≈ 110 xícaras', '≈ 5 mil xícaras', '≈ 9 mil xícaras', '≈ 68 mil xícaras']
+CAFES = ['≈ 48 xícaras', '≈ 56 xícaras', '≈ 5 mil xícaras', '≈ 9 mil xícaras', '≈ 68 mil xícaras']
 
 # ---------------------------------------------------------------- viagens espaciais (parte 2): US$ e R$ ao câmbio PTAX
 def reais(usd):

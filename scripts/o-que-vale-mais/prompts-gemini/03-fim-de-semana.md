@@ -1,4 +1,4 @@
-# Cena 3 · Dois dias de descanso fora (nível 3 da Parte 1)
+# Cena 3 · Um dia de descanso fora (nível 3 da Parte 1)
 
 Ideia: uma manhã na pousada, junto de um lago, com o sol nascendo atrás das montanhas e a família no deque, sem pressa.
 Quatro imagens. Cada uma em **conversa nova do Gemini, sem anexar nada**. Proporção 3:2 horizontal, sem texto, sem marca d'água.
