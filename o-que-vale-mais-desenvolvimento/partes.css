@@ -325,3 +325,14 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .vig.on .v-refeicao .familia-img { animation: bobfam 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
 @keyframes bobfam { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-.8px) scale(1.004); } }
 @media (prefers-reduced-motion: reduce) { .vig.on .v-refeicao .vp, .vig.on .v-refeicao .brilho-lampada, .vig.on .v-refeicao .familia-img { animation: none; } .v-refeicao .vp.a { opacity: .4; } }
+
+/* ---- cena 3 (hotel fazenda): camadas da arte do Gemini, animadas por código ---- */
+.v-fim .mistura { mix-blend-mode: screen; }
+.v-fim .vp.a { opacity: .5; } .v-fim .vp.b { opacity: 0; }
+.vig.on .v-fim .vp { animation: fumacachamine 6s ease-in-out infinite; opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; }
+.vig.on .v-fim .vp.b { animation-delay: 3s; }
+@keyframes fumacachamine { 0% { opacity: 0; transform: translateY(2px) scale(.7); } 25% { opacity: .75; } 100% { opacity: 0; transform: translate(6px, -16px) scale(1.25); } }
+.vig.on .v-fim .nuvens { animation: nuvensvao 46s ease-in-out infinite alternate; }
+@keyframes nuvensvao { from { transform: translateX(-26px); } to { transform: translateX(34px); } }
+.vig.on .v-fim .familia-img { animation: bobfam 4.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-fim .vp, .vig.on .v-fim .nuvens, .vig.on .v-fim .familia-img { animation: none; } .v-fim .vp.a { opacity: .5; } }
