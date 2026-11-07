@@ -136,6 +136,31 @@ OVM.pronto(function () {
     return 'Altura: ' + F.distKm(a);
   }
 
+  // ---- arte pintada (Gemini): cinco cenários, foguete, estação, chama e fumaça. Se uma imagem ainda não chegou, o desenho vetorial antigo cobre.
+  var IMG = {};
+  function carrega(k, f) { var im = new Image(); im.onload = function () { im._ok = true; }; im.src = f; IMG[k] = im; }
+  for (var q2 = 0; q2 < 5; q2++) carrega('f' + q2, 'img/p2-fundo' + (q2 + 1) + '.jpg');
+  carrega('foguete', 'img/p2-foguete.webp'); carrega('estacao', 'img/p2-estacao.webp'); carrega('chama', 'img/p2-chama.webp'); carrega('fumaca', 'img/p2-fumaca.webp');
+  var FOCO = [0.5, 0.5, 0.5, 1, 0.5];   // enquadramento horizontal quando a tela é mais estreita que a imagem (0 = esquerda)
+  function capa(ctx, im, w, h, fx, dy, alpha, zoom) {
+    var s = Math.max(w / im.width, h / im.height) * zoom, dw = im.width * s, dh = im.height * s;
+    ctx.globalAlpha = alpha; ctx.drawImage(im, (w - dw) * fx, (h - dh) / 2 + dy, dw, dh); ctx.globalAlpha = 1;
+  }
+  // posição do foguete em cada parada: [x, y do centro (frações), tamanho, inclinação]
+  var FOG = [[0.55, 0.66, 1, 0], [0.5, 0.46, 0.8, 0], [0.4, 0.5, 0.65, 0.1], [0.5, 0.64, 0.66, 0], [0.45, 0.64, 0.64, 0]];
+  function fogueteImg(ctx, x, y, sc, ch, rot, t) {
+    var im = IMG.foguete, hh = 150 * sc, ww = hh * im.width / im.height;
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+    if (ch > 0.05) ctx.translate(Math.sin(t * 70) * ch * 1.2 * sc, Math.cos(t * 60) * ch * 0.7 * sc);
+    if (ch > 0.04 && IMG.chama._ok) {
+      var cm = IMG.chama, L = hh * (0.5 + 0.9 * ch) * (0.88 + 0.16 * Math.abs(Math.sin(t * 38))), cw = L * cm.width / cm.height * 1.15;
+      ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = Math.min(1, ch * 1.8);
+      ctx.drawImage(cm, -cw / 2, hh / 2 - hh * 0.05, cw, L);
+      ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    }
+    ctx.drawImage(im, -ww / 2, -hh / 2, ww, hh);
+    ctx.restore();
+  }
   var ultimoTexto = '';
   function quadro(dt, t) {
     var w = T.w, h = T.h, ctx = T.ctx, u = Math.min(w, h), X = Math.max(w, h);
@@ -145,33 +170,39 @@ OVM.pronto(function () {
     var e = OVM.suave(f), a = K[i], b = K[i + 1];
     OVM.fundoCanvas(T);
     var g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, cor(a.c0, b.c0, e)); g.addColorStop(1, cor(a.c1, b.c1, e)); ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    // cenários: o de baixo desce um pouco e o de cima chega descendo, para dar a sensação de subida
+    var amp = h * 0.085, zoom = 1.22;
+    if (IMG['f' + i]._ok) capa(ctx, IMG['f' + i], w, h, FOCO[i], e * amp, 1, zoom);
+    if (IMG['f' + (i + 1)]._ok && e > 0.003) capa(ctx, IMG['f' + (i + 1)], w, h, FOCO[i + 1], -(1 - e) * amp, e, zoom);
     var sa = OVM.lerp(a.st, b.st, e);
-    if (sa > 0.01) OVM.pintarEstrelas(ctx, w, h, est, t, { alpha: sa });
-    var ta = a.terra(w, h, X), tb = b.terra(w, h, X), tc = [OVM.lerp(ta[0], tb[0], e), OVM.lerp(ta[1], tb[1], e), OVM.lerp(ta[2], tb[2], e)];
-    if (i === 0) { /* a Terra "aparece" subindo; no chão só há o horizonte */ }
-    terraD(ctx, tc, OVM.lerp(0.0, 1, OVM.clamp(pos * 3, 0, 1)), w, h);
-    esferaSp(ctx, luaSp, w * 0.83, h * 0.27, 0.075 * X * 1.0, OVM.lerp(a.lua, b.lua, e));
-    esferaSp(ctx, marteSp, w * 0.74, h * 0.5, 0.2 * X, OVM.lerp(a.marte, b.marte, e));
+    if (sa > 0.01) OVM.pintarEstrelas(ctx, w, h, est, t, { alpha: sa * 0.5 });
+    var fxp = OVM.lerp(FOG[i][0], FOG[i + 1][0], e), fyp = OVM.lerp(FOG[i][1], FOG[i + 1][1], e), fsp = OVM.lerp(FOG[i][2], FOG[i + 1][2], e), frot = OVM.lerp(FOG[i][3], FOG[i + 1][3], e);
+    var sc = u / 330 * fsp, hh = 150 * sc;
+    // fumaça de lançamento (só perto do chão)
+    var sf = OVM.clamp(1 - pos / 0.75, 0, 1) * OVM.clamp(0.25 + chama * 1.1, 0, 1);
+    if (sf > 0.01 && IMG.fumaca._ok) {
+      var fm = IMG.fumaca, fw = u * (1.5 + pos * 1.6), fh = fw * fm.height / fm.width, py = FOG[0][1] * h + 150 * (u / 330) / 2 + e * amp;
+      ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = sf * 0.9; ctx.drawImage(fm, FOG[0][0] * w - fw / 2, py - fh * 0.62, fw, fh); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    }
+    // estação
     var ia = OVM.lerp(a.iss, b.iss, e);
-    issD(ctx, w * (0.76 + Math.sin(t * 0.25) * 0.02), h * 0.38, u / 330 * 1.1, ia, t);
-    var sl = OVM.lerp(a.solo, b.solo, e);
-    if (sl > 0.005) chao(ctx, w, h, pos * h * 1.05, u, t);
+    if (ia > 0.01) {
+      if (IMG.estacao._ok) {
+        var em = IMG.estacao, ew = Math.min(w * 0.62, u * 0.78), eh = ew * em.height / em.width;
+        ctx.save(); ctx.globalAlpha = ia; ctx.translate(w * (0.7 + Math.sin(t * 0.25) * 0.015), h * 0.27); ctx.rotate(Math.sin(t * 0.3) * 0.03); ctx.drawImage(em, -ew / 2, -eh / 2, ew, eh); ctx.restore();
+      } else issD(ctx, w * (0.76 + Math.sin(t * 0.25) * 0.02), h * 0.38, u / 330 * 1.1, ia, t);
+    }
     // linha de Kármán na parada 1
     var ka = Math.max(0, 1 - Math.abs(pos - 1) * 2.2);
     if (ka > 0.02) { ctx.save(); ctx.globalAlpha = ka * 0.8; ctx.strokeStyle = 'rgba(255,230,160,.8)'; ctx.setLineDash([6, 7]); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(0, h * 0.7); ctx.lineTo(w, h * 0.7); ctx.stroke(); ctx.setLineDash([]); OVM.pilula(ctx, 'linha de Kármán: onde o espaço começa', w - 12, h * 0.7 - 14, { px: 11, ancora: 'dir', alpha: 1 }); ctx.restore(); }
-    // trajetória pontilhada até a Lua / Marte
-    if (pos > 2.4) { ctx.save(); ctx.globalAlpha = OVM.clamp((pos - 2.4) / 0.6, 0, 1) * 0.5; ctx.strokeStyle = '#fff'; ctx.setLineDash([3, 8]); ctx.lineWidth = 1.5; ctx.beginPath(); var t0 = pos < 3.5 ? tc : [w * 0.17, h * 0.78]; ctx.moveTo(w * 0.17 + 24, h * 0.76); ctx.quadraticCurveTo(w * 0.5, h * 0.2, pos < 3.5 ? w * 0.8 : w * 0.7, pos < 3.5 ? h * 0.3 : h * 0.5); ctx.stroke(); ctx.restore(); }
-    // fumaça do escapamento
-    if (!OVM.reduz) {
-      var fxp = OVM.lerp(a.f[0], b.f[0], e), fyp = OVM.lerp(a.f[1], b.f[1], e), fsp = OVM.lerp(a.f[2], b.f[2], e), frot = OVM.lerp(a.f[3], b.f[3], e);
-      var sc = u / 330 * fsp, bx = fxp * w - Math.sin(frot) * 56 * sc, by = fyp * h + Math.cos(frot) * 56 * sc;
-      if (chama > 0.1) { acum += dt; while (acum > 0.035) { acum -= 0.035; fumaca.push({ x: bx + (rnd() - 0.5) * 10 * sc, y: by + 10 * sc, vx: (rnd() - 0.5) * 30 + Math.sin(frot) * -30, vy: 50 + rnd() * 70, r: (5 + rnd() * 6) * sc, a: 0 }); } }
-      for (var k = fumaca.length - 1; k >= 0; k--) { var s = fumaca[k]; s.a += dt * 1.3; s.x += s.vx * dt; s.y += s.vy * dt; s.r += dt * 16 * sc; if (s.a >= 1) fumaca.splice(k, 1); }
-      for (k = 0; k < fumaca.length; k++) { s = fumaca[k]; OVM.brilho(ctx, s.x, s.y, s.r * 1.8, 'rgba(235,238,245,A)', Math.pow(1 - s.a, 1.5) * (sl > 0.3 ? 0.55 : 0.32)); }
-      foguete(ctx, fxp * w, fyp * h + (chama < 0.05 ? Math.sin(t * 1.6) * 2 : 0), sc, chama, frot, t);
-    } else {
-      foguete(ctx, OVM.lerp(a.f[0], b.f[0], e) * w, OVM.lerp(a.f[1], b.f[1], e) * h, u / 330 * OVM.lerp(a.f[2], b.f[2], e), 0, OVM.lerp(a.f[3], b.f[3], e), t);
-    }
+    // sombra do foguete na plataforma
+    var ss = OVM.clamp(1 - pos * 3, 0, 1);
+    if (ss > 0.02) { ctx.save(); ctx.globalAlpha = 0.3 * ss; ctx.fillStyle = '#1A1208'; ctx.beginPath(); ctx.ellipse(fxp * w, fyp * h + hh / 2 + 2, hh * 0.3, hh * 0.05, 0, 0, PI2); ctx.fill(); ctx.restore(); }
+    // foguete
+    var bob = (chama < 0.05 && !OVM.reduz) ? Math.sin(t * 1.6) * 1.6 * (i === 0 && pos < 0.02 ? 0 : 1) : 0;
+    if (IMG.foguete._ok) fogueteImg(ctx, fxp * w, fyp * h + bob, sc, OVM.reduz ? 0 : chama, frot, t);
+    else foguete(ctx, fxp * w, fyp * h + bob, sc, chama, frot, t);
+    var rg = ctx.createLinearGradient(0, 0, 130, 0); rg.addColorStop(0, 'rgba(6,10,26,.5)'); rg.addColorStop(1, 'rgba(6,10,26,0)'); ctx.fillStyle = rg; ctx.fillRect(0, 0, 130, h);
     regua(ctx, w, h, pos);
     var txt = altitudeTexto(pos);
     if (txt !== ultimoTexto) { altEl.textContent = txt; ultimoTexto = txt; }
