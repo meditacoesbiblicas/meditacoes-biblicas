@@ -354,3 +354,32 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .v-viagem .aviao-g { transform: translate(100px, 62px) rotate(-9deg); }
 .vig.on .v-viagem .familia-img { animation: respira 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
 @media (prefers-reduced-motion: reduce) { .vig.on .v-viagem .aviao-g, .vig.on .v-viagem .familia-img, .vig.on .v-viagem .brilho-sol, .vig.on .v-viagem .tw, .vig.on .v-fim .familia-img { animation: none; } .v-viagem .aviao-g { transform: translate(100px, 62px) rotate(-9deg); } }
+
+/* ---- cena 5 (carro) ---- */
+.v-carro .mistura { mix-blend-mode: screen; }
+.vig.on .v-carro .nuvens { animation: nuvensfim 40s ease-in-out infinite alternate; }
+.vig.on .v-carro .arvores-g { animation: arvorespassam 16s linear infinite; }
+@keyframes arvorespassam { from { transform: translateX(0); } to { transform: translateX(-560px); } }
+.vig.on .v-carro .tracos { animation: tracospassam 1.1s linear infinite; }
+@keyframes tracospassam { from { transform: translateX(0); } to { transform: translateX(-110px); } }
+.vig.on .v-carro .carro-img { animation: balancar 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes balancar { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-.9px) rotate(-.15deg); } }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-carro .nuvens, .vig.on .v-carro .arvores-g, .vig.on .v-carro .tracos, .vig.on .v-carro .carro-img { animation: none; } }
+
+/* ---- cena 6 (casa) ---- */
+.v-casa .mistura { mix-blend-mode: screen; }
+.v-casa .janela-brilho { opacity: .5; }
+.vig.on .v-casa .janela-brilho { animation: luzraio 4.6s ease-in-out infinite; }
+.vig.on .v-casa .j2 { animation-delay: .8s; } .vig.on .v-casa .j3 { animation-delay: 1.7s; } .vig.on .v-casa .j4 { animation-delay: 2.6s; } .vig.on .v-casa .j5 { animation-delay: 3.4s; }
+.vig.on .v-casa .nuvens { animation: nuvensfim 44s ease-in-out infinite alternate; }
+.vig.on .v-casa .familia-img { animation: respira 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.vig.on .v-casa .passaro { animation: passaros 16s linear infinite; }
+.vig.on .v-casa .p2 { animation-delay: -5s; } .vig.on .v-casa .p3 { animation-delay: -10s; }
+@keyframes passaros { 0% { transform: translate(-30px, 0); opacity: 0; } 10% { opacity: .9; } 85% { opacity: .9; } 100% { transform: translate(110px, -8px); opacity: 0; } }
+.vig.on .v-casa .asa { animation: bater .45s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes bater { from { transform: scaleY(1); } to { transform: scaleY(.35); } }
+.v-casa .vaga { opacity: 0; }
+.vig.on .v-casa .vaga { animation: vagalume 5s ease-in-out infinite; }
+.vig.on .v-casa .v2 { animation-delay: .9s; } .vig.on .v-casa .v3 { animation-delay: 1.8s; } .vig.on .v-casa .v4 { animation-delay: 2.7s; } .vig.on .v-casa .v5 { animation-delay: 3.4s; } .vig.on .v-casa .v6 { animation-delay: 4.1s; }
+@keyframes vagalume { 0%, 100% { opacity: 0; transform: translate(0, 0); } 50% { opacity: 1; transform: translate(6px, -9px); } }
+@media (prefers-reduced-motion: reduce) { .vig.on .v-casa .janela-brilho, .vig.on .v-casa .nuvens, .vig.on .v-casa .familia-img, .vig.on .v-casa .passaro, .vig.on .v-casa .asa, .vig.on .v-casa .vaga { animation: none; } }
