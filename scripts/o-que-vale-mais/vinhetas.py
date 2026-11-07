@@ -24,12 +24,17 @@ REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" a
 <g fill="#E0526A"><path class="coracao h1" d="M130 140c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M262 128c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M214 118c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
 </svg>'''
 
-FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="Uma família descalça na grama de um hotel fazenda, dando capim a um cavalinho e rindo com as galinhas, com o casarão do hotel e a piscina ao fundo e nuvens passando">
+FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="Uma família descalça na grama de um hotel fazenda, dando capim a um cavalinho e rindo com as galinhas, com o casarão do hotel, o lago com cachoeira e o parquinho de madeira ao fundo e nuvens distantes passando">
+<defs><radialGradient id="f-nebl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient></defs>
 <image href="img/cena3-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
 <g class="nuvens-g"><image class="nuvens mistura" href="img/cena3-nuvens.jpg" x="150" y="0" width="170" height="67.2" opacity=".8"/></g>
-<image href="img/cena3-casarao.webp" x="262" y="123.6" width="125" height="66.4"/>
-<ellipse cx="190" cy="304" rx="82" ry="6.5" fill="#1F3A12" opacity=".35" style="filter: blur(3px)"/>
-<image class="familia-img" href="img/cena3-familia.webp" x="95" y="141.5" width="190" height="166.5"/>
+<image href="img/cena3-casarao.webp" x="270" y="111.9" width="117" height="62.1"/>
+<image href="img/cena3-lago.webp" x="110" y="141.3" width="130" height="74.7"/>
+<ellipse class="neblina mistura" cx="163.8" cy="174.8" rx="10.5" ry="5.2" fill="url(#f-nebl)"/>
+<g fill="#FFFFFF" class="brilhos mistura"><circle class="tw t1" cx="190" cy="195" r="1.5"/><circle class="tw t2" cx="209" cy="201" r="1.2"/><circle class="tw t3" cx="176" cy="204" r="1.4"/><circle class="tw t1" cx="219" cy="190" r="1.2"/></g>
+<image href="img/cena3-parquinho.webp" x="247" y="163" width="140" height="61"/>
+<ellipse cx="222" cy="305" rx="64" ry="5.5" fill="#1F3A12" opacity=".35" style="filter: blur(3px)"/>
+<image class="familia-img" href="img/cena3-familia.webp" x="152" y="185.3" width="140" height="122.7"/>
 </svg>'''
 
 VIAGEM = '''<svg class="vinheta v-viagem" viewBox="0 0 480 320" role="img" aria-label="Uma família brasileira com malas diante da Torre Eiffel, em Paris, no fim da tarde, enquanto um avião distante sobe pelo céu, bem longe da torre">

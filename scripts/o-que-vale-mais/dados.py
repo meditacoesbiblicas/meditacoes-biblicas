@@ -72,7 +72,7 @@ PRECOS = [
          conta='2 adultos × R$ 360 + 2 crianças de 5 a 11 anos × R$ 180 = R$ 1.080. É o preço de um hotel fazenda real (Hotel Fazendão) para passar o dia, das 9h às 16h, sem se hospedar: '
                'café da manhã, almoço e uso de toda a área de lazer (piscinas, fazendinha, brinquedoteca). É um exemplo: o preço varia muito de um hotel fazenda para outro. '
                'Fonte: site do Hotel Fazendão (hotelfazendao.com.br/day-use), consultado em 7 de novembro de 2026.',
-         imagine='Imagine a família inteira descalça na grama, as crianças rindo com os bichos e um almoço de fazenda.', dura='1 dia', para='a família'),
+         imagine='Imagine a família inteira descalça na grama, as crianças rindo com os bichos, o banho de cachoeira e um almoço de fazenda.', dura='1 dia', para='a família'),
     dict(id='viagem', nome='Uma viagem a Paris em família', valor=58800.0, texto='58.800', aprox=True, nota='Estimativa: 4 pessoas, 7 dias em Paris.',
          conta='4 pessoas × R$ 14.700 = R$ 58.800. R$ 14.700 é a estimativa da Confidence Câmbio para uma pessoa em 7 dias em Paris: passagem R$ 4.500, hospedagem R$ 5.500, '
                'alimentação R$ 2.200, passeios R$ 1.700, transporte R$ 350, seguro R$ 300 e internet R$ 150. É só uma estimativa: uma família que divide os quartos costuma gastar menos, '
