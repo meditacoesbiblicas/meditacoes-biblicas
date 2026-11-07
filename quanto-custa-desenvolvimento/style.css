@@ -40,7 +40,8 @@ body:has(.rascunho-faixa) { --faixa: 38px; }
 .capa-hero .lede { margin: 0; max-width: 56ch; font-size: 20px; line-height: 1.55; color: #D9D4C7; }
 .capa-figura { margin: 0; }
 .capa-figura img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 10px 28px rgba(0, 0, 0, .4); }
-.botao-capa { display: inline-block; margin-top: 26px; padding: 16px 32px; border-radius: 999px; background: var(--gold); color: var(--navy); text-decoration: none; font: 600 19px/1.2 var(--sans); box-shadow: 0 8px 22px rgba(0, 0, 0, .28); transition: transform .12s ease; }
+.capa-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 26px; }
+.botao-capa { display: inline-block; margin: 0; padding: 16px 32px; border-radius: 999px; background: var(--gold); color: var(--navy); text-decoration: none; font: 600 19px/1.2 var(--sans); box-shadow: 0 8px 22px rgba(0, 0, 0, .28); transition: transform .12s ease; }
 .botao-capa:hover, .botao-capa:focus-visible { transform: translateY(-2px); }
 @media (max-width: 980px) { .capa-hero { grid-template-columns: 1fr; } }
 
@@ -120,7 +121,7 @@ body.ato { margin: 0; height: 100vh; height: 100dvh; padding-bottom: var(--faixa
 .p-continuar { display: none; padding: 13px 20px; border-radius: 999px; background: var(--gold); color: var(--navy); text-align: center; text-decoration: none; font: 600 17px/1.2 var(--sans); box-shadow: 0 6px 16px rgba(31, 42, 68, .2); }
 .av-painel.completo .p-continuar { display: block; }
 .p-dev { margin: auto 0 0; padding-top: 8px; font: 400 12px/1.4 var(--sans); color: #8C8576; }
-.p-cartao:not([hidden]) ~ .p-dev { display: none; }
+.p-cartao:not([hidden]) ~ .p-dev, .p-fecho:not([hidden]) ~ .p-dev { display: none; }
 
 /* celular em pé (e qualquer tela mais alta que larga): a imagem fica na altura da área e se arrasta para os lados; o painel vai embaixo */
 @media (orientation: portrait) {
@@ -153,23 +154,24 @@ body.ato { margin: 0; height: 100vh; height: 100dvh; padding-bottom: var(--faixa
 }
 /* celular deitado e telas baixas: imagem à esquerda (inteira, sem arrastar) e painel compacto à direita */
 @media (max-height: 520px) and (orientation: landscape) {
-  .av { grid-template-columns: minmax(0, 1fr) clamp(300px, 40vw, 380px); }
-  .av-painel { padding: 10px 14px 8px; gap: 6px; }
+  /* a coluna da imagem tem a largura exata da imagem (proporção x altura livre); o resto da largura vai para o painel */
+  .av { grid-template-columns: min(calc(var(--r, 1.5) * (100dvh - 49px - var(--faixa))), calc(100vw - 300px)) minmax(0, 1fr); }
+  .av-painel { padding: 8px 14px 6px; gap: 6px; }
   .p-ato, .p-vistos { font-size: 11px; }
   .p-cartao { gap: 6px; }
-  .etiqueta { padding: 10px 12px 8px 36px; border-radius: 6px 16px 16px 6px; }
+  .etiqueta { padding: 8px 12px 6px 36px; border-radius: 6px 16px 16px 6px; }
   .etiqueta::before { left: 12px; top: 12px; width: 10px; height: 10px; }
   .et-pos { display: none; }
-  .et-nome { margin: 0 0 2px; font-size: 18px; }
-  .et-preco .rs { font-size: 16px; }
-  .et-preco .valor { font-size: 26px; }
+  .et-nome { margin: 0 0 1px; font-size: 17px; line-height: 1.15; }
+  .et-preco .rs { font-size: 15px; }
+  .et-preco .valor { font-size: 24px; }
   .et-nota { margin-top: 0; font-size: 12px; }
   .et-recebe { margin-top: 4px; font-size: 14px; line-height: 1.35; }
-  .medidores { margin-top: 6px; gap: 4px; }
+  .medidores { margin-top: 4px; gap: 3px; }
   .medidor { grid-template-columns: 84px minmax(0, 1fr); }
   .m-rot { font-size: 12px; }
   .m-seg i { height: 9px; }
-  .p-nav button { padding: 5px 12px; font-size: 13px; }
+  .p-nav button { padding: 4px 12px; font-size: 13px; }
   .p-pos { font-size: 12px; }
   .p-vazio { font-size: 15px; padding: 4px 2px; }
   .av-voltar { top: 8px; left: 10px; padding: 5px 12px; font-size: 14px; }
@@ -177,9 +179,97 @@ body.ato { margin: 0; height: 100vh; height: 100dvh; padding-bottom: var(--faixa
   .av-painel:has(.p-cartao:not([hidden])) .p-topo { display: none; }
 }
 
+/* ---------- conteúdo da etiqueta: valor aproximado, conta e fonte ---------- */
+.et-preco .aprox { font-size: 26px; font-weight: 500; color: var(--muted); }
+.m-nota { margin: 6px 0 0; font: 400 12px/1.3 var(--sans); color: var(--muted); }
+.et-fonte { margin-top: 8px; font: 400 13px/1.45 var(--sans); color: var(--muted); }
+.et-fonte[hidden] { display: none; }
+.et-fonte summary { display: inline-block; padding: 2px 0; list-style: none; cursor: pointer; font-weight: 600; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+.et-fonte summary::-webkit-details-marker { display: none; }
+.et-fonte summary::before { content: "+ "; }
+.et-fonte[open] summary::before { content: "− "; }
+.et-fonte p { margin: 6px 0 0; }
+
+/* ---------- ao ver os sete: botão sobre a imagem e a ideia do ato no painel ---------- */
+.av-fim { position: absolute; z-index: 5; left: 50%; bottom: 14px; transform: translateX(-50%); max-width: calc(100% - 24px); padding: 10px 20px; border: 0; border-radius: 999px; background: var(--gold); color: var(--navy); box-shadow: 0 6px 18px rgba(31, 42, 68, .35); font: 600 16px/1.2 var(--sans); cursor: pointer; animation: pulsa 1.8s ease-in-out 3; }
+.av-fim[hidden] { display: none; }
+.av-fim .l-curto { display: none; }
+@keyframes pulsa {
+  0%, 100% { box-shadow: 0 6px 18px rgba(31, 42, 68, .35), 0 0 0 0 rgba(217, 169, 61, .65); }
+  50% { box-shadow: 0 6px 18px rgba(31, 42, 68, .35), 0 0 0 12px rgba(217, 169, 61, 0); }
+}
+.p-fecho { display: flex; flex-direction: column; gap: 10px; }
+.p-fecho[hidden] { display: none; }
+.fe-ato { margin: 0; font: 600 12px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.fe-titulo { margin: 0; font: 600 26px/1.2 var(--serif); color: var(--navy); outline: none; }
+.p-fecho p { margin: 0; font-size: 17px; line-height: 1.5; }
+.p-fecho .fe-ato { font-size: 12px; line-height: 16px; }
+.p-fecho .fe-ideia { padding: 12px 14px; border-left: 5px solid var(--gold-d); border-radius: 0 12px 12px 0; background: #FFFBF0; color: var(--navy); font: 500 20px/1.4 var(--serif); }
+.fe-continuar { display: block; padding: 13px 20px; border-radius: 999px; background: var(--gold); color: var(--navy); text-align: center; text-decoration: none; font: 600 17px/1.2 var(--sans); box-shadow: 0 6px 16px rgba(31, 42, 68, .2); }
+.fe-voltar { appearance: none; align-self: flex-start; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--navy); background: #fff; color: var(--navy); font: 600 14px/1.2 var(--sans); cursor: pointer; }
+.fe-voltar:hover, .fe-voltar:focus-visible { background: var(--navy); color: #fff; }
+.av-painel:has(.p-fecho:not([hidden])) .p-topo { display: none; }
+/* as etiquetas e os ✓ acendem em sequência, da esquerda para a direita */
+.varrer .etq.on, .varrer .ok.on { animation: acende .8s ease both; animation-delay: calc(var(--i, 0) * 150ms); }
+@keyframes acende {
+  0% { box-shadow: 0 0 0 0 rgba(242, 217, 160, 0); }
+  40% { transform: scale(1.28); box-shadow: 0 0 0 6px rgba(242, 217, 160, .95), 0 0 28px 8px rgba(217, 169, 61, .85); }
+  100% { box-shadow: 0 0 0 0 rgba(242, 217, 160, 0); }
+}
+
+/* ---------- QR Code ---------- */
+.qr-mini { display: grid; justify-items: center; gap: 2px; width: 78px; padding: 6px 6px 4px; border-radius: 10px; background: #fff; color: var(--navy); text-decoration: none; text-align: center; font: 600 11px/1.2 var(--sans); transition: transform .12s ease; }
+.qr-mini img { display: block; width: 64px; height: 64px; }
+.qr-mini:hover, .qr-mini:focus-visible { transform: translateY(-2px); }
+/* página do QR em tela cheia: o QR ocupa a área livre entre a barra e a legenda, sem rolagem */
+body.qr { margin: 0; height: 100vh; height: 100dvh; padding-bottom: var(--faixa); overflow: hidden; background: #fff; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+body.qr .qr-code { position: relative; min-height: 0; margin: 1.5vmin; }
+body.qr .qr-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
+body.qr .qr-legenda { display: grid; gap: 2px; justify-items: center; padding: 0 2vmin 1.6vmin; text-align: center; }
+body.qr .qr-titulo { font: 600 clamp(17px, 3vmin, 30px)/1.15 var(--serif); color: var(--navy); text-decoration: none; }
+body.qr .qr-titulo:hover, body.qr .qr-titulo:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+body.qr .qr-legenda span { font: 400 clamp(12px, 1.8vmin, 20px)/1.3 var(--sans); color: var(--muted); }
+body.qr .qr-legenda .qr-teste { color: #9A4310; font-weight: 600; }
+
+/* telas pequenas: o conteúdo novo fica compacto (o detalhe "Conta e fonte" abre rolando dentro do painel) */
+@media (orientation: portrait) {
+  .m-nota { display: none; }
+  .et-preco .aprox { font-size: 20px; }
+  .et-fonte { margin-top: 4px; font-size: 12px; }
+  .fe-titulo { font-size: 21px; }
+  .p-fecho { gap: 8px; }
+  .p-fecho p { font-size: 15px; line-height: 1.4; }
+  .p-fecho .fe-ideia { padding: 9px 12px; font-size: 17px; }
+  .fe-continuar { padding: 10px 16px; font-size: 15px; }
+  .fe-voltar { padding: 6px 14px; font-size: 13px; }
+  .av-fim { bottom: 8px; padding: 8px 16px; font-size: 14px; white-space: nowrap; }
+  .av-fim .l-longo { display: none; }
+  .av-fim .l-curto { display: inline; }
+}
+@media (orientation: portrait) and (min-aspect-ratio: 7/10) {
+  .m-nota { display: block; }
+  .av-fim .l-longo { display: inline; }
+  .av-fim .l-curto { display: none; }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .m-nota { display: none; }
+  .et-preco .aprox { font-size: 18px; }
+  .et-fonte { margin-top: 2px; font-size: 12px; }
+  .et-fonte summary { padding: 0; }
+  .fe-titulo { font-size: 19px; }
+  .p-fecho { gap: 6px; }
+  .p-fecho p { font-size: 14px; line-height: 1.35; }
+  .p-fecho .fe-ideia { padding: 7px 10px; font-size: 16px; }
+  .fe-continuar { padding: 8px 14px; font-size: 14px; }
+  .fe-voltar { padding: 5px 12px; font-size: 13px; }
+  .av-fim { bottom: 8px; padding: 6px 14px; font-size: 13px; white-space: nowrap; }
+  .av-fim .l-longo { display: none; }
+  .av-fim .l-curto { display: inline; }
+}
+
 /* cursores (só com mouse), pensados para telão e palestra: ponto vermelho como o laser de quem apresenta; sobre um item, o mesmo ponto dentro de um anel dourado vazado (não cobre a figura) */
 @media (hover: hover) and (pointer: fine) {
   body.ato { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g'%3E%3Cstop offset='0' stop-color='%23FF3B30' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%23FF3B30' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='10' fill='%23E5251B' stroke='%23FFFFFF' stroke-width='3.5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%231F2A44' stroke-opacity='.55' stroke-width='1'/%3E%3C/svg%3E") 32 32, default; }
   .item { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Ccircle cx='36' cy='36' r='27' fill='rgba(242,217,160,.18)' stroke='%231F2A44' stroke-width='10'/%3E%3Ccircle cx='36' cy='36' r='27' fill='none' stroke='%23F2D9A0' stroke-width='5.5'/%3E%3Ccircle cx='36' cy='36' r='10' fill='%23E5251B' stroke='%23FFFFFF' stroke-width='3.5'/%3E%3C/svg%3E") 36 36, pointer; }
 }
-@media (prefers-reduced-motion: reduce) { .item .hl, .ok, .etq, .m-seg i, .p-vistos i { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .item .hl, .ok, .etq, .m-seg i, .p-vistos i { transition: none; } .av-fim { animation: none; } }
