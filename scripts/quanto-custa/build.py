@@ -44,46 +44,54 @@ BARRA = '''<!-- barra do site: leva de volta às Meditações; links relativos �
 # Todos os valores foram conferidos nas fontes em 2026-11-06 (ver `conta`). Se uma fonte for atualizada, refaça a conta aqui.
 #   valor = o número mostrado no painel (pt-BR); aprox = True quando é uma conta feita sobre uma média ou uma estimativa ("≈");
 #   nota = uma linha sobre o que o preço cobre; conta = a conta e a fonte (abre em "Conta e fonte");
-#   recebe = o que o item devolve; tag = forma curta para a etiqueta da imagem (só aparece em telas grandes).
+#   recebe = o "Imagine…" (o retorno, de forma sensorial); dura / para = duas qualidades do retorno (por quanto tempo, para quem);
+#   cafes = quanto isso vale em cafés de R$ 6,98 (dá a medida de quanto o preço sobe); tag = forma curta para a etiqueta da imagem (só em telas grandes).
 # ----------------------------------------------------------------------------------------------------------------------
 ITENS = [
     dict(nome='Um café', valor='6,98', aprox=False, tag='6,98',
          nota='Xícara de café coado, em padarias de São Paulo.',
          conta='Preço médio de uma xícara pequena de café coado em 50 padarias da cidade de São Paulo, coletado em 22 e 23 de setembro de 2026. '
                'Fonte: Procon-SP, pesquisa de preços de produtos de padaria 2026.',
-         recebe='Uns minutos de pausa e de ânimo. Quando o copo esfria, acabou.'),
+         recebe='Imagine o cheiro do café fresco e uns minutos só seus.',
+         dura='minutos', para='você', cafes=None),
     dict(nome='Uma refeição em família', valor='386', aprox=True, tag='386',
          nota='4 refeições completas, a R$ 96,44 cada (em 2024).',
          conta='4 pessoas × R$ 96,44 = R$ 385,76. R$ 96,44 é o preço médio da refeição completa (prato, bebida, sobremesa e café) em restaurante à la carte, '
                'numa pesquisa com mais de 4.500 restaurantes divulgada em setembro de 2024, a mais recente que encontramos. '
                'Fonte: Ticket (Edenred Brasil), Pesquisa +Valor.',
-         recebe='Algumas horas juntos à mesa: conversa, riso e uma boa lembrança.'),
+         recebe='Imagine a mesa cheia, todo mundo falando ao mesmo tempo e alguém rindo alto.',
+         dura='horas', para='a família', cafes='≈ 55 cafés'),
     dict(nome='Um fim de semana fora', valor='903', aprox=True, tag='903',
          nota='2 diárias de hotel, só a hospedagem.',
          conta='2 diárias × R$ 451,71 = R$ 903,42. R$ 451,71 foi a diária média dos hotéis acompanhados pelo FOHB em maio de 2026 (amostra de 570 hotéis). '
                'Não inclui viagem, comida nem passeios. Fonte: FOHB (Fórum de Operadores Hoteleiros do Brasil), divulgado pela Panrotas em 08/07/2026.',
-         recebe='Dois dias de descanso longe da rotina e histórias para contar.'),
+         recebe='Imagine acordar sem despertador, longe da rotina, com o dia todo pela frente.',
+         dura='2 dias', para='quem for junto', cafes='≈ 130 cafés'),
     dict(nome='Um curso', valor='10.020', aprox=True, tag='10 mil',
          nota='Um ano de curso superior presencial.',
          conta='12 mensalidades × R$ 835 = R$ 10.020. R$ 835 é a mensalidade mediana dos cursos superiores presenciais em 2026 '
                '(metade dos cursos cobra menos, metade cobra mais). Fonte: ABMES, “Cenário de precificação da graduação – Brasil 2026”.',
-         recebe='Um conhecimento para a vida toda, que pode abrir portas de trabalho.'),
+         recebe='Imagine entender hoje o que ontem parecia difícil, e levar isso para a vida.',
+         dura='a vida toda', para='você', cafes='≈ 1.400 cafés'),
     dict(nome='Uma viagem internacional em família', valor='41.700', aprox=True, tag='42 mil',
          nota='Estimativa: 4 pessoas, 8 dias na Disney.',
          conta='US$ 7.640 × R$ 5,46 (dólar do Banco Central em 05/11/2026) ≈ R$ 41.700. É uma estimativa para uma família de 4 pessoas em 8 dias, '
                'no cenário intermediário (passagens, hospedagem, ingressos dos parques, alimentação, transporte local, seguro e documentação), sem compras. '
                'Pode ir de cerca de R$ 32 mil a R$ 54 mil. Fonte: Catraca Livre, 13/02/2026; câmbio: Banco Central.',
-         recebe='Lugares novos para a família inteira e histórias para repetir por anos.'),
+         recebe='Imagine a família inteira diante de um lugar que só conhecia de foto.',
+         dura='8 dias, anos de memória', para='a família', cafes='≈ 6 mil cafés'),
     dict(nome='Um carro', valor='72.490', aprox=False, tag='72 mil',
          nota='O carro novo mais barato do país (nov/2026).',
          conta='Fiat Mobi Like zero-quilômetro, preço de oferta em novembro de 2026, o mais barato entre os carros novos vendidos no Brasil. '
                'Os preços de tabela mudam com as promoções. Fonte: levantamento do UOL Carros, publicado pelo jornal A Tarde em 01/11/2026.',
-         recebe='Anos de liberdade para ir e vir, sem depender de horário.'),
+         recebe='Imagine ir aonde quiser, na hora que quiser, com quem você ama.',
+         dura='muitos anos', para='a família', cafes='≈ 10 mil cafés'),
     dict(nome='Uma casa', valor='542.500', aprox=True, tag='543 mil',
          nota='Imóvel de 60 m², com 2 dormitórios.',
          conta='60 m² × R$ 9.042 por m² = R$ 542.520. R$ 9.042 é o preço médio anunciado dos imóveis de 2 dormitórios nas 56 cidades acompanhadas, '
                'em outubro de 2026 (preço pedido, não o de venda). Os 60 m² são um exemplo. Fonte: Índice FipeZAP, informe de outubro de 2026.',
-         recebe='Um lar por décadas: segurança e lugar para a família crescer.'),
+         recebe='Imagine abrir a porta e saber que aquele lugar é seu, e da sua família.',
+         dura='décadas', para='a família', cafes='≈ 78 mil cafés'),
 ]
 for i, it in enumerate(ITENS):
     it['nivel'] = i + 1
@@ -151,7 +159,7 @@ def capa():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quanto custa?</title>
-<meta name="description" content="Um estudo em etapas para olhar de perto quanto custam as coisas e o que elas devolvem.">
+<meta name="description" content="Um estudo em etapas que segue uma pergunta simples, passo a passo, para ver aonde ela leva.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="capa">
@@ -161,7 +169,7 @@ def capa():
     <div class="capa-texto">
       <p class="kicker">Um estudo em etapas</p>
       <h1>Quanto custa?</h1>
-      <p class="lede">Quase tudo o que a gente quer tem um preço. Vamos olhar de perto o que cada coisa custa e o que ela devolve.</p>
+      <p class="lede">Tem uma pergunta que a gente faz o tempo todo, quase sem perceber. Vamos segui-la de perto, passo a passo, e ver aonde ela leva.</p>
       <div class="capa-acoes">
         <a class="botao-capa" href="ato-01.html">Começar →</a>
         <a class="qr-mini" href="qr.html" title="Ampliar o QR Code em tela cheia" aria-label="Abrir o QR Code em tela cheia"><img src="qr.svg" alt="" width="64" height="64"><span>QR Code</span></a>
@@ -194,9 +202,11 @@ JS_ATO1 = r'''
   var etqs = [].slice.call(document.querySelectorAll('.etq'));
   var quadro = document.getElementById('quadro');
   var moldura = document.getElementById('moldura');
+  var camada = document.querySelector('.av-ov');
   var dica = document.getElementById('dica-item');
   var painel = document.getElementById('painel');
   var vazio = document.getElementById('p-vazio');
+  var comecar = document.getElementById('p-comecar');
   var cartao = document.getElementById('p-cartao');
   var fecho = document.getElementById('p-fecho');
   var fim = document.getElementById('av-fim');
@@ -206,11 +216,32 @@ JS_ATO1 = r'''
   var reduz = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var mouse = !!(window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches);
   var CHAVE = 'quanto-custa-ato1';
-  var atual = -1, vistos = {}, ficha = 0;
+  var ZOOM = 1.45;
+  var atual = -1, vistos = {}, ficha = 0, contagem = 0, ultimoPreco = 0;
   try { vistos = JSON.parse(sessionStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { vistos = {}; }
 
   function el(id) { return document.getElementById(id); }
   function contar() { var n = 0; for (var k = 0; k < total; k++) if (vistos[k]) n++; return n; }
+  function numero(v) { return parseFloat(String(v).replace(/\./g, '').replace(',', '.')); }
+  function inteiro(n) { return Math.round(n).toLocaleString('pt-BR'); }
+
+  // o preço "sobe" (ou desce) do valor do item anterior até o deste: dá a sensação de quanto ele aumenta
+  function animarPreco(i) {
+    var it = itens[i], alvo = numero(it.valor), node = el('et-valor'), de = ultimoPreco, meu = ++contagem;
+    ultimoPreco = alvo;
+    node.textContent = it.valor;
+    if (reduz || de === alvo || !window.requestAnimationFrame) return;
+    var t0 = null, dur = 900;
+    function passo(t) {
+      if (meu !== contagem) return;
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      node.textContent = p >= 1 ? it.valor : inteiro(de + (alvo - de) * e);
+      if (p < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+    setTimeout(function () { if (meu === contagem) node.textContent = it.valor; }, dur + 150);
+  }
 
   function preencher(i) {
     var it = itens[i];
@@ -221,13 +252,22 @@ JS_ATO1 = r'''
       pr.className = 'et-preco pendente';
       el('et-valor').textContent = '——';
       el('et-aprox').hidden = true;
+      el('et-sr').textContent = '';
+      ultimoPreco = 0;
     } else {
       pr.className = 'et-preco';
-      el('et-valor').textContent = it.valor;
       el('et-aprox').hidden = !it.aprox;
+      el('et-sr').textContent = (it.aprox ? 'cerca de ' : '') + 'R$ ' + it.valor;
+      animarPreco(i);
     }
+    var cf = el('et-cafes');
+    cf.hidden = !it.cafes;
+    el('et-cafes-t').textContent = it.cafes || '';
     el('et-nota').textContent = it.nota || (it.valor ? '' : 'Preço a confirmar.');
     el('et-recebe').textContent = it.recebe || 'O que este item devolve: texto a definir.';
+    el('et-chips').hidden = !(it.dura || it.para);
+    el('et-dura').textContent = it.dura || '';
+    el('et-para').textContent = it.para || '';
     var det = el('et-fonte');
     det.open = false;
     det.hidden = !it.conta;
@@ -265,13 +305,28 @@ JS_ATO1 = r'''
     document.getElementById('p-vistos-n').textContent = n + ' de ' + total;
     painel.classList.toggle('completo', n === total);
     fim.hidden = !(n === total && fecho.hidden);
+    comecar.hidden = n > 0;
   }
+
+  // a imagem é maior que a janela? (mede o tamanho da caixa, que não muda com o zoom; o scrollWidth cresceria com a própria câmera)
+  function rolavel() { return !!quadro && !!moldura && moldura.offsetWidth > quadro.clientWidth + 2; }
 
   function centrar(i) {
     // só quando a imagem é maior que a janela (celular em pé): leva o item para o meio
-    if (!quadro || quadro.scrollWidth <= quadro.clientWidth + 2) return;
+    if (!rolavel()) return;
     var alvo = moldura.offsetLeft + itens[i].cx * moldura.offsetWidth - quadro.clientWidth / 2;
     quadro.scrollTo({ left: alvo, behavior: reduz ? 'auto' : 'smooth' });
+  }
+
+  // a "câmera" se aproxima do item escolhido (só quando a imagem cabe inteira na janela: computador, telão, tablet e celular deitado)
+  function zoomPara(i) {
+    if (!moldura) return;
+    if (i < 0 || reduz || rolavel()) { moldura.style.transform = ''; return; }
+    var w = moldura.offsetWidth, h = moldura.offsetHeight;
+    var tx = Math.min(0, Math.max(w * (1 - ZOOM), w / 2 - ZOOM * itens[i].cx * w));
+    var ty = Math.min(0, Math.max(h * (1 - ZOOM), h / 2 - ZOOM * itens[i].cy * h));
+    moldura.style.transformOrigin = '0 0';
+    moldura.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(' + ZOOM + ')';
   }
 
   // a etiqueta do painel gira (como virar uma etiqueta de preço): sai de lado, troca o conteúdo e volta balançando, presa pelo furo
@@ -329,12 +384,14 @@ JS_ATO1 = r'''
     hs.forEach(function (h) { h.setAttribute('aria-pressed', 'false'); });
     etqs.forEach(function (e) { e.classList.remove('sel'); });
     cartao.hidden = true;
+    zoomPara(-1);
   }
 
   function selecionar(i, vindoDoTeclado) {
     if (i < 0 || i >= total) return;
     var primeira = atual === -1, novo = !vistos[i], antes = contar();
     atual = i;
+    moldura.classList.remove('convite');
     hs.forEach(function (h, k) { h.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
     etqs.forEach(function (e, k) { e.classList.toggle('sel', k === i); });
     vistos[i] = 1;
@@ -348,6 +405,7 @@ JS_ATO1 = r'''
     if (novo) virarEtiquetaDaImagem(i);
     if (antes < total && contar() === total) celebrar();
     centrar(i);
+    zoomPara(i);
     if (vindoDoTeclado) hs[i].focus({ preventScroll: true });
     if (history.replaceState) history.replaceState(null, '', '#item-' + (i + 1));
   }
@@ -392,8 +450,12 @@ JS_ATO1 = r'''
   });
   bAnt.addEventListener('click', function () { selecionar(atual - 1); });
   bProx.addEventListener('click', function () { selecionar(atual + 1); });
+  comecar.addEventListener('click', function () { selecionar(0); });
   fim.addEventListener('click', mostrarFecho);
   document.getElementById('fe-voltar').addEventListener('click', voltarAosItens);
+  // tocar no fundo da vitrine (fora dos itens) afasta a câmera; só quando a imagem cabe inteira na janela
+  if (camada) camada.addEventListener('click', function (e) { if (e.target === camada && atual >= 0 && !rolavel()) limpar(); });
+  window.addEventListener('resize', function () { if (atual >= 0) zoomPara(atual); else if (moldura) moldura.style.transform = ''; });
   // teclado e controle remoto de apresentação (setas, Page Down/Up, Home/End, Esc)
   document.addEventListener('keydown', function (e) {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
@@ -407,6 +469,7 @@ JS_ATO1 = r'''
     else if (e.key === 'Escape') { limpar(); escondeDica(); }
   });
 
+  if (contar() > 0) moldura.classList.remove('convite');
   marcar();
   var m = /^#item-(\d+)$/.exec(location.hash);
   if (m && +m[1] >= 1 && +m[1] <= total) selecionar(+m[1] - 1);
@@ -422,8 +485,9 @@ def ato01():
     for i, it in enumerate(ITENS):
         x0, y0, x1, y1 = A.AREAS[i]['box']
         dados_itens.append(dict(nome=it['nome'], nivel=it['nivel'], valor=it['valor'], aprox=it['aprox'], nota=it['nota'], conta=it['conta'],
-                                recebe=it['recebe'], tag=it['tag'],
-                                cx=round((x0 + x1) / 2 / A.W, 4), dx=round((x0 + x1) / 2 / A.W * 100, 2), dy=round(y0 / A.H * 100, 2)))
+                                recebe=it['recebe'], dura=it['dura'], para=it['para'], cafes=it['cafes'], tag=it['tag'],
+                                cx=round((x0 + x1) / 2 / A.W, 4), cy=round((y0 + y1) / 2 / A.H, 4),
+                                dx=round((x0 + x1) / 2 / A.W * 100, 2), dy=round(y0 / A.H * 100, 2)))
     dados = dict(itens=dados_itens, proximo=PROXIMO)
     pontos = ''.join('<i></i>' for _ in ITENS)
     segs = ''.join('<i></i>' for _ in range(7))
@@ -444,7 +508,7 @@ def ato01():
 <main class="av" id="av" style="--r:@@RAZAO@@">
   <section class="av-palco" aria-label="A vitrine">
     <div class="av-quadro" id="quadro">
-      <div class="av-moldura" id="moldura">
+      <div class="av-moldura convite" id="moldura">
         <img class="av-img" src="@@IMG@@" width="@@W@@" height="@@H@@" alt="@@ALT@@" fetchpriority="high">
       @@OVERLAY@@
 @@SELOS@@
@@ -459,14 +523,21 @@ def ato01():
       <p class="p-ato">Ato 1 · Tudo tem um preço</p>
       <span class="p-vistos" aria-hidden="true">@@PONTOS@@<span id="p-vistos-n" style="margin-left:4px">0 de 7</span></span>
     </div>
-    <p class="p-vazio" id="p-vazio"><b><span class="so-mouse">Clique</span><span class="so-toque">Toque</span> em um item da vitrine</b> para ver a etiqueta: o preço e o que ele devolve.<span class="so-arrasta">↔ Arraste a imagem para os lados para ver todos os itens.</span></p>
+    <div class="p-vazio" id="p-vazio">
+      <p><b><span class="so-mouse">Clique</span><span class="so-toque">Toque</span> em um item da vitrine</b> para ver a etiqueta: o preço e o que ele devolve.<span class="so-arrasta">↔ Arraste a imagem para os lados para ver todos os itens.</span></p>
+      <button type="button" class="p-comecar" id="p-comecar">Começar pelo café →</button>
+    </div>
     <div class="p-cartao" id="p-cartao" hidden>
       <div class="etiqueta" id="etiqueta">
         <p class="et-pos" id="et-pos"></p>
         <h2 class="et-nome" id="painel-titulo">Vitrine</h2>
-        <p class="et-preco" id="et-preco"><span class="aprox" id="et-aprox" role="img" aria-label="cerca de" hidden>≈</span><span class="rs">R$</span><span class="valor" id="et-valor"></span></p>
+        <div class="et-linha">
+          <p class="et-preco" id="et-preco"><span class="aprox" aria-hidden="true" id="et-aprox" hidden>≈</span><span class="rs" aria-hidden="true">R$</span><span class="valor" id="et-valor" aria-hidden="true"></span><span class="sr-only" id="et-sr"></span></p>
+          <p class="et-cafes" id="et-cafes" hidden title="Quantos cafés de R$ 6,98 dá para comprar com esse valor">☕ <span id="et-cafes-t"></span></p>
+        </div>
         <p class="et-nota" id="et-nota"></p>
         <p class="et-recebe" id="et-recebe"></p>
+        <p class="et-chips" id="et-chips"><span><b>Dura:</b> <i id="et-dura"></i></span><span><b>Para:</b> <i id="et-para"></i></span></p>
         <div class="medidores">
           <div class="medidor paga"><span class="m-rot">Você paga</span><span class="m-seg" role="img">@@SEGS@@</span></div>
           <div class="medidor recebe"><span class="m-rot">Você recebe</span><span class="m-seg" role="img">@@SEGS@@</span></div>
@@ -483,8 +554,8 @@ def ato01():
     <div class="p-fecho" id="p-fecho" hidden>
       <p class="fe-ato">Ato 1 · Tudo tem um preço</p>
       <h2 class="fe-titulo" id="fe-titulo" tabindex="-1">O que os sete têm em comum</h2>
-      <p>Cada item entrega algo bom, e todos cobram um preço.</p>
-      <p class="fe-ideia">Quanto maior o que a gente recebe, maior o preço. <b>Para receber, é preciso pagar.</b></p>@@CONT@@
+      <p>Cada item entrega algo bom, e todos cobram um preço. Do café à casa, o preço subiu de R$ 6,98 para cerca de R$ 542 mil: mais de 77 mil vezes.</p>
+      <p class="fe-ideia">Quanto mais vale o que a gente recebe, mais ele custa. <b>Para receber, é preciso pagar.</b></p>@@CONT@@
       <button type="button" class="fe-voltar" id="fe-voltar">← Rever os itens</button>@@FEDEV@@
     </div>@@DEV@@
   </aside>
