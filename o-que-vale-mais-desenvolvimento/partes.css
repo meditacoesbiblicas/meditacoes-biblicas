@@ -133,3 +133,78 @@
   .cena.p01 .p1-imagine { font-size: 17px; line-height: 1.4; margin-bottom: 4px; }
 }
 @media (max-width: 760px) { .estudo-barra-inner { min-height: 40px; } }
+
+/* ============================== parte 2: a viagem mais cara ============================== */
+.cena.p02 .cena-palco { background: #050914; }
+.p2-cena { position: absolute; inset: 0; }
+.p2-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.p2-cena .p1-etiqueta { transition: opacity .5s ease; max-width: calc(100% - 24px); }
+.p2-cena .p1-etiqueta b.sem { font-size: 19px; font-weight: 600; line-height: 1.15; }
+.p2-alt { position: absolute; right: 12px; bottom: 12px; z-index: 3; margin: 0; padding: 6px 13px; border-radius: 999px; background: rgba(6, 10, 26, .78); color: #fff; font: 600 13px/1.2 var(--sans); pointer-events: none; }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .cena.p02 .p1-preco, .cena.p02 #p2-chips { display: none; }
+  .cena.p02 .p1-linha { justify-content: flex-start; margin: 0 0 4px; }
+  .cena.p02 .p1-imagine { font-size: 17px; line-height: 1.4; margin-bottom: 4px; }
+  .cena.p02 .cena-texto .grande { font-size: 24px; }
+}
+
+/* ============================== parte 3: quanto a luz anda? ============================== */
+.cena.p03 .cena-palco { background: #04071A; }
+.p3-cena { position: absolute; inset: 0; }
+.p3-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cena.p03 #controles { display: none; }
+.cena.p03[data-modo="regua"] #controles { display: grid; }
+.p3-leit { margin: 6px 0 2px; font: 500 20px/1.3 var(--serif); }
+.p3-leit b { font-weight: 600; }
+.p3-eq { margin: 0; font: 600 14px/1.35 var(--sans); color: var(--painel-mudo); }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .cena.p03 .p3-leit { font-size: 17px; margin: 2px 0; }
+  .cena.p03 #p3-chips { gap: 4px; } .cena.p03 #p3-chips .chip { padding: 4px 9px; font-size: 12px; }
+}
+
+/* ============================== parte 4: perto e longe ============================== */
+.cena.p04 .cena-palco { background: #04071A; }
+.p4-cena { position: absolute; inset: 0; }
+.p4-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ctrl-dica { margin: 0; font: 400 13.5px/1.4 var(--sans); color: var(--painel-mudo); }
+hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .4); }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .cena.p04 #p4-chips, .cena.p04 .ctrl-dica { display: none; }
+  .cena.p04 .cena-texto .p1-qual { display: none; }
+  .cena.p04 .p1-preco { font-size: 24px; }
+}
+
+/* ============================== parte 5: a escada do universo ============================== */
+.cena.p05 .cena-palco { background: #04071A; }
+.p5-cena { position: absolute; inset: 0; }
+.p5-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.p5-hud { position: absolute; left: 12px; top: 12px; z-index: 3; display: grid; gap: 1px; max-width: calc(100% - 140px); padding: 8px 14px 9px; border-radius: 14px; background: rgba(6, 10, 26, .74); color: #fff; pointer-events: none; }
+.p5-hud b { font: 600 21px/1.15 var(--serif); }
+.p5-hud span { font: 600 13.5px/1.3 var(--sans); color: #FFE9B8; }
+.p5-hud small { font: 400 12px/1.3 var(--sans); color: #B9C4E2; }
+.p5-hud small:empty { display: none; }
+.p5-escada { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); z-index: 3; display: flex; flex-direction: column-reverse; gap: 2px; margin: 0; padding: 8px 6px; list-style: none; border-radius: 14px; background: rgba(6, 10, 26, .6); }
+.p5-escada li { position: relative; }
+.p5-escada li + li::before { content: ""; position: absolute; right: 12px; bottom: 100%; width: 2px; height: 6px; background: rgba(255, 255, 255, .3); }
+.p5-escada button, .p5-escada li.alem { display: flex; align-items: center; justify-content: flex-end; gap: 8px; width: 100%; padding: 3px 4px; border: 0; background: none; color: #C8D2EE; font: 600 11.5px/1 var(--sans); cursor: pointer; text-align: right; }
+.p5-escada li.alem { cursor: default; color: #8D98B8; font-style: italic; }
+.p5-escada .bola { flex: none; display: grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; font: 600 10px/1 var(--serif); }
+.p5-escada li.passou .bola { background: rgba(255, 216, 120, .5); border-color: #FFD878; }
+.p5-escada li.ativo { color: #fff; }
+.p5-escada li.ativo .bola { background: #FFD878; border-color: #FFD878; color: #1F2A44; box-shadow: 0 0 10px #FFD878; }
+.p5-escada button:hover .bola, .p5-escada button:focus-visible .bola { border-color: #FFD878; }
+.p5-alem { position: absolute; left: 50%; bottom: 9%; z-index: 3; margin: 0; transform: translateX(-50%); font: italic 500 clamp(18px, 2.6vw, 26px)/1.2 var(--serif); color: rgba(214, 222, 244, .85); opacity: 0; transition: opacity .9s ease; pointer-events: none; white-space: nowrap; }
+.p5-alem.on { opacity: 1; }
+/* caixa da paralaxe */
+.par-box { margin: 10px 0 14px; display: grid; gap: 8px; max-width: 640px; }
+.par-box canvas { width: 100%; height: 230px; display: block; border-radius: 12px; background: #070C1E; }
+.lista { margin: 0 0 4px; padding-left: 1.1em; }
+.lista li { margin: 0 0 2px; }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .p5-escada { right: 4px; padding: 5px 3px; }
+  .p5-escada .nome { display: none; }
+  .p5-escada li.ativo .nome { display: inline; position: absolute; right: 26px; top: 50%; transform: translateY(-50%); padding: 3px 8px; border-radius: 999px; background: rgba(6, 10, 26, .85); white-space: nowrap; }
+  .p5-hud { left: 8px; top: 8px; padding: 6px 11px 7px; max-width: calc(100% - 70px); }
+  .p5-hud b { font-size: 17px; } .p5-hud span { font-size: 12px; } .p5-hud small { font-size: 11px; }
+  .cena.p05 .cena-texto .pequeno { display: none; }
+}

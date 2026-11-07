@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O que vale mais? · Parte 2: A viagem mais cara</title>
+<meta name="description" content="Parte 2 de um estudo em etapas: O que vale mais?">
+<link rel="stylesheet" href="estudo.css">
+<link rel="stylesheet" href="partes.css">
+</head>
+<body class="parte" data-tema="noite" data-parte="2">
+<div class="rascunho-faixa">VERSÃO EM DESENVOLVIMENTO · ainda não publicada · <a href="../o-que-vale-mais/parte-02.html">ver a versão publicada desta página</a></div>
+<header class="site-bar">
+  <div class="site-bar-inner">
+    <a class="site-brand" href="../">Meditações</a>
+    <nav class="site-links" aria-label="Site Meditações Bíblicas">
+      <a href="../quem-sou-eu/">Quem sou eu</a>
+      <a href="../sobre/">Sobre</a>
+    </nav>
+  </div>
+</header>
+<div class="estudo-barra"><div class="estudo-barra-inner">
+  <a class="voltar" href="index.html">← Início</a>
+  <p class="titulo"><span class="pn">Parte 2 de 10 · </span><b>A viagem mais cara</b></p>
+  <ol class="pontos" aria-label="Progresso no estudo"><li data-n="1"><a href="parte-01.html" title="Parte 1" aria-label="Parte 1"></a></li><li data-n="2" class="atual"><a href="parte-02.html" title="Parte 2" aria-label="Parte 2"></a></li><li data-n="3"><a href="parte-03.html" title="Parte 3" aria-label="Parte 3"></a></li><li data-n="4"><a href="parte-04.html" title="Parte 4" aria-label="Parte 4"></a></li><li data-n="5"><a href="parte-05.html" title="Parte 5" aria-label="Parte 5"></a></li><li data-n="6"><a href="parte-06.html" title="Parte 6" aria-label="Parte 6"></a></li><li data-n="7"><a href="parte-07.html" title="Parte 7" aria-label="Parte 7"></a></li><li data-n="8"><a href="parte-08.html" title="Parte 8" aria-label="Parte 8"></a></li><li data-n="9"><a href="parte-09.html" title="Parte 9" aria-label="Parte 9"></a></li><li data-n="10"><a href="parte-10.html" title="Parte 10" aria-label="Parte 10"></a></li></ol>
+  <div class="dev-menu na-barra"><button type="button">Menu ▾</button><ol hidden><li><a href="index.html">Capa</a></li><li><a href="parte-01.html">Parte 1 · Tudo o que a gente quer tem um preço</a></li><li class="atual"><a href="parte-02.html">Parte 2 · A viagem mais cara</a></li><li><a href="parte-03.html">Parte 3 · Quanto a luz anda?</a></li><li><a href="parte-04.html">Parte 4 · Perto e longe</a></li><li><a href="parte-05.html">Parte 5 · A escada do universo</a></li><li><a href="parte-06.html">Parte 6</a></li><li><a href="parte-07.html">Parte 7</a></li><li><a href="parte-08.html">Parte 8</a></li><li><a href="parte-09.html">Parte 9</a></li><li><a href="parte-10.html">Parte 10</a></li><li><a href="conclusao.html">Conclusão</a></li><li><a href="fontes.html">Fontes e conferência</a></li><li><a href="qr.html">QR Code</a></li></ol></div>
+</div></div>
+<main>
+<section class="cena p02" id="cena" aria-label="Cena interativa">
+  <div class="cena-palco" id="palco">
+<div class="p2-cena" id="p2">
+  <canvas id="tela" aria-hidden="true"></canvas>
+  <div class="p1-etiqueta" id="p2-etq" aria-hidden="true" style="opacity:0"></div>
+  <p class="p2-alt" id="p2-alt" aria-hidden="true"></p>
+</div>
+  </div>
+  <div class="cena-painel">
+    <p class="cena-rotulo" id="rotulo"></p>
+    <div class="cena-texto" id="texto" aria-live="polite"></div>
+    <div class="cena-controles" id="controles">
+<label class="ctrl-rotulo" for="p2-botao"><span>Até onde ir?</span><output id="p2-saida">Na plataforma</output></label>
+<input type="range" id="p2-botao" min="0" max="4" step="1" value="0" aria-describedby="rotulo">
+<ul class="chips" id="p2-chips"><li><button type="button" class="chip" data-i="0">🚀 Plataforma</button></li><li><button type="button" class="chip" data-i="1">🌍 Beira do espaço</button></li><li><button type="button" class="chip" data-i="2">🛰️ Estação</button></li><li><button type="button" class="chip" data-i="3">🌕 Lua</button></li><li><button type="button" class="chip" data-i="4">🔴 Marte</button></li></ul>
+    </div>
+    <div class="cena-nav"><button type="button" id="ant">← Anterior</button><span class="pos" id="pos"></span><button type="button" id="prox">Próximo →</button></div>
+  </div>
+</section>
+<section class="leitura" id="leitura" aria-label="Para ler e pensar">
+<h2>Para pensar</h2>
+<p class="intro">Preços conferidos em novembro de 2026, com o dólar do Banco Central de 05/11/2026 (R$ 5,46). Cada conta e cada fonte está em "Conta e fonte", dentro da cena.</p>
+<div class="cartoes">
+<article class="cartao fato">
+  <span class="tag">Dado conferido</span>
+  <h3>Sair do planeta custa milhões</h3>
+  <p>Perto da beira do espaço, um assento anunciado custou <b>US$ 750 mil</b> (cerca de R$ 4,1 milhões); numa estação em órbita, algo como <b>US$ 55 a 70 milhões</b> (mais de R$ 300 milhões). Para a Lua não existe passagem à venda. Para Marte existe só uma <b>meta</b>: menos de US$ 500 mil, "um dia".</p>
+  <p class="obs">Conta: US$ 65 milhões × R$ 5,4621 ≈ R$ 355 milhões. Os valores mudam; o que fica é a ideia.</p>
+</article>
+<article class="cartao reflexao">
+  <span class="tag">Reflexão (não é afirmação da Bíblia)</span>
+  <h3>Quanto mais longe, mais caro (ou impossível de comprar)</h3>
+  <p>Na parte 1, o preço subiu junto com o que se recebe. Aqui ele sobe junto com a <b>distância</b>: cada parada é muito mais longe, e muito mais cara, que a anterior.</p><p>Mas ficou no ar uma pergunta: <b>quanto é "longe"?</b> Para responder, precisamos de uma régua.</p>
+</article>
+</div>
+<details class="curiosos">
+  <summary>Como os preços foram conferidos</summary>
+  <div><p>Beira do espaço: Virgin Galactic (março e agosto de 2026); Blue Origin, assento leiloado em 2021 por US$ 28 milhões. Estação Espacial: reportagens sobre a Axiom Space (US$ 55 milhões nas primeiras missões; US$ 59 a 70 milhões na Ax-4, 2025). Marte: Elon Musk, em 2019 e 2022, falou em menos de US$ 500 mil e em US$ 100 mil como exemplo; é meta, não preço, e ainda não existe viagem tripulada. Câmbio: Banco Central. Detalhes em <a href="fontes.html">Fontes</a>.</p></div>
+</details>
+</section>
+<nav class="proxima" aria-label="Continuar">
+  <a class="btn" href="parte-03.html">Continuar: Parte 3 →</a>
+  <p class="aviso">Você pode voltar e rever esta parte quando quiser.</p>
+</nav>
+</main>
+<footer class="rodape">Fontes e datas da conferência: <a href="fontes.html">Fontes</a>.</footer>
+<noscript><p style="position:fixed;left:0;right:0;top:0;z-index:99999;margin:0;padding:12px 16px;background:#FBEBDD;color:#9A4310;text-align:center;font:600 15px/1.4 system-ui">Esta página precisa de JavaScript para funcionar.</p></noscript>
+<script>window.OVM_DEV=true;</script>
+<script src="dados.js"></script>
+<script src="estudo.js"></script>
+<script src="motor.js"></script>
+<script src="p02.js"></script>
+</body>
+</html>
