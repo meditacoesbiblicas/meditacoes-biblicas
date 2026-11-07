@@ -31,11 +31,10 @@ CORPOS = [
     ('proxima', 'Próxima do Centauro', 4.2465 * ANO_LUZ_KM, None, None, 'a estrela mais próxima do Sol'),
 ]
 
-# ---------------------------------------------------------------- estrelas para o céu da parte 6 (nome, distância em anos-luz, cor)
+# ---------------------------------------------------------------- estrelas para o céu da parte 6 (nome, distância em anos-luz; conferidas na Wikipédia/Gaia em 2026-11-06)
 ESTRELAS = [
-    ('Alfa do Centauro', 4.3), ('Sírio', 8.6), ('Prócion', 11.5), ('Altair', 16.7), ('Vega', 25.0), ('Fomalhaut', 25.1),
-    ('Pólux', 33.8), ('Arcturo', 36.7), ('Capela', 42.9), ('Aldebarã', 67), ('Régulo', 79), ('Espiga', 250),
-    ('Estrela Polar', 446), ('Rigel', 848), ('Deneb', 2029),
+    ('Alfa do Centauro', 4.34), ('Sírio', 8.61), ('Prócion', 11.46), ('Altair', 16.73), ('Vega', 25.04), ('Fomalhaut', 25.13),
+    ('Pólux', 33.78), ('Arcturo', 36.7), ('Capela', 42.92), ('Aldebarã', 67), ('Régulo', 79.3), ('Espiga', 250),
 ]
 
 # ---------------------------------------------------------------- velocidades (id, nome, km/s)

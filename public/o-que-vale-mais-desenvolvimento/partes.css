@@ -208,3 +208,93 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
   .p5-hud b { font-size: 17px; } .p5-hud span { font-size: 12px; } .p5-hud small { font-size: 11px; }
   .cena.p05 .cena-texto .pequeno { display: none; }
 }
+
+/* ============================== parte 6: quem fez tudo isto? ============================== */
+.cena.p06 .cena-palco { background: #02030B; }
+.p6-cena { position: absolute; inset: 0; }
+.p6-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.vers { margin: 8px 0 6px; padding: 2px 0 2px 12px; border-left: 3px solid var(--gold-d); font: 500 17px/1.5 var(--serif); }
+.vers cite { display: block; margin-top: 4px; font: 600 12.5px/1.3 var(--sans); font-style: normal; color: var(--painel-mudo); }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .vers { font-size: 15px; line-height: 1.42; margin: 4px 0; }
+  .cena.p06 .cena-texto .pequeno { display: none; }
+  .cena.p06 .cena-texto .grande { font-size: 22px; }
+}
+
+/* ============================== parte 7: onde fica o trono? ============================== */
+.cena.p07 .cena-palco { background: #02030B; }
+.p7-cena { position: absolute; inset: 0; }
+.p7-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cena.p07.lab #tela { display: none; }
+.cena.p07:not(.lab) #tela2 { display: none; }
+.cena.p07.lab .p5-hud, .cena.p07.lab .p7-trilho { display: none; }
+.cena.p07 .ctl { display: none; }
+.cena.p07[data-modo="subida"] #ctl-subida, .cena.p07[data-modo="raio"] #ctl-raio { display: grid; gap: 8px; }
+.cena.p07 .p1-etiqueta { transition: opacity .6s ease; max-width: min(260px, calc(100% - 140px)); top: 14px; right: 74px; }
+.cena.p07 .p1-etiqueta b.sem { font-size: 17px; font-weight: 600; line-height: 1.2; }
+.p7-trilho { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); z-index: 3; display: flex; flex-direction: column-reverse; gap: 5px; margin: 0; padding: 8px 8px; list-style: none; border-radius: 14px; background: rgba(6, 10, 26, .62); }
+.p7-trilho li { display: flex; align-items: center; justify-content: flex-end; gap: 8px; color: #7F8AAE; transition: color .5s ease; }
+.p7-trilho .bola { flex: none; width: 12px; height: 12px; border-radius: 50%; border: 2px solid currentColor; }
+.p7-trilho .nome { display: grid; text-align: right; font: 600 11.5px/1.15 var(--sans); }
+.p7-trilho .nome small { font: 400 10.5px/1.2 var(--sans); opacity: .85; }
+.p7-trilho li.passou { color: #FFE9B8; }
+.p7-trilho li.passou .bola { background: #FFD878; border-color: #FFD878; box-shadow: 0 0 8px #FFD878; }
+.p7-nota { display: none; }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .p7-trilho .nome { display: none; } .p7-trilho { right: 4px; padding: 6px 5px; gap: 4px; }
+  .cena.p07 .cena-texto .pequeno { display: none; }
+  .cena.p07 .cena-texto .grande { font-size: 22px; }
+  .cena.p07 .p1-etiqueta { right: 40px; max-width: calc(100% - 60px); padding: 8px 12px 6px 26px; }
+}
+
+/* ============================== parte 8: a grandeza no pequeno ============================== */
+.cena.p08 .cena-palco { background: #05040C; }
+.p8-cena { position: absolute; inset: 0; }
+.p8-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cena.p08 #ctl-modelo { display: none; }
+.cena.p08[data-modo="modelo"] #ctl-modelo { display: grid; gap: 6px; }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .cena.p08 .cena-texto .pequeno { display: none; }
+  .cena.p08 .cena-texto .grande { font-size: 22px; }
+  .cena.p08 #ctl-zoom { display: none; }
+}
+
+/* ============================== parte 9: os preços voltam ============================== */
+.cena.p09 .cena-palco { background: #0B0E1C; }
+.p9-cena { position: absolute; inset: 0; }
+.p9-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cena.p09 #ctl-balanca { display: none; }
+.cena.p09[data-modo="balanca"] #ctl-balanca { display: grid; gap: 8px; }
+.cena.p09 #p9-itens .chip { font-size: 12.5px; padding: 5px 10px; }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .cena.p09 .cena-texto .pequeno { display: none; }
+  .cena.p09 .cena-texto .grande { font-size: 22px; }
+  .cena.p09 .vers { font-size: 14.5px; margin: 3px 0; }
+}
+
+/* ============================== parte 10: a resposta ============================== */
+.cena.p10 .cena-palco { background: #04061A; }
+.p10-cena { position: absolute; inset: 0; }
+.p10-cena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cena.p10 .ctl { display: none; }
+.cena.p10[data-modo="virar"] #ctl-virar, .cena.p10[data-modo="duas"] #ctl-duas { display: grid; gap: 8px; }
+@media (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  .cena.p10 .cena-texto .pequeno { display: none; }
+  .cena.p10 .cena-texto .grande { font-size: 22px; }
+  .cena.p10 .vers { font-size: 14.5px; margin: 3px 0; }
+}
+
+/* ============================== conclusão ============================== */
+.concl { max-width: 1100px; margin: 0 auto; padding: 10px 24px 70px; }
+.concl-hero { position: relative; height: min(58vh, 540px); min-height: 280px; border-radius: 18px; overflow: hidden; background: #04061A; box-shadow: 0 10px 40px rgba(0, 0, 0, .3); }
+.concl-hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.concl-texto { max-width: 840px; margin: 26px auto 0; }
+.concl-texto .kicker { margin: 0; font: 600 13px/16px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-d); }
+.concl-texto h1 { margin: 4px 0 12px; font: 600 clamp(36px, 6vw, 64px)/1.05 var(--serif); }
+.concl-texto h2 { margin: 28px 0 8px; font: 600 clamp(22px, 3vw, 30px)/1.2 var(--serif); }
+.concl-texto .lede { margin: 0 0 6px; font-size: clamp(17px, 2vw, 21px); line-height: 1.6; }
+.concl-duas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 20px 0 6px; }
+.perguntas { margin: 0; padding-left: 1.2em; } .perguntas li { margin: 0 0 8px; }
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
+.rodape-concl { margin: 0; font-size: 14px; color: var(--mudo); }
+@media (max-width: 760px) { .concl { padding: 8px 14px 60px; } .concl-duas { grid-template-columns: 1fr; } .concl-hero { height: 52vh; } }

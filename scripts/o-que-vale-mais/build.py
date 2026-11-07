@@ -12,6 +12,7 @@ import json
 import os
 import shutil
 import sys
+import time
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(AQUI), 'estudo'))
@@ -24,6 +25,7 @@ PASTA = 'o-que-vale-mais'      # versão publicada (ainda não existe); a de des
 DEST = sys.argv[1]
 RASC = '--rascunho' in sys.argv
 TITULO = 'O que vale mais?'
+VER = str(int(time.time()))   # acrescentado aos arquivos .js/.css para o navegador não usar cópia velha
 
 BARRA = '''<header class="site-bar">
   <div class="site-bar-inner">
@@ -52,10 +54,10 @@ def cabeca(titulo, descricao, extra=''):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>%s</title>
 <meta name="description" content="%s">
-<link rel="stylesheet" href="estudo.css">
-<link rel="stylesheet" href="partes.css">%s
+<link rel="stylesheet" href="estudo.css?v=%s">
+<link rel="stylesheet" href="partes.css?v=%s">%s
 </head>
-''' % (titulo, descricao, extra)
+''' % (titulo, descricao, VER, VER, extra)
 
 
 def pontos(atual):
@@ -76,7 +78,7 @@ def devmenu(atual, classe='fixo'):
 
 def rodape_comum(atual, scripts):
     dev = '<script>window.OVM_DEV=true;</script>\n' if RASC else ''
-    sc = ''.join('<script src="%s"></script>\n' % s for s in scripts)
+    sc = ''.join('<script src="%s?v=%s"></script>\n' % (s, VER) for s in scripts)
     return dev, sc
 
 
@@ -88,7 +90,7 @@ def pagina_parte(n):
         leitura += '<h2>%s</h2>\n%s%s\n' % (h2, ('<p class="intro">%s</p>\n' % intro) if intro else '', cartoes)
     prox = arq(n + 1)
     rot = 'Continuar: Parte %d →' % (n + 1) if n < 10 else 'Continuar →'
-    dev, sc = rodape_comum(n, ['dados.js', 'estudo.js'] + (['motor.js'] if p.get('motor') else []) + [p['script']])
+    dev, sc = rodape_comum(n, ['dados.js', 'estudo.js'] + (['motor.js'] if p.get('motor') else []) + p.get('extras', []) + [p['script']])
     html = cabeca('%s · Parte %d: %s' % (TITULO, n, p['titulo']), 'Parte %d de um estudo em etapas: %s' % (n, TITULO)) + '''<body class="parte" data-tema="%s" data-parte="%d">
 %s%s
 <div class="estudo-barra"><div class="estudo-barra-inner">
@@ -186,6 +188,7 @@ def main():
     os.makedirs(DEST, exist_ok=True)
     with open(os.path.join(DEST, 'dados.js'), 'w', encoding='utf-8') as f:
         f.write('window.OVM_DADOS=' + dados.json_dados() + ';\n')
+        f.write('window.OVM_V=' + json.dumps(getattr(K, 'VERSOS', {}), ensure_ascii=False, separators=(',', ':')) + ';\n')
     shutil.copyfile(os.path.join(AQUI, 'qr-desenvolvimento.svg' if RASC else 'qr-producao.svg'), os.path.join(DEST, 'qr.svg'))
     capa()
     for n in range(1, 11):
@@ -193,7 +196,7 @@ def main():
             pagina_parte(n)
     if getattr(K, 'CONCLUSAO', None):
         c = K.CONCLUSAO
-        pagina_livre('conclusao.html', 11, 'Conclusão', c.get('tema', 'aurora'), c['corpo'], ['dados.js', 'estudo.js', c['script']], 'Conclusão do estudo %s.' % TITULO)
+        pagina_livre('conclusao.html', 11, 'Conclusão', c.get('tema', 'aurora'), c['corpo'], ['dados.js', 'estudo.js'] + c.get('extras', []) + [c['script']], 'Conclusão do estudo %s.' % TITULO)
     if getattr(K, 'FONTES_PAG', None):
         pagina_livre('fontes.html', 12, 'Fontes e conferência', 'dia', K.FONTES_PAG, ['estudo.js'], 'Fontes e datas da conferência do estudo %s.' % TITULO)
     qr_page()
