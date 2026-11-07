@@ -22,23 +22,13 @@ REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" a
 <g fill="#E0526A"><path class="coracao h1" d="M150 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M340 106c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M300 84c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
 </svg>'''
 
-FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="O sol nascendo sobre montanhas e um lago, com uma pequena cabana de janela acesa">
-<defs>
-<linearGradient id="f-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A78C2"/><stop offset=".55" stop-color="#F1A068"/><stop offset="1" stop-color="#FFD99C"/></linearGradient>
-<radialGradient id="f-sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/><stop offset=".4" stop-color="#FFD27A" stop-opacity=".7"/><stop offset="1" stop-color="#FFD27A" stop-opacity="0"/></radialGradient>
-<linearGradient id="f-lago" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B77C"/><stop offset="1" stop-color="#4C6AA8"/></linearGradient>
-</defs>
-<rect width="480" height="320" fill="url(#f-ceu)"/>
-<circle class="sol" cx="300" cy="170" r="110" fill="url(#f-sol)"/><circle cx="300" cy="172" r="26" fill="#FFF1B8"/>
-<path d="M0 190L70 128L128 176L196 110L262 178L330 132L410 188L480 150V222H0Z" fill="#6E6BA6" opacity=".85"/>
-<path d="M0 214L58 164L120 206L190 150L270 210L350 166L430 212L480 186V240H0Z" fill="#5A5693"/>
-<rect y="226" width="480" height="94" fill="url(#f-lago)"/>
-<g stroke="#FFE7B0" stroke-linecap="round" fill="none"><path class="onda o1" d="M270 244H330" stroke-width="3"/><path class="onda o2" d="M254 258H346" stroke-width="3"/><path class="onda o3" d="M240 276H360" stroke-width="3"/><path class="onda o4" d="M262 296H338" stroke-width="3"/></g>
-<path d="M0 232Q60 214 130 232Q70 246 0 246Z" fill="#3E5A44"/>
-<polygon points="22,236 40,186 58,236" fill="#2E4A39"/><polygon points="52,238 72,176 92,238" fill="#2A4535"/><polygon points="96,236 112,194 128,236" fill="#335040"/>
-<rect x="132" y="206" width="46" height="32" fill="#8A5A34"/><polygon points="124,208 155,180 186,208" fill="#5B3320"/><rect x="146" y="214" width="14" height="14" fill="#FFD670"/><rect x="164" y="190" width="9" height="16" fill="#5B3320"/>
-<g fill="#FFFFFF" opacity=".75"><circle class="fumaca k1" cx="168" cy="180" r="5"/><circle class="fumaca k2" cx="170" cy="174" r="4"/></g>
-<g class="passaros" fill="none" stroke="#3C2A4F" stroke-width="2.6" stroke-linecap="round"><path class="p a" d="M330 70q8-9 16 0q8-9 16 0"/><path class="p b" d="M366 92q6-7 12 0q6-7 12 0"/><path class="p c" d="M298 96q6-7 12 0q6-7 12 0"/></g>
+FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="Uma família descalça na grama de um hotel fazenda, dando capim a um cavalinho e rindo com as galinhas, com a sede da fazenda ao fundo e nuvens passando">
+<image href="img/cena3-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
+<g class="nuvens-g"><image class="nuvens mistura" href="img/cena3-nuvens.jpg" x="-10" y="-10" width="500" height="197.8" opacity=".95"/></g>
+<image href="img/cena3-sede.webp" x="305.5" y="141.4" width="105.0" height="48.6"/>
+<g class="fumacas"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="363.9" y="130.7" width="18" height="17.4"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="363.9" y="130.7" width="18" height="17.4"/></g>
+<ellipse cx="231.0" cy="303.0" rx="90.3" ry="7" fill="#1F3A12" opacity=".35" style="filter: blur(3px)"/>
+<image class="familia-img" href="img/cena3-familia.webp" x="117.5" y="119.6" width="215.0" height="188.4"/>
 </svg>'''
 
 VIAGEM = '''<svg class="vinheta v-viagem" viewBox="0 0 480 320" role="img" aria-label="Um avião cruzando o globo de uma cidade a outra, em direção a lugares novos">
