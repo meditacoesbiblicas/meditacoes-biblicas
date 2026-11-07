@@ -7,7 +7,7 @@
   OVM.Final = function (canvas, cfg) {
     cfg = cfg || {};
     var T = OVM.tela(canvas), F = OVM.fmt, D = window.OVM_DADOS, est = OVM.estrelas(21, 230), rnd = OVM.rand(88), P = D.precos, VG = D.viagens;
-    var itens = [['Café', P[0].valor], ['Refeição', P[1].valor], ['Viagem', P[3].valor], ['Carro', P[4].valor], ['Casa', P[5].valor], ['Estação Espacial', VG[2].reais], ['Marte (meta)', VG[4].reais]];
+    var itens = [['Chocolate quente', P[0].valor], ['Refeição', P[1].valor], ['Viagem', P[3].valor], ['Carro', P[4].valor], ['Casa', P[5].valor], ['Estação Espacial', VG[2].reais], ['Marte (meta)', VG[4].reais]];
     var S = { flip: cfg.revelada ? 1 : 0, alvo: cfg.revelada ? 1 : 0, extra: cfg.extra || '', extraA: 0, faiscas: [], acum: 0, avisou: !!cfg.revelada };
     var interativo = cfg.interativo !== false && !cfg.revelada, aviso = 0;
     function curto(v) { return v < 100 ? F.n(v, 2) : v < 1000 ? F.n(Math.round(v)) : v < 1e6 ? F.n(Math.round(v / 1000)) + ' mil' : F.grande(v); }

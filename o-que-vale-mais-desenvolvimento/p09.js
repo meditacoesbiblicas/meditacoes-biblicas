@@ -4,7 +4,7 @@ OVM.pronto(function () {
   var D = OVM_DADOS, V = OVM_V, F = OVM.fmt, PI2 = 6.2832, P = D.precos, VG = D.viagens, i, k;
   var canvas = OVM.$('#tela'), T = OVM.tela(canvas), cena = OVM.$('#cena'), listaEl = OVM.$('#p9-itens'), bTudo = OVM.$('#p9-tudo'), bLimpar = OVM.$('#p9-limpar');
   var ITENS = [
-    { id: 'cafe', nome: 'Café', emoji: '☕', valor: P[0].valor }, { id: 'refeicao', nome: 'Refeição', emoji: '🍽️', valor: P[1].valor }, { id: 'viagem', nome: 'Viagem em família', emoji: '✈️', valor: P[3].valor },
+    { id: 'cafe', nome: 'Chocolate quente', emoji: '🍫', valor: P[0].valor }, { id: 'refeicao', nome: 'Refeição', emoji: '🍽️', valor: P[1].valor }, { id: 'viagem', nome: 'Viagem em família', emoji: '✈️', valor: P[3].valor },
     { id: 'carro', nome: 'Carro', emoji: '🚗', valor: P[4].valor }, { id: 'casa', nome: 'Casa', emoji: '🏠', valor: P[5].valor }, { id: 'estacao', nome: 'Estação Espacial', emoji: '🛰️', valor: VG[2].reais }, { id: 'marte', nome: 'Marte (meta)', emoji: '🔴', valor: VG[4].reais }
   ];
   var modo = 'etiquetas', am = { etiquetas: 1, pessoas: 0, balanca: 0, pergunta: 0 }, prato = [], ang = 0.22, ultimoTotal = 0, msg = 0, est = OVM.estrelas(14, 120);
@@ -126,7 +126,7 @@ OVM.pronto(function () {
   function vai(m, ctl) { modo = m; cena.setAttribute('data-modo', ctl || m); }
   var passos = [
     { rotulo: 'De volta às etiquetas', ir: function () { vai('etiquetas'); },
-      html: '<b class="grande">Tudo tem preço</b><p>Voltamos às etiquetas. O café, a casa, o carro, a viagem ao espaço: tudo o que vimos tem um preço, e <b>quanto mais vale, mais custa</b>.</p><p class="pequeno">Repare: quanto maior o preço, maior a etiqueta.</p>' },
+      html: '<b class="grande">Tudo tem preço</b><p>Voltamos às etiquetas. O chocolate quente, a casa, o carro, a viagem ao espaço: tudo o que vimos tem um preço, e <b>quanto mais vale, mais custa</b>.</p><p class="pequeno">Repare: quanto maior o preço, maior a etiqueta.</p>' },
     { rotulo: 'O que o mundo faz com as pessoas', ir: function () { vai('pessoas'); },
       html: '<p>No mundo, o valor de uma pessoa muitas vezes é medido pelo que ela <b>tem</b> ou pelo que pode <b>oferecer em troca</b>. Já houve quem fosse vendido, por preços irrisórios:</p>' + cit('gn3728') + cit('ex2132') + '<p class="pequeno">Isso nunca foi o valor de ninguém: foi o que o mundo, errado, chegou a cobrar.</p>' },
     { rotulo: 'E quanto custaria alcançar Deus?', ir: function () { vai('balanca'); },

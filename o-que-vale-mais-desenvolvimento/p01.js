@@ -36,7 +36,7 @@ OVM.pronto(function () {
   function htmlItem(p) {
     return '<b class="grande">' + p.nome + '</b>' +
       '<p class="p1-linha"><span class="p1-preco">' + (p.aprox ? '<small>≈ </small>' : '') + '<small>R$ </small>' + p.texto + '</span>' +
-      (p.cafes ? '<span class="p1-cafes" title="Quantos cafés de R$ 6,98 dá para comprar com esse valor">☕ ' + p.cafes + '</span>' : '') + '</p>' +
+      (p.cafes ? '<span class="p1-cafes" title="Quantas xícaras de chocolate quente, a R$ 8 cada, dá para comprar com esse valor">🍫 ' + p.cafes + '</span>' : '') + '</p>' +
       '<p class="p1-imagine">' + p.imagine + '</p>' +
       '<p class="p1-qual"><b>Dura:</b> ' + p.dura + ' · <b>Para:</b> ' + p.para + '</p>' +
       '<details class="conta"><summary>Conta e fonte</summary><p><b>' + p.nota + '</b></p><p>' + p.conta + '</p></details>';
@@ -48,7 +48,7 @@ OVM.pronto(function () {
   passos.push({
     rotulo: 'O que os seis têm em comum',
     html: '<p>Cada um entrega algo bom, e todos cobram um preço.</p>' +
-      '<p>Do café à casa, o preço subiu de <b>R$ 6,98</b> para cerca de <b>R$ 542 mil</b>: mais de <b>77 mil vezes</b>.</p>' +
+      '<p>Do chocolate quente à casa, o preço subiu de cerca de <b>R$ 8</b> para cerca de <b>R$ 542 mil</b>: mais de <b>67 mil vezes</b>.</p>' +
       '<p><b>O que vale mais custa mais.</b> Para receber, é preciso pagar.</p>',
     ir: resumo
   });
