@@ -75,3 +75,14 @@ Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, p
 ## Troca do garçom (2026-11-07)
 
 A família é de pele clara; o garçom anterior (pele escura) foi trocado para não parecer que o quadro sugere hierarquia. O prompt 2.3 acima já descreve o novo garçom (pele clara, cabelo castanho). Na cena ele aparece em tamanho proporcional ao da família (cerca de uma cabeça e meia mais alto que quem está sentado).
+
+---
+
+## Troca da piscina (2026-11-07)
+
+A piscina colorida (escorregador, guarda-sóis de praia) parecia de resort, não de hotel fazenda. Por enquanto ela foi tirada da cena. Prompt novo, com cara de fazenda:
+
+### 3.2b · `hotelfazenda-05-piscina-rustica.jpg`, fundo verde
+```
+Ilustração digital em estilo de pintura suave e aconchegante, cores quentes, pinceladas visíveis, luz suave de dia de sol vinda do alto à direita. Imagem de objeto isolado para recorte, como uma foto de estúdio sobre chroma key: uma piscina rústica de hotel fazenda, retangular e simples, com borda de pedra natural clara (pedra mineira), água azul-turquesa tranquila, cercada por um pedaço de gramado e um deque de madeira rústica. Ao lado, duas espreguiçadeiras de madeira com almofadas listradas, um guarda-sol de palha (sombreiro), uma rede de varanda pendurada entre dois troncos de madeira e um vaso grande de samambaia. Sem escorregador, sem boias, sem guarda-sóis coloridos de praia, sem pessoas. Vista de frente, de cima para baixo em ângulo suave. O conjunto ocupa cerca de 70% da largura da imagem e fica centralizado. O FUNDO INTEIRO é uma única cor verde pura #00FF00, totalmente lisa, sem gradiente, sem sombra e sem nenhum outro objeto. Bordas nítidas, sem nenhum tom de verde vivo no deque ou nos objetos (o gramado deve ser verde-oliva escuro, bem diferente do fundo). Proporção 3:2 horizontal. Sem texto.
+```
