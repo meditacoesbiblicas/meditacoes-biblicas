@@ -22,7 +22,7 @@ CAPA = dict(
     descricao='Um estudo em etapas que começa numa xícara de chocolate quente e vai muito longe.',
     kicker='Um estudo em etapas',
     lede='Quase toda escolha que a gente faz esconde uma pergunta. Esta jornada começa numa xícara de chocolate quente e vai muito, muito longe.',
-    meta='10 partes · uns 40 minutos · melhor no celular, em pé ou deitado',
+    meta='10 partes · uns 40 minutos · cada parte tem o seu ritmo',
 )
 
 # ======================================================================================================================
