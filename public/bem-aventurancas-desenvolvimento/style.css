@@ -788,3 +788,14 @@ body.ampliada .am-titulo p { margin: 0; font: 600 13px/1.2 var(--sans); color: #
   body.ampliada .am-titulo h1 { font-size: 20px; }
   body.ampliada .am-titulo p { display: none; }
 }
+
+/* PC (mouse, janela grande): o título fica DENTRO da imagem, no alto e ao centro, e a dica desce um pouco; a faixa de cima só vale para o celular */
+body.ampliada .am-titulo-img { display: none; }
+@media (hover: hover) and (min-width: 761px) and (min-height: 521px) {
+  body.ampliada { grid-template-rows: auto minmax(0, 1fr); --titulo-h: 0px; }
+  body.ampliada .am-titulo { display: none; }
+  body.ampliada .am-titulo-img { display: block; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 5; max-width: calc(100% - 340px); padding: 7px 24px 8px; border-radius: 16px; background: rgba(31, 42, 68, .8); color: #FAF8F3; text-align: center; pointer-events: none; box-shadow: 0 4px 18px rgba(20, 24, 40, .35); }
+  body.ampliada .am-titulo-img b { display: block; font: 700 26px/1.2 var(--serif); letter-spacing: .1px; }
+  body.ampliada .am-titulo-img span { display: block; margin-top: 2px; font: 600 12px/1.2 var(--sans); letter-spacing: .5px; text-transform: uppercase; color: #F2D9A0; }
+  body.ampliada .am-dica { top: 84px; }
+}
