@@ -16,12 +16,12 @@ REFEICAO = '''<svg class="vinheta v-refeicao" viewBox="0 0 480 320" role="img" a
 <filter id="r-sombra" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs>
 <image href="img/cena2-restaurante-fundo.jpg" x="0" y="0" width="480" height="320" preserveAspectRatio="xMidYMid slice"/>
 <ellipse class="brilho-lampada mistura" cx="240" cy="52" rx="140" ry="74" fill="url(#r-brilho)"/>
-<ellipse cx="203" cy="298" rx="112" ry="8" fill="#2A1408" opacity=".42" filter="url(#r-sombra)"/>
-<ellipse cx="359" cy="295" rx="32" ry="4.5" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
-<image class="familia-img" href="img/cena2-restaurante-familia.webp" x="91" y="106.6" width="224" height="191.4"/>
-<image class="garcom-img" href="img/cena2-garcom.webp" x="302.5" y="142" width="83.5" height="152"/>
-<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="150.5" y="144.5" width="44" height="42.5"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="210" y="142.5" width="44" height="42.5"/><image class="vp c mistura" href="img/cena1-vapor.jpg" x="308.5" y="129" width="38" height="36.7"/></g>
-<g fill="#E0526A"><path class="coracao h1" d="M130 120c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M290 112c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M250 96c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
+<ellipse cx="191" cy="298" rx="99" ry="7.5" fill="#2A1408" opacity=".42" filter="url(#r-sombra)"/>
+<ellipse cx="353" cy="296" rx="40" ry="5.5" fill="#2A1408" opacity=".4" filter="url(#r-sombra)"/>
+<image class="familia-img" href="img/cena2-restaurante-familia.webp" x="91" y="126.5" width="200" height="171.0"/>
+<image class="garcom-img" href="img/cena2-garcom.webp" x="283" y="106" width="103" height="187.6"/>
+<g class="vapores"><image class="vp a mistura" href="img/cena1-vapor.jpg" x="143.8" y="159" width="40" height="38.6"/><image class="vp b mistura" href="img/cena1-vapor.jpg" x="196.8" y="158" width="40" height="38.6"/><image class="vp c mistura" href="img/cena1-vapor.jpg" x="289" y="88" width="46" height="44.4"/></g>
+<g fill="#E0526A"><path class="coracao h1" d="M130 140c-8-10-22 1-12 12l12 11 12-11c10-11-4-22-12-12z"/><path class="coracao h2" d="M262 128c-7-9-19 1-10 10l10 10 10-10c9-10-3-19-10-10z"/><path class="coracao h3" d="M214 118c-6-8-16 1-8 9l8 8 8-8c8-9-2-17-8-9z"/></g>
 </svg>'''
 
 FIM = '''<svg class="vinheta v-fim" viewBox="0 0 480 320" role="img" aria-label="Uma família descalça na grama de um hotel fazenda, dando capim a um cavalinho e rindo com as galinhas, com o casarão do hotel e a piscina ao fundo e nuvens passando">
