@@ -84,14 +84,14 @@
 @keyframes faixa { to { transform: translateX(-100px); } }
 .vig.on .v-carro .morros.longe { animation: morro 26s linear infinite; }
 .vig.on .v-carro .morros.perto { animation: morro 11s linear infinite; }
-@keyframes morro { to { transform: translateX(480px); } }
+@keyframes morro { to { transform: translateX(-480px); } }
 .vig.on .v-carro .nv { animation: nuvem 40s linear infinite; }
 .vig.on .v-carro .n2 { animation-duration: 55s; }
 @keyframes nuvem { from { transform: translateX(0); } to { transform: translateX(-560px); } }
 .vig.on .v-carro .carro-corpo { animation: balanca-carro 1s ease-in-out infinite; transform-box: fill-box; }
 @keyframes balanca-carro { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
 .vig.on .v-carro .roda { animation: gira .5s linear infinite; transform-box: fill-box; transform-origin: center; }
-@keyframes gira { to { transform: rotate(-360deg); } }
+@keyframes gira { to { transform: rotate(360deg); } }
 .vig.on .v-carro .vt { animation: vento .9s linear infinite; transform-box: fill-box; }
 .vig.on .v-carro .vt.b { animation-delay: .3s; } .vig.on .v-carro .vt.c { animation-delay: .6s; }
 @keyframes vento { 0% { transform: translateX(30px); opacity: 0; } 30% { opacity: .9; } 100% { transform: translateX(-60px); opacity: 0; } }
@@ -298,3 +298,6 @@ hr.fino { margin: 8px 0; border: 0; border-top: 1px dashed rgba(128, 128, 128, .
 .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
 .rodape-concl { margin: 0; font-size: 14px; color: var(--mudo); }
 @media (max-width: 760px) { .concl { padding: 8px 14px 60px; } .concl-duas { grid-template-columns: 1fr; } .concl-hero { height: 52vh; } }
+
+/* botão "Continuar" do lado direito, junto do Próximo */
+.proxima { flex-direction: row-reverse; }

@@ -76,13 +76,13 @@ VIAGEM = '''<svg class="vinheta v-viagem" viewBox="0 0 480 320" role="img" aria-
 </defs>
 <rect width="480" height="320" fill="url(#g-ceu)"/>
 <g fill="#FFFFFF"><circle class="tw t1" cx="52" cy="48" r="1.6"/><circle class="tw t2" cx="140" cy="86" r="1.2"/><circle class="tw t3" cx="396" cy="40" r="1.8"/><circle class="tw t1" cx="440" cy="102" r="1.2"/><circle class="tw t2" cx="220" cy="30" r="1.4"/><circle class="tw t3" cx="330" cy="74" r="1.1"/></g>
-<circle cx="240" cy="430" r="250" fill="url(#g-globo)"/>
+<circle cx="240" cy="430" r="266" fill="#8FD0FF" opacity=".28"/><circle cx="240" cy="430" r="250" fill="url(#g-globo)"/><g fill="#FFFFFF" opacity=".55"><ellipse cx="150" cy="226" rx="34" ry="6"/><ellipse cx="330" cy="214" rx="40" ry="6"/><ellipse cx="240" cy="236" rx="48" ry="5"/><ellipse cx="410" cy="250" rx="26" ry="5"/></g>
 <path d="M120 250q30-26 70-18q34 8 50-8q26-20 66 6q34 22 70 6l20 30q-70 20-130 6q-60-14-146 8z" fill="#5BA86A" opacity=".85"/>
 <path d="M300 232q18-10 36 0q10 14-6 22q-22 4-30-22z" fill="#6DB879" opacity=".9"/>
 <path id="g-rota" d="M96 206Q240 20 384 206" fill="none" stroke="#FFE08A" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>
 <circle cx="96" cy="206" r="7" fill="#FF7A59"/><circle cx="384" cy="206" r="7" fill="#FF7A59"/>
 <path d="M84 206l12-44l12 44z" fill="#2C2540" opacity=".85"/><path d="M366 206h36v-22l-6-8v-10h-6v10h-12v-10h-6v10l-6 8z" fill="#2C2540" opacity=".85"/>
-<g><path d="M-18 0l6-3 22-12 4 1-12 14 14 1 6-5 3 1-3 6 3 6-3 1-6-5-14 1 12 14-4 1-22-12-6-3z" fill="#FFFFFF"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#g-rota"/></animateMotion></path></g>
+<g><path transform="scale(-1 1)" d="M-18 0l6-3 22-12 4 1-12 14 14 1 6-5 3 1-3 6 3 6-3 1-6-5-14 1 12 14-4 1-22-12-6-3z" fill="#FFFFFF"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#g-rota"/></animateMotion></path></g>
 </svg>'''
 
 CARRO = '''<svg class="vinheta v-carro" viewBox="0 0 480 320" role="img" aria-label="Um carro em uma estrada aberta, em um dia de sol, com a paisagem passando">
