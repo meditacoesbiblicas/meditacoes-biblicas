@@ -686,6 +686,9 @@ def cruz_html():
     leg = ''.join(
         '<li data-n="%s"><span class="num">%s</span><div class="cc-leg-txt"><b>%s <span class="vs">%s</span></b><p>%s</p></div></li>' % (n_, n_, nome, vs, frase)
         for n_, nome, vs, frase, x, y in CRUZ_ITENS)
+    leg += ('<li class="fora"><span class="num">8</span><div class="cc-leg-txt"><b>Perseguidos <span class="vs">Mt 5:10–12</span> <span class="fora-rot">Fora da imagem</span></b>'
+            '<p>Não está na imagem porque vem de fora: não depende de quem caminha, e sim de quem persegue. Tem a mesma promessa da primeira porta, o Reino dos céus. '
+            '<a class="ref-vers" href="v10-12.html#v10">Ver a porta 8 →</a></p></div></li>')
     return ('<figure class="cc-cruz" id="caminho-cristo">\n'
             '    <div class="cc-cruz-img">\n'
             '      <div class="cc-cruz-quadro">\n'
@@ -695,10 +698,10 @@ def cruz_html():
             '      <div class="cc-pop" id="cc-pop" role="region" aria-live="polite" aria-label="Detalhe da porta selecionada" hidden></div>\n'
             '    </div>\n'
             '    <figcaption><span class="cc-dica-pc">Passe o mouse sobre os números</span><span class="cc-dica-toque">Toque nos números</span> para ver cada porta. '
-            'A oitava, a perseguição, não aparece na imagem: ela vem de fora. Ilustração criada com IA.</figcaption>\n'
+            'A oitava porta, a perseguição, não aparece na imagem: veja o item 8 abaixo. Ilustração criada com IA.</figcaption>\n'
             '  </figure>\n'
             '  <noscript><style>.cc-pin { display: none; }</style></noscript>\n'
-            '  <ol class="cc-legenda" aria-label="As sete portas que acontecem em você">%s</ol>\n'
+            '  <ol class="cc-legenda" aria-label="As oito portas: sete acontecem em você e a oitava vem de fora">%s</ol>\n'
             '  <script>\n%s\n  </script>\n'
             '  <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação. A salvação é pela graça (Ef 2:8-9). '
             'Quem olha para Cristo é transformado por ele: a humildade, o choro e a mansidão nascem de olhar para a cruz, e a misericórdia, a pureza e a paz são fruto de '
