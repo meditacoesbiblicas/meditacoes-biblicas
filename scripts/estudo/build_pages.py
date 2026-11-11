@@ -686,7 +686,10 @@ def cruz_html():
             '  </figure>\n'
             '  <noscript><style>.cc-pin { display: none; }</style></noscript>\n'
             '  <ol class="cc-legenda" aria-label="As sete portas que acontecem em você">%s</ol>\n'
-            '  <script>\n%s\n  </script>' % (CRUZ_ALT, pins, leg, CRUZ_JS))
+            '  <script>\n%s\n  </script>\n'
+            '  <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação. A salvação é pela graça (Ef 2:8-9). '
+            'Quem olha para Cristo é transformado por ele: a humildade, o choro e a mansidão nascem de olhar para a cruz, e a misericórdia, a pureza e a paz são fruto de '
+            'permanecer nele (Jo 15:5). É Cristo quem atrai (Jo 12:32) e quem faz. Essas bênçãos são a resposta de quem recebe o que Deus revelou, não a condição para ser salvo.</p>' % (CRUZ_ALT, pins, leg, CRUZ_JS))
 
 
 def de_cima():
