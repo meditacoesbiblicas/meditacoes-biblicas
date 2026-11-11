@@ -625,14 +625,15 @@ pagina('v10-12.html', 'Mateus 5:10–12 · Perseguidos — Sermão do Monte', 'M
 # conclusao.html — conclusão de TODAS as bem-aventuranças (página própria, largura total; só quem chegou à porta 8 chega aqui)
 # =====================================================================================
 CRUZ_ITENS = [
-    # n, nome, versículo, frase (a legenda e as caixinhas usam o mesmo texto), x%, y% do marcador sobre a imagem
-    ('1', 'Pobres em espírito', 'Mt 5:3', 'Reconhece que precisa de Deus.', 9.0, 72.0),
-    ('2', 'Os que choram', 'Mt 5:4', 'Chora pelo pecado ao olhar para a cruz.', 21.5, 66.0),
-    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade (Sl 37:5).', 33.0, 62.0),
-    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida (Jo 6:35).', 46.5, 46.0),
-    ('5', 'Misericordiosos', 'Mt 5:7', 'Levanta quem caiu, como foi levantado.', 69.5, 44.5),
-    ('6', 'Puros de coração', 'Mt 5:8', 'A pureza vem de dentro, de quem permanece em Cristo.', 72.5, 68.0),
-    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai (2Co 5:18).', 87.5, 88.0),
+    # n, nome, versículo, frase (a legenda e as caixinhas usam o mesmo texto),
+    # x%, y% do marcador sobre o boneco (computador); mx%, my% do marcador no celular (ao lado/acima do boneco, ligado a ele por um fio); hx%, hy% da cabeça do boneco
+    ('1', 'Pobres em espírito', 'Mt 5:3', 'Reconhece que precisa de Deus.', 9.0, 72.0, 10.3, 49.0, 10.3, 62.6),
+    ('2', 'Os que choram', 'Mt 5:4', 'Chora pelo pecado ao olhar para a cruz.', 21.5, 66.0, 21.2, 40.0, 21.2, 52.8),
+    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade (Sl 37:5).', 33.0, 62.0, 33.0, 30.0, 33.0, 43.1),
+    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida (Jo 6:35).', 46.5, 46.0, 45.0, 20.0, 45.0, 32.7),
+    ('5', 'Misericordiosos', 'Mt 5:7', 'Levanta quem caiu, como foi levantado.', 69.5, 44.5, 69.5, 23.0, 69.5, 36.2),
+    ('6', 'Puros de coração', 'Mt 5:8', 'A pureza vem de dentro, de quem permanece em Cristo.', 72.5, 68.0, 81.0, 50.0, 69.9, 54.9),
+    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai (2Co 5:18).', 87.5, 88.0, 87.5, 64.0, 87.5, 75.8),
 ]
 CRUZ_ALT = ('Um viajante caminha em direção à cruz, iluminado pela luz dela: humilde, chorando e confiando antes da cruz; '
             'depois dela, levanta o caído, tem o coração puro e reconcilia pessoas.')
@@ -681,11 +682,14 @@ CRUZ_JS = """(function () {
 
 def cruz_html():
     pins = ''.join(
-        '<button type="button" class="cc-pin" data-n="%s" style="left:%s%%;top:%s%%" aria-label="Porta %s · %s (%s): %s" aria-expanded="false" aria-controls="cc-pop"><span>%s</span></button>'
-        % (n_, x, y, n_, nome, vs, frase, n_) for n_, nome, vs, frase, x, y in CRUZ_ITENS)
+        '<button type="button" class="cc-pin" data-n="%s" style="left:%s%%;top:%s%%;--mx:%s%%;--my:%s%%" aria-label="Porta %s · %s (%s): %s" aria-expanded="false" aria-controls="cc-pop"><span>%s</span></button>'
+        % (n_, x, y, mx, my, n_, nome, vs, frase, n_) for n_, nome, vs, frase, x, y, mx, my, hx, hy in CRUZ_ITENS)
+    guias = ('<svg class="cc-guias" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">' + ''.join(
+        '<line class="fio" x1="%s" y1="%s" x2="%s" y2="%s"/><line class="ponta" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (mx, my, hx, hy, hx, hy, hx, hy)
+        for n_, nome, vs, frase, x, y, mx, my, hx, hy in CRUZ_ITENS) + '</svg>')
     leg = ''.join(
         '<li data-n="%s"><span class="num">%s</span><div class="cc-leg-txt"><b>%s <span class="vs">%s</span></b><p>%s</p></div></li>' % (n_, n_, nome, vs, frase)
-        for n_, nome, vs, frase, x, y in CRUZ_ITENS)
+        for n_, nome, vs, frase, x, y, mx, my, hx, hy in CRUZ_ITENS)
     leg += ('<li class="fora"><span class="num">8</span><div class="cc-leg-txt"><b>Perseguidos <span class="vs">Mt 5:10–12</span> <span class="fora-rot">Fora da imagem</span></b>'
             '<p>Não está na imagem porque vem de fora: não depende de quem caminha, e sim de quem persegue. Tem a mesma promessa da primeira porta, o Reino dos céus. '
             '<a class="ref-vers" href="v10-12.html#v10">Ver a porta 8 →</a></p></div></li>')
@@ -693,6 +697,7 @@ def cruz_html():
             '    <div class="cc-cruz-img">\n'
             '      <div class="cc-cruz-quadro">\n'
             '        <img src="caminho-cristo.jpg" width="1600" height="893" loading="lazy" alt="%s">\n'
+            '        %s\n'
             '        %s\n'
             '      </div>\n'
             '      <div class="cc-pop" id="cc-pop" role="region" aria-live="polite" aria-label="Detalhe da porta selecionada" hidden></div>\n'
@@ -705,7 +710,7 @@ def cruz_html():
             '  <script>\n%s\n  </script>\n'
             '  <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação. A salvação é pela graça (Ef 2:8-9). '
             'Quem olha para Cristo é transformado por ele: a humildade, o choro e a mansidão nascem de olhar para a cruz, e a misericórdia, a pureza e a paz são fruto de '
-            'permanecer nele (Jo 15:5). É Cristo quem atrai (Jo 12:32) e quem faz. Essas bênçãos são a resposta de quem recebe o que Deus revelou, não a condição para ser salvo.</p>' % (CRUZ_ALT, pins, leg, CRUZ_JS))
+            'permanecer nele (Jo 15:5). É Cristo quem atrai (Jo 12:32) e quem faz. Essas bênçãos são a resposta de quem recebe o que Deus revelou, não a condição para ser salvo.</p>' % (CRUZ_ALT, guias, pins, leg, CRUZ_JS))
 
 
 def de_cima():
