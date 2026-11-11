@@ -92,6 +92,61 @@
   <p class="cc-atualiza"><span>Atualização</span> 30/10/2026</p>
   <p class="cc-intro">Há mais uma diferença entre as portas. As <b>sete primeiras</b> descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela: ela reconhece a sua pobreza, chora pelo pecado, aprende a ser mansa, tem fome de justiça, e daí nascem a misericórdia, a pureza e a paz. São mudanças de caráter. A <b>oitava</b> é diferente: não depende de mim. Não está em mim ser perseguido; é preciso que alguém me persiga.</p>
   <p class="cc-intro">E o centro das sete é a porta 4: três vêm antes dela e três vêm depois. Esta é uma leitura para meditar. O texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
+<figure class="cc-cruz" id="caminho-cristo">
+    <div class="cc-cruz-img">
+      <div class="cc-cruz-quadro">
+        <img src="caminho-cristo.jpg" width="1600" height="893" loading="lazy" alt="Um viajante caminha em direção à cruz, iluminado pela luz dela: humilde, chorando e confiando antes da cruz; depois dela, levanta o caído, tem o coração puro e reconcilia pessoas.">
+        <button type="button" class="cc-pin" data-n="1" style="left:9.0%;top:72.0%" aria-label="Porta 1 · Pobres em espírito (Mt 5:3): Reconhece que precisa de Deus." aria-expanded="false" aria-controls="cc-pop"><span>1</span></button><button type="button" class="cc-pin" data-n="2" style="left:21.5%;top:66.0%" aria-label="Porta 2 · Os que choram (Mt 5:4): Chora pelo pecado ao olhar para a cruz." aria-expanded="false" aria-controls="cc-pop"><span>2</span></button><button type="button" class="cc-pin" data-n="3" style="left:33.0%;top:62.0%" aria-label="Porta 3 · Mansos (Mt 5:5): Entrega o peso e confia, sem ansiedade (Sl 37:5)." aria-expanded="false" aria-controls="cc-pop"><span>3</span></button><button type="button" class="cc-pin" data-n="4" style="left:46.5%;top:46.0%" aria-label="Porta 4 · Fome e sede de justiça (Mt 5:6): É saciado em Cristo, o pão da vida (Jo 6:35)." aria-expanded="false" aria-controls="cc-pop"><span>4</span></button><button type="button" class="cc-pin" data-n="5" style="left:69.5%;top:44.5%" aria-label="Porta 5 · Misericordiosos (Mt 5:7): Levanta quem caiu, como foi levantado." aria-expanded="false" aria-controls="cc-pop"><span>5</span></button><button type="button" class="cc-pin" data-n="6" style="left:72.5%;top:68.0%" aria-label="Porta 6 · Puros de coração (Mt 5:8): A pureza vem de dentro, de quem permanece em Cristo." aria-expanded="false" aria-controls="cc-pop"><span>6</span></button><button type="button" class="cc-pin" data-n="7" style="left:87.5%;top:88.0%" aria-label="Porta 7 · Pacificadores (Mt 5:9): Reconcilia, continuando a obra do Pai (2Co 5:18)." aria-expanded="false" aria-controls="cc-pop"><span>7</span></button>
+      </div>
+      <div class="cc-pop" id="cc-pop" role="region" aria-live="polite" aria-label="Detalhe da porta selecionada" hidden></div>
+    </div>
+    <figcaption><span class="cc-dica-pc">Passe o mouse sobre os números</span><span class="cc-dica-toque">Toque nos números</span> para ver cada porta. A oitava, a perseguição, não aparece na imagem: ela vem de fora. Ilustração criada com IA.</figcaption>
+  </figure>
+  <noscript><style>.cc-pin { display: none; }</style></noscript>
+  <ol class="cc-legenda" aria-label="As sete portas que acontecem em você"><li data-n="1"><span class="num">1</span><div class="cc-leg-txt"><b>Pobres em espírito <span class="vs">Mt 5:3</span></b><p>Reconhece que precisa de Deus.</p></div></li><li data-n="2"><span class="num">2</span><div class="cc-leg-txt"><b>Os que choram <span class="vs">Mt 5:4</span></b><p>Chora pelo pecado ao olhar para a cruz.</p></div></li><li data-n="3"><span class="num">3</span><div class="cc-leg-txt"><b>Mansos <span class="vs">Mt 5:5</span></b><p>Entrega o peso e confia, sem ansiedade (<a class="ref-vers" href="#v-sl-37-5">Sl 37:5</a>).</p></div></li><li data-n="4"><span class="num">4</span><div class="cc-leg-txt"><b>Fome e sede de justiça <span class="vs">Mt 5:6</span></b><p>É saciado em Cristo, o pão da vida (<a class="ref-vers" href="#v-jo-6-35">Jo 6:35</a>).</p></div></li><li data-n="5"><span class="num">5</span><div class="cc-leg-txt"><b>Misericordiosos <span class="vs">Mt 5:7</span></b><p>Levanta quem caiu, como foi levantado.</p></div></li><li data-n="6"><span class="num">6</span><div class="cc-leg-txt"><b>Puros de coração <span class="vs">Mt 5:8</span></b><p>A pureza vem de dentro, de quem permanece em Cristo.</p></div></li><li data-n="7"><span class="num">7</span><div class="cc-leg-txt"><b>Pacificadores <span class="vs">Mt 5:9</span></b><p>Reconcilia, continuando a obra do Pai (<a class="ref-biblia" href="https://www.bibliaonline.com.br/arc/2co/5/18+" target="_blank" rel="noopener" title="Ler na Bíblia Online (ARC)">2Co 5:18</a>).</p></div></li></ol>
+  <script>
+(function () {
+  var fig = document.querySelector('.cc-cruz-img'); if (!fig) return;
+  var pins = [].slice.call(fig.querySelectorAll('.cc-pin')), pop = document.getElementById('cc-pop');
+  var atual = null, fixo = false;
+  function texto(n) { var el = document.querySelector('.cc-legenda li[data-n="' + n + '"] .cc-leg-txt'); return el ? el.innerHTML : ''; }
+  function posicionar(p) {
+    if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { pop.className = 'cc-pop abaixo'; pop.style.left = ''; pop.style.top = ''; return; }
+    var fr = fig.getBoundingClientRect(), pr = p.getBoundingClientRect();
+    var w = pop.offsetWidth, h = pop.offsetHeight, cx = pr.left + pr.width / 2 - fr.left;
+    var x = Math.max(8, Math.min(fr.width - w - 8, cx - w / 2));
+    var y = pr.top - fr.top - h - 12;
+    if (y > 8) { pop.className = 'cc-pop em-cima'; } else { y = pr.bottom - fr.top + 12; pop.className = 'cc-pop em-baixo'; }
+    y = Math.max(8, Math.min(fr.height - h - 8, y));
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+    pop.style.setProperty('--seta', Math.max(14, Math.min(w - 14, cx - x)) + 'px');
+  }
+  function mostrar(p) {
+    atual = p;
+    pop.innerHTML = '<span class="cc-pop-num">' + p.getAttribute('data-n') + '</span><div>' + texto(p.getAttribute('data-n')) + '</div>';
+    pop.hidden = false; posicionar(p);
+    pins.forEach(function (b) { var on = b === p; b.classList.toggle('on', on); b.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+  }
+  function esconder() {
+    atual = null; fixo = false; pop.hidden = true;
+    pins.forEach(function (b) { b.classList.remove('on'); b.setAttribute('aria-expanded', 'false'); });
+  }
+  pins.forEach(function (p) {
+    p.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse' && !fixo) mostrar(p); });
+    p.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !fixo) esconder(); });
+    p.addEventListener('focus', function () { if (!fixo) mostrar(p); });
+    p.addEventListener('blur', function () { if (!fixo) esconder(); });
+    p.addEventListener('click', function (e) {
+      e.stopPropagation();
+      p.classList.remove('clicou'); void p.offsetWidth; p.classList.add('clicou');
+      if (atual === p && fixo) { esconder(); } else { mostrar(p); fixo = true; }
+    });
+  });
+  document.addEventListener('click', function (e) { if (atual && !pop.contains(e.target)) esconder(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && atual) { var p = atual; esconder(); p.focus(); } });
+  window.addEventListener('resize', function () { if (atual) posicionar(atual); });
+})();
+  </script>
   <div class="sete" role="group" aria-label="As oito portas em três blocos e a oitava, à parte">
     <div class="sete-bloco antes">
       <p class="sete-rot">Chegando a Cristo</p>

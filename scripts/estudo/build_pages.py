@@ -611,6 +611,84 @@ pagina('v10-12.html', 'Mateus 5:10–12 · Perseguidos — Sermão do Monte', 'M
 # =====================================================================================
 # conclusao.html — conclusão de TODAS as bem-aventuranças (página própria, largura total; só quem chegou à porta 8 chega aqui)
 # =====================================================================================
+CRUZ_ITENS = [
+    # n, nome, versículo, frase (a legenda e as caixinhas usam o mesmo texto), x%, y% do marcador sobre a imagem
+    ('1', 'Pobres em espírito', 'Mt 5:3', 'Reconhece que precisa de Deus.', 9.0, 72.0),
+    ('2', 'Os que choram', 'Mt 5:4', 'Chora pelo pecado ao olhar para a cruz.', 21.5, 66.0),
+    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade (Sl 37:5).', 33.0, 62.0),
+    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida (Jo 6:35).', 46.5, 46.0),
+    ('5', 'Misericordiosos', 'Mt 5:7', 'Levanta quem caiu, como foi levantado.', 69.5, 44.5),
+    ('6', 'Puros de coração', 'Mt 5:8', 'A pureza vem de dentro, de quem permanece em Cristo.', 72.5, 68.0),
+    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai (2Co 5:18).', 87.5, 88.0),
+]
+CRUZ_ALT = ('Um viajante caminha em direção à cruz, iluminado pela luz dela: humilde, chorando e confiando antes da cruz; '
+            'depois dela, levanta o caído, tem o coração puro e reconcilia pessoas.')
+CRUZ_JS = """(function () {
+  var fig = document.querySelector('.cc-cruz-img'); if (!fig) return;
+  var pins = [].slice.call(fig.querySelectorAll('.cc-pin')), pop = document.getElementById('cc-pop');
+  var atual = null, fixo = false;
+  function texto(n) { var el = document.querySelector('.cc-legenda li[data-n="' + n + '"] .cc-leg-txt'); return el ? el.innerHTML : ''; }
+  function posicionar(p) {
+    if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { pop.className = 'cc-pop abaixo'; pop.style.left = ''; pop.style.top = ''; return; }
+    var fr = fig.getBoundingClientRect(), pr = p.getBoundingClientRect();
+    var w = pop.offsetWidth, h = pop.offsetHeight, cx = pr.left + pr.width / 2 - fr.left;
+    var x = Math.max(8, Math.min(fr.width - w - 8, cx - w / 2));
+    var y = pr.top - fr.top - h - 12;
+    if (y > 8) { pop.className = 'cc-pop em-cima'; } else { y = pr.bottom - fr.top + 12; pop.className = 'cc-pop em-baixo'; }
+    y = Math.max(8, Math.min(fr.height - h - 8, y));
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+    pop.style.setProperty('--seta', Math.max(14, Math.min(w - 14, cx - x)) + 'px');
+  }
+  function mostrar(p) {
+    atual = p;
+    pop.innerHTML = '<span class="cc-pop-num">' + p.getAttribute('data-n') + '</span><div>' + texto(p.getAttribute('data-n')) + '</div>';
+    pop.hidden = false; posicionar(p);
+    pins.forEach(function (b) { var on = b === p; b.classList.toggle('on', on); b.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+  }
+  function esconder() {
+    atual = null; fixo = false; pop.hidden = true;
+    pins.forEach(function (b) { b.classList.remove('on'); b.setAttribute('aria-expanded', 'false'); });
+  }
+  pins.forEach(function (p) {
+    p.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse' && !fixo) mostrar(p); });
+    p.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !fixo) esconder(); });
+    p.addEventListener('focus', function () { if (!fixo) mostrar(p); });
+    p.addEventListener('blur', function () { if (!fixo) esconder(); });
+    p.addEventListener('click', function (e) {
+      e.stopPropagation();
+      p.classList.remove('clicou'); void p.offsetWidth; p.classList.add('clicou');
+      if (atual === p && fixo) { esconder(); } else { mostrar(p); fixo = true; }
+    });
+  });
+  document.addEventListener('click', function (e) { if (atual && !pop.contains(e.target)) esconder(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && atual) { var p = atual; esconder(); p.focus(); } });
+  window.addEventListener('resize', function () { if (atual) posicionar(atual); });
+})();"""
+
+
+def cruz_html():
+    pins = ''.join(
+        '<button type="button" class="cc-pin" data-n="%s" style="left:%s%%;top:%s%%" aria-label="Porta %s · %s (%s): %s" aria-expanded="false" aria-controls="cc-pop"><span>%s</span></button>'
+        % (n_, x, y, n_, nome, vs, frase, n_) for n_, nome, vs, frase, x, y in CRUZ_ITENS)
+    leg = ''.join(
+        '<li data-n="%s"><span class="num">%s</span><div class="cc-leg-txt"><b>%s <span class="vs">%s</span></b><p>%s</p></div></li>' % (n_, n_, nome, vs, frase)
+        for n_, nome, vs, frase, x, y in CRUZ_ITENS)
+    return ('<figure class="cc-cruz" id="caminho-cristo">\n'
+            '    <div class="cc-cruz-img">\n'
+            '      <div class="cc-cruz-quadro">\n'
+            '        <img src="caminho-cristo.jpg" width="1600" height="893" loading="lazy" alt="%s">\n'
+            '        %s\n'
+            '      </div>\n'
+            '      <div class="cc-pop" id="cc-pop" role="region" aria-live="polite" aria-label="Detalhe da porta selecionada" hidden></div>\n'
+            '    </div>\n'
+            '    <figcaption><span class="cc-dica-pc">Passe o mouse sobre os números</span><span class="cc-dica-toque">Toque nos números</span> para ver cada porta. '
+            'A oitava, a perseguição, não aparece na imagem: ela vem de fora. Ilustração criada com IA.</figcaption>\n'
+            '  </figure>\n'
+            '  <noscript><style>.cc-pin { display: none; }</style></noscript>\n'
+            '  <ol class="cc-legenda" aria-label="As sete portas que acontecem em você">%s</ol>\n'
+            '  <script>\n%s\n  </script>' % (CRUZ_ALT, pins, leg, CRUZ_JS))
+
+
 def de_cima():
     TAB = [
         ('1', 'Pobres em espírito', 'v03.html#v3', 'deles é o Reino dos céus', 'presente'),
@@ -644,6 +722,7 @@ def de_cima():
   <p class="cc-atualiza"><span>Atualização</span> 30/10/2026</p>
   <p class="cc-intro">Há mais uma diferença entre as portas. As <b>sete primeiras</b> descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela: ela reconhece a sua pobreza, chora pelo pecado, aprende a ser mansa, tem fome de justiça, e daí nascem a misericórdia, a pureza e a paz. São mudanças de caráter. A <b>oitava</b> é diferente: não depende de mim. Não está em mim ser perseguido; é preciso que alguém me persiga.</p>
   <p class="cc-intro">E o centro das sete é a porta 4: três vêm antes dela e três vêm depois. Esta é uma leitura para meditar. O texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
+@@CRUZ@@
   <div class="sete" role="group" aria-label="As oito portas em três blocos e a oitava, à parte">
     <div class="sete-bloco antes">
       <p class="sete-rot">Chegando a Cristo</p>
@@ -694,6 +773,7 @@ def de_cima():
   </article>
 </section>
 """
+    sete = sete.replace('@@CRUZ@@', cruz_html())
     sete = sete.replace('@@A@@', ''.join(porta(*t) for t in (('1', 'Pobres em espírito', 'v03.html#v3'), ('2', 'Os que choram', 'v04.html#v4'), ('3', 'Mansos', 'v05.html#v5'))))
     sete = sete.replace('@@C@@', porta('4', 'Fome e sede de justiça', 'v06.html#v6'))
     sete = sete.replace('@@D@@', ''.join(porta(*t) for t in (('5', 'Misericordiosos', 'v07.html#v7'), ('6', 'Puros de coração', 'v08.html#v8'), ('7', 'Pacificadores', 'v09.html#v9'))))
