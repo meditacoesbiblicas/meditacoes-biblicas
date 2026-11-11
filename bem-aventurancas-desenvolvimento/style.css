@@ -885,10 +885,6 @@ body.ampliada .am-geral:focus-visible { box-shadow: 0 0 0 3px #F2D9A0; }
   .cc-pin:hover, .cc-pin:focus-visible, .cc-pin.on { transform: translate(-50%, -50%) scale(1.25); }
 }
 
-/* celular: o número fica numa região vazia perto do boneco e um fio fino aponta para ele, parando antes da cabeça (nada cobre o boneco) */
-.cc-guias { display: none; }
-@media (max-width: 760px) {
-  .cc-guias { display: block; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, .75)); }
-  .cc-guias .fio { stroke: #F2D9A0; stroke-width: 1.4; vector-effect: non-scaling-stroke; opacity: .95; }
-  .cc-pin { left: var(--mx) !important; top: var(--my) !important; }   /* vence o left/top inline do computador */
-}
+/* os números ficam numa região vazia perto do boneco e um fio fino aponta para ele, parando antes da cabeça (nada cobre rosto, mãos nem gesto) */
+.cc-guias { display: block; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, .75)); }
+.cc-guias .fio { stroke: #F2D9A0; stroke-width: 1.6; vector-effect: non-scaling-stroke; opacity: .95; }
