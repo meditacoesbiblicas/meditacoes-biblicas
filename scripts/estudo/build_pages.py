@@ -43,7 +43,7 @@ def pixel(arq):
 
 def crumbs(atual):
     li = []
-    for arq, rot in PAGINAS + [('de-cima.html', 'Visão geral: as oito portas de cima'), ('conclusao.html', 'Conclusão')]:
+    for arq, rot in PAGINAS + [('de-cima.html', 'Visão geral: as oito portas de cima')]:
         cur = ' aria-current="page"' if arq == atual else ''
         li.append('    <li><a href="%s"%s>%s</a></li>' % (arq, cur, rot))
     for i, (arq, rot) in enumerate(DEPOIS):
@@ -51,7 +51,7 @@ def crumbs(atual):
         cls = ' class="after"' if i == 0 else ''
         li.append('    <li%s><a href="%s"%s>%s</a></li>' % (cls, arq, cur, rot))
     voltar = '<a class="back" href="index.html">← Sermão do Monte</a>'
-    if atual in [a for a, _ in PAGINAS] + [('conclusao.html', '')]:
+    if atual in [a for a, _ in PAGINAS]:
         # nas páginas das bem-aventuranças, o 2º botão volta para a ilustração de onde o leitor veio (ampliada ou página do caminho); o script abaixo troca o destino
         voltar += '\n    <a class="back" id="voltar-origem" href="caminho-ampliado.html">← A ilustração das portas</a>'
     return ('<nav class="crumbs" aria-label="Navegação">\n  <div class="voltares">\n    ' + voltar + '\n  </div>\n  <ul class="pages">\n'
@@ -790,17 +790,28 @@ def de_cima():
   </div>
 </section>
 
+<section class="cc-sec" id="conclusao" aria-labelledby="cc-fim">
+  <h2 id="cc-fim">Conclusão: um só caminho, oito portas</h2>
+  <article class="note gray cc-cartao">
+    <span class="tag">Conclusão</span>
+    <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Passando por todas elas, da primeira à oitava, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
+    <p>E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”. Não é uma promessa só para o futuro: vale para hoje. Quem vive em humildade diante de Deus e quem é perseguido por causa da justiça já tem, agora, o Reino dos céus. As outras seis promessas se cumprem no futuro; esta vale desde já.</p>
+  </article>
+</section>
+
 <div class="volta-imagem fim">
-  <a class="botao-conclusao" href="conclusao.html">Ler a conclusão →</a>
+  <a class="botao-conclusao" href="@@PROX_HREF@@">@@PROX_TXT@@</a>
   <a class="botao-volta" id="volta-imagem" href="caminho-ampliado.html">← Voltar à imagem das portas</a>
 </div>
 '''
+    prox = ('index.html', 'Voltar ao Sermão do Monte →', 'Sermão do Monte') if PARCIAL else ('v13-15.html', 'Continuar: sal e luz →', 'Sal e luz · v.13–16')
+    corpo = corpo.replace('@@PROX_HREF@@', prox[0]).replace('@@PROX_TXT@@', prox[1])
     corpo = corpo.replace('@@SETE@@', sete).replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<title>Visão geral: as oito portas de cima · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('de-cima.html') + '\n' + corpo + '\n'
-            + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('conclusao.html', 'Próxima →', 'Conclusão das bem-aventuranças'))
+            + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
             + '\n\n</div>\n' + pixel('de-cima.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
     gravar(DEST, 'de-cima.html', refs_biblia(refs_egw(html)), RASC)
 
@@ -809,40 +820,20 @@ de_cima()
 
 
 # =====================================================================================
-# conclusao.html — a conclusão das bem-aventuranças, curta (depois de "Visão geral: as oito portas de cima")
+# conclusao.html — só um redirecionamento para de-cima.html#conclusao (a conclusão virou a última seção da visão geral)
 # =====================================================================================
 def conclusao():
-    corpo = '''
-<header class="cc-hero">
-  <div class="cc-hero-texto">
-    <p class="kicker">Mateus 5:3–12 · as oito portas</p>
-    <h1>Conclusão das bem-aventuranças</h1>
-    <p class="lede">Você passou pelas oito portas e olhou a lista de cima. Falta fechar o caminho.</p>
-  </div>
-</header>
-
-''' + '''<section class="cc-fecho" aria-labelledby="cc-fim">
-  <article class="note gray">
-    <span class="tag">Conclusão</span>
-    <h3 id="cc-fim">Um só caminho, oito portas</h3>
-    <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Passando por todas elas, da primeira à oitava, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
-    <p>E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”. Não é uma promessa só para o futuro: vale para hoje. Quem vive em humildade diante de Deus e quem é perseguido por causa da justiça já tem, agora, o Reino dos céus. As outras seis promessas se cumprem no futuro; esta vale desde já.</p>
-  </article>
-  <div class="volta-imagem fim">
-    <a class="botao-conclusao" href="@@PROX_HREF@@">@@PROX_TXT@@</a>
-    <a class="botao-volta" id="volta-imagem" href="caminho-ampliado.html">← Voltar à imagem das portas</a>
-  </div>
-</section>
-'''
-    prox = ('index.html', 'Voltar ao Sermão do Monte →', 'Sermão do Monte') if PARCIAL else ('v13-15.html', 'Continuar: sal e luz →', 'Sal e luz · v.13–16')
-    corpo = corpo.replace('@@PROX_HREF@@', prox[0]).replace('@@PROX_TXT@@', prox[1])
+    # a conclusão agora é a última seção da visão geral; esta página só redireciona, para não quebrar links antigos
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-            '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
-            + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
-            + pager(('de-cima.html', '← Anterior', 'Visão geral: as oito portas de cima'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
-            + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
-    gravar(DEST, 'conclusao.html', refs_biblia(refs_egw(html)), RASC)
+            '<meta http-equiv="refresh" content="0; url=de-cima.html#conclusao">\n'
+            '<link rel="canonical" href="de-cima.html#conclusao">\n'
+            '<title>A conclusão agora está na visão geral · Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n'
+            '<script>location.replace("de-cima.html#conclusao");</script>\n</head>\n<body>\n'
+            '<main class="wrap" style="padding:48px 0;text-align:center">\n'
+            '<p>A conclusão das bem-aventuranças agora faz parte da visão geral das oito portas.</p>\n'
+            '<p><a class="botao-volta" href="de-cima.html#conclusao">Ir para a conclusão →</a></p>\n</main>\n</body>\n</html>\n')
+    gravar(DEST, 'conclusao.html', html, RASC)
 
 
 conclusao()
@@ -951,7 +942,7 @@ v14 = grupo('v14', 'Mateus 5:14–16', 'Luz do mundo',
                   'É a imagem do v.16: o povo de Deus é o candelabro, a luz vem de Cristo e do Espírito, e acesa deve ficar “no velador”, onde dá luz a todos que estão na casa (v.15).']),
     ])
 pagina('v13-15.html', 'Mateus 5:13–16 · Sal e luz — Sermão do Monte', 'Mateus 5:13–16 · o que fazem os bem-aventurados', 'Sal e luz', None, [v13, v14],
-       pager(('v10-12.html', '← Anterior', 'v.10–12 · Perseguidos'), ('v17-20.html', 'Próxima →', 'v.17–20 · A lei e a justiça maior')))
+       pager(('de-cima.html', '← Anterior', 'Visão geral: as oito portas de cima'), ('v17-20.html', 'Próxima →', 'v.17–20 · A lei e a justiça maior')))
 
 # =====================================================================================
 # v.17–20  A lei
