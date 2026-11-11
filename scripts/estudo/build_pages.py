@@ -265,10 +265,9 @@ VOLTA = '''<div class="volta-imagem">
 FINAL8 = '''<aside class="cc-convite" aria-labelledby="cc-conv-t">
   <div class="cc-conv-sinal" aria-hidden="true"><span class="p">(</span><span class="pts"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="p">)</span></div>
   <div class="cc-conv-texto">
-    <p class="cc-conv-kicker">Você chegou à última porta</p>
-    <h2 id="cc-conv-t">Visão geral: as oito portas de cima</h2>
-    <p>Olhe para as oito de uma vez: a moldura que a primeira e a última formam, o que cresce entre elas e o que cada ponta tem de oposto.</p>
-    <a class="cc-conv-botao" href="de-cima.html">Olhar de cima →</a>
+    <h2 id="cc-conv-t">Você percorreu as oito portas.</h2>
+    <p class="cc-conv-chamada">Veja agora o caminho de cima.</p>
+    <a class="cc-conv-botao" href="de-cima.html">Ver a visão geral das oito portas →</a>
   </div>
 </aside>
 <div class="volta-imagem fim">
