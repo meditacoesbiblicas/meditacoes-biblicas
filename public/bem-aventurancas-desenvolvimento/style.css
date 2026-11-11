@@ -808,3 +808,19 @@ body.ampliada .am-titulo-img { display: none; }
 .cc-conv-botao { margin-top: 26px; padding: 20px 40px; min-height: 60px; font-size: clamp(19px, 2.2vw, 23px); line-height: 1.25; box-shadow: 0 10px 26px rgba(0, 0, 0, .38), 0 0 0 3px rgba(242, 217, 160, .35); }
 .cc-conv-botao:hover, .cc-conv-botao:focus-visible { box-shadow: 0 14px 30px rgba(0, 0, 0, .42), 0 0 0 4px rgba(242, 217, 160, .6); }
 @media (max-width: 980px) { .cc-conv-botao { display: block; padding: 18px 22px; text-align: center; } }
+
+/* segundo ponto de entrada para a visão geral: linha discreta abaixo da imagem (não bloqueia nada) */
+body.ampliada { grid-template-rows: auto auto minmax(0, 1fr) auto; box-sizing: border-box; padding-bottom: var(--faixa, 0px); }
+body.ampliada { --depois-h: 44px; }
+body.ampliada .am-depois { box-sizing: border-box; height: var(--depois-h); margin: 0; padding: 0 16px; display: flex; align-items: center; justify-content: center; text-align: center; background: #FAF0DD; border-top: 1px solid rgba(31, 42, 68, .14); font: 500 14px/1.3 var(--sans); }
+body.ampliada .am-depois a { display: inline-block; padding: 6px 10px; color: #5B4A2A; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(91, 74, 42, .5); }
+body.ampliada .am-depois a:hover, body.ampliada .am-depois a:focus-visible { color: var(--navy); text-decoration-color: var(--navy); outline: none; }
+@media (max-width: 760px) { body.ampliada { --depois-h: 54px; } body.ampliada .am-depois { padding: 0 10px; font-size: 13px; } }
+/* telas de toque: a faixa de dica fica logo acima da linha do rodapé */
+@media (hover: none), (max-width: 760px) and (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
+  body.ampliada .am-dica { bottom: calc(max(10px, env(safe-area-inset-bottom)) + var(--faixa, 0px) + var(--depois-h, 0px)); }
+}
+@media (hover: hover) and (min-width: 761px) and (min-height: 521px) {
+  body.ampliada { grid-template-rows: auto minmax(0, 1fr) auto; }
+  body.ampliada .am-dica { bottom: 16px; }   /* a faixa do rascunho agora é descontada no rodapé da página, não na dica */
+}
