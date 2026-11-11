@@ -720,9 +720,9 @@ def cruz_html():
             '  <noscript><style>.cc-pin { display: none; }</style></noscript>\n'
             '  %s\n'
             '  <script>\n%s\n  </script>\n'
-            '  <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação. A salvação é pela graça (Ef 2:8-9). '
-            'Quem olha para Cristo é transformado por ele: a humildade, o choro e a mansidão nascem de olhar para a cruz, e a misericórdia, a pureza e a paz são fruto de '
-            'permanecer nele (Jo 15:5). É Cristo quem atrai (Jo 12:32) e quem faz. Essas bênçãos são a resposta de quem recebe o que Deus revelou, não a condição para ser salvo.</p>' % (CRUZ_ALT, guias, pins, leg, CRUZ_JS))
+            '  <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação: a salvação é pela graça (Ef 2:8-9). '
+            'Quem olha para a cruz é transformado, porque é Cristo quem atrai (Jo 12:32) e quem faz. '
+            'Essas bênçãos são a resposta de quem recebe o que Deus revelou, não a condição para ser salvo.</p>' % (CRUZ_ALT, guias, pins, leg, CRUZ_JS))
 
 
 def de_cima():
@@ -778,16 +778,12 @@ def de_cima():
   <p class="cc-intro">Na oitava, o verbo muda de dono. Nas sete primeiras a pessoa é descrita pelo que ela é; aqui, quem age são os outros: injuriam, perseguem e dizem mal. Repare também na palavra <b>justiça</b>: a porta 4 tem fome dela e a porta 8 é perseguida por causa dela. E, como a porta 1, ela tem o Reino dos céus já no presente.</p>
   @@MT511@@
 
-  <h3 class="cc-sub">Um cuidado: não é uma escada de merecimento</h3>
+  <h3 class="cc-sub">Não é uma escada de merecimento</h3>
+  <p class="cc-intro">Jesus convida quem está cansado, sem exigir preparo; o Pai atrai primeiro; e o Espírito Santo mostra à pessoa o seu estado (Jo 16:8).</p>
   <div class="cc-par">
   @@MT1128@@
   @@JO644@@
   </div>
-  <article class="note gray cc-cartao">
-    <span class="tag">Comentário</span>
-    <h3>Deus dá o primeiro passo</h3>
-    <p>As três primeiras portas não são o preço para ter o direito de chegar a Cristo. Quem começa é Deus: o Pai, o Filho e o Espírito Santo, que são um só, atraem e chamam quem está cansado e o fazem enxergar o seu estado (Jo 16:8). As portas 1, 2 e 3 são isso acontecendo no coração de quem começa a ver o seu estado e a olhar para ele. É isso que o deixa com fome e sede de justiça. Depois vêm os frutos.</p>
-  </article>
 </section>
 """
     sete = sete.replace('@@CRUZ@@', cruz_html())
