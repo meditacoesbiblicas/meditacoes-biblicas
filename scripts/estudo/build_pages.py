@@ -881,9 +881,7 @@ def de_cima():
 <section class="cc-sec" id="conclusao" aria-labelledby="cc-fim">
   <h2 id="cc-fim">Conclusão: um só caminho, oito portas</h2>
   <article class="note gray cc-cartao">
-    <span class="tag">Conclusão</span>
-    <p>As oito bem-aventuranças não são oito caminhos: são oito portas de um só caminho, e quem vai para o Reino passa por todas. Ele começa na humildade, que reconhece a necessidade (porta 1), e termina em perseguição por causa da justiça (porta 8). Passando por todas elas, da primeira à oitava, Deus forma o caráter, e as promessas de cada porta se cumprem no futuro.</p>
-    <p>E a primeira e a última guardam a mesma promessa: “deles é o Reino dos céus”. Não é uma promessa só para o futuro: vale para hoje. Quem vive em humildade diante de Deus e quem é perseguido por causa da justiça já tem, agora, o Reino dos céus. As outras seis promessas se cumprem no futuro; esta vale desde já.</p>
+    <p>As oito bem-aventuranças não são oito caminhos, mas oito portas de um só caminho. Ele começa na humildade (porta 1) e termina na perseguição por causa da justiça (porta 8). O Reino dos céus já é do humilde e do perseguido, desde agora. As outras seis promessas aguardam o futuro.</p>
   </article>
 </section>
 
