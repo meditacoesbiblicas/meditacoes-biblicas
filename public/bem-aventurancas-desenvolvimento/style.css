@@ -848,13 +848,6 @@ body.ampliada .am-geral:focus-visible { box-shadow: 0 0 0 3px #F2D9A0; }
 .cc-pop::after { content: ""; position: absolute; left: var(--seta, 50%); width: 12px; height: 12px; margin-left: -6px; background: inherit; transform: rotate(45deg); }
 .cc-pop.em-cima::after { bottom: -6px; } .cc-pop.em-baixo::after { top: -6px; }
 @media (prefers-reduced-motion: reduce) { .cc-pin::after, .cc-pin.clicou { animation: none; } .cc-pin { transition: none; } }
-.cc-legenda { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
-.cc-legenda li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--gy-bd); border-radius: 12px; background: #fff; }
-.cc-legenda .num { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--gold); font: 600 16px/1 var(--serif); }
-.cc-legenda b { display: block; font: 700 17px/1.25 var(--serif); color: var(--navy); }
-.cc-legenda .vs { font: 600 12px/1 var(--sans); letter-spacing: .04em; color: #8A6A1F; white-space: nowrap; }
-.cc-legenda p { margin: 3px 0 0; font-size: 15.5px; line-height: 1.45; }
-@media (max-width: 760px) { .cc-legenda { grid-template-columns: 1fr; } .cc-pin { width: 34px; height: 34px; font-size: 16px; } .cc-pop { font-size: 14px; } }
 
 /* celular: a caixinha abre ABAIXO da imagem (não cobre a ilustração) */
 @media (max-width: 760px) {
@@ -872,10 +865,6 @@ body.ampliada .am-geral:focus-visible { box-shadow: 0 0 0 3px #F2D9A0; }
 .note .fulls { display: flex; flex-wrap: wrap; gap: 0 20px; }
 .note .nota-rigor { margin: 10px 0 0; padding: 8px 12px; border-left: 3px solid currentColor; border-radius: 0 8px 8px 0; background: rgba(255, 255, 255, .55); font-size: 14.5px; line-height: 1.45; color: var(--muted); }
 
-/* 8ª porta na legenda (a perseguição não está na imagem) */
-.cc-legenda li.fora { border: 1.5px dashed #D9A93D; background: #FBF5E6; }
-.cc-legenda li.fora .num { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
-.cc-legenda .fora-rot { display: inline-block; margin-left: 4px; padding: 2px 8px; border-radius: 999px; background: #F2D9A0; color: #5B4A2A; font: 700 10.5px/1.3 var(--sans); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; vertical-align: 2px; }
 
 /* celular: marcadores bem menores (não cobrem os bonecos); a área de toque continua com ~44px */
 @media (max-width: 760px) {
@@ -888,3 +877,15 @@ body.ampliada .am-geral:focus-visible { box-shadow: 0 0 0 3px #F2D9A0; }
 /* os números ficam numa região vazia perto do boneco e um fio fino aponta para ele, parando antes da cabeça (nada cobre rosto, mãos nem gesto) */
 .cc-guias { display: block; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, .75)); }
 .cc-guias .fio { stroke: #F2D9A0; stroke-width: 1.6; vector-effect: non-scaling-stroke; opacity: .95; }
+
+/* legenda da imagem = a lista de blocos (chegando a Cristo / em Cristo / frutos / vem de fora), com nome + frase */
+.cc-sec > .sete.cc-legenda { margin: 4px 0 18px; }
+.sete.cc-legenda .sete-bloco li { display: flex; gap: 12px; align-items: flex-start; }
+.sete.cc-legenda .sete-bloco ol { gap: 12px; }
+.sete.cc-legenda .num { margin-top: 2px; }
+.sete.cc-legenda .cc-leg-txt a { display: inline; font: 700 17px/1.25 var(--serif); }
+.sete.cc-legenda .cc-leg-txt p { margin: 2px 0 0; font: 400 15.5px/1.45 var(--sans); color: var(--ink); }
+.sete.cc-legenda .sete-bloco.centro .cc-leg-txt a { font-size: 18px; }
+.sete.cc-legenda .sete-bloco.centro .cc-leg-txt p { color: #D9D4C7; }
+.sete.cc-legenda .sete-bloco.fora li.fora .num { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
+@media (max-width: 760px) { .cc-pop { font-size: 14px; } }

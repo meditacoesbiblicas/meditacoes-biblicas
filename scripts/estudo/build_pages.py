@@ -630,11 +630,11 @@ CRUZ_ITENS = [
     # ex%, ey% onde o fio termina: um pouco ANTES da cabeça, sem encostar nem cobrir o boneco
     ('1', 'Pobres em espírito', 'Mt 5:3', 'Reconhece que precisa de Deus.', 10.3, 43.0, 10.3, 56.0),
     ('2', 'Os que choram', 'Mt 5:4', 'Chora pelo pecado ao olhar para a cruz.', 21.2, 33.0, 21.2, 46.5),
-    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade (Sl 37:5).', 33.0, 24.0, 33.0, 36.8),
-    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida (Jo 6:35).', 39.5, 14.0, 43.2, 27.5),
+    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade.', 33.0, 24.0, 33.0, 36.8),
+    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida.', 39.5, 14.0, 43.2, 27.5),
     ('5', 'Misericordiosos', 'Mt 5:7', 'Levanta quem caiu, como foi levantado.', 69.5, 17.0, 69.5, 30.0),
     ('6', 'Puros de coração', 'Mt 5:8', 'A pureza vem de dentro, de quem permanece em Cristo.', 79.5, 43.0, 73.6, 52.6),
-    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai (2Co 5:18).', 87.5, 59.0, 87.5, 69.5),
+    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai.', 87.5, 59.0, 87.5, 69.5),
 ]
 CRUZ_ALT = ('Um viajante caminha em direção à cruz, iluminado pela luz dela: humilde, chorando e confiando antes da cruz; '
             'depois dela, levanta o caído, tem o coração puro e reconcilia pessoas.')
@@ -642,7 +642,11 @@ CRUZ_JS = """(function () {
   var fig = document.querySelector('.cc-cruz-img'); if (!fig) return;
   var pins = [].slice.call(fig.querySelectorAll('.cc-pin')), pop = document.getElementById('cc-pop');
   var atual = null, fixo = false;
-  function texto(n) { var el = document.querySelector('.cc-legenda li[data-n="' + n + '"] .cc-leg-txt'); return el ? el.innerHTML : ''; }
+  function texto(p) {
+    var el = document.querySelector('.cc-legenda li[data-n="' + p.getAttribute('data-n') + '"] .cc-leg-txt');
+    if (!el) return '';
+    return '<b>' + el.querySelector('b').textContent + ' <span class="vs">' + p.getAttribute('data-vs') + '</span></b>' + el.querySelector('p').outerHTML;
+  }
   function posicionar(p) {
     if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { pop.className = 'cc-pop abaixo'; pop.style.left = ''; pop.style.top = ''; return; }
     var fr = fig.getBoundingClientRect(), pr = p.getBoundingClientRect();
@@ -656,7 +660,7 @@ CRUZ_JS = """(function () {
   }
   function mostrar(p) {
     atual = p;
-    pop.innerHTML = '<span class="cc-pop-num">' + p.getAttribute('data-n') + '</span><div>' + texto(p.getAttribute('data-n')) + '</div>';
+    pop.innerHTML = '<span class="cc-pop-num">' + p.getAttribute('data-n') + '</span><div>' + texto(p) + '</div>';
     pop.hidden = false; posicionar(p);
     pins.forEach(function (b) { var on = b === p; b.classList.toggle('on', on); b.setAttribute('aria-expanded', on ? 'true' : 'false'); });
   }
@@ -683,17 +687,24 @@ CRUZ_JS = """(function () {
 
 def cruz_html():
     pins = ''.join(
-        '<button type="button" class="cc-pin" data-n="%s" style="left:%s%%;top:%s%%" aria-label="Porta %s · %s (%s): %s" aria-expanded="false" aria-controls="cc-pop"><span>%s</span></button>'
-        % (n_, mx, my, n_, nome, vs, frase, n_) for n_, nome, vs, frase, mx, my, hx, hy in CRUZ_ITENS)
+        '<button type="button" class="cc-pin" data-n="%s" data-vs="%s" style="left:%s%%;top:%s%%" aria-label="Porta %s · %s (%s): %s" aria-expanded="false" aria-controls="cc-pop"><span>%s</span></button>'
+        % (n_, vs, mx, my, n_, nome, vs, frase, n_) for n_, nome, vs, frase, mx, my, hx, hy in CRUZ_ITENS)
     guias = ('<svg class="cc-guias" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">' + ''.join(
         '<line class="fio" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (mx, my, hx, hy)
         for n_, nome, vs, frase, mx, my, hx, hy in CRUZ_ITENS) + '</svg>')
-    leg = ''.join(
-        '<li data-n="%s"><span class="num">%s</span><div class="cc-leg-txt"><b>%s <span class="vs">%s</span></b><p>%s</p></div></li>' % (n_, n_, nome, vs, frase)
-        for n_, nome, vs, frase, mx, my, hx, hy in CRUZ_ITENS)
-    leg += ('<li class="fora"><span class="num">8</span><div class="cc-leg-txt"><b>Perseguidos <span class="vs">Mt 5:10–12</span> <span class="fora-rot">Fora da imagem</span></b>'
-            '<p>Não está na imagem porque vem de fora: não depende de quem caminha, e sim de quem persegue. Tem a mesma promessa da primeira porta, o Reino dos céus. '
-            '<a class="ref-vers" href="v10-12.html#v10">Ver a porta 8 →</a></p></div></li>')
+    portas = {'1': 'v03.html#v3', '2': 'v04.html#v4', '3': 'v05.html#v5', '4': 'v06.html#v6', '5': 'v07.html#v7', '6': 'v08.html#v8', '7': 'v09.html#v9', '8': 'v10-12.html#v10'}
+    def li(n_, nome, frase, cls=''):
+        return ('<li data-n="%s"%s><span class="num">%s</span><div class="cc-leg-txt"><a href="%s"><b>%s</b></a><p>%s</p></div></li>'
+                % (n_, cls, n_, portas[n_], nome, frase))
+    item = {t[0]: t for t in CRUZ_ITENS}
+    def bloco(cls, rotulo, itens):
+        return '<div class="sete-bloco %s"><p class="sete-rot">%s</p><ol>%s</ol></div>' % (cls, rotulo, ''.join(itens))
+    leg = ('<div class="sete cc-legenda" role="group" aria-label="As oito portas agrupadas: chegando a Cristo, em Cristo, os frutos e a que vem de fora">'
+           + bloco('antes', 'Chegando a Cristo', [li(n_, item[n_][1], item[n_][3]) for n_ in '123'])
+           + bloco('centro', 'Em Cristo: alimentando-se', [li('4', item['4'][1], item['4'][3])])
+           + bloco('depois', 'Os frutos', [li(n_, item[n_][1], item[n_][3]) for n_ in '567'])
+           + bloco('fora', 'Vem de fora', [li('8', 'Perseguidos', 'Fora da imagem: vem de fora, e a promessa é o Reino dos céus.', ' class="fora"')])
+           + '</div>')
     return ('<figure class="cc-cruz" id="caminho-cristo">\n'
             '    <div class="cc-cruz-img">\n'
             '      <div class="cc-cruz-quadro">\n'
@@ -707,7 +718,7 @@ def cruz_html():
             'A oitava porta, a perseguição, não aparece na imagem: veja o item 8 abaixo. Ilustração criada com IA.</figcaption>\n'
             '  </figure>\n'
             '  <noscript><style>.cc-pin { display: none; }</style></noscript>\n'
-            '  <ol class="cc-legenda" aria-label="As oito portas: sete acontecem em você e a oitava vem de fora">%s</ol>\n'
+            '  %s\n'
             '  <script>\n%s\n  </script>\n'
             '  <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação. A salvação é pela graça (Ef 2:8-9). '
             'Quem olha para Cristo é transformado por ele: a humildade, o choro e a mansidão nascem de olhar para a cruz, e a misericórdia, a pureza e a paz são fruto de '
@@ -748,25 +759,6 @@ def de_cima():
   <p class="cc-intro">Há mais uma diferença entre as portas. As <b>sete primeiras</b> descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela: ela reconhece a sua pobreza, chora pelo pecado, aprende a ser mansa, tem fome de justiça, e daí nascem a misericórdia, a pureza e a paz. São mudanças de caráter. A <b>oitava</b> é diferente: não depende de mim. Não está em mim ser perseguido; é preciso que alguém me persiga.</p>
   <p class="cc-intro">E o centro das sete é a porta 4: três vêm antes dela e três vêm depois. Esta é uma leitura para meditar. O texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
 @@CRUZ@@
-  <div class="sete" role="group" aria-label="As oito portas em três blocos e a oitava, à parte">
-    <div class="sete-bloco antes">
-      <p class="sete-rot">Chegando a Cristo</p>
-      <ol>@@A@@</ol>
-    </div>
-    <div class="sete-bloco centro">
-      <p class="sete-rot">Em Cristo: alimentando-se</p>
-      <ol>@@C@@</ol>
-    </div>
-    <div class="sete-bloco depois">
-      <p class="sete-rot">Os frutos</p>
-      <ol>@@D@@</ol>
-    </div>
-    <div class="sete-bloco fora">
-      <p class="sete-rot">Vem de fora</p>
-      <ol>@@E@@</ol>
-    </div>
-  </div>
-
   <h3 class="cc-sub">Antes do centro: chegando a Cristo</h3>
   <p class="cc-intro">Quem não sente a sua pobreza (porta 1) e não chora pelo pecado (porta 2) não procura Cristo. E quem tenta fazer tudo com a própria força também não. A mansidão (porta 3) é confiar: entregar o caminho ao Senhor e descansar nele, sabendo que ele fará com o seu poder, e não eu com a minha força. Sem esse sossego a pessoa fica ansiosa pelo futuro e não consegue se alimentar de Cristo.</p>
   @@SL37@@
@@ -799,10 +791,6 @@ def de_cima():
 </section>
 """
     sete = sete.replace('@@CRUZ@@', cruz_html())
-    sete = sete.replace('@@A@@', ''.join(porta(*t) for t in (('1', 'Pobres em espírito', 'v03.html#v3'), ('2', 'Os que choram', 'v04.html#v4'), ('3', 'Mansos', 'v05.html#v5'))))
-    sete = sete.replace('@@C@@', porta('4', 'Fome e sede de justiça', 'v06.html#v6'))
-    sete = sete.replace('@@D@@', ''.join(porta(*t) for t in (('5', 'Misericordiosos', 'v07.html#v7'), ('6', 'Puros de coração', 'v08.html#v8'), ('7', 'Pacificadores', 'v09.html#v9'))))
-    sete = sete.replace('@@E@@', porta('8', 'Perseguidos', 'v10-12.html#v10'))
     sete = sete.replace('@@SL37@@', card('blue', 'Mansidão é confiar', 'Salmo 37:5, 7, 11',
         antes='Os mansos entregam o caminho ao Senhor e descansam nele, em vez de forçar com as próprias forças. É a mansidão da porta 3, com a sua promessa.',
         corpo=bq(n('5', 'Entrega o teu caminho ao Senhor; <mark>confia nele</mark>, e ele tudo fará.'),
