@@ -799,3 +799,6 @@ body.ampliada .am-titulo-img { display: none; }
   body.ampliada .am-titulo-img span { display: block; margin-top: 2px; font: 600 12px/1.2 var(--sans); letter-spacing: .5px; text-transform: uppercase; color: #F2D9A0; }
   body.ampliada .am-dica { top: auto; bottom: calc(16px + var(--faixa, 0px)); }
 }
+
+/* nota curta no topo da visão geral */
+.cc-hero .cc-nota { display: inline-block; margin: 16px 0 0; padding: 8px 14px; border-radius: 12px; border: 1px solid rgba(242, 217, 160, .55); background: rgba(242, 217, 160, .12); font: 500 15px/1.35 var(--sans); color: #F2D9A0; }

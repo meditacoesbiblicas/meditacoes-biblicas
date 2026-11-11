@@ -43,7 +43,7 @@ def pixel(arq):
 
 def crumbs(atual):
     li = []
-    for arq, rot in PAGINAS + [('de-cima.html', 'De cima'), ('conclusao.html', 'Conclusão')]:
+    for arq, rot in PAGINAS + [('de-cima.html', 'Visão geral: as oito portas de cima'), ('conclusao.html', 'Conclusão')]:
         cur = ' aria-current="page"' if arq == atual else ''
         li.append('    <li><a href="%s"%s>%s</a></li>' % (arq, cur, rot))
     for i, (arq, rot) in enumerate(DEPOIS):
@@ -266,7 +266,7 @@ FINAL8 = '''<aside class="cc-convite" aria-labelledby="cc-conv-t">
   <div class="cc-conv-sinal" aria-hidden="true"><span class="p">(</span><span class="pts"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="p">)</span></div>
   <div class="cc-conv-texto">
     <p class="cc-conv-kicker">Você chegou à última porta</p>
-    <h2 id="cc-conv-t">Olhando as oito portas de cima</h2>
+    <h2 id="cc-conv-t">Visão geral: as oito portas de cima</h2>
     <p>Olhe para as oito de uma vez: a moldura que a primeira e a última formam, o que cresce entre elas e o que cada ponta tem de oposto.</p>
     <a class="cc-conv-botao" href="de-cima.html">Olhar de cima →</a>
   </div>
@@ -607,7 +607,7 @@ v10 = grupo('v10', 'Mateus 5:10–12', 'Perseguidos',
                   'Quem ouve já sabe, desde o início, que isso pode acontecer, e sabe também por que vale a pena.']),
     ])
 pagina('v10-12.html', 'Mateus 5:10–12 · Perseguidos — Sermão do Monte', 'Mateus 5:10–12 · porta 8', 'Perseguidos por causa da justiça', 'O v.10 é a bem-aventurança; os v.11–12 a ampliam.', [v10],
-       pager(('v09.html', '← Anterior', 'Porta 7 · Pacificadores'), ('de-cima.html', 'Próxima →', 'Olhando as oito portas de cima')), final=FINAL8)
+       pager(('v09.html', '← Anterior', 'Porta 7 · Pacificadores'), ('de-cima.html', 'Próxima →', 'Visão geral: as oito portas de cima')), final=FINAL8)
 
 # =====================================================================================
 # conclusao.html — conclusão de TODAS as bem-aventuranças (página própria, largura total; só quem chegou à porta 8 chega aqui)
@@ -734,8 +734,9 @@ def de_cima():
 <header class="cc-hero">
   <div class="cc-hero-texto">
     <p class="kicker">Mateus 5:3–12 · as oito portas</p>
-    <h1>Olhando as oito portas de cima</h1>
+    <h1>Visão geral: as oito portas de cima</h1>
     <p class="lede">Você passou pelas oito portas. Vista de cima, a lista tem uma forma: a primeira e a última se fecham uma na outra, como parênteses, e guardam entre elas tudo o que nasce da humildade.</p>
+    <p class="cc-nota">Esta visão geral faz mais sentido depois de percorrer as oito portas.</p>
   </div>@@IMG@@
 </header>
 
@@ -797,7 +798,7 @@ def de_cima():
     corpo = corpo.replace('@@SETE@@', sete).replace('@@IMG@@', img).replace('@@MEIO@@', meio).replace('@@LINHAS@@', linhas)
     html = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-            '<title>Olhando as oito portas de cima · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
+            '<title>Visão geral: as oito portas de cima · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('de-cima.html') + '\n' + corpo + '\n'
             + pager(('v10-12.html', '← Anterior', 'Porta 8 · Perseguidos'), ('conclusao.html', 'Próxima →', 'Conclusão das bem-aventuranças'))
             + '\n\n</div>\n' + pixel('de-cima.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
@@ -808,7 +809,7 @@ de_cima()
 
 
 # =====================================================================================
-# conclusao.html — a conclusão das bem-aventuranças, curta (depois de "Olhando as oito portas de cima")
+# conclusao.html — a conclusão das bem-aventuranças, curta (depois de "Visão geral: as oito portas de cima")
 # =====================================================================================
 def conclusao():
     corpo = '''
@@ -839,7 +840,7 @@ def conclusao():
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<title>Conclusão das bem-aventuranças · Mateus 5:3–12 — Sermão do Monte</title>\n<link rel="stylesheet" href="style.css">\n' + ENTRADA + '</head>\n<body class="conclusao">\n'
             + BARRA + '\n<div class="wrap">\n\n' + crumbs('conclusao.html') + '\n' + corpo + '\n'
-            + pager(('de-cima.html', '← Anterior', 'Olhando as oito portas de cima'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
+            + pager(('de-cima.html', '← Anterior', 'Visão geral: as oito portas de cima'), ('index.html' if PARCIAL else 'v13-15.html', 'Próxima →', prox[2]))
             + '\n\n</div>\n' + pixel('conclusao.html') + '\n' + ORIGEM + '\n</body>\n</html>\n')
     gravar(DEST, 'conclusao.html', refs_biblia(refs_egw(html)), RASC)
 
