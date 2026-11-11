@@ -626,14 +626,15 @@ pagina('v10-12.html', 'Mateus 5:10–12 · Perseguidos — Sermão do Monte', 'M
 # =====================================================================================
 CRUZ_ITENS = [
     # n, nome, versículo, frase (a legenda e as caixinhas usam o mesmo texto),
-    # x%, y% do marcador sobre o boneco (computador); mx%, my% do marcador no celular (ao lado/acima do boneco, ligado a ele por um fio); hx%, hy% da cabeça do boneco
-    ('1', 'Pobres em espírito', 'Mt 5:3', 'Reconhece que precisa de Deus.', 9.0, 72.0, 10.3, 49.0, 10.3, 62.6),
-    ('2', 'Os que choram', 'Mt 5:4', 'Chora pelo pecado ao olhar para a cruz.', 21.5, 66.0, 21.2, 40.0, 21.2, 52.8),
-    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade (Sl 37:5).', 33.0, 62.0, 33.0, 30.0, 33.0, 43.1),
-    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida (Jo 6:35).', 46.5, 46.0, 45.0, 20.0, 45.0, 32.7),
-    ('5', 'Misericordiosos', 'Mt 5:7', 'Levanta quem caiu, como foi levantado.', 69.5, 44.5, 69.5, 23.0, 69.5, 36.2),
-    ('6', 'Puros de coração', 'Mt 5:8', 'A pureza vem de dentro, de quem permanece em Cristo.', 72.5, 68.0, 81.0, 50.0, 69.9, 54.9),
-    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai (2Co 5:18).', 87.5, 88.0, 87.5, 64.0, 87.5, 75.8),
+    # x%, y% do marcador sobre o boneco (computador); mx%, my% do marcador no celular (numa região vazia, perto do boneco);
+    # ex%, ey% onde o fio termina no celular: um pouco ANTES da cabeça, sem encostar nem cobrir o boneco
+    ('1', 'Pobres em espírito', 'Mt 5:3', 'Reconhece que precisa de Deus.', 9.0, 72.0, 10.3, 43.0, 10.3, 56.0),
+    ('2', 'Os que choram', 'Mt 5:4', 'Chora pelo pecado ao olhar para a cruz.', 21.5, 66.0, 21.2, 33.0, 21.2, 46.5),
+    ('3', 'Mansos', 'Mt 5:5', 'Entrega o peso e confia, sem ansiedade (Sl 37:5).', 33.0, 62.0, 33.0, 24.0, 33.0, 36.8),
+    ('4', 'Fome e sede de justiça', 'Mt 5:6', 'É saciado em Cristo, o pão da vida (Jo 6:35).', 46.5, 46.0, 39.5, 14.0, 43.2, 27.5),
+    ('5', 'Misericordiosos', 'Mt 5:7', 'Levanta quem caiu, como foi levantado.', 69.5, 44.5, 69.5, 17.0, 69.5, 30.0),
+    ('6', 'Puros de coração', 'Mt 5:8', 'A pureza vem de dentro, de quem permanece em Cristo.', 72.5, 68.0, 79.5, 43.0, 73.6, 52.6),
+    ('7', 'Pacificadores', 'Mt 5:9', 'Reconcilia, continuando a obra do Pai (2Co 5:18).', 87.5, 88.0, 87.5, 59.0, 87.5, 69.5),
 ]
 CRUZ_ALT = ('Um viajante caminha em direção à cruz, iluminado pela luz dela: humilde, chorando e confiando antes da cruz; '
             'depois dela, levanta o caído, tem o coração puro e reconcilia pessoas.')
@@ -685,7 +686,7 @@ def cruz_html():
         '<button type="button" class="cc-pin" data-n="%s" style="left:%s%%;top:%s%%;--mx:%s%%;--my:%s%%" aria-label="Porta %s · %s (%s): %s" aria-expanded="false" aria-controls="cc-pop"><span>%s</span></button>'
         % (n_, x, y, mx, my, n_, nome, vs, frase, n_) for n_, nome, vs, frase, x, y, mx, my, hx, hy in CRUZ_ITENS)
     guias = ('<svg class="cc-guias" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">' + ''.join(
-        '<line class="fio" x1="%s" y1="%s" x2="%s" y2="%s"/><line class="ponta" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (mx, my, hx, hy, hx, hy, hx, hy)
+        '<line class="fio" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (mx, my, hx, hy)
         for n_, nome, vs, frase, x, y, mx, my, hx, hy in CRUZ_ITENS) + '</svg>')
     leg = ''.join(
         '<li data-n="%s"><span class="num">%s</span><div class="cc-leg-txt"><b>%s <span class="vs">%s</span></b><p>%s</p></div></li>' % (n_, n_, nome, vs, frase)
