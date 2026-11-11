@@ -756,8 +756,7 @@ def de_cima():
 <section class="cc-sec" id="sete-e-uma" aria-labelledby="cc-sete">
   <h2 id="cc-sete">Sete acontecem em você, uma vem de fora</h2>
   <p class="cc-atualiza"><span>Atualização</span> 30/10/2026</p>
-  <p class="cc-intro">Há mais uma diferença entre as portas. As <b>sete primeiras</b> descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela: ela reconhece a sua pobreza, chora pelo pecado, aprende a ser mansa, tem fome de justiça, e daí nascem a misericórdia, a pureza e a paz. São mudanças de caráter. A <b>oitava</b> é diferente: não depende de mim. Não está em mim ser perseguido; é preciso que alguém me persiga.</p>
-  <p class="cc-intro">E o centro das sete é a porta 4: três vêm antes dela e três vêm depois. Esta é uma leitura para meditar. O texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
+  <p class="cc-intro">As <b>sete primeiras</b> portas descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela, e a porta 4 é o centro: três vêm antes dela e três vêm depois. É uma leitura para meditar: o texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
 @@CRUZ@@
   <h3 class="cc-sub">Antes do centro: chegando a Cristo</h3>
   <p class="cc-intro">Quem não sente a sua pobreza (porta 1) e não chora pelo pecado (porta 2) não procura Cristo. E quem tenta fazer tudo com a própria força também não. A mansidão (porta 3) é confiar: entregar o caminho ao Senhor e descansar nele, sabendo que ele fará com o seu poder, e não eu com a minha força. Sem esse sossego a pessoa fica ansiosa pelo futuro e não consegue se alimentar de Cristo.</p>
