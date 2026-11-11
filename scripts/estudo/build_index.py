@@ -140,3 +140,5 @@ html = '''<!doctype html>
 html = html.replace('@@VER_TRILHA@@', '' if PARCIAL else ' <a class="ver-trilha" href="depois.html">Ver a trilha →</a>')
 gravar(DEST, 'index.html', html, RASC)
 print('index ok:', PRONTAS, 'de', TOTAL)
+from rascunho import versionar_css
+versionar_css(DEST)

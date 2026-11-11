@@ -1365,3 +1365,5 @@ if PARCIAL:
             pass
 
 print('ok')
+from rascunho import versionar_css
+versionar_css(DEST)

@@ -16,6 +16,7 @@ Regra de nomes: nome do original + "-desenvolvimento" e nome do original + "-bac
 Comandos:
   python3 scripts/estudo/rascunho.py criar     copia a versão publicada para o rascunho (sobrescreve o rascunho!)
   python3 scripts/estudo/rascunho.py backup    só guarda a cópia de backup da versão publicada
+  python3 scripts/estudo/rascunho.py versionar [PASTA]  coloca ?v=<resumo> no link do style.css de todas as páginas (evita CSS velho no navegador)
   python3 scripts/estudo/rascunho.py promover  faz o backup e copia o rascunho para a versão publicada, SÓ com as bem-aventuranças
                                                e a conclusão (sal e luz, a lei, raiva e cobiça ficam "A construir"); `--completo`
                                                publica tudo; `--destino DIR` faz um ensaio numa pasta qualquer (sem backup e sem
@@ -26,6 +27,7 @@ contador de visitas, que fica comentado (`<!--PIXEL ...-->`). `desrascunhar` des
 então os links relativos (inclusive os da barra do site, `../`) são os mesmos nas três.
 Os geradores (build_pages.py e build_index.py) aceitam --rascunho e já gravam nessa forma.
 """
+import hashlib
 import os
 import re
 import shutil
@@ -88,6 +90,23 @@ def gravar(pasta, nome, html, rascunho, publicada=PASTA_PUBLICADA):
     os.makedirs(pasta, exist_ok=True)
     with open(os.path.join(pasta, nome), 'w', encoding='utf-8') as f:
         f.write(html)
+
+
+def versionar_css(pasta):
+    """Coloca ?v=<resumo do style.css> no link do CSS de todas as páginas da pasta. O GitHub Pages deixa o navegador guardar cada arquivo por
+    10 minutos; sem isso, quem abre a página logo depois de uma atualização pode receber HTML novo com CSS velho (e a página fica quebrada)."""
+    css = os.path.join(pasta, 'style.css')
+    if not os.path.isfile(css):
+        return
+    v = hashlib.md5(open(css, 'rb').read()).hexdigest()[:8]
+    for nome in os.listdir(pasta):
+        if not nome.endswith('.html'):
+            continue
+        caminho = os.path.join(pasta, nome)
+        html = open(caminho, encoding='utf-8').read()
+        novo = re.sub(r'href="style\.css(\?v=[^"]*)?"', 'href="style.css?v=%s"' % v, html)
+        if novo != html:
+            open(caminho, 'w', encoding='utf-8').write(novo)
 
 
 def _arquivos(pasta):
@@ -166,6 +185,7 @@ def promover(destino=None, parcial=True):
             os.remove(os.path.join(destino, nome))
             print('Removido da publicada:', nome)
     shutil.rmtree(tmp, ignore_errors=True)
+    versionar_css(destino)
     print('Rascunho promovido para', destino, '(parcial)' if parcial else '(completo)')
 
 
@@ -175,6 +195,8 @@ if __name__ == '__main__':
         criar()
     elif cmd == 'backup':
         backup()
+    elif cmd == 'versionar':
+        versionar_css(sys.argv[2] if len(sys.argv) > 2 else RASCUNHO)
     elif cmd == 'promover':
         dest = sys.argv[sys.argv.index('--destino') + 1] if '--destino' in sys.argv else None
         promover(dest, parcial='--completo' not in sys.argv)
