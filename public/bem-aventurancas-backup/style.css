@@ -383,7 +383,7 @@ body.caminho { background: var(--bg); }
 .cm-ir:hover, .cm-ir:focus-visible { transform: translateY(-2px); }
 
 /* ---------- ilustração ampliada: a imagem ocupa a janela e cada porta é um link ---------- */
-body.ampliada { margin: 0; height: 100vh; height: 100dvh; overflow: hidden; background: #FAF0DD; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+body.ampliada { margin: 0; height: 100vh; height: 100dvh; overflow: hidden; background: #FAF0DD; display: grid; grid-template-rows: auto auto minmax(0, 1fr); --titulo-h: 50px; }
 body.ampliada .am-quadro { position: relative; min-height: 0; margin: 0; }
 /* a moldura tem a proporção da imagem (3:2) e fica centralizada, para as áreas clicáveis (em %) caírem sobre as portas */
 body.ampliada .am-moldura { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 3 / 2; max-width: 100%; }
@@ -409,7 +409,7 @@ body.ampliada .am-dica .cel, body.ampliada .am-dica .arrasta, body.ampliada .am-
 /* telas de toque e janelas pequenas: botões e faixa de dica fixos na tela (a faixa quebra em linhas e nunca sai da tela);
    o nome da porta vai na faixa, no lugar do rótulo flutuante, que ficaria cortado */
 @media (hover: none), (max-width: 760px) and (orientation: portrait), (max-height: 520px) and (orientation: landscape) {
-  body.ampliada .am-voltar { position: fixed; top: 58px; left: 10px; }
+  body.ampliada .am-voltar { position: fixed; top: calc(58px + var(--titulo-h)); left: 10px; }
   body.ampliada .am-dica {
     position: fixed; top: auto; bottom: calc(max(10px, env(safe-area-inset-bottom)) + var(--faixa, 0px)); left: max(10px, env(safe-area-inset-left)); right: max(10px, env(safe-area-inset-right));
     transform: none; width: auto; max-width: 620px; margin: 0 auto; padding: 8px 14px; border-radius: 16px;
@@ -677,7 +677,7 @@ body.ampliada:has(.rascunho-faixa) { --faixa: 38px; }
 /* ---------- a porta que se abre (ilustração ampliada) ---------- */
 body.ampliada .am-sermao { position: absolute; top: 14px; right: 18px; z-index: 5; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--navy); background: rgba(255, 255, 255, .9); color: var(--navy); font: 600 15px/1.2 var(--sans); text-decoration: none; }
 body.ampliada .am-sermao:hover, body.ampliada .am-sermao:focus-visible { background: var(--navy); color: #fff; outline: none; }
-@media (max-width: 760px) { body.ampliada .am-sermao { position: fixed; top: 58px; right: 10px; } }
+@media (max-width: 760px) { body.ampliada .am-sermao { position: fixed; top: calc(58px + var(--titulo-h)); right: 10px; } }
 
 .porta-cena { position: fixed; inset: 0; z-index: 100000; cursor: progress; }
 .porta-escurece { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(20, 28, 48, .35), rgba(7, 11, 22, .9)); }
@@ -777,4 +777,25 @@ article.note[id^="v-"]:target { outline: 3px solid var(--gold); outline-offset: 
 @media (hover: hover) and (pointer: fine) {
   body.ampliada { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g'%3E%3Cstop offset='0' stop-color='%23FF3B30' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%23FF3B30' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='10' fill='%23E5251B' stroke='%23FFFFFF' stroke-width='3.5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%231F2A44' stroke-opacity='.55' stroke-width='1'/%3E%3C/svg%3E") 32 32, default; }
   .hot { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Ccircle cx='36' cy='36' r='27' fill='rgba(242,217,160,.18)' stroke='%231F2A44' stroke-width='10'/%3E%3Ccircle cx='36' cy='36' r='27' fill='none' stroke='%23F2D9A0' stroke-width='5.5'/%3E%3Ccircle cx='36' cy='36' r='10' fill='%23E5251B' stroke='%23FFFFFF' stroke-width='3.5'/%3E%3C/svg%3E") 36 36, pointer; }
+}
+
+/* título da ilustração ampliada: quem chega direto por aqui (QR Code, link compartilhado) vê de que estudo se trata */
+body.ampliada .am-titulo { display: flex; align-items: baseline; justify-content: center; gap: 4px 14px; flex-wrap: wrap; height: var(--titulo-h); overflow: hidden; padding: 0 16px; box-sizing: border-box; align-content: center; background: #FAF0DD; border-bottom: 1px solid rgba(31, 42, 68, .14); text-align: center; }
+body.ampliada .am-titulo h1 { margin: 0; font: 700 25px/1.15 var(--serif); color: var(--navy); letter-spacing: .1px; }
+body.ampliada .am-titulo p { margin: 0; font: 600 13px/1.2 var(--sans); color: #6B5A3A; letter-spacing: .4px; text-transform: uppercase; }
+@media (max-width: 760px), (max-height: 520px) and (orientation: landscape) {
+  body.ampliada { --titulo-h: 38px; }
+  body.ampliada .am-titulo h1 { font-size: 20px; }
+  body.ampliada .am-titulo p { display: none; }
+}
+
+/* PC (mouse, janela grande): o título fica DENTRO da imagem, no alto e ao centro, e a dica desce um pouco; a faixa de cima só vale para o celular */
+body.ampliada .am-titulo-img { display: none; }
+@media (hover: hover) and (min-width: 761px) and (min-height: 521px) {
+  body.ampliada { grid-template-rows: auto minmax(0, 1fr); --titulo-h: 0px; }
+  body.ampliada .am-titulo { display: none; }
+  body.ampliada .am-titulo-img { display: block; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 5; max-width: calc(100% - 340px); padding: 7px 24px 8px; border-radius: 16px; background: rgba(31, 42, 68, .8); color: #FAF8F3; text-align: center; pointer-events: none; box-shadow: 0 4px 18px rgba(20, 24, 40, .35); }
+  body.ampliada .am-titulo-img b { display: block; font: 700 26px/1.2 var(--serif); letter-spacing: .1px; }
+  body.ampliada .am-titulo-img span { display: block; margin-top: 2px; font: 600 12px/1.2 var(--sans); letter-spacing: .5px; text-transform: uppercase; color: #F2D9A0; }
+  body.ampliada .am-dica { top: auto; bottom: calc(16px + var(--faixa, 0px)); }
 }
