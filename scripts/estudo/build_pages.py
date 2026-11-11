@@ -293,6 +293,18 @@ COMENT_V03 = '''<!-- Para enriquecer: copie um bloco <article class="note ..."> 
 '''
 
 # ---------- porta 1 · v.3 ----------
+# Ezequiel 28:2, 5, 17: o coração que se eleva (o oposto da pobreza de espírito); a página "visão geral" liga a este cartão (id v-ez-28-2)
+EZ28 = card('orange', 'Contraste', 'Ezequiel 28:2, 5, 17',
+    antes='O orgulho é a exaltação do próprio eu: a criatura se considera superior ou independente de Deus. Em Ezequiel 28:2, 5 e 17, a expressão “elevar o coração” mostra essa soberba: o coração se exalta por causa da posição, do poder ou da beleza.',
+    corpo=bq(n('2', '… Visto como se <mark>eleva o teu coração</mark>, e dizes: Eu sou Deus e sobre a cadeira de Deus me assento no meio dos mares… e <mark>estimas o teu coração como se fora o coração de Deus</mark>,'),
+             n('5', '… aumentaste o teu poder; e <mark>eleva-se o teu coração por causa do teu poder</mark>,'),
+             n('17', '<mark>Elevou-se o teu coração por causa da tua formosura</mark>, corrompeste a tua sabedoria por causa do teu resplendor…')),
+    obs='Isso contrasta com a primeira bem-aventurança (Mt 5:3): o pobre de espírito reconhece que precisa de Deus; o orgulhoso exalta a si mesmo. O orgulho eleva o eu contra Deus; a humildade reconhece a dependência de Deus. No Apocalipse, a mesma atitude aparece em quem se acha rico e sem falta de nada (Ap 3:17, acima).',
+    link='<div class="fulls"><a class="full" href="https://www.bibliaonline.com.br/arc/ez/28/2+" target="_blank" rel="noopener">Ler Ez 28:2 na ARC ↗</a> '
+         '<a class="full" href="https://www.bibliaonline.com.br/arc/ez/28/5+" target="_blank" rel="noopener">Ler Ez 28:5 na ARC ↗</a> '
+         '<a class="full" href="https://www.bibliaonline.com.br/arc/ez/28/17+" target="_blank" rel="noopener">Ler Ez 28:17 na ARC ↗</a></div>')
+EZ28 = EZ28.replace('      <div class="fulls">', '      <p class="nota-rigor"><b>Nota:</b> Ezequiel 28 se dirige ao rei de Tiro; a tradição cristã também o aplica, por extensão, a Lúcifer (cf. <a class="ref-vers" href="v08.html#v-is-14-13">Is 14:13-14</a>, visto na <a href="v08.html#v8">porta 6</a>).</p>\n      <div class="fulls">', 1)
+
 v3 = grupo('v3', 'Mateus 5:3', 'Pobres em espírito',
     bible('bem-aventurados <mark>os pobres de espírito</mark>, porque <mark>deles é o Reino dos céus</mark>;'),
     [
@@ -313,7 +325,7 @@ v3 = grupo('v3', 'Mateus 5:3', 'Pobres em espírito',
     card('blue', 'Paralelo', 'Tiago 4:10',
          corpo=bq('<mark>Humilhai-vos perante o Senhor</mark>, e ele <mark>vos exaltará</mark>.'),
          link=arc('tg/4/10')),
-    ('sub', 'O oposto: o orgulho'),
+    ('sub', 'O oposto da pobreza de espírito: o orgulho'),
     card('orange', 'Contraste', 'Provérbios 16:18',
          corpo=bq('A <mark>soberba</mark> precede a ruína, e a <mark>altivez do espírito</mark> precede a queda.'),
          link=arc('pv/16/18')),
@@ -322,6 +334,7 @@ v3 = grupo('v3', 'Mateus 5:3', 'Pobres em espírito',
          corpo=bq('Como dizes: <mark>Rico sou, e estou enriquecido, e de nada tenho falta</mark>…',
                   '(e não sabes que és um desgraçado, e miserável, e <mark>pobre</mark>, e cego, e nu)'),
          link=arc('ap/3/17')),
+    EZ28,
     card('gray', 'Conclusão', 'Pobre de espírito: quem reconhece a sua necessidade',
          extra_p=['A versão Almeida Revista e Atualizada (ARA) traduz “humildes de espírito”. Quem se humilha diante de Deus é exaltado por Ele (Tg 4:10), e Deus habita com o contrito (Is 57:15). O contrário é o orgulho (Pv 16:18) e a igreja de Laodiceia, que se achava rica e sem falta de nada (Ap 3:17).'],
          obs='E repare no tempo do verbo: “deles é o Reino” está no presente. A mesma promessa fecha a lista na <a href="v10-12.html#v10">porta 8</a>.'),
@@ -854,6 +867,7 @@ def de_cima():
 <section class="cc-sec" aria-labelledby="cc-laodiceia">
   <h2 id="cc-laodiceia">O oposto de cada ponta: Laodiceia</h2>
   <p class="cc-intro">A carta à igreja de Laodiceia mostra o contrário das duas portas que fecham a moldura.</p>
+  <p class="cc-intro">O oposto da porta 1 é o coração que se eleva (<a class="ref-biblia" href="v03.html#v-ez-28-2">Ez 28</a>), o de quem se acha rico e sem falta de nada (Ap 3:17).</p>
   <div class="cc-par">
     <article class="note orange cc-cartao">
       <span class="tag">Contraste da porta 1</span>

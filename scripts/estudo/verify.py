@@ -61,7 +61,8 @@ for arq in sorted(glob.glob(os.path.join(PASTA, 'v*.html')) + glob.glob(os.path.
         if not bq or cor == 'gray':
             continue
         paras = re.findall(r'<p>(.*?)</p>', bq.group(1), re.S)
-        link = re.search(r'href="(https://[^"]+)"', art).group(1)
+        # o link do versículo é o do botão "Ler o texto completo" (class="full"); links no texto corrido não servem de referência
+        link = (re.search(r'<a class="full" href="(https://[^"]+)"', art) or re.search(r'href="(https://[^"]+)"', art)).group(1)
         m = re.match(r'https://www\.bibliaonline\.com\.br/(arc|bkj|ara)/([^/]+)/(\d+)/(\d+)\+', link)
         if m:
             ver, livro, cap, v0 = m.groups()
