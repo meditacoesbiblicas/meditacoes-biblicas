@@ -889,3 +889,17 @@ body.ampliada .am-geral:focus-visible { box-shadow: 0 0 0 3px #F2D9A0; }
 .sete.cc-legenda .sete-bloco.centro .cc-leg-txt p { color: #D9D4C7; }
 .sete.cc-legenda .sete-bloco.fora li.fora .num { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
 @media (max-width: 760px) { .cc-pop { font-size: 14px; } }
+
+/* "Antes do centro", "No centro" e "Depois do centro" recolhíveis: abertas no computador, fechadas no celular */
+.cc-det { margin: 28px 0 0; }
+.cc-det > summary.cc-sub { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; cursor: pointer; list-style: none; padding: 6px 0; }
+.cc-det > summary.cc-sub::-webkit-details-marker { display: none; }
+.cc-det > summary.cc-sub::before { content: ""; flex: none; width: 10px; height: 10px; border-right: 3px solid #D9A93D; border-bottom: 3px solid #D9A93D; transform: rotate(-45deg); transition: transform .15s ease; }
+.cc-det[open] > summary.cc-sub::before { transform: rotate(45deg); }
+.cc-det > summary.cc-sub:hover { color: #8A6A1F; }
+.cc-det > summary.cc-sub:focus-visible { outline: 3px solid #D9A93D; outline-offset: 3px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { .cc-det > summary.cc-sub::before { transition: none; } }
+.cc-det { margin-top: 20px; }
+.cc-det:not([open]) { margin-top: 4px; }
+.cc-det:not([open]) > summary.cc-sub { margin-bottom: 0; }
+.cc-det + .cc-det:not([open]) { margin-top: 0; }

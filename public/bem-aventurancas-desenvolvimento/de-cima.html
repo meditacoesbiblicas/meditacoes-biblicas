@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Visão geral: as oito portas de cima · Mateus 5:3–12 — Sermão do Monte</title>
-<link rel="stylesheet" href="style.css?v=8613673a">
+<link rel="stylesheet" href="style.css?v=584a5ef6">
 <script>try{var t=+sessionStorage.getItem('porta-aberta');if(t){sessionStorage.removeItem('porta-aberta');if(Date.now()-t<8000)document.documentElement.className+=' entrando';}}catch(e){}</script>
 </head>
 <body class="conclusao">
@@ -152,7 +152,8 @@
 })();
   </script>
   <p class="cc-graca"><b>Pela graça, não por degraus.</b> Estas portas não são degraus para merecer a salvação: a salvação é pela graça (<a class="ref-biblia" href="https://www.bibliaonline.com.br/arc/ef/2/8+" target="_blank" rel="noopener" title="Ler na Bíblia Online (ARC)">Ef 2:8-9</a>). Quem olha para a cruz é transformado, porque é Cristo quem atrai (<a class="ref-biblia" href="https://www.bibliaonline.com.br/arc/jo/12/32+" target="_blank" rel="noopener" title="Ler na Bíblia Online (ARC)">Jo 12:32</a>) e quem faz. Essas bênçãos são a resposta de quem recebe o que Deus revelou, não a condição para ser salvo.</p>
-  <h3 class="cc-sub">Antes do centro: chegando a Cristo</h3>
+  <details class="cc-det" open>
+  <summary class="cc-sub">Antes do centro: chegando a Cristo</summary>
   <p class="cc-intro">Quem não sente a sua pobreza (porta 1) e não chora pelo pecado (porta 2) não procura Cristo. E quem tenta fazer tudo com a própria força também não. A mansidão (porta 3) é confiar: entregar o caminho ao Senhor e descansar nele, sabendo que ele fará com o seu poder, e não eu com a minha força. Sem esse sossego a pessoa fica ansiosa pelo futuro e não consegue se alimentar de Cristo.</p>
       <article class="note blue" id="v-sl-37-5">
       <span class="tag">Mansidão é confiar</span>
@@ -166,7 +167,10 @@
       <a class="full" href="https://www.bibliaonline.com.br/arc/sl/37/5+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
     </article>
 
-  <h3 class="cc-sub">No centro: alimentando-se de Cristo</h3>
+  </details>
+
+  <details class="cc-det" open>
+  <summary class="cc-sub">No centro: alimentando-se de Cristo</summary>
   <p class="cc-intro">A fome e a sede são o que mais incomoda o corpo: a pessoa quer saciar logo. Jesus compara a isso a inquietude por justiça. E a justiça é uma Pessoa: só Cristo sacia essa fome e essa sede.</p>
   <div class="cc-par">
       <article class="note green" id="v-jo-6-35">
@@ -185,7 +189,10 @@
     </article>
   </div>
 
-  <h3 class="cc-sub">Depois do centro: os frutos</h3>
+  </details>
+
+  <details class="cc-det" open>
+  <summary class="cc-sub">Depois do centro: os frutos</summary>
   <p class="cc-intro">Quem se alimenta de Cristo dá fruto: é misericordioso (porta 5), puro de coração (porta 6) e pacificador (porta 7). E não é por esforço próprio.</p>
       <article class="note green" id="v-jo-15-5">
       <span class="tag">O fruto vem de permanecer</span>
@@ -194,6 +201,16 @@
       <blockquote class="text"><p><span class="n">5</span>Eu sou a videira, vós, as varas; <mark>quem está em mim, e eu nele, este dá muito fruto</mark>, porque <mark>sem mim nada podereis fazer</mark>.</p></blockquote>
       <a class="full" href="https://www.bibliaonline.com.br/arc/jo/15/5+" target="_blank" rel="noopener">Ler o texto completo na ARC ↗</a>
     </article>
+
+  </details>
+  <script>
+  (function () {
+    var ds = document.querySelectorAll('.cc-det');
+    if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { ds.forEach(function (d) { d.open = false; }); }
+    function abrirAlvo() { var h = location.hash; if (h.length > 1) { var el = document.getElementById(decodeURIComponent(h.slice(1))); var d = el && el.closest ? el.closest('.cc-det') : null; if (d && !d.open) { d.open = true; el.scrollIntoView(); } } }
+    abrirAlvo(); window.addEventListener('hashchange', abrirAlvo);
+  })();
+  </script>
 
   <h3 class="cc-sub">A oitava: o que os outros fazem</h3>
   <p class="cc-intro">Na oitava, o verbo muda de dono. Nas sete primeiras a pessoa é descrita pelo que ela é; aqui, quem age são os outros: injuriam, perseguem e dizem mal. Repare também na palavra <b>justiça</b>: a porta 4 tem fome dela e a porta 8 é perseguida por causa dela. E, como a porta 1, ela tem o Reino dos céus já no presente.</p>

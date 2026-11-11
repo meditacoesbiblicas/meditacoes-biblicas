@@ -758,20 +758,37 @@ def de_cima():
   <p class="cc-atualiza"><span>Atualização</span> 30/10/2026</p>
   <p class="cc-intro">As <b>sete primeiras</b> portas descrevem o que acontece <b>na pessoa</b>, pela obra de Deus nela, e a porta 4 é o centro: três vêm antes dela e três vêm depois. É uma leitura para meditar: o texto não numera essa ordem, mas a estrutura e os versículos abaixo a sustentam.</p>
 @@CRUZ@@
-  <h3 class="cc-sub">Antes do centro: chegando a Cristo</h3>
+  <details class="cc-det" open>
+  <summary class="cc-sub">Antes do centro: chegando a Cristo</summary>
   <p class="cc-intro">Quem não sente a sua pobreza (porta 1) e não chora pelo pecado (porta 2) não procura Cristo. E quem tenta fazer tudo com a própria força também não. A mansidão (porta 3) é confiar: entregar o caminho ao Senhor e descansar nele, sabendo que ele fará com o seu poder, e não eu com a minha força. Sem esse sossego a pessoa fica ansiosa pelo futuro e não consegue se alimentar de Cristo.</p>
   @@SL37@@
 
-  <h3 class="cc-sub">No centro: alimentando-se de Cristo</h3>
+  </details>
+
+  <details class="cc-det" open>
+  <summary class="cc-sub">No centro: alimentando-se de Cristo</summary>
   <p class="cc-intro">A fome e a sede são o que mais incomoda o corpo: a pessoa quer saciar logo. Jesus compara a isso a inquietude por justiça. E a justiça é uma Pessoa: só Cristo sacia essa fome e essa sede.</p>
   <div class="cc-par">
   @@JO635@@
   @@CO130@@
   </div>
 
-  <h3 class="cc-sub">Depois do centro: os frutos</h3>
+  </details>
+
+  <details class="cc-det" open>
+  <summary class="cc-sub">Depois do centro: os frutos</summary>
   <p class="cc-intro">Quem se alimenta de Cristo dá fruto: é misericordioso (porta 5), puro de coração (porta 6) e pacificador (porta 7). E não é por esforço próprio.</p>
   @@JO155@@
+
+  </details>
+  <script>
+  (function () {
+    var ds = document.querySelectorAll('.cc-det');
+    if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { ds.forEach(function (d) { d.open = false; }); }
+    function abrirAlvo() { var h = location.hash; if (h.length > 1) { var el = document.getElementById(decodeURIComponent(h.slice(1))); var d = el && el.closest ? el.closest('.cc-det') : null; if (d && !d.open) { d.open = true; el.scrollIntoView(); } } }
+    abrirAlvo(); window.addEventListener('hashchange', abrirAlvo);
+  })();
+  </script>
 
   <h3 class="cc-sub">A oitava: o que os outros fazem</h3>
   <p class="cc-intro">Na oitava, o verbo muda de dono. Nas sete primeiras a pessoa é descrita pelo que ela é; aqui, quem age são os outros: injuriam, perseguem e dizem mal. Repare também na palavra <b>justiça</b>: a porta 4 tem fome dela e a porta 8 é perseguida por causa dela. E, como a porta 1, ela tem o Reino dos céus já no presente.</p>
